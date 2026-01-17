@@ -13,6 +13,10 @@
     <TextView
         android:id="@+id/tvScanResult"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="wrap_content" />
+
+    <com.hybris.plaincontainers.EntryBaseComponent
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

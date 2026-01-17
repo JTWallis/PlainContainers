@@ -52,6 +52,12 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
     implementation("androidx.camera:camera-view:${cameraxVersion}")
 
+    // Constraint Layout
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+
+    // CardView for easy rounded borders
+    implementation("androidx.cardview:cardview:1.0.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
