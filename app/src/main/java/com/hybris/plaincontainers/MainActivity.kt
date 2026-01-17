@@ -24,6 +24,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
@@ -34,6 +36,8 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
+    private lateinit var rcvContainers: RecyclerView
+
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
             val barcode = result.data?.getStringExtra("barcode")
@@ -47,6 +51,18 @@ class MainActivity : ComponentActivity() {
 
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
+        rcvContainers = findViewById(R.id.rcvContainers)
+
+        val dummyList: MutableList<EntryBase> = ArrayList()
+        dummyList.add(EntryBase("Heinz Baked Beans", "123.png"))
+        dummyList.add(EntryBase("Heinz SOY Beans", "12.png"))
+        dummyList.add(EntryBase("Heinz Ketchup", "124.png"))
+
+        rcvContainers.layoutManager = LinearLayoutManager(this)
+        rcvContainers.addItemDecoration(RcvDecorationGapVertical(
+            getResources().getDimensionPixelSize(R.dimen.rcvEntryGap)
+        ))
+        rcvContainers.adapter = EntryBaseAdapter(dummyList)
 
         initListeners()
     }

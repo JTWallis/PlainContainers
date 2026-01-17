@@ -58,6 +58,10 @@ dependencies {
     // CardView for easy rounded borders
     implementation("androidx.cardview:cardview:1.0.0")
 
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+    implementation("androidx.recyclerview:recyclerview-selection:1.2.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
