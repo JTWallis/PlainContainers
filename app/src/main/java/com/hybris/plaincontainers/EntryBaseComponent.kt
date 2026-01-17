@@ -12,9 +12,9 @@ class EntryBaseComponent @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 
-    private lateinit var layoutEntry : ConstraintLayout
-    private lateinit var ivThumbnail : ImageView
-    private lateinit var tvName : TextView
+    private var layoutEntry : ConstraintLayout
+    private var ivThumbnail : ImageView
+    private var tvName : TextView
 
     init {
         inflate(context, R.layout.component_entry, this)
