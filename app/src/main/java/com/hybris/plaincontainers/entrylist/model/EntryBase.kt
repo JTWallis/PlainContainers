@@ -1,6 +1,6 @@
-package com.hybris.plaincontainers
+package com.hybris.plaincontainers.entrylist.model
 
-class EntryBase {
+open class EntryBase {
     var name: String? = null
     var thumbnailSrc: String? = null
 
