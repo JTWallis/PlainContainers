@@ -1,10 +1,10 @@
-package com.hybris.plaincontainers
+package com.hybris.plaincontainers.entrylist.itemdecoration
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class RcvDecorationGapVertical(private val gap: Int)
+class GapVerticalDecoration(private val gap: Int)
     : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(

@@ -6,16 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.view.PreviewView
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,13 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.mlkit.vision.barcode.BarcodeScanner
-import com.google.mlkit.vision.barcode.BarcodeScannerOptions
-import com.google.mlkit.vision.barcode.BarcodeScanning
-import com.google.mlkit.vision.barcode.common.Barcode
+import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
+import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
+import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapter
+import com.hybris.plaincontainers.entrylist.model.EntryBase
+import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
 
 class MainActivity : ComponentActivity() {
@@ -59,10 +52,24 @@ class MainActivity : ComponentActivity() {
         dummyList.add(EntryBase("Heinz Ketchup", "124.png"))
 
         rcvContainers.layoutManager = LinearLayoutManager(this)
-        rcvContainers.addItemDecoration(RcvDecorationGapVertical(
-            getResources().getDimensionPixelSize(R.dimen.rcvEntryGap)
-        ))
-        rcvContainers.adapter = EntryBaseAdapter(dummyList)
+        rcvContainers.addItemDecoration(
+            GapVerticalDecoration(
+                getResources().getDimensionPixelSize(R.dimen.rcvEntryGap)
+            )
+        )
+
+        lateinit var itemTouchHelper : ItemTouchHelper
+        val dragListener = object : DragListener {
+            override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
+                itemTouchHelper.startDrag(viewHolder)
+            }
+        }
+        val adapter = EntryDragExpandAdapter(dummyList, dragListener)
+        val callback = DragAdapter(adapter)
+
+        itemTouchHelper = ItemTouchHelper(callback)
+        itemTouchHelper.attachToRecyclerView(rcvContainers)
+        rcvContainers.adapter = adapter
 
         initListeners()
     }

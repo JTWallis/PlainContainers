@@ -15,9 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.hybris.plaincontainers.EntryBaseComponent
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/component_entry" />
 
     <ScrollView
         android:layout_width="match_parent"
