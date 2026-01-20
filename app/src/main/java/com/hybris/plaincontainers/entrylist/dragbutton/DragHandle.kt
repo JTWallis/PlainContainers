@@ -3,7 +3,7 @@ package com.hybris.plaincontainers.entrylist.dragbutton
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.MotionEvent
-import android.widget.ImageView
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
@@ -23,5 +23,11 @@ class DragHandle(viewHolder: RecyclerView.ViewHolder, dragListener: DragListener
             }
             false
         }
+    }
+
+    fun setHandleVisibility(visible: Boolean) {
+        layoutDrag.visibility =
+            if(visible) View.VISIBLE
+            else View.INVISIBLE
     }
 }

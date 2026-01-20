@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.SwitchCompat
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
+    private lateinit var toggleDrag: SwitchCompat
     private lateinit var rcvContainers: RecyclerView
 
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -46,6 +48,7 @@ class MainActivity : ComponentActivity() {
 
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
+        toggleDrag = findViewById(R.id.switchDrag)
         rcvContainers = findViewById(R.id.rcvContainers)
 
         val manger = JsonManager(this)
@@ -89,6 +92,10 @@ class MainActivity : ComponentActivity() {
 
         adapter.registerAdapterDataObserver(itemMovedObserver)
         //adapter.unregisterAdapterDataObserver(itemMovedObserver)
+
+        toggleDrag.setOnCheckedChangeListener { _, isChecked ->
+            adapter.setDragVisibility(isChecked)
+        }
 
         initListeners()
     }

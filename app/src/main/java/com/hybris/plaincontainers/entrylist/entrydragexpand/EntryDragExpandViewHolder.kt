@@ -27,4 +27,8 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
 
         //(item as EntryExpand).listItems =
     }
+
+    fun setHandleVisibility(visible: Boolean) {
+        dragHandle.setHandleVisibility(visible)
+    }
 }
