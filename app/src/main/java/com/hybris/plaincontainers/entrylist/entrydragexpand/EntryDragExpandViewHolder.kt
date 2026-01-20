@@ -6,7 +6,7 @@ import com.hybris.plaincontainers.entrylist.dragbutton.DragHandle
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import com.hybris.plaincontainers.entrylist.model.EntryBase
-import com.hybris.plaincontainers.entrylist.model.EntryExpand
+import com.hybris.plaincontainers.entrylist.model.EntryContainer
 
 class EntryDragExpandViewHolder(view: View, private val dragListener: DragListener)
     : EntryBaseViewHolder(view) {
@@ -20,7 +20,7 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
     override fun bind(item: EntryBase) {
         super.bind(item)
 
-        if(item !is EntryExpand) {
+        if(item !is EntryContainer) {
             Log.d("WARNING", "Binding item in EntryDragExpandVH is not of type EntryExpand!")
             return
         }
