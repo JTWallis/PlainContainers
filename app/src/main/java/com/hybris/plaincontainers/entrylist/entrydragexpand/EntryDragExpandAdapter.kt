@@ -15,6 +15,8 @@ import java.util.Collections
 class EntryDragExpandAdapter(private val entryList: List<EntryBase>, private val dragListener : DragListener)
     : EntryBaseAdapter(entryList), ItemMoveListener {
 
+    private var isDragVisible = true
+
     override fun getResource(): Int {
         return R.layout.component_entry_drag
     }
