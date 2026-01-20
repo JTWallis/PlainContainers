@@ -23,7 +23,7 @@ class EntryDragExpandAdapter(private val entryList: List<EntryBase>, private val
         super.onBindViewHolder(holder, position)
 
         if(holder !is EntryDragExpandViewHolder) return
-        holder.setShowHandle(isDragVisible)
+        holder.setHandleVisibility(isDragVisible)
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder {
