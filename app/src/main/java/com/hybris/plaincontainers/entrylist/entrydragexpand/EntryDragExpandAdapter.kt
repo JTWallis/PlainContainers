@@ -30,4 +30,9 @@ class EntryDragExpandAdapter(private val entryList: List<EntryBase>, private val
         Collections.swap(entryList, from, to)
         notifyItemMoved(from, to)
     }
+
+    fun setDragVisibility(show: Boolean) {
+        this.isDragVisible = show
+        notifyItemRangeChanged(0, itemCount)
+    }
 }
