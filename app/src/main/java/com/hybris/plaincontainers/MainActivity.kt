@@ -93,6 +93,10 @@ class MainActivity : ComponentActivity() {
         adapter.registerAdapterDataObserver(itemMovedObserver)
         //adapter.unregisterAdapterDataObserver(itemMovedObserver)
 
+        toggleDrag.setOnCheckedChangeListener { _, isChecked ->
+            adapter.setDragVisibility(isChecked)
+        }
+
         initListeners()
     }
 
