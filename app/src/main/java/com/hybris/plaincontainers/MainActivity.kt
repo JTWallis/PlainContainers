@@ -80,6 +80,14 @@ class MainActivity : ComponentActivity() {
         itemTouchHelper.attachToRecyclerView(rcvContainers)
         rcvContainers.adapter = adapter
 
+        val itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
+                super.onItemRangeMoved(fromPosition, toPosition, itemCount)
+                manger.writeContainers(dummyList)
+            }
+        }
+
+
         initListeners()
     }
 
