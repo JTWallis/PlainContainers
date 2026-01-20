@@ -1,9 +1,7 @@
 package com.hybris.plaincontainers.entrylist.entrydragexpand
 
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.dragbutton.ItemMoveListener
