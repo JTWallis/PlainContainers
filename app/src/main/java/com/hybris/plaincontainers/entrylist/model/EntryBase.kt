@@ -1,11 +1,9 @@
 package com.hybris.plaincontainers.entrylist.model
 
-open class EntryBase {
-    var name: String? = null
-    var thumbnailSrc: String? = null
+import kotlinx.serialization.Serializable
 
-    constructor(name: String, thumbnailSrc: String) {
-        this.name = name
-        this.thumbnailSrc = thumbnailSrc
-    }
+@Serializable
+abstract class EntryBase {
+    abstract val name: String
+    abstract val thumbnailSrc: String
 }
