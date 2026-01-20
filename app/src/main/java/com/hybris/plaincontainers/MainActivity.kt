@@ -18,11 +18,13 @@ import androidx.compose.ui.unit.dp
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapter
 import com.hybris.plaincontainers.entrylist.model.EntryBase
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
+import com.hybris.plaincontainers.entrylist.model.EntryContainer
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,10 +48,17 @@ class MainActivity : ComponentActivity() {
         tvScanResult = findViewById(R.id.tvScanResult);
         rcvContainers = findViewById(R.id.rcvContainers)
 
-        val dummyList: MutableList<EntryBase> = ArrayList()
-        dummyList.add(EntryBase("Heinz Baked Beans", "123.png"))
-        dummyList.add(EntryBase("Heinz SOY Beans", "12.png"))
-        dummyList.add(EntryBase("Heinz Ketchup", "124.png"))
+        val manger = JsonManager(this)
+        val dummyList = manger.readContainers()
+
+        if(dummyList.isEmpty()) {
+            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", ArrayList()))
+            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList()))
+            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList()))
+            manger.writeContainers(dummyList)
+        }
+
+
 
         rcvContainers.layoutManager = LinearLayoutManager(this)
         rcvContainers.addItemDecoration(
