@@ -21,6 +21,13 @@ class EntryDragExpandAdapter(private val entryList: List<EntryBase>, private val
         return R.layout.component_entry_drag
     }
 
+    override fun onBindViewHolder(holder: EntryBaseViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
+
+        if(holder !is EntryDragExpandViewHolder) return
+        holder.setShowHandle(isDragVisible)
+    }
+
     override fun createViewHolder(view: View): EntryBaseViewHolder {
         return EntryDragExpandViewHolder(view, dragListener)
     }
