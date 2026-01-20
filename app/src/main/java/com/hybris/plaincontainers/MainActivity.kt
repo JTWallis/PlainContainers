@@ -87,6 +87,8 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        adapter.registerAdapterDataObserver(itemMovedObserver)
+        //adapter.unregisterAdapterDataObserver(itemMovedObserver)
 
         initListeners()
     }
