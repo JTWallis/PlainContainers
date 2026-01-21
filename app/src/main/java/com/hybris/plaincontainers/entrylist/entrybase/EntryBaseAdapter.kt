@@ -5,24 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.entrylist.model.EntryBase
+import com.hybris.plaincontainers.data.states.EntryStateBase
+import com.hybris.plaincontainers.data.model.EntryBase
 
-abstract class EntryBaseAdapter(
-    private val entryList: List<EntryBase>
-) : RecyclerView.Adapter<EntryBaseViewHolder>() {
+abstract class EntryBaseAdapter<T: EntryStateBase<EntryBase>>(
+    protected var entryList: List<T> = emptyList()
+) : RecyclerView.Adapter<EntryBaseViewHolder<T>>() {
 
     abstract fun getResource(): Int
-    abstract fun createViewHolder(view: View): EntryBaseViewHolder
+    abstract fun createViewHolder(view: View): EntryBaseViewHolder<T>
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryBaseViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryBaseViewHolder<T> {
         val view = LayoutInflater.from(parent.context)
             .inflate(getResource(), parent, false) //EntryBaseComponent(parent.context)
 
         return createViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: EntryBaseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EntryBaseViewHolder<T>, position: Int) {
         Log.d("INFO", "OnBindViewHolder")
         val item = entryList[position]
 
