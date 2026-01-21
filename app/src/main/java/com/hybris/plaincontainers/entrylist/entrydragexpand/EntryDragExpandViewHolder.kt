@@ -32,10 +32,7 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
     override fun bind(item: EntryStateContainer) {
         super.bind(item)
 
-        if(item !is EntryContainer) {
-            Log.d("WARNING", "Binding item in EntryDragExpandVH is not of type EntryExpand!")
-            return
-        }
+        setExpandedVisibility(item.isExpanded)
 
         //(item as EntryExpand).listItems =
     }
