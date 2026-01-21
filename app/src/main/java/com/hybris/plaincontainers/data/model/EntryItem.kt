@@ -1,4 +1,4 @@
-package com.hybris.plaincontainers.entrylist.model
+package com.hybris.plaincontainers.data.model
 
 import kotlinx.serialization.Serializable
 
@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class EntryItem(
     override val name: String,
     override val thumbnailSrc: String,
-    val amount: Integer
+    val amount: Int
 ) : EntryBase() {
 
 }

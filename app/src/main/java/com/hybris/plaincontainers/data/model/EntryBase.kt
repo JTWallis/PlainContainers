@@ -1,4 +1,4 @@
-package com.hybris.plaincontainers.entrylist.model
+package com.hybris.plaincontainers.data.model
 
 import kotlinx.serialization.Serializable
 

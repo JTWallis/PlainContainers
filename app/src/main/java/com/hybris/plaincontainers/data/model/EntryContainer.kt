@@ -1,4 +1,4 @@
-package com.hybris.plaincontainers.entrylist.model
+package com.hybris.plaincontainers.data.model
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -8,5 +8,4 @@ data class EntryContainer(
     val color: String,
     val items: List<EntryItem>
 ) : EntryBase() {
-
 }
