@@ -18,6 +18,12 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
     : EntryBaseViewHolder<EntryStateContainer>(view) {
 
     private val dragHandle = DragHandle(this, dragListener)
+    private val expandHandle = ExpandHandle(
+        view.findViewById<ConstraintLayout>(R.id.containerExpand),
+        onClick = {
+            expandClick(bindingAdapterPosition)
+        }
+    )
 
     init {
         Log.d("INFO", "Init EntryDragExpandVH")
