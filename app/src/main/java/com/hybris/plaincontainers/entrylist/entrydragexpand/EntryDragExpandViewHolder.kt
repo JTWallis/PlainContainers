@@ -14,7 +14,7 @@ import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.data.states.EntryStateItem
 
-class EntryDragExpandViewHolder(view: View, private val dragListener: DragListener)
+class EntryDragExpandViewHolder(view: View, private val dragListener: DragListener, expandClick: (Int) -> Unit)
     : EntryBaseViewHolder<EntryStateContainer>(view) {
 
     private val dragHandle = DragHandle(this, dragListener)

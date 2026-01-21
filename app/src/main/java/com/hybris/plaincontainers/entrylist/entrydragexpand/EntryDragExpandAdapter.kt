@@ -29,7 +29,7 @@ class EntryDragExpandAdapter(private val dragListener : DragListener)
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder<EntryStateContainer> {
-        return EntryDragExpandViewHolder(view, dragListener)
+        return EntryDragExpandViewHolder(view, dragListener, ::onExpandClick)
     }
 
     override fun onItemMove(from: Int, to: Int) {
