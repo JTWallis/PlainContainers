@@ -15,6 +15,10 @@ abstract class EntryBaseAdapter<T: EntryStateBase<EntryBase>>(
     abstract fun getResource(): Int
     abstract fun createViewHolder(view: View): EntryBaseViewHolder<T>
 
+    fun setItems(items: List<T>) {
+        entryList = items
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryBaseViewHolder<T> {
         val view = LayoutInflater.from(parent.context)
