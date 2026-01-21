@@ -2,14 +2,20 @@ package com.hybris.plaincontainers.entrylist.entrydragexpand
 
 import android.util.Log
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.entrylist.dragbutton.DragHandle
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
-import com.hybris.plaincontainers.entrylist.model.EntryBase
-import com.hybris.plaincontainers.entrylist.model.EntryContainer
+import com.hybris.plaincontainers.entrylist.entryexpanditems.EntryExpandItemsAdapter
+import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
+import com.hybris.plaincontainers.data.states.EntryStateContainer
+import com.hybris.plaincontainers.data.states.EntryStateItem
 
 class EntryDragExpandViewHolder(view: View, private val dragListener: DragListener)
-    : EntryBaseViewHolder(view) {
+    : EntryBaseViewHolder<EntryStateContainer>(view) {
 
     private val dragHandle = DragHandle(this, dragListener)
 
@@ -17,7 +23,7 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
         Log.d("INFO", "Init EntryDragExpandVH")
     }
 
-    override fun bind(item: EntryBase) {
+    override fun bind(item: EntryStateContainer) {
         super.bind(item)
 
         if(item !is EntryContainer) {
