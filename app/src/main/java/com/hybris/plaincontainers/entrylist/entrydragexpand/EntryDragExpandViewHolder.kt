@@ -37,4 +37,10 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
     fun setHandleVisibility(visible: Boolean) {
         dragHandle.setHandleVisibility(visible)
     }
+
+    fun setExpandedVisibility(expanded: Boolean) {
+        rcvItems.visibility =
+            if(expanded) View.VISIBLE
+            else View.GONE
+    }
 }
