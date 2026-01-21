@@ -23,9 +23,10 @@ import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapter
-import com.hybris.plaincontainers.entrylist.model.EntryBase
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
-import com.hybris.plaincontainers.entrylist.model.EntryContainer
+import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.data.model.EntryItem
+import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
 
 class MainActivity : ComponentActivity() {
@@ -55,9 +56,14 @@ class MainActivity : ComponentActivity() {
         val dummyList = manger.readContainers()
 
         if(dummyList.isEmpty()) {
-            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", ArrayList()))
-            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList()))
-            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList()))
+            val itemList = ArrayList<EntryItem>()
+            itemList.add(EntryItem("Beans", "Beanz.png", 2) )
+            itemList.add(EntryItem("Beans2", "Beanz.png", 2) )
+            itemList.add(EntryItem("Beans3", "Beanz.png", 2) )
+            itemList.add(EntryItem("Beans4", "Beanz.png", 2) )
+            dummyList.add(EntryStateContainer(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", itemList)))
+            dummyList.add(EntryStateContainer(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList())))
+            dummyList.add(EntryStateContainer(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList())))
             manger.writeContainers(dummyList)
         }
 
