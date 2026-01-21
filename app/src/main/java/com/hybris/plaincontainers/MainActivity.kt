@@ -76,7 +76,8 @@ class MainActivity : ComponentActivity() {
                 itemTouchHelper.startDrag(viewHolder)
             }
         }
-        val adapter = EntryDragExpandAdapter(dummyList, dragListener)
+        val adapter = EntryDragExpandAdapter(dragListener)
+        adapter.setItems(dummyList)
         val callback = DragAdapter(adapter)
 
         itemTouchHelper = ItemTouchHelper(callback)
