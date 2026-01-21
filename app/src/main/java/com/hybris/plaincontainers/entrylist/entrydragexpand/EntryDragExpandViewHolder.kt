@@ -24,14 +24,24 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
             expandClick(bindingAdapterPosition)
         }
     )
+    private val rcvItems = view.findViewById<RecyclerView>(R.id.rcvItems)
+
+    private val expandItemsAdapter = EntryExpandItemsAdapter()
 
     init {
         Log.d("INFO", "Init EntryDragExpandVH")
+
+        rcvItems.apply {
+            layoutManager = LinearLayoutManager(view.context)
+            adapter = expandItemsAdapter
+            setRecycledViewPool(RecyclerView.RecycledViewPool())
+        }
     }
 
     override fun bind(item: EntryStateContainer) {
         super.bind(item)
 
+        expandItemsAdapter.setItems(item.model.items.map{ e -> EntryStateItem(e)})
         expandHandle.bind(item.isExpanded)
         setExpandedVisibility(item.isExpanded)
 
