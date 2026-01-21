@@ -13,7 +13,7 @@ import com.hybris.plaincontainers.data.states.EntryStateContainer
 import java.util.Collections
 
 class EntryDragExpandAdapter(private val dragListener : DragListener)
-    : EntryBaseAdapter<EntryStateContainer>(), ItemMoveListener {
+    : EntryBaseAdapter<EntryStateContainer>(), ItemMoveListener, ExpandListener {
 
     private var isDragVisible = true
 
@@ -36,6 +36,12 @@ class EntryDragExpandAdapter(private val dragListener : DragListener)
         Log.d("INFO", "OnItemMove From " + from + " To " + to)
         Collections.swap(entryList, from, to)
         notifyItemMoved(from, to)
+    }
+
+    override fun onExpandClick(position: Int) {
+        val item = entryList[position]
+        item.isExpanded = !item.isExpanded
+        notifyItemChanged(position)
     }
 
     fun setDragVisibility(show: Boolean) {
