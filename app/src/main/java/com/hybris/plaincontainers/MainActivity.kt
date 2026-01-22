@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SwitchCompat
+import androidx.cardview.widget.CardView
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -27,14 +28,17 @@ import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.states.EntryStateContainer
+import com.hybris.plaincontainers.entrylist.sortbutton.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
 
 class MainActivity : ComponentActivity() {
 
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
+    private lateinit var layoutBtnSort: CardView
     private lateinit var toggleDrag: SwitchCompat
     private lateinit var rcvContainers: RecyclerView
+    private lateinit var handleSort: SortHandle
 
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
@@ -49,11 +53,11 @@ class MainActivity : ComponentActivity() {
 
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
+        layoutBtnSort = findViewById(R.id.layoutSort)
         toggleDrag = findViewById(R.id.switchDrag)
         rcvContainers = findViewById(R.id.rcvContainers)
 
-        val manger = JsonManager(this)
-        val dummyList = manger.readContainers()
+        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
 
         if(dummyList.isEmpty()) {
             val itemList = ArrayList<EntryItem>()
@@ -111,6 +115,11 @@ class MainActivity : ComponentActivity() {
         btnScan.setOnClickListener {
             onBtnScanClicked()
         }
+    }
+
+    private fun onBtnSortClicked(view: View) {
+        Log.d("INFO", "BtnSort Clicked!")
+
     }
 
     private fun onBtnScanClicked() {
