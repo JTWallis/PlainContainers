@@ -114,6 +114,7 @@ class MainActivity : ComponentActivity(), SortChangeListener {
         val itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                 super.onItemRangeMoved(fromPosition, toPosition, itemCount)
+                setSetSortOption(SortOption.CUSTOM, true)
                 rootContainer.containers = dummyList.map{ e -> e.model}
                 manger.writeRoot(rootContainer)
             }
