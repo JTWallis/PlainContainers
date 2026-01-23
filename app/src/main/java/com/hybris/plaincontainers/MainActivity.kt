@@ -27,6 +27,7 @@ import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapt
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
+import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.entrylist.sortbutton.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
@@ -39,6 +40,9 @@ class MainActivity : ComponentActivity() {
     private lateinit var toggleDrag: SwitchCompat
     private lateinit var rcvContainers: RecyclerView
     private lateinit var handleSort: SortHandle
+    private lateinit var manger: JsonManager
+    private lateinit var rootContainer: RootContainer
+    private lateinit var dummyList: MutableList<EntryStateContainer>
 
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
@@ -59,18 +63,25 @@ class MainActivity : ComponentActivity() {
 
         handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
 
-        if(dummyList.isEmpty()) {
+        manger = JsonManager(this)
+        val rootNullable = manger.readRoot()
+
+        if(rootNullable == null) {
             val itemList = ArrayList<EntryItem>()
             itemList.add(EntryItem("Beans", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans2", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans3", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans4", "Beanz.png", 2) )
+            dummyList = ArrayList()
             dummyList.add(EntryStateContainer(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", itemList)))
             dummyList.add(EntryStateContainer(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList())))
             dummyList.add(EntryStateContainer(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList())))
-            manger.writeContainers(dummyList)
+            rootContainer = RootContainer(SortOption.CUSTOM, true, dummyList.map { e -> e.model})
+            manger.writeRoot(rootContainer)
+        } else {
+            rootContainer = rootNullable
+            dummyList = rootContainer.containers.map{ e -> EntryStateContainer(e) }.toMutableList()
         }
-
 
 
         rcvContainers.layoutManager = LinearLayoutManager(this)
@@ -97,7 +108,8 @@ class MainActivity : ComponentActivity() {
         val itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                 super.onItemRangeMoved(fromPosition, toPosition, itemCount)
-                manger.writeContainers(dummyList)
+                rootContainer.containers = dummyList.map{ e -> e.model}
+                manger.writeRoot(rootContainer)
             }
         }
 
