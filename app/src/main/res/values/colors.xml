@@ -9,9 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="darkgray">#888</color>
     <color name="lightgray">#AAA</color>
+    <color name="red">#B85D5D</color>
 
     <color name="backgroundDefault">@color/white</color>
     <color name="backgroundHighlight">@color/lightgray</color>
     <color name="backgroundHighlightSelect">@color/darkgray</color>
     <color name="border">@color/darkgray</color>
+    <color name="importantText">@color/red</color>
 </resources>
