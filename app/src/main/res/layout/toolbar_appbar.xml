@@ -10,5 +10,6 @@
     app:navigationIcon="@drawable/arrow_small_left_24"
     app:title="Example Title"
     app:subtitle="Example Subtitle"
+    app:menu="@menu/toolbar_menu"
     android:elevation="8dp"
 />
