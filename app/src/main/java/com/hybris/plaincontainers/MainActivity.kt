@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var toggleDrag: SwitchCompat
     private lateinit var rcvContainers: RecyclerView
     private lateinit var handleSort: SortHandle
+    private lateinit var rcvAdapter: EntryDragExpandAdapter
     private lateinit var manger: JsonManager
     private lateinit var rootContainer: RootContainer
     private lateinit var dummyList: MutableList<EntryStateContainer>
@@ -97,13 +98,13 @@ class MainActivity : ComponentActivity() {
                 itemTouchHelper.startDrag(viewHolder)
             }
         }
-        val adapter = EntryDragExpandAdapter(dragListener)
-        adapter.setItems(dummyList)
-        val callback = DragAdapter(adapter)
+        rcvAdapter = EntryDragExpandAdapter(dragListener)
+        rcvAdapter.setItems(dummyList)
+        val callback = DragAdapter(rcvAdapter)
 
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcvContainers)
-        rcvContainers.adapter = adapter
+        rcvContainers.adapter = rcvAdapter
 
         val itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
@@ -113,11 +114,11 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        adapter.registerAdapterDataObserver(itemMovedObserver)
+        rcvAdapter.registerAdapterDataObserver(itemMovedObserver)
         //adapter.unregisterAdapterDataObserver(itemMovedObserver)
 
         toggleDrag.setOnCheckedChangeListener { _, isChecked ->
-            adapter.setDragVisibility(isChecked)
+            rcvAdapter.setDragVisibility(isChecked)
         }
 
         initListeners()
