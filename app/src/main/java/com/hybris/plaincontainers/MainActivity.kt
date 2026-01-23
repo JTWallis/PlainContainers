@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hybris.plaincontainers.components.handles.AddHandle
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
@@ -30,7 +31,7 @@ import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
-import com.hybris.plaincontainers.entrylist.sortbutton.SortHandle
+import com.hybris.plaincontainers.components.handles.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
@@ -42,9 +43,11 @@ class MainActivity : ComponentActivity(), SortChangeListener {
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
     private lateinit var layoutBtnSort: CardView
-    private lateinit var toggleDrag: SwitchCompat
-    private lateinit var rcvContainers: RecyclerView
     private lateinit var handleSort: SortHandle
+    private lateinit var toggleDrag: SwitchCompat
+    private lateinit var layoutBtnAdd: CardView
+    private lateinit var handleAdd: AddHandle
+    private lateinit var rcvContainers: RecyclerView
     private lateinit var rcvAdapter: EntryDragExpandAdapter
     private lateinit var manger: JsonManager
     private lateinit var rootContainer: RootContainer
@@ -64,10 +67,12 @@ class MainActivity : ComponentActivity(), SortChangeListener {
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
         layoutBtnSort = findViewById(R.id.layoutSort)
+        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
         toggleDrag = findViewById(R.id.switchDrag)
+        layoutBtnAdd = findViewById(R.id.layoutAdd)
+        handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) })
         rcvContainers = findViewById(R.id.rcvContainers)
 
-        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
 
         manger = JsonManager(this)
         val rootNullable = manger.readRoot()
@@ -145,6 +150,10 @@ class MainActivity : ComponentActivity(), SortChangeListener {
             onSortChanged = { e -> onSortOptionChanged(e) })
         popup.setTitle("Sort by:")
         popup.show(view)
+    }
+
+    private fun onBtnAddClicked(view: View) {
+
     }
 
     private fun onBtnScanClicked() {
