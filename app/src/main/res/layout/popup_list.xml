@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cornerRadiusDefault"
+    app:cardBackgroundColor="@color/border"
+    app:cardElevation="0dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundDefault"
+        android:layout_margin="4dp"
+        android:minWidth="300dp"
+        android:minHeight="400dp"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVert1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"
+        />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVert2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineHorz1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1"
+            />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/arrow_small_left_24"
+            android:scaleType="centerCrop"
+            android:background="@color/backgroundDefault"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/guidelineHorz1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+        />
+
+        <TextView
+            android:id="@+id/txtPopupListTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Title"
+            android:textSize="32sp"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/guidelineHorz1"
+            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toEndOf="@id/guidelineVert2"
+            />
+
+        <ListView
+            android:id="@+id/lvPopupList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:divider="@color/backgroundDefault"
+            android:dividerHeight="16dp"
+            app:layout_constraintTop_toBottomOf="@id/guidelineHorz1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+

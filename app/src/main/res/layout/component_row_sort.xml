@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutSort"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/lvSortRowMinHeight"
+    android:background="@color/backgroundHighlight">
+
+    <ImageView
+        android:id="@+id/ivRowSortIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:minWidth="48dp"
+        android:src="@drawable/angle_small_down_24"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_vertical"
+    />
+
+    <TextView
+        android:id="@+id/txtRowSortText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Sort by Name"
+        android:textSize="@dimen/lvSortRowFontSize"
+        android:layout_gravity="center_vertical"
+    />
+
+</LinearLayout>

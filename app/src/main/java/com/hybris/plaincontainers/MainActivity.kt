@@ -3,6 +3,7 @@ package com.hybris.plaincontainers
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
@@ -27,11 +28,16 @@ import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapt
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
+import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.entrylist.sortbutton.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
+import com.hybris.plaincontainers.views.sortpopup.SortPopup
+import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
+import com.hybris.plaincontainers.views.sortpopup.SortOption
+import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), SortChangeListener {
 
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
@@ -39,6 +45,10 @@ class MainActivity : ComponentActivity() {
     private lateinit var toggleDrag: SwitchCompat
     private lateinit var rcvContainers: RecyclerView
     private lateinit var handleSort: SortHandle
+    private lateinit var rcvAdapter: EntryDragExpandAdapter
+    private lateinit var manger: JsonManager
+    private lateinit var rootContainer: RootContainer
+    private lateinit var dummyList: MutableList<EntryStateContainer>
 
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
@@ -59,18 +69,25 @@ class MainActivity : ComponentActivity() {
 
         handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
 
-        if(dummyList.isEmpty()) {
+        manger = JsonManager(this)
+        val rootNullable = manger.readRoot()
+
+        if(rootNullable == null) {
             val itemList = ArrayList<EntryItem>()
             itemList.add(EntryItem("Beans", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans2", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans3", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans4", "Beanz.png", 2) )
+            dummyList = ArrayList()
             dummyList.add(EntryStateContainer(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", itemList)))
             dummyList.add(EntryStateContainer(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList())))
             dummyList.add(EntryStateContainer(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList())))
-            manger.writeContainers(dummyList)
+            rootContainer = RootContainer(SortOption.CUSTOM, true, dummyList.map { e -> e.model})
+            manger.writeRoot(rootContainer)
+        } else {
+            rootContainer = rootNullable
+            dummyList = rootContainer.containers.map{ e -> EntryStateContainer(e) }.toMutableList()
         }
-
 
 
         rcvContainers.layoutManager = LinearLayoutManager(this)
@@ -86,26 +103,28 @@ class MainActivity : ComponentActivity() {
                 itemTouchHelper.startDrag(viewHolder)
             }
         }
-        val adapter = EntryDragExpandAdapter(dragListener)
-        adapter.setItems(dummyList)
-        val callback = DragAdapter(adapter)
+        rcvAdapter = EntryDragExpandAdapter(dragListener)
+        rcvAdapter.setItems(dummyList)
+        val callback = DragAdapter(rcvAdapter)
 
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcvContainers)
-        rcvContainers.adapter = adapter
+        rcvContainers.adapter = rcvAdapter
 
         val itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                 super.onItemRangeMoved(fromPosition, toPosition, itemCount)
-                manger.writeContainers(dummyList)
+                setSetSortOption(SortOption.CUSTOM, true)
+                rootContainer.containers = dummyList.map{ e -> e.model}
+                manger.writeRoot(rootContainer)
             }
         }
 
-        adapter.registerAdapterDataObserver(itemMovedObserver)
+        rcvAdapter.registerAdapterDataObserver(itemMovedObserver)
         //adapter.unregisterAdapterDataObserver(itemMovedObserver)
 
         toggleDrag.setOnCheckedChangeListener { _, isChecked ->
-            adapter.setDragVisibility(isChecked)
+            rcvAdapter.setDragVisibility(isChecked)
         }
 
         initListeners()
@@ -120,6 +139,12 @@ class MainActivity : ComponentActivity() {
     private fun onBtnSortClicked(view: View) {
         Log.d("INFO", "BtnSort Clicked!")
 
+        val popup = SortPopup(
+            view,
+            SortSelection(rootContainer.selectedOption, rootContainer.selectedAscending),
+            onSortChanged = { e -> onSortOptionChanged(e) })
+        popup.setTitle("Sort by:")
+        popup.show(view)
     }
 
     private fun onBtnScanClicked() {
@@ -128,6 +153,34 @@ class MainActivity : ComponentActivity() {
         scanLauncher.launch(
             Intent(this, ScannerActivity::class.java)
         )
+    }
+
+    private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
+        rootContainer.selectedOption = sortOption
+        rootContainer.selectedAscending = isAscending
+        handleSort.setText(sortOption.toString())
+    }
+
+    private fun sortList(sortOption: SortOption, isAscending: Boolean) {
+        when(sortOption) {
+            SortOption.NAME -> {
+                if(isAscending) dummyList.sortBy{ e -> e.model.name }
+                else dummyList.sortByDescending { e -> e.model.name }
+
+                rootContainer.containers = dummyList.map{ e -> e.model }
+                rcvAdapter.notifyItemRangeChanged(0, dummyList.count())
+            }
+            SortOption.DATE_ADDED -> {}
+            SortOption.DATE_MODIFIED -> {}
+            SortOption.CUSTOM -> {}
+        }
+
+        setSetSortOption(sortOption, isAscending)
+    }
+
+    override fun onSortOptionChanged(sortSelection: SortSelection) {
+        sortList(sortSelection.option, sortSelection.isAscending)
+        manger.writeRoot(rootContainer)
     }
 }
 
