@@ -31,6 +31,7 @@ import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.entrylist.sortbutton.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
+import com.hybris.plaincontainers.views.sortpopup.SortPopup
 
 class MainActivity : ComponentActivity() {
 
@@ -133,6 +134,12 @@ class MainActivity : ComponentActivity() {
     private fun onBtnSortClicked(view: View) {
         Log.d("INFO", "BtnSort Clicked!")
 
+        val popup = SortPopup(
+            view,
+            SortSelection(rootContainer.selectedOption, rootContainer.selectedAscending),
+            onSortChanged = { e -> onSortOptionChanged(e) })
+        popup.setTitle("Sort by:")
+        popup.show(view)
     }
 
     private fun onBtnScanClicked() {
@@ -141,6 +148,9 @@ class MainActivity : ComponentActivity() {
         scanLauncher.launch(
             Intent(this, ScannerActivity::class.java)
         )
+    }
+
+    override fun onSortOptionChanged(sortSelection: SortSelection) {
     }
 }
 
