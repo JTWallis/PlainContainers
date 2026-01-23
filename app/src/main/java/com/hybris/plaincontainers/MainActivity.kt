@@ -3,6 +3,7 @@ package com.hybris.plaincontainers
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -215,6 +216,25 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
     override fun onSortOptionChanged(sortSelection: SortSelection) {
         sortList(sortSelection.option, sortSelection.isAscending)
         manger.writeRoot(rootContainer)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            R.id.actionSettings -> {
+                //findNavController().navigate(R.id.)
+                true
+            }
+            R.id.actionAbout -> {
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 }
 
