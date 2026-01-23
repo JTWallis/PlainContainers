@@ -42,9 +42,9 @@ class MainActivity : ComponentActivity(), SortChangeListener {
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
     private lateinit var layoutBtnSort: CardView
+    private lateinit var handleSort: SortHandle
     private lateinit var toggleDrag: SwitchCompat
     private lateinit var rcvContainers: RecyclerView
-    private lateinit var handleSort: SortHandle
     private lateinit var rcvAdapter: EntryDragExpandAdapter
     private lateinit var manger: JsonManager
     private lateinit var rootContainer: RootContainer
@@ -64,10 +64,10 @@ class MainActivity : ComponentActivity(), SortChangeListener {
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
         layoutBtnSort = findViewById(R.id.layoutSort)
+        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
         toggleDrag = findViewById(R.id.switchDrag)
         rcvContainers = findViewById(R.id.rcvContainers)
 
-        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
 
         manger = JsonManager(this)
         val rootNullable = manger.readRoot()
