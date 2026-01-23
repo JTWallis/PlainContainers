@@ -8,11 +8,11 @@ import android.widget.PopupWindow
 import androidx.annotation.LayoutRes
 
 open class Popup(
-    view: View,
+    invokerView: View,
     @LayoutRes layoutRes: Int,
 ) {
 
-    protected val contentView: View = LayoutInflater.from(view.context).inflate(layoutRes, null)
+    protected val contentView: View = LayoutInflater.from(invokerView.context).inflate(layoutRes, null)
     private val popupWindow = PopupWindow(
         contentView,
         ViewGroup.LayoutParams.WRAP_CONTENT,

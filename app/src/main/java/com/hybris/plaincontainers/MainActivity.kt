@@ -33,6 +33,7 @@ import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.components.handles.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
+import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
@@ -153,7 +154,23 @@ class MainActivity : ComponentActivity(), SortChangeListener {
     }
 
     private fun onBtnAddClicked(view: View) {
+        val popup = ChoicePopup(
+            view,
+            onClickLeft = { onBtnAddManualClicked() },
+            onClickRight = { onBtnAddBarcodeClicked() }
+        )
+        popup.setTextTitle("Select method to add item")
+        popup.setTextSubtitle("This action is irreversible!")
+        popup.setTextButtonLeft("Manual")
+        popup.setTextButtonRight("Barcode")
 
+        popup.show(view)
+    }
+
+    private fun onBtnAddManualClicked() {
+    }
+
+    private fun onBtnAddBarcodeClicked() {
     }
 
     private fun onBtnScanClicked() {

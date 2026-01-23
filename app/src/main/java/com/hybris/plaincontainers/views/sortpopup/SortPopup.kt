@@ -8,10 +8,10 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.views.Popup
 
 class SortPopup(
-    view: View,
+    invokerView: View,
     private var sortSelection: SortSelection,
     private val onSortChanged: (SortSelection) -> Unit)
-: Popup(view, R.layout.popup_list) {
+: Popup(invokerView, R.layout.popup_list) {
 
     private val txtTitle = contentView.findViewById<TextView>(R.id.txtPopupListTitle)
     private val list = contentView.findViewById<ListView>(R.id.lvPopupList)
@@ -24,7 +24,7 @@ class SortPopup(
     )
 
     private val adapter = SortPopupAdapter(
-        view.context,
+        invokerView.context,
         sortOptions,
         sortSelection,
         arrayOf(sortOptions.lastIndex),
