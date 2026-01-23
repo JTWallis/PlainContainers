@@ -8,7 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
@@ -39,8 +41,9 @@ import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-class MainActivity : ComponentActivity(), SortChangeListener {
+class MainActivity : AppCompatActivity(), SortChangeListener {
 
+    private lateinit var layoutToolbar: Toolbar
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
     private lateinit var layoutBtnSort: CardView
@@ -65,6 +68,7 @@ class MainActivity : ComponentActivity(), SortChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main);
 
+        layoutToolbar = findViewById(R.id.layoutToolbar)
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
         layoutBtnSort = findViewById(R.id.layoutSort)
@@ -74,6 +78,10 @@ class MainActivity : ComponentActivity(), SortChangeListener {
         handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) })
         rcvContainers = findViewById(R.id.rcvContainers)
 
+        layoutToolbar.title = "Container Overview"
+        layoutToolbar.subtitle = ""
+        setSupportActionBar(layoutToolbar.findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         manger = JsonManager(this)
         val rootNullable = manger.readRoot()
