@@ -150,6 +150,12 @@ class MainActivity : ComponentActivity() {
         )
     }
 
+    private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
+        rootContainer.selectedOption = sortOption
+        rootContainer.selectedAscending = isAscending
+        handleSort.setText(sortOption.toString())
+    }
+
     override fun onSortOptionChanged(sortSelection: SortSelection) {
     }
 }
