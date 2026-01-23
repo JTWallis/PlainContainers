@@ -33,10 +33,11 @@ import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.entrylist.sortbutton.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
+import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), SortChangeListener {
 
     private lateinit var btnScan: Button;
     private lateinit var tvScanResult: TextView;
@@ -177,6 +178,8 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onSortOptionChanged(sortSelection: SortSelection) {
+        sortList(sortSelection.option, sortSelection.isAscending)
+        manger.writeRoot(rootContainer)
     }
 }
 
