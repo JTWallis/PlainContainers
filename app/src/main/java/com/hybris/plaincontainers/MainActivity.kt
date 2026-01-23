@@ -156,6 +156,23 @@ class MainActivity : ComponentActivity() {
         handleSort.setText(sortOption.toString())
     }
 
+    private fun sortList(sortOption: SortOption, isAscending: Boolean) {
+        when(sortOption) {
+            SortOption.NAME -> {
+                if(isAscending) dummyList.sortBy{ e -> e.model.name }
+                else dummyList.sortByDescending { e -> e.model.name }
+
+                rootContainer.containers = dummyList.map{ e -> e.model }
+                rcvAdapter.notifyItemRangeChanged(0, dummyList.count())
+            }
+            SortOption.DATE_ADDED -> {}
+            SortOption.DATE_MODIFIED -> {}
+            SortOption.CUSTOM -> {}
+        }
+
+        setSetSortOption(sortOption, isAscending)
+    }
+
     override fun onSortOptionChanged(sortSelection: SortSelection) {
     }
 }
