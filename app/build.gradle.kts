@@ -67,6 +67,11 @@ dependencies {
     // Kotlin Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
+    // Navigation
+    val navVersion = "2.9.6"
+    implementation("androidx.navigation:navigation-fragment:${navVersion}")
+    implementation("androidx.navigation:navigation-ui:${navVersion}")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
