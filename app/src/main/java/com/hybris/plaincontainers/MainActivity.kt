@@ -73,10 +73,10 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
         btnScan = findViewById(R.id.btnScan);
         tvScanResult = findViewById(R.id.tvScanResult);
         layoutBtnSort = findViewById(R.id.layoutSort)
-        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) })
+        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) }, "Custom")
         toggleDrag = findViewById(R.id.switchDrag)
         layoutBtnAdd = findViewById(R.id.layoutAdd)
-        handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) })
+        handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) }, "Add Container")
         rcvContainers = findViewById(R.id.rcvContainers)
 
         layoutToolbar.title = "Container Overview"
