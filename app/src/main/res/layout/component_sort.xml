@@ -17,6 +17,7 @@
         android:drawableStart="@drawable/list_24"
         android:drawablePadding="@dimen/paddingDrawable"
         android:text="Sort by name"
+        android:textAlignment="textStart"
         android:textAllCaps="false"
     />
 </androidx.cardview.widget.CardView>
