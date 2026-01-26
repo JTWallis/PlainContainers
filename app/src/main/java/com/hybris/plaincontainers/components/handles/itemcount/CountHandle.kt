@@ -1,4 +1,4 @@
-package com.hybris.plaincontainers.components.handles
+package com.hybris.plaincontainers.components.handles.itemcount
 
 import android.view.View
 import android.widget.TextView
