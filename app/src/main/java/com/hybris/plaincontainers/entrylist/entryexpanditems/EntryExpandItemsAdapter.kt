@@ -11,7 +11,7 @@ class EntryExpandItemsAdapter()
     : EntryBaseAdapter<EntryStateItem>() {
 
     override fun getResource(): Int {
-        return R.layout.component_entry
+        return R.layout.component_entry_count
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder<EntryStateItem> {
