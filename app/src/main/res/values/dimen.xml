@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="emptyDividerHeight">16dp</dimen>
+    <dimen name="viewPadding">16dp</dimen>
     <dimen name="cornerRadiusDefault">4dp</dimen>
     <dimen name="cornerRadiusSmall">2dp</dimen>
     <dimen name="borderThicknessSmall">1dp</dimen>
