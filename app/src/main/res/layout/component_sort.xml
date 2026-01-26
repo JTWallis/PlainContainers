@@ -12,8 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/borderThicknessSmall"
+        android:padding="@dimen/paddingButton"
         android:background="#FFF"
         android:drawableStart="@drawable/list_24"
+        android:drawablePadding="@dimen/paddingDrawable"
         android:text="Sort by name"
         android:textAllCaps="false"
     />

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/borderThicknessSmall"
+        android:padding="@dimen/paddingButton"
         android:background="@color/backgroundDefault"
         android:drawableEnd="@drawable/add_24"
         android:drawablePadding="8dp"
