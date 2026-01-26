@@ -2,9 +2,8 @@ package com.hybris.plaincontainers.entrylist.entryexpanditems
 
 import android.util.Log
 import android.view.View
-import com.hybris.plaincontainers.components.handles.CountHandle
+import com.hybris.plaincontainers.components.handles.itemcount.CountHandle
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
-import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.states.EntryStateItem
 
 class EntryExpandItemsViewHolder(view: View)
@@ -21,7 +20,5 @@ class EntryExpandItemsViewHolder(view: View)
         super.bind(item)
 
         countHandle.setCount(item.model.amount)
-
-        //
     }
 }
