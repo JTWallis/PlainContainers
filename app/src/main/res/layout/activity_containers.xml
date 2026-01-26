@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/component_edit"
+        <include layout="@layout/component_button_icon_labeled"
             android:id="@+id/layoutEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
