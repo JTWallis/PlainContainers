@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="emptyDividerHeight">16dp</dimen>
+    <dimen name="viewPadding">16dp</dimen>
+    <dimen name="horizontalBarHeight">4px</dimen>
+    <dimen name="bgBorderThickness">4px</dimen>
     <dimen name="cornerRadiusDefault">4dp</dimen>
     <dimen name="cornerRadiusSmall">2dp</dimen>
-    <dimen name="borderThicknessSmall">1dp</dimen>
+    <dimen name="borderThicknessSmall">4px</dimen>
     <dimen name="rcvEntryGap">12dp</dimen>
+    <dimen name="paddingButton">4dp</dimen>
+    <dimen name="paddingDrawable">8dp</dimen>
     <dimen name="lvSortRowMinHeight">64dp</dimen>
     <dimen name="lvSortTitleFontSize">32sp</dimen>
     <dimen name="lvSortRowFontSize">24sp</dimen>
     <dimen name="btnPopupChoiceMargin">32dp</dimen>
+    <dimen name="fontSizeDefault">16sp</dimen>
     <dimen name="fontSizePopupChoiceTitle">28sp</dimen>
     <dimen name="fontSizePopupChoiceSubtitle">20sp</dimen>
     <dimen name="fontSizePopupChoiceButton">24sp</dimen>
