@@ -1,10 +1,11 @@
-package com.hybris.plaincontainers.components.handles
+package com.hybris.plaincontainers.components.handles.buttoniconlabeled
 
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.hybris.plaincontainers.R
+import com.hybris.plaincontainers.components.handles.ButtonHandleBase
 
 open class ButtonIconLabeledHandle(
     view: View,

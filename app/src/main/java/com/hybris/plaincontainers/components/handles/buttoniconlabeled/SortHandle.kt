@@ -1,9 +1,9 @@
-package com.hybris.plaincontainers.components.handles
+package com.hybris.plaincontainers.components.handles.buttoniconlabeled
 
 import android.view.View
 import com.hybris.plaincontainers.R
 
-class AddHandle(
+class SortHandle(
     view: View,
     onClick: () -> Unit,
     buttonText: String
@@ -11,6 +11,5 @@ class AddHandle(
     view,
     onClick,
     buttonText,
-    R.drawable.add_24,
-    true
+    R.drawable.list_24
 ) {}
