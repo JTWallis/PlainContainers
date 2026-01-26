@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cvSort"
-    android:layout_width="match_parent"
+    android:id="@+id/cvBtnLabeled"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/cornerRadiusSmall"
-    app:cardBackgroundColor="#000"
+    app:cardBackgroundColor="@color/border"
 >
     <Button
-        android:id="@+id/btnSort"
+        android:id="@+id/btnLabeled"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/borderThicknessSmall"
         android:padding="@dimen/paddingButton"
-        android:background="#FFF"
-        android:drawableStart="@drawable/list_24"
+        android:background="@color/backgroundDefault"
         android:drawablePadding="@dimen/paddingDrawable"
-        android:text="Sort by name"
+        android:text="Labeled Button"
         android:textAlignment="textStart"
         android:textAllCaps="false"
     />
