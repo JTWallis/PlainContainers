@@ -8,6 +8,8 @@
     <dimen name="cornerRadiusSmall">2dp</dimen>
     <dimen name="borderThicknessSmall">4px</dimen>
     <dimen name="rcvEntryGap">12dp</dimen>
+    <dimen name="paddingButton">4dp</dimen>
+    <dimen name="paddingDrawable">8dp</dimen>
     <dimen name="lvSortRowMinHeight">64dp</dimen>
     <dimen name="lvSortTitleFontSize">32sp</dimen>
     <dimen name="lvSortRowFontSize">24sp</dimen>
