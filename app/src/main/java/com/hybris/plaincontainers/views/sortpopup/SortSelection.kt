@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 class SortSelection(
     var option: SortOption,
     var isAscending: Boolean
-) {}
+): java.io.Serializable {}
