@@ -36,6 +36,7 @@ import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.components.handles.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
+import com.hybris.plaincontainers.views.ContainerDetailsActivity
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
@@ -160,6 +161,20 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
             onSortChanged = { e -> onSortOptionChanged(e) })
         popup.setTitle("Sort by:")
         popup.show(view)
+    }
+
+    private fun startActivityContainerDetails() {
+        val container = dummyList[0]
+        val pack = ContainerActivityPackage(
+            0,
+            container.items.toMutableList(),
+            container.sortParams
+        )
+
+        val int = Intent(this, ContainerDetailsActivity::class.java)
+        int.putExtra("container_package", pack)
+
+        startActivity(int)
     }
 
     private fun onBtnAddClicked(view: View) {
