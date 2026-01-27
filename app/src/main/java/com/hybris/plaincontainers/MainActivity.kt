@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
 
         val popup = SortPopup(
             view,
-            SortSelection(rootContainer.selectedOption, rootContainer.selectedAscending),
+            rootContainer.sortParams,
             onSortChanged = { e -> onSortOptionChanged(e) })
         popup.setTitle("Sort by:")
         popup.show(view)
@@ -196,8 +196,8 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
     }
 
     private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
-        rootContainer.selectedOption = sortOption
-        rootContainer.selectedAscending = isAscending
+        rootContainer.sortParams.option = sortOption
+        rootContainer.sortParams.isAscending = isAscending
         handleSort.setText(sortOption.toString())
     }
 
