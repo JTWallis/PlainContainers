@@ -26,9 +26,9 @@ class EntryIncrementViewHolder(view: View, onCountChange: (position: Int, addVal
         Log.d("INFO", "Init EntryIncrementVH")
     }
 
-    override fun bind(item: EntryStateItem) {
+    override fun bind(item: EntryItem) {
         super.bind(item)
 
-        countHandle.setCount(item.model.amount)
+        countHandle.setCount(item.amount)
     }
 }
