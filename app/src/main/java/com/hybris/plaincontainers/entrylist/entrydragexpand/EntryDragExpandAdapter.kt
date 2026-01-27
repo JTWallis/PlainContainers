@@ -9,11 +9,10 @@ import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseAdapter
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import com.hybris.plaincontainers.entrylist.expandbutton.ExpandListener
 import com.hybris.plaincontainers.data.model.EntryContainer
-import com.hybris.plaincontainers.data.states.EntryStateContainer
 import java.util.Collections
 
 class EntryDragExpandAdapter(private val dragListener : DragListener)
-    : EntryBaseAdapter<EntryStateContainer>(), ItemMoveListener, ExpandListener {
+    : EntryBaseAdapter<EntryContainer>(), ItemMoveListener, ExpandListener {
 
     private var isDragVisible = true
 
@@ -21,14 +20,14 @@ class EntryDragExpandAdapter(private val dragListener : DragListener)
         return R.layout.component_entry_drag
     }
 
-    override fun onBindViewHolder(holder: EntryBaseViewHolder<EntryStateContainer>, position: Int) {
+    override fun onBindViewHolder(holder: EntryBaseViewHolder<EntryContainer>, position: Int) {
         super.onBindViewHolder(holder, position)
 
         if(holder !is EntryDragExpandViewHolder) return
         holder.setHandleVisibility(isDragVisible)
     }
 
-    override fun createViewHolder(view: View): EntryBaseViewHolder<EntryStateContainer> {
+    override fun createViewHolder(view: View): EntryBaseViewHolder<EntryContainer> {
         return EntryDragExpandViewHolder(view, dragListener, ::onExpandClick)
     }
 

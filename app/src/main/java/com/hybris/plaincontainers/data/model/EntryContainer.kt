@@ -8,4 +8,5 @@ data class EntryContainer(
     val color: String,
     val items: List<EntryItem>
 ) : EntryBase() {
+    var isExpanded: Boolean = false
 }

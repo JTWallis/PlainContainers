@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
     private lateinit var rcvAdapter: EntryDragExpandAdapter
     private lateinit var manger: JsonManager
     private lateinit var rootContainer: RootContainer
-    private lateinit var dummyList: MutableList<EntryStateContainer>
+    private lateinit var dummyList: MutableList<EntryContainer>
 
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
@@ -99,9 +99,13 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
             dummyList.add(EntryStateContainer(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList())))
             rootContainer = RootContainer(SortOption.CUSTOM, true, dummyList.map { e -> e.model})
             manger.writeRoot(rootContainer)
+            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), itemList))
+            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), ArrayList()))
+            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), ArrayList()))
+            rootContainer = RootContainer(SortSelection(SortOption.CUSTOM, true), dummyList)
         } else {
             rootContainer = rootNullable
-            dummyList = rootContainer.containers.map{ e -> EntryStateContainer(e) }.toMutableList()
+            dummyList = rootContainer.containers.toMutableList()
         }
 
 
@@ -132,6 +136,7 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
                 setSetSortOption(SortOption.CUSTOM, true)
                 rootContainer.containers = dummyList.map{ e -> e.model}
                 manger.writeRoot(rootContainer)
+                rootContainer.containers = dummyList
             }
         }
 
@@ -199,10 +204,10 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
     private fun sortList(sortOption: SortOption, isAscending: Boolean) {
         when(sortOption) {
             SortOption.NAME -> {
-                if(isAscending) dummyList.sortBy{ e -> e.model.name }
-                else dummyList.sortByDescending { e -> e.model.name }
+                if(isAscending) dummyList.sortBy{ e -> e.name }
+                else dummyList.sortByDescending { e -> e.name }
 
-                rootContainer.containers = dummyList.map{ e -> e.model }
+                rootContainer.containers = dummyList
                 rcvAdapter.notifyItemRangeChanged(0, dummyList.count())
             }
             SortOption.DATE_ADDED -> {}

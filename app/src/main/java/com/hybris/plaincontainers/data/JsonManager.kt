@@ -2,6 +2,8 @@ package com.hybris.plaincontainers.data
 
 import android.content.Context
 import android.util.Log
+import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import kotlinx.serialization.json.Json
@@ -33,12 +35,12 @@ class JsonManager(context: Context) {
         }
     }
 
-    fun readContainers(): MutableList<EntryStateContainer> {
+    fun readContainers(): MutableList<EntryContainer> {
         val root = readRoot() ?: return ArrayList()
-        return root.containers.map { e -> EntryStateContainer(e) }.toMutableList()
+        return root.containers.toMutableList()
     }
 
-    fun writeContainers(containers: MutableList<EntryStateContainer>) {
+    fun writeContainers(containers: MutableList<EntryContainer>) {
         val root = readRoot() ?: return
         val models = containers.map{ e -> e.model}
         root.containers = models

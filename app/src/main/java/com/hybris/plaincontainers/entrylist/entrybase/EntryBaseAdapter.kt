@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hybris.plaincontainers.data.states.EntryStateBase
 import com.hybris.plaincontainers.data.model.EntryBase
 
-abstract class EntryBaseAdapter<T: EntryStateBase<EntryBase>>(
+abstract class EntryBaseAdapter<T: EntryBase>(
     protected var entryList: List<T> = emptyList()
 ) : RecyclerView.Adapter<EntryBaseViewHolder<T>>() {
 
