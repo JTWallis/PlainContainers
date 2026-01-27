@@ -6,7 +6,8 @@ data class EntryContainer(
     override val name: String,
     override val thumbnailSrc: String,
     val color: String,
-    val items: List<EntryItem>
+    val sortParams: SortSelection,
+    var items: List<EntryItem>
 ) : EntryBase() {
     var isExpanded: Boolean = false
 }
