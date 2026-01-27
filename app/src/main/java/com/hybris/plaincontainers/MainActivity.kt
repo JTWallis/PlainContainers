@@ -36,6 +36,7 @@ import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.states.EntryStateContainer
 import com.hybris.plaincontainers.components.handles.SortHandle
 import com.hybris.plaincontainers.ui.theme.PlainContainersTheme
+import com.hybris.plaincontainers.views.ContainerDetailsActivity
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
     private lateinit var rcvAdapter: EntryDragExpandAdapter
     private lateinit var manger: JsonManager
     private lateinit var rootContainer: RootContainer
-    private lateinit var dummyList: MutableList<EntryStateContainer>
+    private lateinit var dummyList: MutableList<EntryContainer>
 
     private val scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK) {
@@ -84,8 +85,8 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
         setSupportActionBar(layoutToolbar.findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        manger = JsonManager(this)
-        val rootNullable = manger.readRoot()
+        JsonManager.init(this)
+        val rootNullable = JsonManager.readRoot()
 
         if(rootNullable == null) {
             val itemList = ArrayList<EntryItem>()
@@ -94,14 +95,14 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
             itemList.add(EntryItem("Beans3", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans4", "Beanz.png", 2) )
             dummyList = ArrayList()
-            dummyList.add(EntryStateContainer(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", itemList)))
-            dummyList.add(EntryStateContainer(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList())))
-            dummyList.add(EntryStateContainer(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList())))
-            rootContainer = RootContainer(SortOption.CUSTOM, true, dummyList.map { e -> e.model})
-            manger.writeRoot(rootContainer)
+            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), itemList))
+            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), ArrayList()))
+            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), ArrayList()))
+            rootContainer = RootContainer(SortSelection(SortOption.CUSTOM, true), dummyList)
+            JsonManager.writeRoot(rootContainer)
         } else {
             rootContainer = rootNullable
-            dummyList = rootContainer.containers.map{ e -> EntryStateContainer(e) }.toMutableList()
+            dummyList = rootContainer.containers.toMutableList()
         }
 
 
@@ -130,8 +131,8 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                 super.onItemRangeMoved(fromPosition, toPosition, itemCount)
                 setSetSortOption(SortOption.CUSTOM, true)
-                rootContainer.containers = dummyList.map{ e -> e.model}
-                manger.writeRoot(rootContainer)
+                rootContainer.containers = dummyList
+                JsonManager.writeRoot(rootContainer)
             }
         }
 
@@ -156,10 +157,24 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
 
         val popup = SortPopup(
             view,
-            SortSelection(rootContainer.selectedOption, rootContainer.selectedAscending),
+            rootContainer.sortParams,
             onSortChanged = { e -> onSortOptionChanged(e) })
         popup.setTitle("Sort by:")
         popup.show(view)
+    }
+
+    private fun startActivityContainerDetails() {
+        val container = dummyList[0]
+        val pack = ContainerActivityPackage(
+            0,
+            container.items.toMutableList(),
+            container.sortParams
+        )
+
+        val int = Intent(this, ContainerDetailsActivity::class.java)
+        int.putExtra("container_package", pack)
+
+        startActivity(int)
     }
 
     private fun onBtnAddClicked(view: View) {
@@ -191,18 +206,18 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
     }
 
     private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
-        rootContainer.selectedOption = sortOption
-        rootContainer.selectedAscending = isAscending
+        rootContainer.sortParams.option = sortOption
+        rootContainer.sortParams.isAscending = isAscending
         handleSort.setText(sortOption.toString())
     }
 
     private fun sortList(sortOption: SortOption, isAscending: Boolean) {
         when(sortOption) {
             SortOption.NAME -> {
-                if(isAscending) dummyList.sortBy{ e -> e.model.name }
-                else dummyList.sortByDescending { e -> e.model.name }
+                if(isAscending) dummyList.sortBy{ e -> e.name }
+                else dummyList.sortByDescending { e -> e.name }
 
-                rootContainer.containers = dummyList.map{ e -> e.model }
+                rootContainer.containers = dummyList
                 rcvAdapter.notifyItemRangeChanged(0, dummyList.count())
             }
             SortOption.DATE_ADDED -> {}
@@ -215,7 +230,7 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
 
     override fun onSortOptionChanged(sortSelection: SortSelection) {
         sortList(sortSelection.option, sortSelection.isAscending)
-        manger.writeRoot(rootContainer)
+        JsonManager.writeRoot(rootContainer)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

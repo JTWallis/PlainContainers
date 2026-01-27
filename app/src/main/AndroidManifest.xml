@@ -30,6 +30,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".views.ContainerDetailsActivity"
+            android:theme="@style/Theme.PlainContainers" />
+        <activity
             android:name=".ScannerActivity"
             android:screenOrientation="portrait"
             android:exported="false"

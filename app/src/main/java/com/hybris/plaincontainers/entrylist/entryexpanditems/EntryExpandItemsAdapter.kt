@@ -5,16 +5,15 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseAdapter
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import com.hybris.plaincontainers.data.model.EntryItem
-import com.hybris.plaincontainers.data.states.EntryStateItem
 
 class EntryExpandItemsAdapter()
-    : EntryBaseAdapter<EntryStateItem>() {
+    : EntryBaseAdapter<EntryItem>() {
 
     override fun getResource(): Int {
         return R.layout.component_entry_count
     }
 
-    override fun createViewHolder(view: View): EntryBaseViewHolder<EntryStateItem> {
+    override fun createViewHolder(view: View): EntryBaseViewHolder<EntryItem> {
         return EntryExpandItemsViewHolder(view)
     }
 }

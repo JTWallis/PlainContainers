@@ -3,11 +3,11 @@ package com.hybris.plaincontainers.entrylist.entryexpanditems
 import android.util.Log
 import android.view.View
 import com.hybris.plaincontainers.components.handles.itemcount.CountHandle
+import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
-import com.hybris.plaincontainers.data.states.EntryStateItem
 
 class EntryExpandItemsViewHolder(view: View)
-    : EntryBaseViewHolder<EntryStateItem>(view) {
+    : EntryBaseViewHolder<EntryItem>(view) {
 
     //private val amount
     private val countHandle = CountHandle(view, 0, onZeroCount = {})
@@ -16,9 +16,9 @@ class EntryExpandItemsViewHolder(view: View)
         Log.d("INFO", "Init EntryExpandItemsVH")
     }
 
-    override fun bind(item: EntryStateItem) {
+    override fun bind(item: EntryItem) {
         super.bind(item)
 
-        countHandle.setCount(item.model.amount)
+        countHandle.setCount(item.amount)
     }
 }

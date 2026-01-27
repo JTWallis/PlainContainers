@@ -6,18 +6,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.entrylist.dragbutton.DragHandle
+import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
-import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
+import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 import com.hybris.plaincontainers.entrylist.entryexpanditems.EntryExpandItemsAdapter
 import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
-import com.hybris.plaincontainers.data.states.EntryStateContainer
-import com.hybris.plaincontainers.data.states.EntryStateItem
 
 class EntryDragExpandViewHolder(view: View, private val dragListener: DragListener, expandClick: (Int) -> Unit)
-    : EntryBaseViewHolder<EntryStateContainer>(view) {
+    : EntryDragViewHolder<EntryContainer>(view, dragListener) {
 
-    private val dragHandle = DragHandle(this, dragListener)
     private val expandHandle = ExpandHandle(
         view.findViewById<ConstraintLayout>(R.id.containerExpand),
         onClick = {
@@ -38,18 +35,14 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
         }
     }
 
-    override fun bind(item: EntryStateContainer) {
+    override fun bind(item: EntryContainer) {
         super.bind(item)
 
-        expandItemsAdapter.setItems(item.model.items.map{ e -> EntryStateItem(e)})
+        expandItemsAdapter.setItems(item.items)
         expandHandle.bind(item.isExpanded)
         setExpandedVisibility(item.isExpanded)
 
         //(item as EntryExpand).listItems =
-    }
-
-    fun setHandleVisibility(visible: Boolean) {
-        dragHandle.setHandleVisibility(visible)
     }
 
     fun setExpandedVisibility(expanded: Boolean) {
