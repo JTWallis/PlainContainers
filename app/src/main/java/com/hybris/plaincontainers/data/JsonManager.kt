@@ -5,15 +5,18 @@ import android.util.Log
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
-import com.hybris.plaincontainers.data.states.EntryStateContainer
 import kotlinx.serialization.json.Json
 import java.io.File
 
-class JsonManager(context: Context) {
+object JsonManager {
 
     private val FILENAME = "containers.json"
-    private val PATH = context.filesDir.path + "/$FILENAME"
+    private var PATH = ""
     private val json = Json{prettyPrint = true}
+
+    fun init(context: Context) {
+        PATH = context.filesDir.path + "/$FILENAME"
+    }
 
     fun readRoot(): RootContainer? {
         try {
@@ -42,8 +45,7 @@ class JsonManager(context: Context) {
 
     fun writeContainers(containers: MutableList<EntryContainer>) {
         val root = readRoot() ?: return
-        val models = containers.map{ e -> e.model}
-        root.containers = models
+        root.containers = containers
 
         writeRoot(root)
     }

@@ -84,8 +84,8 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
         setSupportActionBar(layoutToolbar.findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        manger = JsonManager(this)
-        val rootNullable = manger.readRoot()
+        JsonManager.init(this)
+        val rootNullable = JsonManager.readRoot()
 
         if(rootNullable == null) {
             val itemList = ArrayList<EntryItem>()
@@ -94,15 +94,11 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
             itemList.add(EntryItem("Beans3", "Beanz.png", 2) )
             itemList.add(EntryItem("Beans4", "Beanz.png", 2) )
             dummyList = ArrayList()
-            dummyList.add(EntryStateContainer(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00", itemList)))
-            dummyList.add(EntryStateContainer(EntryContainer("Heinz SOY Beans", "123.png", "#F00", ArrayList())))
-            dummyList.add(EntryStateContainer(EntryContainer("Heinz Ketchup", "123.png", "#F00", ArrayList())))
-            rootContainer = RootContainer(SortOption.CUSTOM, true, dummyList.map { e -> e.model})
-            manger.writeRoot(rootContainer)
             dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), itemList))
             dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), ArrayList()))
             dummyList.add(EntryContainer("Heinz Ketchup", "123.png", "#F00",SortSelection(SortOption.CUSTOM, true), ArrayList()))
             rootContainer = RootContainer(SortSelection(SortOption.CUSTOM, true), dummyList)
+            JsonManager.writeRoot(rootContainer)
         } else {
             rootContainer = rootNullable
             dummyList = rootContainer.containers.toMutableList()
@@ -134,9 +130,8 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
             override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
                 super.onItemRangeMoved(fromPosition, toPosition, itemCount)
                 setSetSortOption(SortOption.CUSTOM, true)
-                rootContainer.containers = dummyList.map{ e -> e.model}
-                manger.writeRoot(rootContainer)
                 rootContainer.containers = dummyList
+                JsonManager.writeRoot(rootContainer)
             }
         }
 
@@ -220,7 +215,7 @@ class MainActivity : AppCompatActivity(), SortChangeListener {
 
     override fun onSortOptionChanged(sortSelection: SortSelection) {
         sortList(sortSelection.option, sortSelection.isAscending)
-        manger.writeRoot(rootContainer)
+        JsonManager.writeRoot(rootContainer)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
