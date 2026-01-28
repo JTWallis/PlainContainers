@@ -46,6 +46,20 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         JsonManager.writeContainers(listItems)
     }
 
+    override fun onItemEntryClicked(listPosition: Int) {
+        val item = listItems[listPosition]
+        val pack = ContainerFragmentArg(
+            item.items.toMutableList(),
+            item.sortParams,
+            listPosition,
+            item
+        )
+
+        val bundle = bundleOf("container_frag_arg" to pack)
+
+        findNavController().navigate(R.id.containerDetailsFragment, args = bundle)
+    }
+
     override fun getContainerPackage(): Serializable {
         return getSerializable("root_frag_arg", RootFragmentArg::class.java)
     }
