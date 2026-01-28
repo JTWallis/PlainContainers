@@ -12,8 +12,8 @@ import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 import com.hybris.plaincontainers.entrylist.entryexpanditems.EntryExpandItemsAdapter
 import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
 
-class EntryDragExpandViewHolder(view: View, private val dragListener: DragListener, expandClick: (Int) -> Unit)
-    : EntryDragViewHolder<EntryContainer>(view, dragListener) {
+class EntryDragExpandViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, private val dragListener: DragListener, expandClick: (Int) -> Unit)
+    : EntryDragViewHolder<EntryContainer>(view, onEntryClick, dragListener) {
 
     private val expandHandle = ExpandHandle(
         view.findViewById<ConstraintLayout>(R.id.containerExpand),
@@ -23,7 +23,7 @@ class EntryDragExpandViewHolder(view: View, private val dragListener: DragListen
     )
     private val rcvItems = view.findViewById<RecyclerView>(R.id.rcvItems)
 
-    private val expandItemsAdapter = EntryExpandItemsAdapter()
+    private val expandItemsAdapter = EntryExpandItemsAdapter(onEntryClick)
 
     init {
         Log.d("INFO", "Init EntryDragExpandVH")

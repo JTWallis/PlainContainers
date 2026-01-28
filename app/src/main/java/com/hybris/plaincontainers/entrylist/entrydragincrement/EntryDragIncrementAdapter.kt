@@ -7,15 +7,18 @@ import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
 
-class EntryDragIncrementAdapter(private val dragListener : DragListener, private val onItemCountChange: (itemPos: Int, addValue: Int) -> Unit)
-    : EntryDragAdapter<EntryItem>(dragListener) {
+class EntryDragIncrementAdapter(
+    private val onEntryClick: (pos: Int) -> Unit,
+    private val dragListener : DragListener,
+    private val onItemCountChange: (itemPos: Int, addValue: Int) -> Unit
+) : EntryDragAdapter<EntryItem>(onEntryClick, dragListener) {
 
     override fun getResource(): Int {
         return R.layout.component_entry_drag_count_incrementable
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder<EntryItem> {
-        return EntryDragIncrementViewHolder(view, dragListener, onItemCountChange)
+        return EntryDragIncrementViewHolder(view, onEntryClick, dragListener, onItemCountChange)
     }
 
 }

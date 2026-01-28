@@ -8,15 +8,15 @@ import com.hybris.plaincontainers.entrylist.expandbutton.ExpandListener
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
 
-class EntryDragExpandAdapter(private val dragListener : DragListener)
-    : EntryDragAdapter<EntryContainer>(dragListener), ExpandListener {
+class EntryDragExpandAdapter(private val onEntryClick: (pos: Int) -> Unit, private val dragListener : DragListener)
+    : EntryDragAdapter<EntryContainer>(onEntryClick, dragListener), ExpandListener {
 
     override fun getResource(): Int {
         return R.layout.component_entry_drag
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder<EntryContainer> {
-        return EntryDragExpandViewHolder(view, dragListener, ::onExpandClick)
+        return EntryDragExpandViewHolder(view, onEntryClick, dragListener, ::onExpandClick)
     }
 
     override fun onExpandClick(position: Int) {
