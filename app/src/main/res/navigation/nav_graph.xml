@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml">
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/containerOverviewFragment">
+
+    <fragment
+        android:id="@+id/containerOverviewFragment"
+        android:name="com.hybris.plaincontainers.views.ContainerOverviewFragment"
+        android:label="ContainerOverviewFragment" >
+        <argument
+            android:name="root_frag_arg"
+            app:argType="com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg"
+            app:nullable="false"
+        />
+
+        <action
+            android:id="@+id/action_overview_to_details"
+            app:destination="@id/containerDetailsFragment"
+        />
+    </fragment>
+
+    <fragment
+        android:id="@+id/containerDetailsFragment"
+        android:name="com.hybris.plaincontainers.views.ContainerDetailsFragment"
+        android:label="ContainerDetailsFragment">
+        <argument
+            android:name="container_frag_arg"
+            app:argType="com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg"
+            app:nullable="false"
+        />
+
+    </fragment>
+
 
 </navigation>
