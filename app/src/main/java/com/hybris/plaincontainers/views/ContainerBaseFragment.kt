@@ -3,19 +3,19 @@ package com.hybris.plaincontainers.views
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
-import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
-import com.hybris.plaincontainers.data.ContainerActivityPackage
+import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg
 import com.hybris.plaincontainers.data.model.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
@@ -28,11 +28,10 @@ import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import java.io.Serializable
 
-abstract class ContainerBaseActivity<T: EntryBase>(): AppCompatActivity(), SortChangeListener {
-
+abstract class ContainerBaseFragment<T: EntryBase>(): Fragment(R.layout.activity_containers), SortChangeListener {
+    protected val appbarVm: AppBarViewModel by activityViewModels()
     protected lateinit var listItems: MutableList<T>
     private lateinit var sortParams: SortSelection
-    private lateinit var layoutToolbar: Toolbar
     private lateinit var layoutBtnSort: CardView
     private lateinit var handleSort: SortHandle
     private lateinit var switchDrag: SwitchCompat
@@ -45,21 +44,19 @@ abstract class ContainerBaseActivity<T: EntryBase>(): AppCompatActivity(), SortC
 
     protected abstract fun createAdapter(dragListener: DragListener)
     protected abstract fun writeJsonChanges()
+    protected abstract fun onItemEntryClicked(listPosition: Int)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_containers);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        initViews(view)
         initPackageData()
-        initViews()
-        initActionBar()
-        initRecycleView()
+        initRecycleView(view)
 
         switchDrag.setOnCheckedChangeListener { _, isChecked ->
             rcvAdapter.setDragVisibility(isChecked)
         }
 
-        Log.d("INFO", "ContainerBaseActivity Create")
     }
 
     override fun onDestroy() {
@@ -69,30 +66,24 @@ abstract class ContainerBaseActivity<T: EntryBase>(): AppCompatActivity(), SortC
     }
 
     protected open fun initPackageData() {
-        val containerPackage = getContainerPackage()
+        Log.d("INFO", "GetPackage")
+        val containerPackage = getContainerPackage() as RootFragmentArg
+
         listItems = containerPackage.listItems as MutableList<T>
         sortParams = containerPackage.sortParams
     }
 
-    protected open fun initViews() {
-        layoutToolbar = findViewById(R.id.layoutToolbar)
-        layoutBtnSort = findViewById(R.id.layoutSort)
+    protected open fun initViews(view: View) {
+        layoutBtnSort = view.findViewById(R.id.layoutSort)
         handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) }, "Custom")
-        switchDrag = findViewById(R.id.switchDrag)
-        layoutBtnAdd = findViewById(R.id.layoutAdd)
+        switchDrag = view.findViewById(R.id.switchDrag)
+        layoutBtnAdd = view.findViewById(R.id.layoutAdd)
         handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) }, "Add Container")
-        rcvList = findViewById(R.id.rcvContainers)
+        rcvList = view.findViewById(R.id.rcvContainers)
     }
 
-    private fun initActionBar() {
-        layoutToolbar.title = "Container Overview"
-        layoutToolbar.subtitle = ""
-        setSupportActionBar(layoutToolbar.findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    private fun initRecycleView() {
-        rcvList.layoutManager = LinearLayoutManager(this)
+    private fun initRecycleView(view: View) {
+        rcvList.layoutManager = LinearLayoutManager(view.context)
         rcvList.addItemDecoration(
             GapVerticalDecoration(
                 getResources().getDimensionPixelSize(R.dimen.rcvEntryGap)
@@ -182,6 +173,7 @@ abstract class ContainerBaseActivity<T: EntryBase>(): AppCompatActivity(), SortC
         writeJsonChanges()
     }
 
+    /*
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             android.R.id.home -> {
@@ -200,16 +192,19 @@ abstract class ContainerBaseActivity<T: EntryBase>(): AppCompatActivity(), SortC
             }
         }
     }
+    */
 
-    protected fun getContainerPackage(): ContainerActivityPackage {
-        return getSerializable("container_package", ContainerActivityPackage::class.java)
-    }
 
-    private fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
+
+    protected abstract fun getContainerPackage(): Serializable
+
+    protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
         return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            intent.getSerializableExtra(name, clazz)!!
+            arguments?.getSerializable(name, clazz)!!
+            //intent.getSerializableExtra(name, clazz)!!
         else
-            intent.getSerializableExtra(name) as T
+            arguments?.getSerializable(name) as T
+            //intent.getSerializableExtra(name) as T
     }
 
 }
