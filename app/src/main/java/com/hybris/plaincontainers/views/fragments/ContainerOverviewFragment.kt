@@ -1,4 +1,4 @@
-package com.hybris.plaincontainers.views
+package com.hybris.plaincontainers.views.fragments
 
 import android.os.Bundle
 import com.hybris.plaincontainers.data.model.EntryContainer

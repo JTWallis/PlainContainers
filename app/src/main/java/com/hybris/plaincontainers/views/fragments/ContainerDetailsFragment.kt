@@ -1,4 +1,4 @@
-package com.hybris.plaincontainers.views
+package com.hybris.plaincontainers.views.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,6 @@ import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandl
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.appbar.AppBarModel
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
-import com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragincrement.EntryDragIncrementAdapter

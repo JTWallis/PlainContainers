@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/containerOverviewFragment"
-        android:name="com.hybris.plaincontainers.views.ContainerOverviewFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.ContainerOverviewFragment"
         android:label="ContainerOverviewFragment" >
         <argument
             android:name="root_frag_arg"
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/containerDetailsFragment"
-        android:name="com.hybris.plaincontainers.views.ContainerDetailsFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.ContainerDetailsFragment"
         android:label="ContainerDetailsFragment">
         <argument
             android:name="container_frag_arg"

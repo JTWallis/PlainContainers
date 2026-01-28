@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.ContainerDetailsFragment"
+            android:name=".views.fragments.ContainerDetailsFragment"
             android:theme="@style/Theme.PlainContainers" />
         <activity
             android:name=".ScannerActivity"
