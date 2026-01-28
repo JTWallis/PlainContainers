@@ -6,7 +6,7 @@ import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseAdapter
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import com.hybris.plaincontainers.data.model.EntryItem
 
-class EntryExpandItemsAdapter(private val onEntryClick: (pos: Int) -> Unit)
+class EntryExpandItemsAdapter()
     : EntryBaseAdapter<EntryItem>() {
 
     override fun getResource(): Int {
@@ -14,6 +14,6 @@ class EntryExpandItemsAdapter(private val onEntryClick: (pos: Int) -> Unit)
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder<EntryItem> {
-        return EntryExpandItemsViewHolder(view, onEntryClick)
+        return EntryExpandItemsViewHolder(view)
     }
 }

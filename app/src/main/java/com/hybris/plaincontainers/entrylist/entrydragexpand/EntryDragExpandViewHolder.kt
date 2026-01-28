@@ -23,7 +23,7 @@ class EntryDragExpandViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, pr
     )
     private val rcvItems = view.findViewById<RecyclerView>(R.id.rcvItems)
 
-    private val expandItemsAdapter = EntryExpandItemsAdapter(onEntryClick)
+    private val expandItemsAdapter = EntryExpandItemsAdapter()
 
     init {
         Log.d("INFO", "Init EntryDragExpandVH")
