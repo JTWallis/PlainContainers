@@ -10,7 +10,7 @@ import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseAdapter
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import java.util.Collections
 
-open class EntryDragAdapter<T: EntryBase>(private val dragListener : DragListener)
+open class EntryDragAdapter<T: EntryBase>(private val onEntryClick: (pos: Int) -> Unit, private val dragListener : DragListener)
     : EntryBaseAdapter<T>(), ItemMoveListener {
 
     private var isDragVisible = true
@@ -27,7 +27,7 @@ open class EntryDragAdapter<T: EntryBase>(private val dragListener : DragListene
     }
 
     override fun createViewHolder(view: View): EntryBaseViewHolder<T> {
-        return EntryDragViewHolder(view, dragListener)
+        return EntryDragViewHolder(view, onEntryClick, dragListener)
     }
 
     override fun onItemMove(from: Int, to: Int) {

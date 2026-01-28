@@ -11,8 +11,8 @@ import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 
-class EntryDragIncrementViewHolder(view: View, dragListener: DragListener, onCountChange: (position: Int, addValue: Int) -> Unit)
-    : EntryDragViewHolder<EntryItem>(view, dragListener) {
+class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, dragListener: DragListener, onCountChange: (position: Int, addValue: Int) -> Unit)
+    : EntryDragViewHolder<EntryItem>(view, onEntryClick, dragListener) {
 
     private val countHandle = CountHandle(view, 0, onZeroCount = {})
     private val decrementHandle = DecrementHandle(
