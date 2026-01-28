@@ -8,4 +8,5 @@ class ContainerFragmentArg(
     override val listItems: MutableList<EntryBase>,
     override val sortParams: SortSelection,
     val listPosition: Int,
+    val metadata: EntryBase
 ): RootFragmentArg(listItems, sortParams), Serializable {}
