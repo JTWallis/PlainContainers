@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/viewPadding">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorz1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"
+    />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="@dimen/viewPadding"
+        android:background="@drawable/bg_outline_rounded"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorz1" >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineVert1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3"
+        />
+
+        <View
+            android:id="@+id/spacerCol"
+            android:layout_width="@dimen/viewPadding"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+        <TextView
+            android:id="@+id/tvEditName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/etEditName"
+        />
+
+        <EditText
+            android:id="@+id/etEditName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_outline_rounded_filled"
+            app:layout_constraintStart_toEndOf="@id/spacerCol"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+
+        <View
+            android:id="@+id/spacerRow1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/emptyDividerHeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEditName"
+        />
+
+        <TextView
+            android:id="@+id/tvEditPhoto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Photo:"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintTop_toBottomOf="@id/spacerRow1"
+        />
+
+        <FrameLayout
+            android:id="@+id/frameEditPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@id/spacerCol"
+            app:layout_constraintTop_toBottomOf="@id/spacerRow1"
+            android:background="@drawable/bg_outline_rounded"
+            android:padding="2dp" >
+            <ImageView
+                android:id="@+id/ivEditPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="128dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/beans"
+            />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/spacerRow2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/emptyDividerHeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameEditPhoto"
+        />
+
+        <TextView
+            android:id="@+id/tvEditDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintTop_toBottomOf="@id/spacerRow2"
+        />
+
+        <EditText
+            android:id="@+id/etEditDescription"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_outline_rounded_filled"
+            app:layout_constraintStart_toEndOf="@id/spacerCol"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spacerRow2"
+            app:layout_constraintBottom_toTopOf="@id/spacerRow3"
+        />
+
+        <View
+            android:id="@+id/spacerRow3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/emptyDividerHeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEditDescription"
+        />
+
+        <TextView
+            android:id="@+id/tvEditDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Color:"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintTop_toBottomOf="@id/spacerRow3"
+        />
+
+        <ImageView
+            android:id="@+id/ivEditColor"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fill_24"
+            app:layout_constraintStart_toEndOf="@id/spacerCol"
+            app:layout_constraintTop_toBottomOf="@id/spacerRow3"
+            app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+        <FrameLayout
+            android:id="@+id/viewEditColor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toEndOf="@id/ivEditColor"
+            app:layout_constraintTop_toTopOf="@id/ivEditColor"
+            app:layout_constraintBottom_toBottomOf="@id/ivEditColor"
+            android:background="@color/backgroundHighlight"
+            android:padding="1dp"
+            android:layout_marginLeft="16dp">
+
+            <View
+                android:id="@+id/viewEditColor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/red"
+            />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/spacerRow4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/emptyDividerHeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorz1"
+    />
+
+    <include layout="@layout/component_button_icon_labeled"
+        android:id="@+id/btnConfirmEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spacerRow4"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
