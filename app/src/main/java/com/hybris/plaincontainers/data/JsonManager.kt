@@ -13,9 +13,18 @@ object JsonManager {
     private val FILENAME = "containers.json"
     private var PATH = ""
     private val json = Json{prettyPrint = true}
+    private lateinit var root: RootContainer
 
     fun init(context: Context) {
         PATH = context.filesDir.path + "/$FILENAME"
+
+        val rootNullable = readRoot()
+        if(rootNullable == null) {
+            throw NullPointerException("Could not read root from JSON!")
+            // TODO: What about empty/missing JSON? Instantiate new RootContainer here (and write it)
+        } else {
+            root = rootNullable
+        }
     }
 
     fun readRoot(): RootContainer? {
@@ -36,6 +45,11 @@ object JsonManager {
         } catch(e: Exception) {
             Log.d("ERROR", "Exception when writing to file $FILENAME: $e")
         }
+    }
+
+    fun getRoot(): RootContainer {
+        verifyRoot()
+        return root
     }
 
     fun readContainers(): MutableList<EntryContainer> {
