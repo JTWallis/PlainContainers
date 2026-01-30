@@ -18,8 +18,8 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews(view)
         initPackageData()
+        initViews(view)
 
         appbarVm.model.value = AppBarModel(
             title = getAppbarTitle(),
