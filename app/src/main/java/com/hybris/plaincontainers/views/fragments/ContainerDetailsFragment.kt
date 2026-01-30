@@ -52,7 +52,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     }
 
     override fun writeJsonChanges() {
-        JsonManager.writeItems(listItems, containerPos)
+        JsonManager.writeItems(containerPos, listItems)
     }
 
     private fun onBtnEditClicked() {

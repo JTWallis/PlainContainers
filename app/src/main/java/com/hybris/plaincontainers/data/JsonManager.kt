@@ -85,7 +85,7 @@ object JsonManager {
         return root.containers[containerPos]
     }
 
-    fun writeItems(items: List<EntryItem>, containerPos: Int) {
+    fun writeItems(containerPos: Int, items: List<EntryItem>) {
         if(containerPos < 0) return
 
         val container = root.containers[containerPos]
