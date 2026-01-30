@@ -63,17 +63,42 @@ object JsonManager {
         verifyRoot()
 
         root.containers = containers
-
         writeRoot(root)
+    }
+
+    fun getContainers(): MutableList<EntryContainer> {
+        verifyRoot()
+        return root.containers
+    }
+
+    fun writeContainer(pos: Int, container: EntryContainer) {
+        verifyRoot()
+
+        root.containers[pos] = container
+        writeRoot(root)
+    }
+
+    fun getContainer(pos: Int): EntryContainer {
+        verifyRoot()
+        return root.containers[pos]
     }
 
     fun writeItems(items: MutableList<EntryItem>, containerPos: Int) {
         if(containerPos < 0) return
-        val root = readRoot() ?: return
         val container = root.containers[containerPos]
         container.items = items
 
         writeRoot(root)
+    }
+
+    fun getItems(containerPos: Int): List<EntryItem> {
+        verifyRoot()
+        return root.containers[containerPos].items
+    }
+
+    fun getItem(containerPos: Int, itemPos: Int): EntryItem {
+        verifyRoot()
+        return root.containers[containerPos].items[itemPos]
     }
 
     private fun throwExceptionInit() {
