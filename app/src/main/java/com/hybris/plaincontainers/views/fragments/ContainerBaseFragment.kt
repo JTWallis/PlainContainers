@@ -1,21 +1,16 @@
 package com.hybris.plaincontainers.views.fragments
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
-import com.hybris.plaincontainers.data.appbar.AppBarViewModel
-import com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg
 import com.hybris.plaincontainers.data.model.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
@@ -26,12 +21,11 @@ import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
-import java.io.Serializable
 
-abstract class ContainerBaseFragment<T: EntryBase>(): Fragment(R.layout.activity_containers), SortChangeListener {
-    protected val appbarVm: AppBarViewModel by activityViewModels()
-    protected lateinit var listItems: MutableList<T>
-    private lateinit var sortParams: SortSelection
+abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.activity_containers), SortChangeListener {
+
+    protected abstract var listItems: MutableList<T>
+    protected abstract var sortParams: SortSelection
     private lateinit var layoutBtnSort: CardView
     private lateinit var handleSort: SortHandle
     private lateinit var switchDrag: SwitchCompat
@@ -65,15 +59,8 @@ abstract class ContainerBaseFragment<T: EntryBase>(): Fragment(R.layout.activity
         super.onDestroy()
     }
 
-    protected open fun initPackageData() {
-        Log.d("INFO", "GetPackage")
-        val containerPackage = getContainerPackage() as RootFragmentArg
 
-        listItems = containerPackage.listItems as MutableList<T>
-        sortParams = containerPackage.sortParams
-    }
-
-    protected open fun initViews(view: View) {
+    override fun initViews(view: View) {
         layoutBtnSort = view.findViewById(R.id.layoutSort)
         handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) }, "Custom")
         switchDrag = view.findViewById(R.id.switchDrag)
@@ -193,18 +180,5 @@ abstract class ContainerBaseFragment<T: EntryBase>(): Fragment(R.layout.activity
         }
     }
     */
-
-
-
-    protected abstract fun getContainerPackage(): Serializable
-
-    protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
-        return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-            arguments?.getSerializable(name, clazz)!!
-            //intent.getSerializableExtra(name, clazz)!!
-        else
-            arguments?.getSerializable(name) as T
-            //intent.getSerializableExtra(name) as T
-    }
 
 }

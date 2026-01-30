@@ -18,17 +18,10 @@ import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapt
 import java.io.Serializable
 
 class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
+    override lateinit var listItems: MutableList<EntryContainer>
+    override lateinit var sortParams: SortSelection
     private lateinit var layoutBtnEdit: CardView
     private lateinit var handleEdit: EditHandle
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        appbarVm.model.value = AppBarModel(
-            title = "Container Overview",
-            subtitle = "Test"
-        )
-    }
 
     override fun initViews(view: View) {
         super.initViews(view)
@@ -58,6 +51,12 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         val bundle = bundleOf("container_frag_arg" to pack)
 
         findNavController().navigate(R.id.containerDetailsFragment, args = bundle)
+    override fun getAppbarTitle(): String {
+        return "Container Overview"
+    }
+
+    override fun getAppbarSubtitle(): String {
+        return ""
     }
 
     override fun getContainerPackage(): Serializable {

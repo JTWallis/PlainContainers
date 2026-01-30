@@ -15,20 +15,13 @@ import com.hybris.plaincontainers.entrylist.entrydragincrement.EntryDragIncremen
 import java.io.Serializable
 
 class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
+    override lateinit var listItems: MutableList<EntryItem>
+    override lateinit var sortParams: SortSelection
     private var containerPos: Int = -1
     private var containerName = ""
     private lateinit var layoutBtnEdit: CardView
     private lateinit var handleEdit: EditHandle
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        appbarVm.model.value = AppBarModel(
-            title = "Container",
-            subtitle = containerName
-        )
-    }
 
     override fun initPackageData() {
         super.initPackageData()
@@ -60,6 +53,14 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
 
     override fun onItemEntryClicked(listPosition: Int) {
         Log.d("INFO", "Clicked $listPosition")
+    }
+
+    override fun getAppbarTitle(): String {
+        return "Container"
+    }
+
+    override fun getAppbarSubtitle(): String {
+        return containerMetadata.name
     }
 
     override fun getContainerPackage(): Serializable {
