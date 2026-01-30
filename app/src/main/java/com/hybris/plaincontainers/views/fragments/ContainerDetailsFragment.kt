@@ -9,26 +9,29 @@ import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandl
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.appbar.AppBarModel
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
+import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragincrement.EntryDragIncrementAdapter
+import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import java.io.Serializable
 
 class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     override lateinit var listItems: MutableList<EntryItem>
     override lateinit var sortParams: SortSelection
     private var containerPos: Int = -1
-    private var containerName = ""
+    private lateinit var containerMetadata: EntryContainer
     private lateinit var layoutBtnEdit: CardView
     private lateinit var handleEdit: EditHandle
 
 
     override fun initPackageData() {
-        super.initPackageData()
-
         val containerPackage = getContainerPackage() as ContainerFragmentArg
         containerPos = containerPackage.listPosition
-        containerName = containerPackage.metadata.name
+
+        containerMetadata = JsonManager.getContainer(containerPos)
+        listItems = containerMetadata.items.toMutableList()
+        sortParams = containerMetadata.sortParams
     }
 
     override fun initViews(view: View) {

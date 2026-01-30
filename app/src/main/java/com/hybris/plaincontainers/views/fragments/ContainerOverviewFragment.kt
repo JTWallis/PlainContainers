@@ -30,6 +30,12 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         handleEdit = EditHandle(layoutBtnEdit, onClick = {}, "Edit Container")
     }
 
+    override fun initPackageData() {
+        val rootContainer = JsonManager.getRoot()
+        listItems = ArrayList(rootContainer.containers)
+        sortParams = rootContainer.sortParams
+    }
+
     override fun createAdapter(dragListener: DragListener) {
         rcvAdapter = EntryDragExpandAdapter(onEntryClick = {pos -> onItemEntryClicked(pos)}, dragListener)
         rcvAdapter.setItems(listItems)
@@ -42,10 +48,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
     override fun onItemEntryClicked(listPosition: Int) {
         val item = listItems[listPosition]
         val pack = ContainerFragmentArg(
-            item.items.toMutableList(),
-            item.sortParams,
-            listPosition,
-            item
+            listPosition
         )
 
         val bundle = bundleOf("container_frag_arg" to pack)
