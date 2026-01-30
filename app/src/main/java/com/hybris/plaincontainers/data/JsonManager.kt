@@ -76,6 +76,10 @@ object JsonManager {
 
         root.containers[pos] = container
         writeRoot(root)
+        val newContainers = root.containers.toMutableList()
+        newContainers[pos] = container
+
+        writeContainers(newContainers)
     }
 
     fun getContainer(pos: Int): EntryContainer {
