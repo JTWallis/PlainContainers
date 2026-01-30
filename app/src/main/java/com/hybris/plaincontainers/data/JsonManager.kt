@@ -10,6 +10,7 @@ import java.io.File
 
 object JsonManager {
 
+    private var isInit = false
     private val FILENAME = "containers.json"
     private var PATH = ""
     private val json = Json{prettyPrint = true}
@@ -25,6 +26,7 @@ object JsonManager {
         } else {
             root = rootNullable
         }
+        isInit = true
     }
 
     fun readRoot(): RootContainer? {
@@ -58,7 +60,8 @@ object JsonManager {
     }
 
     fun writeContainers(containers: MutableList<EntryContainer>) {
-        val root = readRoot() ?: return
+        verifyRoot()
+
         root.containers = containers
 
         writeRoot(root)
@@ -71,6 +74,19 @@ object JsonManager {
         container.items = items
 
         writeRoot(root)
+    }
+
+    private fun throwExceptionInit() {
+        throw NullPointerException("Attempting to interact with JsonManager without initializing it!")
+    }
+
+    private fun throwExceptionNull() {
+        throw NullPointerException("Attempting to interact with JsonManager but root is null!")
+    }
+
+    private fun verifyRoot() {
+        if(!isInit) throwExceptionInit()
+        if(!this::root.isInitialized) throwExceptionNull()
     }
 
 }
