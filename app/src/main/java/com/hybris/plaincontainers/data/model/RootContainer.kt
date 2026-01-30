@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RootContainer(
-    var sortParams: SortSelection,
-    var containers: List<EntryContainer>
+    val sortParams: SortSelection,
+    val containers: List<EntryContainer>
 ) {}
