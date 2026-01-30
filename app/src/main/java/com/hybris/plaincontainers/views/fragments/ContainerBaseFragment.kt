@@ -43,8 +43,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews(view)
-        initPackageData()
         initRecycleView(view)
 
         switchDrag.setOnCheckedChangeListener { _, isChecked ->
