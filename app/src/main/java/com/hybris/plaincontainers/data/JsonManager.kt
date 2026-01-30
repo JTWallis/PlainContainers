@@ -62,7 +62,7 @@ object JsonManager {
     fun writeContainers(containers: List<EntryContainer>) {
         verifyRoot()
 
-        root.containers = containers
+        root = RootContainer(root.sortParams, containers)
         writeRoot(root)
     }
 
