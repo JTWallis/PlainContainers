@@ -1,6 +1,6 @@
 package com.hybris.plaincontainers.views.fragments
 
-import android.os.Bundle
+import android.util.Log
 import com.hybris.plaincontainers.data.model.EntryContainer
 
 import android.view.View
@@ -10,11 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
 import com.hybris.plaincontainers.data.JsonManager
-import com.hybris.plaincontainers.data.appbar.AppBarModel
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragexpand.EntryDragExpandAdapter
+import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import java.io.Serializable
 
 class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
@@ -53,7 +53,9 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
 
         val bundle = bundleOf("container_frag_arg" to pack)
 
-        findNavController().navigate(R.id.containerDetailsFragment, args = bundle)
+        findNavController().navigate(R.id.action_overview_to_details, args = bundle)
+    }
+
     override fun getAppbarTitle(): String {
         return "Container Overview"
     }
