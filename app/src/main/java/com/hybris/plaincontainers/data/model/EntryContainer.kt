@@ -8,7 +8,7 @@ data class EntryContainer(
     override val thumbnailSrc: String,
     val color: String,
     val sortParams: SortSelection,
-    var items: List<EntryItem>
+    val items: List<EntryItem>
 ) : EntryBase(), java.io.Serializable {
     var isExpanded: Boolean = false
 }

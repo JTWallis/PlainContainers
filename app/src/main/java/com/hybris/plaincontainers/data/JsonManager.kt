@@ -59,36 +59,46 @@ object JsonManager {
         return root.containers.toMutableList()
     }
 
-    fun writeContainers(containers: MutableList<EntryContainer>) {
+    fun writeContainers(containers: List<EntryContainer>) {
         verifyRoot()
 
-        root.containers = containers
+        root = RootContainer(root.sortParams, containers)
         writeRoot(root)
     }
 
-    fun getContainers(): MutableList<EntryContainer> {
+    fun getContainers(): List<EntryContainer> {
         verifyRoot()
         return root.containers
     }
 
-    fun writeContainer(pos: Int, container: EntryContainer) {
+    fun writeContainer(containerPos: Int, container: EntryContainer) {
         verifyRoot()
 
-        root.containers[pos] = container
-        writeRoot(root)
+        val newContainers = root.containers.toMutableList()
+        newContainers[containerPos] = container
+
+        writeContainers(newContainers)
     }
 
-    fun getContainer(pos: Int): EntryContainer {
+    fun getContainer(containerPos: Int): EntryContainer {
         verifyRoot()
-        return root.containers[pos]
+        return root.containers[containerPos]
     }
 
-    fun writeItems(items: MutableList<EntryItem>, containerPos: Int) {
+    fun writeItems(containerPos: Int, items: List<EntryItem>) {
         if(containerPos < 0) return
-        val container = root.containers[containerPos]
-        container.items = items
 
-        writeRoot(root)
+        val container = root.containers[containerPos]
+
+        val newContainer = EntryContainer(
+            container.name,
+            container.thumbnailSrc,
+            container.color,
+            container.sortParams,
+            items
+        )
+
+        writeContainer(containerPos, newContainer)
     }
 
     fun getItems(containerPos: Int): List<EntryItem> {
