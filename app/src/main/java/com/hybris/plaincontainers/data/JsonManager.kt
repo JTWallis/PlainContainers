@@ -59,14 +59,14 @@ object JsonManager {
         return root.containers.toMutableList()
     }
 
-    fun writeContainers(containers: MutableList<EntryContainer>) {
+    fun writeContainers(containers: List<EntryContainer>) {
         verifyRoot()
 
         root.containers = containers
         writeRoot(root)
     }
 
-    fun getContainers(): MutableList<EntryContainer> {
+    fun getContainers(): List<EntryContainer> {
         verifyRoot()
         return root.containers
     }
@@ -83,7 +83,7 @@ object JsonManager {
         return root.containers[pos]
     }
 
-    fun writeItems(items: MutableList<EntryItem>, containerPos: Int) {
+    fun writeItems(items: List<EntryItem>, containerPos: Int) {
         if(containerPos < 0) return
         val container = root.containers[containerPos]
         container.items = items

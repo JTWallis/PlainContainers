@@ -5,6 +5,6 @@ import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import java.io.Serializable
 
 open class RootFragmentArg(
-    open val listItems: MutableList<EntryBase>,
+    open val listItems: List<EntryBase>,
     open val sortParams: SortSelection
 ): Serializable {}
