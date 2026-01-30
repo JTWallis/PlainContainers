@@ -10,12 +10,23 @@ import java.io.File
 
 object JsonManager {
 
+    private var isInit = false
     private val FILENAME = "containers.json"
     private var PATH = ""
     private val json = Json{prettyPrint = true}
+    private lateinit var root: RootContainer
 
     fun init(context: Context) {
         PATH = context.filesDir.path + "/$FILENAME"
+
+        val rootNullable = readRoot()
+        if(rootNullable == null) {
+            throw NullPointerException("Could not read root from JSON!")
+            // TODO: What about empty/missing JSON? Instantiate new RootContainer here (and write it)
+        } else {
+            root = rootNullable
+        }
+        isInit = true
     }
 
     fun readRoot(): RootContainer? {
@@ -38,25 +49,69 @@ object JsonManager {
         }
     }
 
+    fun getRoot(): RootContainer {
+        verifyRoot()
+        return root
+    }
+
     fun readContainers(): MutableList<EntryContainer> {
         val root = readRoot() ?: return ArrayList()
         return root.containers.toMutableList()
     }
 
     fun writeContainers(containers: MutableList<EntryContainer>) {
-        val root = readRoot() ?: return
-        root.containers = containers
+        verifyRoot()
 
+        root.containers = containers
         writeRoot(root)
+    }
+
+    fun getContainers(): MutableList<EntryContainer> {
+        verifyRoot()
+        return root.containers
+    }
+
+    fun writeContainer(pos: Int, container: EntryContainer) {
+        verifyRoot()
+
+        root.containers[pos] = container
+        writeRoot(root)
+    }
+
+    fun getContainer(pos: Int): EntryContainer {
+        verifyRoot()
+        return root.containers[pos]
     }
 
     fun writeItems(items: MutableList<EntryItem>, containerPos: Int) {
         if(containerPos < 0) return
-        val root = readRoot() ?: return
         val container = root.containers[containerPos]
         container.items = items
 
         writeRoot(root)
+    }
+
+    fun getItems(containerPos: Int): List<EntryItem> {
+        verifyRoot()
+        return root.containers[containerPos].items
+    }
+
+    fun getItem(containerPos: Int, itemPos: Int): EntryItem {
+        verifyRoot()
+        return root.containers[containerPos].items[itemPos]
+    }
+
+    private fun throwExceptionInit() {
+        throw NullPointerException("Attempting to interact with JsonManager without initializing it!")
+    }
+
+    private fun throwExceptionNull() {
+        throw NullPointerException("Attempting to interact with JsonManager but root is null!")
+    }
+
+    private fun verifyRoot() {
+        if(!isInit) throwExceptionInit()
+        if(!this::root.isInitialized) throwExceptionNull()
     }
 
 }

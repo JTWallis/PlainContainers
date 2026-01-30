@@ -29,6 +29,21 @@
             app:argType="com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg"
             app:nullable="false"
         />
+        <action
+            android:id="@+id/action_detail_to_edit_container"
+            app:destination="@id/editContainerFragment"
+        />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editContainerFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.EditContainerFragment"
+        android:label="EditContainerFragment" >
+        <argument
+            android:name="edit_container_frag_args"
+            app:argType="com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg"
+            app:nullable="false"
+        />
 
     </fragment>
 

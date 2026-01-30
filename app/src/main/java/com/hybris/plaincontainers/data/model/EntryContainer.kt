@@ -9,6 +9,6 @@ data class EntryContainer(
     val color: String,
     val sortParams: SortSelection,
     var items: List<EntryItem>
-) : EntryBase() {
+) : EntryBase(), java.io.Serializable {
     var isExpanded: Boolean = false
 }
