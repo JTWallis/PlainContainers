@@ -146,7 +146,7 @@
         />
 
         <TextView
-            android:id="@+id/tvEditDescription"
+            android:id="@+id/tvEditColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Color:"
