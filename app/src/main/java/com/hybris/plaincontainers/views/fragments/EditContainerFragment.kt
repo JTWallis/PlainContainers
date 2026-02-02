@@ -2,6 +2,7 @@ package com.hybris.plaincontainers.views.fragments
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
 import com.hybris.plaincontainers.data.model.EntryContainer
@@ -64,6 +65,11 @@ class EditContainerFragment(): MetadataContainerFragment() {
         popup.setTextButtonRight("Delete!")
 
         popup.show(view)
+    }
+
+    private fun onBtnDeleteConfirmClick() {
+        JsonManager.removeContainer(containerPos)
+        findNavController().popBackStack(R.id.containerOverviewFragment, false)
     }
 
     override fun getAppbarTitle(): String {
