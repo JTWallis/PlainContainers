@@ -65,7 +65,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
             onClickRight = { onBtnAddBarcodeClicked() }
         )
         popup.setTextTitle("Select method to add item")
-        popup.setTextSubtitle("This action is irreversible!")
+        popup.setTextSubtitle("")
         popup.setTextButtonLeft("Manual")
         popup.setTextButtonRight("Barcode")
 
