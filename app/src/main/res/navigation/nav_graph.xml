@@ -73,6 +73,17 @@
             app:nullable="false"
         />
     </fragment>
+    <fragment
+        android:id="@+id/editItemFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.EditItemFragment"
+        android:label="EditItemFragment" >
+
+        <argument
+            android:name="edit_item_frag_arg"
+            app:argType="com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg"
+            app:nullable="false"
+        />
+    </fragment>
 
 
 </navigation>
