@@ -14,6 +14,7 @@ import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragincrement.EntryDragIncrementAdapter
+import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import java.io.Serializable
 
@@ -65,11 +66,29 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         findNavController().navigate(R.id.action_detail_to_edit_container, args = bundle)
     }
 
+    override fun onBtnAddClicked(view: View) {
+        val popup = ChoicePopup(
+            view,
+            onClickLeft = { onBtnAddManualClicked() },
+            onClickRight = { onBtnAddBarcodeClicked() }
+        )
+        popup.setTextTitle("Select method to add item")
+        popup.setTextSubtitle("This action is irreversible!")
+        popup.setTextButtonLeft("Manual")
+        popup.setTextButtonRight("Barcode")
+
+        popup.show(view)
+    }
+
     override fun onItemEntryClicked(listPosition: Int) {
         Log.d("INFO", "Clicked $listPosition")
     }
 
-    override fun onBtnAddManualClicked() {
+    private fun onBtnAddManualClicked() {
+
+    }
+
+    private fun onBtnAddBarcodeClicked() {
 
     }
 
