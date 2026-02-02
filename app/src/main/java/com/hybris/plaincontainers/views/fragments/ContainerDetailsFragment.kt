@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
 import com.hybris.plaincontainers.data.JsonManager
+import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
 import com.hybris.plaincontainers.data.model.EntryContainer
@@ -76,7 +77,9 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     }
 
     private fun onBtnAddManualClicked() {
-
+        val fragArg = AddItemFragmentArg(containerPos)
+        val bundle = bundleOf("add_item_frag_arg" to fragArg)
+        findNavController().navigate(R.id.action_detail_to_add_item, args = bundle)
     }
 
     private fun onBtnAddBarcodeClicked() {

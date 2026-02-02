@@ -38,6 +38,10 @@
             android:id="@+id/action_detail_to_edit_container"
             app:destination="@id/editContainerFragment"
         />
+        <action
+            android:id="@+id/action_detail_to_add_item"
+            app:destination="@id/addItemFragment"
+        />
     </fragment>
 
     <fragment
