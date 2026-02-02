@@ -23,8 +23,6 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     override lateinit var sortParams: SortSelection
     private var containerPos: Int = -1
     private lateinit var containerMetadata: EntryContainer
-    private lateinit var layoutBtnEdit: CardView
-    private lateinit var handleEdit: EditHandle
 
 
     override fun initPackageData() {
@@ -34,13 +32,6 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         containerMetadata = JsonManager.getContainer(containerPos)
         listItems = containerMetadata.items.toMutableList()
         sortParams = containerMetadata.sortParams
-    }
-
-    override fun initViews(view: View) {
-        super.initViews(view)
-
-        layoutBtnEdit = view.findViewById(R.id.layoutEdit)
-        handleEdit = EditHandle(layoutBtnEdit, onClick = { onBtnEditClicked() }, "Edit Container")
     }
 
     override fun createAdapter(dragListener: DragListener) {
@@ -56,7 +47,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         JsonManager.writeItems(containerPos, listItems)
     }
 
-    private fun onBtnEditClicked() {
+    override fun onBtnEditClicked() {
         val fragArg = EditContainerFragmentArg(
             containerPos
         )
@@ -102,6 +93,10 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
 
     override fun getContainerPackage(): Serializable {
         return getSerializable("container_frag_arg", ContainerFragmentArg::class.java)
+    }
+
+    override fun hasEditButton(): Boolean {
+        return true
     }
 
 }

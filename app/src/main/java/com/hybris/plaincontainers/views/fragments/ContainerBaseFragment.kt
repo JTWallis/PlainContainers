@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
+import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
 import com.hybris.plaincontainers.data.ListUtils
 import com.hybris.plaincontainers.data.model.EntryBase
@@ -30,6 +31,8 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     private lateinit var layoutBtnSort: CardView
     private lateinit var handleSort: SortHandle
     private lateinit var switchDrag: SwitchCompat
+    private lateinit var layoutBtnEdit: CardView
+    private lateinit var handleEdit: EditHandle
     private lateinit var layoutBtnAdd: CardView
     private lateinit var handleAdd: AddHandle
     private lateinit var rcvList: RecyclerView
@@ -41,6 +44,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     protected abstract fun writeJsonChanges()
     protected abstract fun onItemEntryClicked(listPosition: Int)
     protected abstract fun onBtnAddClicked(view: View)
+    protected abstract fun hasEditButton(): Boolean
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,6 +68,8 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         layoutBtnSort = view.findViewById(R.id.layoutSort)
         handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) }, "Custom")
         switchDrag = view.findViewById(R.id.switchDrag)
+        layoutBtnEdit = view.findViewById(R.id.layoutEdit)
+        handleEdit = EditHandle(layoutBtnEdit, onClick = { onBtnEditClicked() }, "Edit Container")
         layoutBtnAdd = view.findViewById(R.id.layoutAdd)
         handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) }, "Add Container")
         rcvList = view.findViewById(R.id.rcvContainers)
@@ -129,6 +135,10 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
             onSortChanged = { e -> onSortOptionChanged(e) })
         popup.setTitle("Sort by:")
         popup.show(view)
+    }
+
+    protected open fun onBtnEditClicked() {
+
     }
 
     override fun onSortOptionChanged(sortSelection: SortSelection) {
