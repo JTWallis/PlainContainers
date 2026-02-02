@@ -41,7 +41,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         if(hasBtnDelete()) {
             btnDeleteHandle = ButtonIconLabeledHandle(
                 layoutBtnDelete,
-                onClick = { onBtnDeleteClick() },
+                onClick = { onBtnDeleteClick(layoutBtnDelete) },
                 "Delete",
                 R.drawable.trash_24,
                 true
@@ -73,7 +73,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
     protected open fun initListeners() {}
 
-    protected open fun onBtnDeleteClick() {
+    protected open fun onBtnDeleteClick(view: View) {
 
     }
 
