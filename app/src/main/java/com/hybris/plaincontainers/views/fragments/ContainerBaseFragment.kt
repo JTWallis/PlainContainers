@@ -73,6 +73,10 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         layoutBtnAdd = view.findViewById(R.id.layoutAdd)
         handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) }, "Add Container")
         rcvList = view.findViewById(R.id.rcvContainers)
+
+        if(!hasEditButton()) {
+            handleEdit.setVisibility(false)
+        }
     }
 
     private fun initRecycleView(view: View) {
