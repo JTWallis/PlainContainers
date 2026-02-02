@@ -16,7 +16,6 @@ open class ButtonIconLabeledHandle(
 ) : ButtonHandleBase(
     view,
     onClick,
-    R.id.cvBtnLabeled,
     R.id.btnLabeled
 ) {
 
