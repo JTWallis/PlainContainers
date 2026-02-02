@@ -151,6 +151,14 @@ object JsonManager {
         writeItems(containerPos, newItems)
     }
 
+    fun removeItem(containerPos: Int, itemPos: Int) {
+        verifyRoot()
+
+        val newItems = root.containers[containerPos].items.toMutableList()
+        newItems.removeAt(itemPos)
+        writeItems(containerPos, newItems)
+    }
+
     fun getItem(containerPos: Int, itemPos: Int): EntryItem {
         verifyRoot()
         return root.containers[containerPos].items[itemPos]
