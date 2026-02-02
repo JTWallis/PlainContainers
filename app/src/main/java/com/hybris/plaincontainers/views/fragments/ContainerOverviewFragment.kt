@@ -20,15 +20,7 @@ import java.io.Serializable
 class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
     override lateinit var listItems: MutableList<EntryContainer>
     override lateinit var sortParams: SortSelection
-    private lateinit var layoutBtnEdit: CardView
-    private lateinit var handleEdit: EditHandle
 
-    override fun initViews(view: View) {
-        super.initViews(view)
-
-        layoutBtnEdit = view.findViewById(R.id.layoutEdit)
-        handleEdit = EditHandle(layoutBtnEdit, onClick = {}, "Edit Container")
-    }
 
     override fun initPackageData() {
         val rootContainer = JsonManager.getRoot()
@@ -70,6 +62,10 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
 
     override fun getContainerPackage(): Serializable {
         return getSerializable("root_frag_arg", RootFragmentArg::class.java)
+    }
+
+    override fun hasEditButton(): Boolean {
+        return false
     }
 
 }

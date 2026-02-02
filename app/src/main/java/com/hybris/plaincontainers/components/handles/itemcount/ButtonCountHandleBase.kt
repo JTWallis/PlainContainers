@@ -14,7 +14,7 @@ open class ButtonCountHandleBase(
     onClick: () -> Unit,
     @DrawableRes buttonIcon: Int,
     @ColorRes buttonColor: Int
-) : ButtonHandleBase(view, onClick, R.id.cvBtnIncrement, R.id.btnIncrement) {
+) : ButtonHandleBase(view, onClick, R.id.btnIncrement) {
 
     protected val ivIcon = view.findViewById<ImageView>(R.id.ivIncrementIcon)!!
 
