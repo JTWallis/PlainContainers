@@ -27,7 +27,6 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected abstract fun getInitName(): String
     protected abstract fun getInitImageUri(): String
     protected abstract fun getInitDescription(): String
-    protected abstract fun onBtnDeleteClick()
     protected abstract fun onBtnConfirmClick()
 
     override fun initViews(view: View) {
@@ -73,6 +72,10 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     protected open fun initListeners() {}
+
+    protected open fun onBtnDeleteClick() {
+
+    }
 
     protected fun getName(): String {
         return etName.text.toString()

@@ -1,5 +1,6 @@
 package com.hybris.plaincontainers.views.fragments
 
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.model.EntryContainer
@@ -13,8 +14,6 @@ class AddContainerFragment: MetadataContainerFragment() {
     override fun hasBtnDelete(): Boolean {
         return false
     }
-
-    override fun onBtnDeleteClick() {}
 
     override fun onBtnConfirmClick() {
         if(getName().isEmpty()) {
