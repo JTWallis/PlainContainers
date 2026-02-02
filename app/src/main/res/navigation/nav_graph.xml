@@ -18,6 +18,11 @@
             android:id="@+id/action_overview_to_details"
             app:destination="@id/containerDetailsFragment"
         />
+
+        <action
+            android:id="@+id/action_overview_to_add_container"
+            app:destination="@id/addContainerFragment"
+        />
     </fragment>
 
     <fragment
