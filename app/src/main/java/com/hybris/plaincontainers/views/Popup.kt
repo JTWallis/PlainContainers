@@ -20,6 +20,10 @@ open class Popup(
         true
     )
 
+    fun dismiss() {
+        popupWindow.dismiss()
+    }
+
     fun show(view: View, gravity: Int = Gravity.CENTER, x: Int = 0, y: Int = 0) {
         popupWindow.showAtLocation(view, gravity, x, y)
     }
