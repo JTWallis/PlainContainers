@@ -11,6 +11,7 @@ import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
+import com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
@@ -73,7 +74,10 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     }
 
     override fun onItemEntryClicked(listPosition: Int) {
-        Log.d("INFO", "Clicked $listPosition")
+
+        val fragArg = EditItemFragmentArg(containerPos, listPosition)
+        val bundle = bundleOf("edit_item_frag_arg" to fragArg)
+        findNavController().navigate(R.id.action_detail_to_edit_item, args = bundle)
     }
 
     private fun onBtnAddManualClicked() {
