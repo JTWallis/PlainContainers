@@ -56,6 +56,9 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         findNavController().navigate(R.id.action_overview_to_details, args = bundle)
     }
 
+    override fun onBtnAddManualClicked() {
+    }
+
     override fun getAppbarTitle(): String {
         return "Container Overview"
     }

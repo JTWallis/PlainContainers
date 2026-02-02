@@ -39,6 +39,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     protected abstract fun createAdapter(dragListener: DragListener)
     protected abstract fun writeJsonChanges()
     protected abstract fun onItemEntryClicked(listPosition: Int)
+    protected abstract fun onBtnAddManualClicked()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -145,9 +146,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         popup.setTextButtonRight("Barcode")
 
         popup.show(view)
-    }
-
-    private fun onBtnAddManualClicked() {
     }
 
     private fun onBtnAddBarcodeClicked() {
