@@ -1,9 +1,12 @@
 package com.hybris.plaincontainers.views.fragments
 
+import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
 import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import java.io.Serializable
 
 class EditContainerFragment(): MetadataContainerFragment() {
@@ -49,8 +52,24 @@ class EditContainerFragment(): MetadataContainerFragment() {
         findNavController().navigateUp()
     }
 
-    override fun onBtnDeleteClick() {
+    override fun onBtnDeleteClick(view: View) {
+        val popup = ChoicePopup(
+            view,
+            onClickLeft = { },
+            onClickRight = { onBtnDeleteConfirmClick() },
+            true
+        )
+        popup.setTextTitle("Do you really want to delete this container, including its item entries?")
+        popup.setTextSubtitle("This action is irreversible!")
+        popup.setTextButtonLeft("Cancel")
+        popup.setTextButtonRight("Delete!")
 
+        popup.show(view)
+    }
+
+    private fun onBtnDeleteConfirmClick() {
+        JsonManager.removeContainer(containerPos)
+        findNavController().popBackStack(R.id.containerOverviewFragment, false)
     }
 
     override fun getAppbarTitle(): String {
