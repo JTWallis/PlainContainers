@@ -125,6 +125,21 @@ object JsonManager {
         return root.containers[containerPos].items
     }
 
+    fun writeItem(containerPos: Int, itemPos: Int, entryItem: EntryItem) {
+        verifyRoot()
+
+        val container = root.containers[containerPos]
+        val newItems = container.items.toMutableList()
+        val nameChanged = newItems[itemPos].name != entryItem.name
+        newItems[itemPos] = entryItem
+
+        if(nameChanged) {
+            ListUtils.sortEntryList(newItems, container.sortParams)
+        }
+
+        writeItems(containerPos, newItems)
+    }
+
     fun addItem(containerPos: Int, entryItem: EntryItem) {
         verifyRoot()
 
