@@ -56,7 +56,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         findNavController().navigate(R.id.action_overview_to_details, args = bundle)
     }
 
-    override fun onBtnAddManualClicked() {
+    override fun onBtnAddClicked(view: View) {
         findNavController().navigate(R.id.action_overview_to_add_container)
     }
 

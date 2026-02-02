@@ -40,7 +40,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     protected abstract fun createAdapter(dragListener: DragListener)
     protected abstract fun writeJsonChanges()
     protected abstract fun onItemEntryClicked(listPosition: Int)
-    protected abstract fun onBtnAddManualClicked()
+    protected abstract fun onBtnAddClicked(view: View)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -129,23 +129,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
             onSortChanged = { e -> onSortOptionChanged(e) })
         popup.setTitle("Sort by:")
         popup.show(view)
-    }
-
-    private fun onBtnAddClicked(view: View) {
-        val popup = ChoicePopup(
-            view,
-            onClickLeft = { onBtnAddManualClicked() },
-            onClickRight = { onBtnAddBarcodeClicked() }
-        )
-        popup.setTextTitle("Select method to add item")
-        popup.setTextSubtitle("This action is irreversible!")
-        popup.setTextButtonLeft("Manual")
-        popup.setTextButtonRight("Barcode")
-
-        popup.show(view)
-    }
-
-    private fun onBtnAddBarcodeClicked() {
     }
 
     override fun onSortOptionChanged(sortSelection: SortSelection) {
