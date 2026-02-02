@@ -58,5 +58,17 @@
         android:label="AddContainerFragment" >
     </fragment>
 
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.AddItemFragment"
+        android:label="AddItemFragment" >
+
+        <argument
+            android:name="add_item_frag_arg"
+            app:argType="com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg"
+            app:nullable="false"
+        />
+    </fragment>
+
 
 </navigation>
