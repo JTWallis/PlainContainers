@@ -38,6 +38,10 @@
             android:id="@+id/action_detail_to_edit_container"
             app:destination="@id/editContainerFragment"
         />
+        <action
+            android:id="@+id/action_detail_to_add_item"
+            app:destination="@id/addItemFragment"
+        />
     </fragment>
 
     <fragment
@@ -56,6 +60,18 @@
         android:id="@+id/addContainerFragment"
         android:name="com.hybris.plaincontainers.views.fragments.AddContainerFragment"
         android:label="AddContainerFragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.AddItemFragment"
+        android:label="AddItemFragment" >
+
+        <argument
+            android:name="add_item_frag_arg"
+            app:argType="com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg"
+            app:nullable="false"
+        />
     </fragment>
 
 

@@ -1,0 +1,60 @@
+package com.hybris.plaincontainers.views.fragments
+
+import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.data.JsonManager
+import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
+import com.hybris.plaincontainers.data.model.EntryItem
+import java.io.Serializable
+
+class AddItemFragment: MetadataBaseFragment() {
+
+    private var containerPos = -1
+
+    override fun initPackageData() {
+        val fragArgs = getContainerPackage() as AddItemFragmentArg
+        containerPos = fragArgs.containerPos
+    }
+
+    override fun onBtnConfirmClick() {
+        if(getName().isEmpty()) {
+            return
+        }
+
+        val entryItem = EntryItem(
+            getName(),
+            getPhotoUri(),
+            1
+        )
+
+        JsonManager.addItem(containerPos, entryItem)
+        findNavController().navigateUp()
+    }
+
+    override fun getAppbarTitle(): String {
+        return "Add new Item"
+    }
+
+    override fun getAppbarSubtitle(): String {
+        return ""
+    }
+
+    override fun getInitName(): String {
+        return ""
+    }
+
+    override fun getInitImageUri(): String {
+        return ""
+    }
+
+    override fun getInitDescription(): String {
+        return ""
+    }
+
+    override fun getContainerPackage(): Serializable {
+        return getSerializable("add_item_frag_arg", AddItemFragmentArg::class.java)
+    }
+
+    override fun hasBtnDelete(): Boolean {
+        return false
+    }
+}

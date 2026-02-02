@@ -125,6 +125,17 @@ object JsonManager {
         return root.containers[containerPos].items
     }
 
+    fun addItem(containerPos: Int, entryItem: EntryItem) {
+        verifyRoot()
+
+        val container = root.containers[containerPos]
+        val newItems = container.items.toMutableList()
+        newItems.add(entryItem)
+        ListUtils.sortEntryList(newItems, container.sortParams)
+
+        writeItems(containerPos, newItems)
+    }
+
     fun getItem(containerPos: Int, itemPos: Int): EntryItem {
         verifyRoot()
         return root.containers[containerPos].items[itemPos]
