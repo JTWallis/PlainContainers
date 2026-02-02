@@ -80,6 +80,16 @@ object JsonManager {
         writeContainers(newContainers)
     }
 
+    fun addContainer(container: EntryContainer) {
+        verifyRoot()
+
+        val newContainers = root.containers.toMutableList()
+        newContainers.add(container)
+        ListUtils.sortEntryList(newContainers, root.sortParams)
+
+        writeContainers(newContainers)
+    }
+
     fun getContainer(containerPos: Int): EntryContainer {
         verifyRoot()
         return root.containers[containerPos]
