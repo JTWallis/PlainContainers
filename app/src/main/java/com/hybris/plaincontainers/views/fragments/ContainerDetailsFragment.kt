@@ -69,6 +69,10 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         Log.d("INFO", "Clicked $listPosition")
     }
 
+    override fun onBtnAddManualClicked() {
+
+    }
+
     override fun getAppbarTitle(): String {
         return "Container"
     }

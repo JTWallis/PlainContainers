@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
+import com.hybris.plaincontainers.data.ListUtils
 import com.hybris.plaincontainers.data.model.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
@@ -39,6 +40,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     protected abstract fun createAdapter(dragListener: DragListener)
     protected abstract fun writeJsonChanges()
     protected abstract fun onItemEntryClicked(listPosition: Int)
+    protected abstract fun onBtnAddManualClicked()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -107,16 +109,12 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     }
 
     private fun sortList(sortOption: SortOption, isAscending: Boolean) {
-        when(sortOption) {
-            SortOption.NAME -> {
-                if(isAscending) listItems.sortBy { e -> e.name }
-                else listItems.sortByDescending { e -> e.name }
+        val hashBefore = listItems.hashCode()
+        ListUtils.sortEntryList(listItems, SortSelection(sortOption, isAscending))
+        val hashAfter = listItems.hashCode()
 
-                rcvAdapter.notifyItemRangeChanged(0, listItems.count())
-            }
-            SortOption.DATE_ADDED -> {}
-            SortOption.DATE_MODIFIED -> {}
-            SortOption.CUSTOM -> {}
+        if(hashBefore != hashAfter) {
+            rcvAdapter.notifyItemRangeChanged(0, listItems.count())
         }
 
         setSetSortOption(sortOption, isAscending)
@@ -145,9 +143,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         popup.setTextButtonRight("Barcode")
 
         popup.show(view)
-    }
-
-    private fun onBtnAddManualClicked() {
     }
 
     private fun onBtnAddBarcodeClicked() {

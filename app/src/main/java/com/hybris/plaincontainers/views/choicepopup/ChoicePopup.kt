@@ -21,8 +21,14 @@ class ChoicePopup(
     init {
         tvSubtitle.text = ""
 
-        btnChoiceLeft.setOnClickListener { onClickLeft() }
-        btnChoiceRight.setOnClickListener { onClickRight() }
+        btnChoiceLeft.setOnClickListener {
+            onClickLeft()
+            dismiss()
+        }
+        btnChoiceRight.setOnClickListener {
+            onClickRight()
+            dismiss()
+        }
 
         if(isChoiceImportant) {
             val color = invokerView.resources.getColor(R.color.importantText, null)

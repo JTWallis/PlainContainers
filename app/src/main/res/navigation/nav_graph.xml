@@ -18,6 +18,11 @@
             android:id="@+id/action_overview_to_details"
             app:destination="@id/containerDetailsFragment"
         />
+
+        <action
+            android:id="@+id/action_overview_to_add_container"
+            app:destination="@id/addContainerFragment"
+        />
     </fragment>
 
     <fragment
@@ -45,6 +50,12 @@
             app:nullable="false"
         />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/addContainerFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.AddContainerFragment"
+        android:label="AddContainerFragment" >
     </fragment>
 
 
