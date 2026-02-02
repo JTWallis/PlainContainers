@@ -1,5 +1,6 @@
 package com.hybris.plaincontainers.views.fragments
 
+import android.net.Uri
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -7,6 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
+import java.io.File
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
@@ -14,7 +16,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private lateinit var etName: EditText
     private lateinit var tvPhoto: TextView
     private lateinit var ivPhoto: ImageView
-    private var uriPhoto: String = "Nothing here yet"
+    private var uriPhoto: String = ""
     private lateinit var tvDescription: TextView
     private lateinit var etDescription: EditText
     private lateinit var layoutBtnDelete: CardView
@@ -67,8 +69,13 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
     protected open fun initViewFillData() {
         etName.setText(getInitName())
-        //ivPhoto.setImageURI()
         etDescription.setText(getInitDescription())
+
+        uriPhoto = "/storage/emulated/0/Pictures/cat.jpg"
+        val file = File(uriPhoto)
+        if(file.exists()) {
+            ivPhoto.setImageURI(Uri.fromFile(file))
+        }
     }
 
     protected open fun initListeners() {}
