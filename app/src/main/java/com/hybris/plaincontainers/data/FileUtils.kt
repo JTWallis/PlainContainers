@@ -23,4 +23,14 @@ object FileUtils {
         return photosDir.path
     }
 
+    fun isValidUri(uri: Uri): Boolean {
+        if(uri == Uri.EMPTY) return false
+
+        try {
+            val file = uri.toFile()
+            return file.exists()
+        } catch(e: IllegalArgumentException) {
+            return false
+        }
+    }
 }
