@@ -89,6 +89,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         etName.setText(getInitName())
         etDescription.setText(getInitDescription())
         uriPhoto = getInitImageUri().toUri()
+        updatePhotoFromUri()
     }
 
     protected open fun initListeners() {
@@ -99,10 +100,18 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
             if(uri != null) {
                 uriPhoto = FileUtils.createScaledThumbnail(requireContext(), uri)
+                updatePhotoFromUri()
             }
         }
     }
 
+    private fun updatePhotoFromUri() {
+        if(!FileUtils.isValidUri(uriPhoto)) {
+            return
+        }
+
+        ivPhoto.setImageURI(uriPhoto)
+    }
 
     private fun onPhotoClick(view: View) {
         val popup = ChoicePopup(
