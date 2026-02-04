@@ -96,10 +96,8 @@
             android:padding="2dp" >
             <ImageView
                 android:id="@+id/ivEditPhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="128dp"
-                android:maxHeight="128dp"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/beans"

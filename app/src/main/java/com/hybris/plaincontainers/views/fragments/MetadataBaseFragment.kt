@@ -1,14 +1,20 @@
 package com.hybris.plaincontainers.views.fragments
 
 import android.net.Uri
+import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.cardview.widget.CardView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
-import java.io.File
+import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
+import androidx.core.net.toUri
+import com.hybris.plaincontainers.data.FileUtils
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
@@ -16,13 +22,14 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private lateinit var etName: EditText
     private lateinit var tvPhoto: TextView
     private lateinit var ivPhoto: ImageView
-    private var uriPhoto: String = ""
+    private var uriPhoto: Uri = Uri.EMPTY
     private lateinit var tvDescription: TextView
     private lateinit var etDescription: EditText
     private lateinit var layoutBtnDelete: CardView
     private var btnDeleteHandle: ButtonIconLabeledHandle? = null
     private lateinit var layoutBtnConfirm: CardView
     private lateinit var btnConfirmHandle: ButtonIconLabeledHandle
+    private lateinit var pickMedia: ActivityResultLauncher<PickVisualMediaRequest>
 
 
     protected abstract fun hasBtnDelete(): Boolean
@@ -30,6 +37,16 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected abstract fun getInitImageUri(): String
     protected abstract fun getInitDescription(): String
     protected abstract fun onBtnConfirmClick()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPickMedia()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
+    }
 
     override fun initViews(view: View) {
         tvName = view.findViewById(R.id.tvEditName)
@@ -70,15 +87,52 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected open fun initViewFillData() {
         etName.setText(getInitName())
         etDescription.setText(getInitDescription())
+        uriPhoto = getInitImageUri().toUri()
+        updatePhotoFromUri()
+    }
 
-        uriPhoto = "/storage/emulated/0/Pictures/cat.jpg"
-        val file = File(uriPhoto)
-        if(file.exists()) {
-            ivPhoto.setImageURI(Uri.fromFile(file))
+    protected open fun initListeners() {
+        ivPhoto.setOnClickListener { onPhotoClick(ivPhoto) }
+    }
+
+    private fun initPickMedia() {
+        pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
+            if(uri != null) {
+                uriPhoto = FileUtils.createScaledPhoto(requireContext(), uri)
+                updatePhotoFromUri()
+            }
         }
     }
 
-    protected open fun initListeners() {}
+    private fun updatePhotoFromUri() {
+        if(!FileUtils.isValidUri(uriPhoto)) {
+            return
+        }
+
+        ivPhoto.setImageURI(uriPhoto)
+    }
+
+    private fun onPhotoClick(view: View) {
+        val popup = ChoicePopup(
+            view,
+            onClickLeft = { onPhotoCaptureClick() },
+            onClickRight = { onPhotoGalleryClick() }
+        )
+        popup.setTextTitle("Select method to add photo")
+        popup.setTextSubtitle("")
+        popup.setTextButtonLeft("Capture")
+        popup.setTextButtonRight("From Gallery")
+
+        popup.show(view)
+    }
+
+    private fun onPhotoCaptureClick() {
+
+    }
+
+    private fun onPhotoGalleryClick() {
+        pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
+    }
 
     protected open fun onBtnDeleteClick(view: View) {
 
@@ -89,7 +143,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     protected fun getPhotoUri(): String {
-        return uriPhoto
+        return uriPhoto.toString()
     }
 
     protected fun getDescription(): String {

@@ -31,9 +31,9 @@ class ChoicePopup(
         }
 
         if(isChoiceImportant) {
-            val color = invokerView.resources.getColor(R.color.importantText, null)
+            val color = invokerView.resources.getColorStateList(R.color.importantText, null)
             tvSubtitle.setTextColor(color)
-            btnChoiceRight.setBackgroundColor(color)
+            btnChoiceRight.setBackgroundTintList(color)
         }
     }
 
