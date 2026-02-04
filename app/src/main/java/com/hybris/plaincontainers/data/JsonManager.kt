@@ -19,7 +19,7 @@ object JsonManager {
     private lateinit var root: RootContainer
 
     fun init(context: Context) {
-        PATH = context.filesDir.path + "/$FILENAME"
+        PATH = FileUtils.getRootPath(context) + "/$FILENAME"
 
         val rootNullable = readRoot()
         if(rootNullable == null) {
