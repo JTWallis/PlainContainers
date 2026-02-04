@@ -33,6 +33,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        checkRequestPermission()
     }
 
     override fun initViews(view: View) {
@@ -55,6 +56,38 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
                 imageCapture
             )
         }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+    private fun startCamera() {
+
+    }
+
+    private fun checkRequestPermission() {
+        val cameraPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()) { granted ->
+            if(granted) startCamera()
+            else onPermissionDenied()
+        }
+
+        val permission = android.Manifest.permission.CAMERA
+
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(), permission
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                startCamera()
+            }
+            shouldShowRequestPermissionRationale(permission) -> {
+                onPermissionDenied()
+            }
+            else -> {
+                cameraPermissionLauncher.launch(permission)
+            }
+        }
+    }
+
+    private fun onPermissionDenied() {
+
     }
 
 
