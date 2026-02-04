@@ -143,6 +143,15 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
                     image.close()
 
                     val cropped = cropBitmap(bitmap)
+                    val uri = FileUtils.createScaledPhoto(
+                        requireContext(),
+                        cropped
+                    ).toString()
+                    parentFragmentManager.setFragmentResult(
+                        "capture_result",
+                        bundleOf("capture_uri" to uri)
+                    )
+                    findNavController().navigateUp()
                 }
 
                 override fun onError(exception: ImageCaptureException) {

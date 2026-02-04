@@ -96,6 +96,19 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected open fun initListeners() {
         ivPhoto.setOnClickListener { onPhotoClick(ivPhoto) }
 
+        // Listener for returned Photo Capture
+        parentFragmentManager.setFragmentResultListener(
+            "capture_result",
+            this
+        ) {_, bundle ->
+            val uri = bundle.getString("capture_uri")
+            if(uri == null) {
+                Log.e("ERROR", "Received null as uri!")
+            } else {
+                onPhotoCaptureReceived(uri.toUri())
+            }
+        }
+
         // Listener for when the user does not grant Camera permission
         parentFragmentManager.setFragmentResultListener(
             "capture_permission",
@@ -141,6 +154,11 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
     private fun onPhotoCaptureClick() {
         findNavController().navigate(R.id.captureFragment)
+    }
+
+    private fun onPhotoCaptureReceived(uri: Uri) {
+        uriPhoto = uri
+        updatePhotoFromUri()
     }
 
     private fun onPhotoCapturePermissionDenied() {
