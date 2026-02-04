@@ -5,6 +5,8 @@ import android.util.Log
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
+import com.hybris.plaincontainers.views.sortpopup.SortOption
+import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import kotlinx.serialization.json.Json
 import java.io.File
 
@@ -21,8 +23,11 @@ object JsonManager {
 
         val rootNullable = readRoot()
         if(rootNullable == null) {
-            throw NullPointerException("Could not read root from JSON!")
-            // TODO: What about empty/missing JSON? Instantiate new RootContainer here (and write it)
+            root = RootContainer(
+                SortSelection(SortOption.CUSTOM, true),
+                emptyList()
+            )
+            writeRoot(root)
         } else {
             root = rootNullable
         }
