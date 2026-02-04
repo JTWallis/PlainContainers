@@ -117,6 +117,23 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
+    private fun cropBitmap(bitmap: Bitmap): Bitmap {
+        val rect = Rect(
+            viewCrop.left.coerceAtLeast(0),
+            viewCrop.top.coerceAtLeast(0),
+            viewCrop.right.coerceAtMost(bitmap.width),
+            viewCrop.bottom.coerceAtMost(bitmap.height)
+        )
+
+        return Bitmap.createBitmap(
+            bitmap,
+            rect.left,
+            rect.top,
+            rect.right - rect.left,
+            rect.bottom - rect.top
+        )
+    }
+
     fun takePhoto() {
         imageCapture.takePicture(
             ContextCompat.getMainExecutor(requireContext()),
@@ -125,6 +142,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
                     val bitmap = createBitmapFromImageProxy(image)
                     image.close()
 
+                    val cropped = cropBitmap(bitmap)
                 }
 
                 override fun onError(exception: ImageCaptureException) {
