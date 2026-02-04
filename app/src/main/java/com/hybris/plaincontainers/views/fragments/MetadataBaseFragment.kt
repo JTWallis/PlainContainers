@@ -16,7 +16,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private lateinit var etName: EditText
     private lateinit var tvPhoto: TextView
     private lateinit var ivPhoto: ImageView
-    private var uriPhoto: String = ""
+    private var uriPhoto: Uri = Uri.EMPTY
     private lateinit var tvDescription: TextView
     private lateinit var etDescription: EditText
     private lateinit var layoutBtnDelete: CardView
@@ -75,12 +75,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected open fun initViewFillData() {
         etName.setText(getInitName())
         etDescription.setText(getInitDescription())
-
-        uriPhoto = "/storage/emulated/0/Pictures/cat.jpg"
-        val file = File(uriPhoto)
-        if(file.exists()) {
-            ivPhoto.setImageURI(Uri.fromFile(file))
-        }
+        uriPhoto = getInitImageUri().toUri()
     }
 
     protected open fun initListeners() {
@@ -118,7 +113,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     protected fun getPhotoUri(): String {
-        return uriPhoto
+        return uriPhoto.toString()
     }
 
     protected fun getDescription(): String {
