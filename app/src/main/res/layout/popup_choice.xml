@@ -112,10 +112,11 @@
             android:text="Choice 1"
             android:textSize="@dimen/fontSizePopupChoiceButton"
             android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/btnPopupChoiceMargin"
             android:layout_marginRight="@dimen/btnPopupChoiceMargin"
             app:layout_constraintTop_toBottomOf="@id/guidelineHorz3"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guidelineVert2"
         />
 
@@ -127,10 +128,11 @@
             android:textSize="@dimen/fontSizePopupChoiceButton"
             android:textAllCaps="false"
             android:layout_marginLeft="@dimen/btnPopupChoiceMargin"
+            android:layout_marginRight="@dimen/btnPopupChoiceMargin"
             app:layout_constraintTop_toBottomOf="@id/guidelineHorz3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/guidelineVert2"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert3"
+            app:layout_constraintEnd_toEndOf="parent"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
