@@ -87,6 +87,12 @@
             app:argType="com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg"
             app:nullable="false"
         />
+    <fragment
+        android:id="@+id/captureFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.CaptureFragment"
+        android:label="CaptureFragment" >
+
+
     </fragment>
 
 
