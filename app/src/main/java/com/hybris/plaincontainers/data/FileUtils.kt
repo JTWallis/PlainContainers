@@ -23,6 +23,35 @@ object FileUtils {
         return photosDir.path
     }
 
+    fun createScaledPhoto(context: Context, uri: Uri): Uri {
+        val input = context.contentResolver.openInputStream(uri)!!
+        val bitmap = BitmapFactory.decodeStream(input)
+
+        val maxVal = 256
+        var width = bitmap.width
+        var height = bitmap.height
+
+        // Scale bigger dimension down to maxVal and keep aspect ratio.
+        if(width > maxVal || height > maxVal) {
+            val biggerDimension = width.coerceAtLeast(height)
+            val scaleFactor = biggerDimension.toFloat() / maxVal.toFloat()
+            width = (width / scaleFactor).toInt()
+            height = (height / scaleFactor).toInt()
+        }
+
+        val image = Bitmap.createScaledBitmap(bitmap, width, height, true)
+        val file = File(
+            getPhotosPath(context),
+            "photo_${System.currentTimeMillis()}_${width}x${height}"
+        )
+        file.outputStream().use {
+            image.compress(Bitmap.CompressFormat.JPEG, 80, it)
+        }
+
+        return file.toUri()
+    }
+
+
     fun isValidUri(uri: Uri): Boolean {
         if(uri == Uri.EMPTY) return false
 
