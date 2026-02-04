@@ -127,7 +127,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     private fun onPhotoCaptureClick() {
-
+        findNavController().navigate(R.id.captureFragment)
     }
 
     private fun onPhotoGalleryClick() {
