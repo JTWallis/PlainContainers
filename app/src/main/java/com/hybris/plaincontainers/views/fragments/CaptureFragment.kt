@@ -87,6 +87,11 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
     }
 
     private fun onPermissionDenied() {
+        val deniedPermission = true
+        parentFragmentManager.setFragmentResult(
+            "capture_permission",
+            bundleOf("capture_permission_denied" to deniedPermission)
+        )
 
     }
 
