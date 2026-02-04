@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
-import java.io.File
 import androidx.core.net.toUri
 import com.hybris.plaincontainers.data.FileUtils
 
@@ -99,7 +98,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private fun initPickMedia() {
         pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
             if(uri != null) {
-                uriPhoto = FileUtils.createScaledThumbnail(requireContext(), uri)
+                uriPhoto = FileUtils.createScaledPhoto(requireContext(), uri)
                 updatePhotoFromUri()
             }
         }
