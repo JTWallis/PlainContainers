@@ -26,8 +26,11 @@ object FileUtils {
     fun createScaledPhoto(context: Context, uri: Uri): Uri {
         val input = context.contentResolver.openInputStream(uri)!!
         val bitmap = BitmapFactory.decodeStream(input)
-        val scaledBitmap = scaleBitmap(bitmap)
+        return createScaledPhoto(context, bitmap)
+    }
 
+    fun createScaledPhoto(context: Context, bitmap: Bitmap): Uri {
+        val scaledBitmap = scaleBitmap(bitmap)
         return createPhotoFromBitmap(context, scaledBitmap)
     }
 
