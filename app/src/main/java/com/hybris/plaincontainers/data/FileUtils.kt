@@ -28,21 +28,17 @@ object FileUtils {
         val bitmap = BitmapFactory.decodeStream(input)
         val scaledBitmap = scaleBitmap(bitmap)
 
-        // Scale bigger dimension down to maxVal and keep aspect ratio.
-        if(width > maxVal || height > maxVal) {
-            val biggerDimension = width.coerceAtLeast(height)
-            val scaleFactor = biggerDimension.toFloat() / maxVal.toFloat()
-            width = (width / scaleFactor).toInt()
-            height = (height / scaleFactor).toInt()
-        }
+        return createPhotoFromBitmap(context, scaledBitmap)
+    }
 
-        val image = Bitmap.createScaledBitmap(bitmap, width, height, true)
+    fun createPhotoFromBitmap(context: Context, bitmap: Bitmap): Uri {
         val file = File(
             getPhotosPath(context),
-            "photo_${System.currentTimeMillis()}_${width}x${height}"
+            "photo_${System.currentTimeMillis()}_${bitmap.width}x${bitmap.height}"
         )
+
         file.outputStream().use {
-            image.compress(Bitmap.CompressFormat.JPEG, 80, it)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, it)
         }
 
         return file.toUri()
