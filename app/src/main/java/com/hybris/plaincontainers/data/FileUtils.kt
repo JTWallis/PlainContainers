@@ -26,10 +26,7 @@ object FileUtils {
     fun createScaledPhoto(context: Context, uri: Uri): Uri {
         val input = context.contentResolver.openInputStream(uri)!!
         val bitmap = BitmapFactory.decodeStream(input)
-
-        val maxVal = 256
-        var width = bitmap.width
-        var height = bitmap.height
+        val scaledBitmap = scaleBitmap(bitmap)
 
         // Scale bigger dimension down to maxVal and keep aspect ratio.
         if(width > maxVal || height > maxVal) {
@@ -49,6 +46,22 @@ object FileUtils {
         }
 
         return file.toUri()
+    }
+
+    fun scaleBitmap(bitmap: Bitmap): Bitmap {
+        val maxVal = 256
+        var width = bitmap.width
+        var height = bitmap.height
+
+        // Scale bigger dimension down to maxVal and keep aspect ratio.
+        if(width > maxVal || height > maxVal) {
+            val biggerDimension = width.coerceAtLeast(height)
+            val scaleFactor = biggerDimension.toFloat() / maxVal.toFloat()
+            width = (width / scaleFactor).toInt()
+            height = (height / scaleFactor).toInt()
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, width, height, true)
     }
 
 
