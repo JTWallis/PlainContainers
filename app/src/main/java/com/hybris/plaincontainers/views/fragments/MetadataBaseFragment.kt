@@ -31,6 +31,11 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected abstract fun getInitDescription(): String
     protected abstract fun onBtnConfirmClick()
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
+    }
+
     override fun initViews(view: View) {
         tvName = view.findViewById(R.id.tvEditName)
         etName = view.findViewById(R.id.etEditName)
@@ -78,7 +83,31 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         }
     }
 
-    protected open fun initListeners() {}
+    protected open fun initListeners() {
+        ivPhoto.setOnClickListener { onPhotoClick(ivPhoto) }
+    }
+
+    private fun onPhotoClick(view: View) {
+        val popup = ChoicePopup(
+            view,
+            onClickLeft = { onPhotoCaptureClick() },
+            onClickRight = { onPhotoGalleryClick() }
+        )
+        popup.setTextTitle("Select method to add photo")
+        popup.setTextSubtitle("")
+        popup.setTextButtonLeft("Capture")
+        popup.setTextButtonRight("From Gallery")
+
+        popup.show(view)
+    }
+
+    private fun onPhotoCaptureClick() {
+
+    }
+
+    private fun onPhotoGalleryClick() {
+        
+    }
 
     protected open fun onBtnDeleteClick(view: View) {
 
