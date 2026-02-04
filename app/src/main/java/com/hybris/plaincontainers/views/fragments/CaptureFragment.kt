@@ -39,6 +39,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
     override fun initViews(view: View) {
         viewCrop = view.findViewById(R.id.viewCaptureCrop)
         btnCapture = view.findViewById(R.id.btnCapture)
+        btnCapture.setOnClickListener { takePhoto() }
     }
 
     private fun initCameraProvider() {
@@ -59,7 +60,11 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
     }
 
     private fun startCamera() {
+        imageCapture = ImageCapture.Builder()
+            .setTargetRotation(view!!.display.rotation)
+            .build()
 
+        initCameraProvider()
     }
 
     private fun checkRequestPermission() {
@@ -93,8 +98,24 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
             bundleOf("capture_permission_denied" to deniedPermission)
         )
 
+        findNavController().navigateUp()
     }
 
+    fun takePhoto() {
+        imageCapture.takePicture(
+            ContextCompat.getMainExecutor(requireContext()),
+            object: ImageCapture.OnImageCapturedCallback() {
+                override fun onCaptureSuccess(image: ImageProxy) {
+
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e("ERROR", "Capture failed: $exception")
+                    super.onError(exception)
+                }
+            }
+        )
+    }
 
 
     override fun initPackageData() {}
