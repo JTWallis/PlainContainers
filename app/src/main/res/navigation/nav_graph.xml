@@ -58,12 +58,21 @@
             app:nullable="false"
         />
 
+        <action
+            android:id="@+id/action_edit_container_to_capture"
+            app:destination="@id/captureFragment"
+        />
     </fragment>
 
     <fragment
         android:id="@+id/addContainerFragment"
         android:name="com.hybris.plaincontainers.views.fragments.AddContainerFragment"
         android:label="AddContainerFragment" >
+
+        <action
+            android:id="@+id/action_add_container_to_capture"
+            app:destination="@id/captureFragment"
+        />
     </fragment>
 
     <fragment
@@ -76,6 +85,11 @@
             app:argType="com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg"
             app:nullable="false"
         />
+
+        <action
+            android:id="@+id/action_add_item_to_capture"
+            app:destination="@id/captureFragment"
+        />
     </fragment>
     <fragment
         android:id="@+id/editItemFragment"
@@ -87,6 +101,19 @@
             app:argType="com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg"
             app:nullable="false"
         />
+
+        <action
+            android:id="@+id/action_edit_item_to_capture"
+            app:destination="@id/captureFragment"
+        />
+    </fragment>
+
+    <fragment
+        android:id="@+id/captureFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.CaptureFragment"
+        android:label="CaptureFragment" >
+
+
     </fragment>
 
 

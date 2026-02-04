@@ -2,6 +2,7 @@ package com.hybris.plaincontainers.views.fragments
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -14,6 +15,7 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import androidx.core.net.toUri
+import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.FileUtils
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
@@ -93,6 +95,30 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
     protected open fun initListeners() {
         ivPhoto.setOnClickListener { onPhotoClick(ivPhoto) }
+
+        // Listener for returned Photo Capture
+        parentFragmentManager.setFragmentResultListener(
+            "capture_result",
+            this
+        ) {_, bundle ->
+            val uri = bundle.getString("capture_uri")
+            if(uri == null) {
+                Log.e("ERROR", "Received null as uri!")
+            } else {
+                onPhotoCaptureReceived(uri.toUri())
+            }
+        }
+
+        // Listener for when the user does not grant Camera permission
+        parentFragmentManager.setFragmentResultListener(
+            "capture_permission",
+            this
+        ) {_, bundle ->
+            val permissionDenied = bundle.getBoolean("capture_permission_denied")
+            if(permissionDenied) {
+                onPhotoCapturePermissionDenied()
+            }
+        }
     }
 
     private fun initPickMedia() {
@@ -127,7 +153,16 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     private fun onPhotoCaptureClick() {
+        findNavController().navigate(R.id.captureFragment)
+    }
 
+    private fun onPhotoCaptureReceived(uri: Uri) {
+        uriPhoto = uri
+        updatePhotoFromUri()
+    }
+
+    private fun onPhotoCapturePermissionDenied() {
+        Log.d("INFO", "Insert info to user that Camera permission is needed")
     }
 
     private fun onPhotoGalleryClick() {

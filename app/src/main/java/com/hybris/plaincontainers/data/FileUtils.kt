@@ -26,7 +26,28 @@ object FileUtils {
     fun createScaledPhoto(context: Context, uri: Uri): Uri {
         val input = context.contentResolver.openInputStream(uri)!!
         val bitmap = BitmapFactory.decodeStream(input)
+        return createScaledPhoto(context, bitmap)
+    }
 
+    fun createScaledPhoto(context: Context, bitmap: Bitmap): Uri {
+        val scaledBitmap = scaleBitmap(bitmap)
+        return createPhotoFromBitmap(context, scaledBitmap)
+    }
+
+    fun createPhotoFromBitmap(context: Context, bitmap: Bitmap): Uri {
+        val file = File(
+            getPhotosPath(context),
+            "photo_${System.currentTimeMillis()}_${bitmap.width}x${bitmap.height}"
+        )
+
+        file.outputStream().use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, it)
+        }
+
+        return file.toUri()
+    }
+
+    fun scaleBitmap(bitmap: Bitmap): Bitmap {
         val maxVal = 256
         var width = bitmap.width
         var height = bitmap.height
@@ -39,16 +60,7 @@ object FileUtils {
             height = (height / scaleFactor).toInt()
         }
 
-        val image = Bitmap.createScaledBitmap(bitmap, width, height, true)
-        val file = File(
-            getPhotosPath(context),
-            "photo_${System.currentTimeMillis()}_${width}x${height}"
-        )
-        file.outputStream().use {
-            image.compress(Bitmap.CompressFormat.JPEG, 80, it)
-        }
-
-        return file.toUri()
+        return Bitmap.createScaledBitmap(bitmap, width, height, true)
     }
 
 
