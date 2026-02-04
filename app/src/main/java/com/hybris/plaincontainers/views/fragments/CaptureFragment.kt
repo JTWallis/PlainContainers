@@ -101,11 +101,29 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
         findNavController().navigateUp()
     }
 
+    private fun createBitmapFromImageProxy(image: ImageProxy): Bitmap {
+        val buffer = image.planes[0].buffer
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+        val rotation = image.imageInfo.rotationDegrees
+        if(rotation == 0) return bitmap
+
+        val matrix = Matrix().apply {
+            postRotate(rotation.toFloat())
+        }
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
+
     fun takePhoto() {
         imageCapture.takePicture(
             ContextCompat.getMainExecutor(requireContext()),
             object: ImageCapture.OnImageCapturedCallback() {
                 override fun onCaptureSuccess(image: ImageProxy) {
+                    val bitmap = createBitmapFromImageProxy(image)
+                    image.close()
 
                 }
 
