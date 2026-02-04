@@ -29,6 +29,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
 
     private lateinit var viewCrop: View
     private lateinit var btnCapture: Button
+    private lateinit var imageCapture: ImageCapture
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,6 +39,24 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
         viewCrop = view.findViewById(R.id.viewCaptureCrop)
         btnCapture = view.findViewById(R.id.btnCapture)
     }
+
+    private fun initCameraProvider() {
+        val camProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+        camProviderFuture.addListener({
+            val camProvider = camProviderFuture.get()
+            val preview = Preview.Builder().build()
+            val camSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            camProvider.unbindAll()
+            camProvider.bindToLifecycle(
+                viewLifecycleOwner,
+                camSelector,
+                preview,
+                imageCapture
+            )
+        }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
 
 
     override fun initPackageData() {}
