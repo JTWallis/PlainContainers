@@ -1,14 +1,21 @@
 package com.hybris.plaincontainers.views.fragments
 
 import android.net.Uri
+import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import androidx.cardview.widget.CardView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
+import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import java.io.File
+import androidx.core.net.toUri
+import com.hybris.plaincontainers.data.FileUtils
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
@@ -23,6 +30,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private var btnDeleteHandle: ButtonIconLabeledHandle? = null
     private lateinit var layoutBtnConfirm: CardView
     private lateinit var btnConfirmHandle: ButtonIconLabeledHandle
+    private lateinit var pickMedia: ActivityResultLauncher<PickVisualMediaRequest>
 
 
     protected abstract fun hasBtnDelete(): Boolean
@@ -30,6 +38,11 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected abstract fun getInitImageUri(): String
     protected abstract fun getInitDescription(): String
     protected abstract fun onBtnConfirmClick()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPickMedia()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,6 +95,15 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         ivPhoto.setOnClickListener { onPhotoClick(ivPhoto) }
     }
 
+    private fun initPickMedia() {
+        pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
+            if(uri != null) {
+                uriPhoto = FileUtils.createScaledThumbnail(requireContext(), uri)
+            }
+        }
+    }
+
+
     private fun onPhotoClick(view: View) {
         val popup = ChoicePopup(
             view,
@@ -101,7 +123,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     private fun onPhotoGalleryClick() {
-        
+        pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
     }
 
     protected open fun onBtnDeleteClick(view: View) {
