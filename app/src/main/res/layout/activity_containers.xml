@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Drag Sorting"
+            android:text="@string/general_component_drag_sort"
             android:textSize="@dimen/fontSizeDefault"
             android:layout_toStartOf="@id/switchDrag"
             android:layout_centerVertical="true"

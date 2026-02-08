@@ -25,6 +25,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     override lateinit var sortParams: SortSelection
     private var containerPos: Int = -1
     private lateinit var containerMetadata: EntryContainer
+    override val labelBtnAdd: Int = R.string.details_btn_add
 
 
     override fun initPackageData() {

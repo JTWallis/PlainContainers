@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">PlainContainers</string>
+    <string name="app_name" translatable="false">PlainContainers</string>
+    <string name="appbar_title_overview">Container Overview</string>
+    <string name="general_component_drag_sort">Drag Sorting</string>
+    <string name="overview_btn_add">Add Container</string>
+    <string name="details_btn_add">Add Item</string>
+    <string name="details_btn_edit">Edit Container</string>
 </resources>

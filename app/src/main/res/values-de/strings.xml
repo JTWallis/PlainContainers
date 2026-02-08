@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="appbar_title_overview">Behälter Übersicht</string>
+    <string name="general_component_drag_sort">Drag Sortierung</string>
+    <string name="overview_btn_add">Behälter hinzufügen</string>
+    <string name="details_btn_add">Gegenstand hinzufügen</string>
+    <string name="details_btn_edit">Behälter bearbeiten</string>
 </resources>

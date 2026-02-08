@@ -3,6 +3,7 @@ package com.hybris.plaincontainers.views.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.ItemTouchHelper

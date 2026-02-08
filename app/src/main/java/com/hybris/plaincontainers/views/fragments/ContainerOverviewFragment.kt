@@ -20,7 +20,7 @@ import java.io.Serializable
 class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
     override lateinit var listItems: MutableList<EntryContainer>
     override lateinit var sortParams: SortSelection
-
+    override val labelBtnAdd: Int = R.string.overview_btn_add
 
     override fun initPackageData() {
         val rootContainer = JsonManager.getRoot()
