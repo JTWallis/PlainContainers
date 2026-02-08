@@ -88,9 +88,15 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.actionSettings -> {
                 //findNavController().navigate(R.id.)
+                // DEBUG Change to German
+                LocaleUtils.setLocale(this, SupportedLocale.DE)
+                recreate()
                 true
             }
             R.id.actionAbout -> {
+                // DEBUG Change to English
+                LocaleUtils.setLocale(this, SupportedLocale.EN)
+                recreate()
                 true
             }
             else -> {
