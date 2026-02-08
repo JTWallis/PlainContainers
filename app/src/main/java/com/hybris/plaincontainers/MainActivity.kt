@@ -1,5 +1,6 @@
 package com.hybris.plaincontainers
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -9,6 +10,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.NavHostFragment
 import com.hybris.plaincontainers.data.JsonManager
+import com.hybris.plaincontainers.data.LocaleUtils
+import com.hybris.plaincontainers.data.SupportedLocale
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
@@ -95,4 +98,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun attachBaseContext(base: Context) {
+        val langTag = LocaleUtils.getLocale(base).toLanguageTag()
+        val locale = LocaleUtils.getLocaleFromLanguageTag(langTag)
+        val newBase = LocaleUtils.setLocale(base, locale)
+
+        super.attachBaseContext(newBase)
+    }
 }
