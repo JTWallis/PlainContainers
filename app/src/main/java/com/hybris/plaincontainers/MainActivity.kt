@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        layoutToolbar.setOnMenuItemClickListener { menuItem -> onOptionsItemSelected(menuItem) }
 
         layoutToolbar.setNavigationOnClickListener {
             navController.navigateUp()
