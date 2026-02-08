@@ -93,7 +93,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
         return ""
     }
 
-    override fun getInitColor(): String {
+    override fun getInitColor(): Int {
         return containerMetadata.color
     }
 
