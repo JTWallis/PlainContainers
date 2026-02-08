@@ -60,7 +60,13 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
         viewColorPick.setBackgroundColor(color)
     }
 
-    protected fun getColor(): String {
-        return "#FFF"
+    protected fun getColor(): Int {
+        val background = viewColorPick.background
+        if(background is ColorDrawable) {
+            return background.color
+        }
+
+        // TODO: Add default color instead of 0
+        return 0
     }
 }
