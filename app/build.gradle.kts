@@ -65,12 +65,15 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview-selection:1.2.0")
 
     // Kotlin Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
     // Navigation
     val navVersion = "2.9.6"
     implementation("androidx.navigation:navigation-fragment:${navVersion}")
     implementation("androidx.navigation:navigation-ui:${navVersion}")
+
+    // Color Picker
+    implementation("com.github.skydoves:colorpickerview:2.4.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

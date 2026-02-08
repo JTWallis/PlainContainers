@@ -1,9 +1,15 @@
 package com.hybris.plaincontainers.views.fragments
 
+import android.content.DialogInterface
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import com.hybris.plaincontainers.R
+import com.skydoves.colorpickerview.ColorEnvelope
+import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 abstract class MetadataContainerFragment: MetadataBaseFragment() {
 
@@ -11,7 +17,7 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
     private lateinit var ivColorIcon: ImageView
     private lateinit var viewColorPick: View
 
-    protected abstract fun getInitColor(): String
+    protected abstract fun getInitColor(): Int
 
     override fun initViews(view: View) {
         tvColor = view.findViewById(R.id.tvEditColor)
@@ -23,8 +29,7 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
 
     override fun initViewFillData() {
         super.initViewFillData()
-
-        //viewColorPick.setBackgroundColor()
+        setColor(getInitColor())
     }
 
     override fun initListeners() {
@@ -35,10 +40,33 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
     }
 
     private fun onColorClicked() {
-
+        ColorPickerDialog.Builder(context)
+            .setTitle("Container Color")
+            .setPositiveButton("Apply", object: ColorEnvelopeListener {
+                override fun onColorSelected(envelope: ColorEnvelope, fromUser: Boolean) {
+                    setColor(envelope.color)
+                }
+            })
+            .setNegativeButton("Cancel", object: DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface, i: Int) {
+                    dialog.dismiss()
+                }
+            })
+            .attachAlphaSlideBar(false)
+            .show()
     }
 
-    protected fun getColor(): String {
-        return "#FFF"
+    private fun setColor(@ColorInt color: Int) {
+        viewColorPick.setBackgroundColor(color)
+    }
+
+    protected fun getColor(): Int {
+        val background = viewColorPick.background
+        if(background is ColorDrawable) {
+            return background.color
+        }
+
+        // TODO: Add default color instead of 0
+        return 0
     }
 }
