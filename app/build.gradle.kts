@@ -72,6 +72,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:${navVersion}")
     implementation("androidx.navigation:navigation-ui:${navVersion}")
 
+    // Color Picker
+    implementation("com.github.skydoves:colorpickerview:2.4.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
