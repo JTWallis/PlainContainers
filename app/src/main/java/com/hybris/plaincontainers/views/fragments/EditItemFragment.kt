@@ -2,6 +2,7 @@ package com.hybris.plaincontainers.views.fragments
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg
 import com.hybris.plaincontainers.data.model.EntryItem
@@ -19,6 +20,11 @@ class EditItemFragment: MetadataBaseFragment() {
         itemPos = fragArg.itemPos
 
         itemMetadata = JsonManager.getItem(containerPos, itemPos)
+    }
+
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_edit_item)
+        labelAppbarSubtitle = itemMetadata.name
     }
 
     private fun hasIdenticalValues(): Boolean {
@@ -63,14 +69,6 @@ class EditItemFragment: MetadataBaseFragment() {
     private fun onBtnDeleteConfirmClick() {
         JsonManager.removeItem(containerPos, itemPos)
         findNavController().navigateUp()
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Edit Item Info"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return getInitName()
     }
 
     override fun getInitName(): String {

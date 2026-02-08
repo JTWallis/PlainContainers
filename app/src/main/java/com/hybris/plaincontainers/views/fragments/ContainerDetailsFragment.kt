@@ -37,6 +37,11 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         sortParams = containerMetadata.sortParams
     }
 
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_details)
+        labelAppbarSubtitle = containerMetadata.name
+    }
+
     override fun createAdapter(dragListener: DragListener) {
         rcvAdapter = EntryDragIncrementAdapter(
             onEntryClick = {pos -> onItemEntryClicked(pos) },
@@ -89,14 +94,6 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
 
     private fun onBtnAddBarcodeClicked() {
 
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Container"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return containerMetadata.name
     }
 
     override fun getContainerPackage(): Serializable {

@@ -28,6 +28,10 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         sortParams = rootContainer.sortParams
     }
 
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_overview)
+    }
+
     override fun createAdapter(dragListener: DragListener) {
         rcvAdapter = EntryDragExpandAdapter(onEntryClick = {pos -> onItemEntryClicked(pos)}, dragListener)
         rcvAdapter.setItems(listItems)
@@ -50,14 +54,6 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
 
     override fun onBtnAddClicked(view: View) {
         findNavController().navigate(R.id.action_overview_to_add_container)
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Container Overview"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return ""
     }
 
     override fun getContainerPackage(): Serializable {

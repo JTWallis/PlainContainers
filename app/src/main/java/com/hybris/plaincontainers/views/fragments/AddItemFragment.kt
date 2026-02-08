@@ -1,18 +1,22 @@
 package com.hybris.plaincontainers.views.fragments
 
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
 import com.hybris.plaincontainers.data.model.EntryItem
 import java.io.Serializable
 
 class AddItemFragment: MetadataBaseFragment() {
-
     private var containerPos = -1
 
     override fun initPackageData() {
         val fragArgs = getContainerPackage() as AddItemFragmentArg
         containerPos = fragArgs.containerPos
+    }
+
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_add_item)
     }
 
     override fun onBtnConfirmClick() {
@@ -28,14 +32,6 @@ class AddItemFragment: MetadataBaseFragment() {
 
         JsonManager.addItem(containerPos, entryItem)
         findNavController().navigateUp()
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Add new Item"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return ""
     }
 
     override fun getInitName(): String {
