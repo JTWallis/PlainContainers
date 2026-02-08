@@ -40,6 +40,9 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     private lateinit var itemMovedObserver: RecyclerView.AdapterDataObserver
     protected lateinit var rcvAdapter: EntryDragAdapter<T>
 
+    @get:StringRes protected abstract val labelBtnAdd: Int
+    @get:StringRes protected val labelBtnEdit: Int = R.string.details_btn_edit
+
 
     protected abstract fun createAdapter(dragListener: DragListener)
     protected abstract fun writeJsonChanges()
@@ -72,9 +75,9 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) }, "Custom")
         switchDrag = view.findViewById(R.id.switchDrag)
         layoutBtnEdit = view.findViewById(R.id.layoutEdit)
-        handleEdit = EditHandle(layoutBtnEdit, onClick = { onBtnEditClicked() }, "Edit Container")
+        handleEdit = EditHandle(layoutBtnEdit, onClick = { onBtnEditClicked() }, requireContext().getString(labelBtnEdit))
         layoutBtnAdd = view.findViewById(R.id.layoutAdd)
-        handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) }, "Add Container")
+        handleAdd = AddHandle(layoutBtnAdd, onClick = { onBtnAddClicked(layoutBtnAdd) }, requireContext().getString(labelBtnAdd))
         rcvList = view.findViewById(R.id.rcvContainers)
 
         if(!hasEditButton()) {
