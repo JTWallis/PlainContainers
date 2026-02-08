@@ -58,7 +58,9 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     }
 
     override fun onDestroy() {
-        rcvAdapter.unregisterAdapterDataObserver(itemMovedObserver)
+        if(::rcvAdapter.isInitialized) {
+            rcvAdapter.unregisterAdapterDataObserver(itemMovedObserver)
+        }
 
         super.onDestroy()
     }
