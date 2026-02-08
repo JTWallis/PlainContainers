@@ -17,7 +17,7 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
     private lateinit var ivColorIcon: ImageView
     private lateinit var viewColorPick: View
 
-    protected abstract fun getInitColor(): String
+    protected abstract fun getInitColor(): Int
 
     override fun initViews(view: View) {
         tvColor = view.findViewById(R.id.tvEditColor)
@@ -29,8 +29,7 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
 
     override fun initViewFillData() {
         super.initViewFillData()
-
-        //viewColorPick.setBackgroundColor()
+        setColor(getInitColor())
     }
 
     override fun initListeners() {

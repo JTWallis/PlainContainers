@@ -50,8 +50,9 @@ class AddContainerFragment: MetadataContainerFragment() {
         return ""
     }
 
-    override fun getInitColor(): String {
-        return ""
+    override fun getInitColor(): Int {
+        // TODO: Add default color instead of 0
+        return 0
     }
 
     override fun getContainerPackage(): Serializable {
