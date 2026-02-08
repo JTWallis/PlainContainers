@@ -65,7 +65,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview-selection:1.2.0")
 
     // Kotlin Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
     // Navigation
     val navVersion = "2.9.6"
