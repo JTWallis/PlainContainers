@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="appbar_title_overview">Behälter Übersicht</string>
+    <string name="appbar_title_details">Behälter Details</string>
+    <string name="appbar_title_add_container">Neuer Behälter</string>
+    <string name="appbar_title_add_item">Neuer Gegenstand</string>
+    <string name="appbar_title_edit_container">Behälter-Info</string>
+    <string name="appbar_title_edit_item">Gegenstand-Info</string>
+    <string name="appbar_title_capture">Foto aufnehmen</string>
     <string name="general_component_drag_sort">Drag Sortierung</string>
     <string name="overview_btn_add">Behälter hinzufügen</string>
     <string name="details_btn_add">Gegenstand hinzufügen</string>
