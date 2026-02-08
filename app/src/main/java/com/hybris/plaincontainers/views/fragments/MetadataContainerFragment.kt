@@ -57,6 +57,8 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
             .show()
     }
 
+    private fun setColor(@ColorInt color: Int) {
+        viewColorPick.setBackgroundColor(color)
     }
 
     protected fun getColor(): String {
