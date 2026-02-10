@@ -71,10 +71,10 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
             onClickLeft = { onBtnAddManualClicked() },
             onClickRight = { onBtnAddBarcodeClicked() }
         )
-        popup.setTextTitle("Select method to add item")
+        popup.setTextTitle(requireContext().getString(R.string.details_popup_add_title))
         popup.setTextSubtitle("")
-        popup.setTextButtonLeft("Manual")
-        popup.setTextButtonRight("Barcode")
+        popup.setTextButtonLeft(requireContext().getString(R.string.details_popup_add_btn_manual))
+        popup.setTextButtonRight(requireContext().getString(R.string.details_popup_add_btn_barcode))
 
         popup.show(view)
     }

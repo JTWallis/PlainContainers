@@ -13,6 +13,9 @@
     <string name="overview_btn_add">Add Container</string>
     <string name="details_btn_add">Add Item</string>
     <string name="details_btn_edit">Edit Container</string>
+    <string name="details_popup_add_title">Select method to add item</string>
+    <string name="details_popup_add_btn_manual">Manual</string>
+    <string name="details_popup_add_btn_barcode">Barcode</string>
 
     <string name="metadata_tv_name">Name:</string>
     <string name="metadata_tv_photo">Photo:</string>

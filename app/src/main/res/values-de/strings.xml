@@ -13,6 +13,9 @@
     <string name="overview_btn_add">Behälter hinzufügen</string>
     <string name="details_btn_add">Gegenstand hinzufügen</string>
     <string name="details_btn_edit">Behälter bearbeiten</string>
+    <string name="details_popup_add_title">Wähle Methode, um einen Gegenstand hinzuzufügen</string>
+    <string name="details_popup_add_btn_manual">Manuell</string>
+    <string name="details_popup_add_btn_barcode">Barcode</string>
 
     <string name="metadata_tv_name">Name:</string>
     <string name="metadata_tv_photo">Foto:</string>
