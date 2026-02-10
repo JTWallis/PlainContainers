@@ -63,7 +63,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
             btnDeleteHandle = ButtonIconLabeledHandle(
                 layoutBtnDelete,
                 onClick = { onBtnDeleteClick(layoutBtnDelete) },
-                "Delete",
+                requireContext().getString(R.string.metadata_btn_delete),
                 R.drawable.trash_24,
                 true
             )
@@ -77,7 +77,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         btnConfirmHandle = ButtonIconLabeledHandle(
             layoutBtnConfirm,
             onClick = { onBtnConfirmClick() },
-            "Apply",
+            requireContext().getString(R.string.metadata_btn_apply),
             R.drawable.check_24,
             true
         )
@@ -144,10 +144,10 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
             onClickLeft = { onPhotoCaptureClick() },
             onClickRight = { onPhotoGalleryClick() }
         )
-        popup.setTextTitle("Select method to add photo")
+        popup.setTextTitle(requireContext().getString(R.string.metadata_popup_photo_title))
         popup.setTextSubtitle("")
-        popup.setTextButtonLeft("Capture")
-        popup.setTextButtonRight("From Gallery")
+        popup.setTextButtonLeft(requireContext().getString(R.string.metadata_popup_photo_btn_capture))
+        popup.setTextButtonRight(requireContext().getString(R.string.metadata_popup_photo_btn_gallery))
 
         popup.show(view)
     }

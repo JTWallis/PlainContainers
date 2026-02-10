@@ -25,6 +25,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     override lateinit var sortParams: SortSelection
     private var containerPos: Int = -1
     private lateinit var containerMetadata: EntryContainer
+    override val labelBtnAdd = R.string.details_btn_add
 
 
     override fun initPackageData() {
@@ -34,6 +35,11 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         containerMetadata = JsonManager.getContainer(containerPos)
         listItems = containerMetadata.items.toMutableList()
         sortParams = containerMetadata.sortParams
+    }
+
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_details)
+        labelAppbarSubtitle = containerMetadata.name
     }
 
     override fun createAdapter(dragListener: DragListener) {
@@ -65,10 +71,10 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
             onClickLeft = { onBtnAddManualClicked() },
             onClickRight = { onBtnAddBarcodeClicked() }
         )
-        popup.setTextTitle("Select method to add item")
+        popup.setTextTitle(requireContext().getString(R.string.details_popup_add_title))
         popup.setTextSubtitle("")
-        popup.setTextButtonLeft("Manual")
-        popup.setTextButtonRight("Barcode")
+        popup.setTextButtonLeft(requireContext().getString(R.string.details_popup_add_btn_manual))
+        popup.setTextButtonRight(requireContext().getString(R.string.details_popup_add_btn_barcode))
 
         popup.show(view)
     }
@@ -88,14 +94,6 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
 
     private fun onBtnAddBarcodeClicked() {
 
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Container"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return containerMetadata.name
     }
 
     override fun getContainerPackage(): Serializable {

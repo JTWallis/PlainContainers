@@ -20,12 +20,16 @@ import java.io.Serializable
 class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
     override lateinit var listItems: MutableList<EntryContainer>
     override lateinit var sortParams: SortSelection
-
+    override val labelBtnAdd: Int = R.string.overview_btn_add
 
     override fun initPackageData() {
         val rootContainer = JsonManager.getRoot()
         listItems = ArrayList(rootContainer.containers)
         sortParams = rootContainer.sortParams
+    }
+
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_overview)
     }
 
     override fun createAdapter(dragListener: DragListener) {
@@ -50,14 +54,6 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
 
     override fun onBtnAddClicked(view: View) {
         findNavController().navigate(R.id.action_overview_to_add_container)
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Container Overview"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return ""
     }
 
     override fun getContainerPackage(): Serializable {

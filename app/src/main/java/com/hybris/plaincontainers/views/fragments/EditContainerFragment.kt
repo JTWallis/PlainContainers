@@ -20,6 +20,11 @@ class EditContainerFragment(): MetadataContainerFragment() {
         containerMetadata = JsonManager.getContainer(containerPos)
     }
 
+    override fun initAppbarTitles() {
+        labelAppbarTitle = requireContext().getString(R.string.appbar_title_edit_container)
+        labelAppbarSubtitle = containerMetadata.name
+    }
+
     fun hasIdenticalValues(): Boolean {
         return containerMetadata.name == getName() &&
                 containerMetadata.thumbnailSrc == getPhotoUri() &&
@@ -70,14 +75,6 @@ class EditContainerFragment(): MetadataContainerFragment() {
     private fun onBtnDeleteConfirmClick() {
         JsonManager.removeContainer(containerPos)
         findNavController().popBackStack(R.id.containerOverviewFragment, false)
-    }
-
-    override fun getAppbarTitle(): String {
-        return "Edit Container Info"
-    }
-
-    override fun getAppbarSubtitle(): String {
-        return containerMetadata.name
     }
 
     override fun getInitName(): String {

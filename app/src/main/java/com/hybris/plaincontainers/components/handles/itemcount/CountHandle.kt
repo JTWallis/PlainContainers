@@ -5,7 +5,7 @@ import android.widget.TextView
 import com.hybris.plaincontainers.R
 
 class CountHandle(
-    view: View,
+    private val view: View,
     private var count: Int,
     private val onZeroCount: () -> Unit
 ) {
@@ -36,7 +36,7 @@ class CountHandle(
     }
 
     private fun updateCountText() {
-        tvHandle.text = "${count}x"
+        tvHandle.text = view.context.getString(R.string.count_component_amount, count)
     }
 
 }
