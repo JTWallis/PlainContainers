@@ -10,6 +10,22 @@
     android:divider="@drawable/empty_divider">
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVert1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4"
+    />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVert2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"
+    />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorz1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
