@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SupportedLocale
@@ -70,6 +72,12 @@ class MainActivity : AppCompatActivity() {
         layoutToolbar.setNavigationOnClickListener {
             navController.navigateUp()
         }
+
+        val appbarConfiguration = AppBarConfiguration(
+            setOf(R.id.containerOverviewFragment)
+        )
+        NavigationUI.setupWithNavController(layoutToolbar, navController, appbarConfiguration)
+
         navController.setGraph(R.navigation.nav_graph, bundle)
 
         appbarVm.model.observe(this) { model ->
