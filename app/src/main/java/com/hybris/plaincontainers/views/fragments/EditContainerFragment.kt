@@ -20,7 +20,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
         containerMetadata = JsonManager.getContainer(containerPos)
     }
 
-    override fun initAppbarTitles() {
+    override fun initAppbarSubtitle() {
         labelAppbarTitle = requireContext().getString(R.string.appbar_title_edit_container)
         labelAppbarSubtitle = containerMetadata.name
     }

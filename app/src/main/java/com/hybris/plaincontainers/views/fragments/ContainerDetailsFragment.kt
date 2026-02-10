@@ -37,7 +37,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         sortParams = containerMetadata.sortParams
     }
 
-    override fun initAppbarTitles() {
+    override fun initAppbarSubtitle() {
         labelAppbarTitle = requireContext().getString(R.string.appbar_title_details)
         labelAppbarSubtitle = containerMetadata.name
     }

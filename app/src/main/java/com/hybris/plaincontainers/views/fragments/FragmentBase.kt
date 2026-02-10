@@ -22,7 +22,7 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         super.onViewCreated(view, savedInstanceState)
         initPackageData()
         initViews(view)
-        initAppbarTitles()
+        initAppbarSubtitle()
 
         appbarVm.model.value = AppBarModel(
             title = labelAppbarTitle,
@@ -32,8 +32,9 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     protected abstract fun initViews(view: View)
     protected abstract fun initPackageData()
-    protected abstract fun initAppbarTitles()
     protected abstract fun getContainerPackage(): Serializable
+
+    protected open fun initAppbarSubtitle() {}
 
     protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
         Log.d("INFO", "Getting $name with class $clazz")
