@@ -24,4 +24,10 @@
     <string name="metadata_popup_photo_btn_capture">Kamera</string>
     <string name="metadata_popup_photo_btn_gallery">Galerie</string>
 
+    <string name="popup_sort_title">Sortierung nach:</string>
+    <string name="popup_sort_entry_name">Name</string>
+    <string name="popup_sort_entry_date_added">Datum (erstellt)</string>
+    <string name="popup_sort_entry_date_modified">Datum (bearbeitet)</string>
+    <string name="popup_sort_entry_custom">Individuell</string>
+
 </resources>

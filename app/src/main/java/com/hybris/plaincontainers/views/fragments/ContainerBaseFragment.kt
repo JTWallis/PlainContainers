@@ -143,7 +143,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
             view,
             sortParams,
             onSortChanged = { e -> onSortOptionChanged(e) })
-        popup.setTitle("Sort by:")
+        popup.setTitle(requireContext().getString(R.string.popup_sort_title))
         popup.show(view)
     }
 

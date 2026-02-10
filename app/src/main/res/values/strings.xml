@@ -23,4 +23,10 @@
     <string name="metadata_popup_photo_title">Select method to add photo</string>
     <string name="metadata_popup_photo_btn_capture">Camera</string>
     <string name="metadata_popup_photo_btn_gallery">Gallery</string>
+
+    <string name="popup_sort_title">Sort by:</string>
+    <string name="popup_sort_entry_name">Name</string>
+    <string name="popup_sort_entry_date_added">Date (added)</string>
+    <string name="popup_sort_entry_date_modified">Date (modified)</string>
+    <string name="popup_sort_entry_custom">Custom</string>
 </resources>

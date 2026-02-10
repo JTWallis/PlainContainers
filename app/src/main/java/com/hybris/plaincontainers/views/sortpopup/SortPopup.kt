@@ -15,12 +15,12 @@ class SortPopup(
 
     private val txtTitle = contentView.findViewById<TextView>(R.id.txtPopupListTitle)
     private val list = contentView.findViewById<ListView>(R.id.lvPopupList)
-    // TODO: Add map from enum value to (localized) string value
+
     private val sortOptions: Array<String> = arrayOf(
-        "Name",
-        "Date added",
-        "Date modified",
-        "Custom"
+        invokerView.context.getString(R.string.popup_sort_entry_name),
+        invokerView.context.getString(R.string.popup_sort_entry_date_added),
+        invokerView.context.getString(R.string.popup_sort_entry_date_modified),
+        invokerView.context.getString(R.string.popup_sort_entry_custom)
     )
 
     private val adapter = SortPopupAdapter(
