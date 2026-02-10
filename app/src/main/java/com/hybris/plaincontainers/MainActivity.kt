@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
         appbarVm.model.observe(this) { model ->
             layoutToolbar.apply {
-                title = model.title
                 subtitle = model.subtitle
             }
         }

@@ -23,7 +23,6 @@ class EditItemFragment: MetadataBaseFragment() {
     }
 
     override fun initAppbarSubtitle() {
-        labelAppbarTitle = requireContext().getString(R.string.appbar_title_edit_item)
         labelAppbarSubtitle = itemMetadata.name
     }
 

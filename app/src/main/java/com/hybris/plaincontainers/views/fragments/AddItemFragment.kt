@@ -15,10 +15,6 @@ class AddItemFragment: MetadataBaseFragment() {
         containerPos = fragArgs.containerPos
     }
 
-    override fun initAppbarTitles() {
-        labelAppbarTitle = requireContext().getString(R.string.appbar_title_add_item)
-    }
-
     override fun onBtnConfirmClick() {
         if(getName().isEmpty()) {
             return
