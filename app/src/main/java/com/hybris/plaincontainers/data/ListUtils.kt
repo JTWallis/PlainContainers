@@ -9,8 +9,8 @@ object ListUtils {
     fun <T: EntryBase> sortEntryList(items: MutableList<T>, sortParams: SortSelection) {
         when(sortParams.option) {
             SortOption.NAME -> {
-                if(sortParams.isAscending) items.sortBy { e -> e.name }
-                else items.sortByDescending { e -> e.name }
+                if(sortParams.isAscending) items.sortBy { e -> e.name.uppercase() }
+                else items.sortByDescending { e -> e.name.uppercase() }
             }
             SortOption.DATE_ADDED -> {}
             SortOption.DATE_MODIFIED -> {}
