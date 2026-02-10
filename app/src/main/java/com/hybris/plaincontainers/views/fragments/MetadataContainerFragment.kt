@@ -23,6 +23,11 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
         tvColor = view.findViewById(R.id.tvEditColor)
         ivColorIcon = view.findViewById(R.id.ivEditColor)
         viewColorPick = view.findViewById(R.id.viewEditColor)
+        val frameColorPick = view.findViewById<View>(R.id.frameEditColor)
+
+        tvColor.visibility = View.VISIBLE
+        ivColorIcon.visibility = View.VISIBLE
+        frameColorPick.visibility = View.VISIBLE
 
         super.initViews(view)
     }
