@@ -20,9 +20,13 @@ class AddContainerFragment: MetadataContainerFragment() {
             return
         }
 
+        val date = System.currentTimeMillis().toInt()
+
         val entryContainer = EntryContainer(
             getName(),
             getPhotoUri(),
+            date,
+            date,
             getColor()
         )
 

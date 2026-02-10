@@ -41,10 +41,14 @@ class EditContainerFragment(): MetadataContainerFragment() {
             return
         }
 
+        val dateModified = System.currentTimeMillis().toInt()
+
         if(!hasIdenticalValues()) {
             val container = EntryContainer(
                 getName(),
                 getPhotoUri(),
+                containerMetadata.dateAdded,
+                dateModified,
                 getColor(),
                 containerMetadata.sortParams,
                 containerMetadata.items

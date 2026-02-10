@@ -37,10 +37,14 @@ class EditItemFragment: MetadataBaseFragment() {
             return
         }
 
+        val dateModified = System.currentTimeMillis().toInt()
+
         if(!hasIdenticalValues()) {
             val item = EntryItem(
                 getName(),
                 getPhotoUri(),
+                itemMetadata.dateAdded,
+                dateModified,
                 itemMetadata.amount
             )
 

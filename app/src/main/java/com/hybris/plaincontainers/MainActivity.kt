@@ -43,14 +43,14 @@ class MainActivity : AppCompatActivity() {
 
         if(rootNullable == null) {
             val itemList = ArrayList<EntryItem>()
-            itemList.add(EntryItem("Beans", "Beanz.png", 2) )
-            itemList.add(EntryItem("Beans2", "Beanz.png", 2) )
-            itemList.add(EntryItem("Beans3", "Beanz.png", 2) )
-            itemList.add(EntryItem("Beans4", "Beanz.png", 2) )
+            itemList.add(EntryItem("Beans", "Beanz.png", 0, 0, 2) )
+            itemList.add(EntryItem("Beans2", "Beanz.png", 0, 0, 2) )
+            itemList.add(EntryItem("Beans3", "Beanz.png", 0, 0, 2) )
+            itemList.add(EntryItem("Beans4", "Beanz.png", 0, 0, 2) )
             val dummyList = ArrayList<EntryContainer>()
-            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", 0,SortSelection(SortOption.CUSTOM, true), itemList))
-            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", 0,SortSelection(SortOption.CUSTOM, true), ArrayList()))
-            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", 0,SortSelection(SortOption.CUSTOM, true), ArrayList()))
+            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", 0, 0, 0,SortSelection(SortOption.CUSTOM, true), itemList))
+            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", 0, 0, 0,SortSelection(SortOption.CUSTOM, true), ArrayList()))
+            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", 0, 0, 0,SortSelection(SortOption.CUSTOM, true), ArrayList()))
             rootContainer = RootContainer(SortSelection(SortOption.CUSTOM, true), dummyList)
             JsonManager.writeRoot(rootContainer)
         } else {

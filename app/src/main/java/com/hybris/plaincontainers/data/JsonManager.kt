@@ -81,6 +81,7 @@ object JsonManager {
 
         val newContainers = root.containers.toMutableList()
         newContainers[containerPos] = container
+        ListUtils.sortEntryList(newContainers, root.sortParams)
 
         writeContainers(newContainers)
     }
@@ -117,6 +118,8 @@ object JsonManager {
         val newContainer = EntryContainer(
             container.name,
             container.thumbnailSrc,
+            container.dateAdded,
+            container.dateModified,
             container.color,
             container.sortParams,
             items
@@ -135,12 +138,8 @@ object JsonManager {
 
         val container = root.containers[containerPos]
         val newItems = container.items.toMutableList()
-        val nameChanged = newItems[itemPos].name != entryItem.name
         newItems[itemPos] = entryItem
-
-        if(nameChanged) {
-            ListUtils.sortEntryList(newItems, container.sortParams)
-        }
+        ListUtils.sortEntryList(newItems, container.sortParams)
 
         writeItems(containerPos, newItems)
     }
