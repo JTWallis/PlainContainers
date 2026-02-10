@@ -11,10 +11,6 @@ class AddContainerFragment: MetadataContainerFragment() {
 
     override fun initPackageData() {}
 
-    override fun initAppbarTitles() {
-        labelAppbarTitle = requireContext().getString(R.string.appbar_title_add_container)
-    }
-
     override fun hasBtnDelete(): Boolean {
         return false
     }

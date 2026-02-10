@@ -28,10 +28,6 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         sortParams = rootContainer.sortParams
     }
 
-    override fun initAppbarTitles() {
-        labelAppbarTitle = requireContext().getString(R.string.appbar_title_overview)
-    }
-
     override fun createAdapter(dragListener: DragListener) {
         rcvAdapter = EntryDragExpandAdapter(onEntryClick = {pos -> onItemEntryClicked(pos)}, dragListener)
         rcvAdapter.setItems(listItems)

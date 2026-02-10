@@ -15,25 +15,24 @@ import kotlin.getValue
 abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     protected val appbarVm: AppBarViewModel by activityViewModels()
-    protected var labelAppbarTitle: String = ""
     protected var labelAppbarSubtitle: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initPackageData()
         initViews(view)
-        initAppbarTitles()
+        initAppbarSubtitle()
 
         appbarVm.model.value = AppBarModel(
-            title = labelAppbarTitle,
             subtitle = labelAppbarSubtitle
         )
     }
 
     protected abstract fun initViews(view: View)
     protected abstract fun initPackageData()
-    protected abstract fun initAppbarTitles()
     protected abstract fun getContainerPackage(): Serializable
+
+    protected open fun initAppbarSubtitle() {}
 
     protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
         Log.d("INFO", "Getting $name with class $clazz")

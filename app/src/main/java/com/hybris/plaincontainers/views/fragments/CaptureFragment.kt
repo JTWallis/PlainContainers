@@ -42,10 +42,6 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
         btnCapture.setOnClickListener { takePhoto() }
     }
 
-    override fun initAppbarTitles() {
-        labelAppbarTitle = requireContext().getString(R.string.appbar_title_capture)
-    }
-
     private fun initCameraProvider() {
         val camProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         camProviderFuture.addListener({
