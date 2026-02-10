@@ -153,6 +153,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
             app:layout_constraintTop_toBottomOf="@id/spacerRow3"
+            android:visibility="gone"
         />
 
         <ImageView
@@ -166,9 +167,11 @@
             app:layout_constraintStart_toEndOf="@id/spacerCol"
             app:layout_constraintTop_toBottomOf="@id/spacerRow3"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
         />
 
         <FrameLayout
+            android:id="@+id/frameEditColor"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="1:1"
@@ -177,7 +180,8 @@
             app:layout_constraintBottom_toBottomOf="@id/ivEditColor"
             android:background="@color/backgroundHighlight"
             android:padding="1dp"
-            android:layout_marginLeft="16dp">
+            android:layout_marginLeft="16dp"
+            android:visibility="gone">
 
             <View
                 android:id="@+id/viewEditColor"
