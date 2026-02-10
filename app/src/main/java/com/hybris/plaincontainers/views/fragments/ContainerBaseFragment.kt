@@ -72,7 +72,11 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
 
     override fun initViews(view: View) {
         layoutBtnSort = view.findViewById(R.id.layoutSort)
-        handleSort = SortHandle(layoutBtnSort, onClick = { onBtnSortClicked(layoutBtnSort) }, "Custom")
+        handleSort = SortHandle(
+            layoutBtnSort,
+            onClick = { onBtnSortClicked(layoutBtnSort) },
+            requireContext().getString(sortParams.option.sortLabelId)
+        )
         switchDrag = view.findViewById(R.id.switchDrag)
         layoutBtnEdit = view.findViewById(R.id.layoutEdit)
         handleEdit = EditHandle(layoutBtnEdit, onClick = { onBtnEditClicked() }, requireContext().getString(labelBtnEdit))
@@ -121,7 +125,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
         sortParams.option = sortOption
         sortParams.isAscending = isAscending
-        handleSort.setText(sortOption.toString())
+        handleSort.setText(requireContext().getString(sortOption.sortLabelId))
     }
 
     private fun sortList(sortOption: SortOption, isAscending: Boolean) {
