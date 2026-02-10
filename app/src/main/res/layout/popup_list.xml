@@ -58,7 +58,7 @@
             android:id="@+id/txtPopupListTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="Title"
+            android:text="@string/popup_sort_title"
             android:textSize="32sp"
             android:gravity="center_horizontal"
             app:layout_constraintTop_toTopOf="parent"
