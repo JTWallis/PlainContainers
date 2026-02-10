@@ -5,11 +5,11 @@
 >
     <item
         android:id="@+id/actionSettings"
-        android:title="Settings"
+        android:title="@string/appbar_item_settings"
         android:icon="@drawable/settings_24" />
 
     <item
         android:id="@+id/actionAbout"
-        android:title="About"
+        android:title="@string/appbar_item_about"
         android:icon="@drawable/info_24" />
 </menu>
