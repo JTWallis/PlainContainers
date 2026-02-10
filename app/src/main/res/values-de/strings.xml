@@ -7,8 +7,21 @@
     <string name="appbar_title_edit_container">Behälter-Info</string>
     <string name="appbar_title_edit_item">Gegenstand-Info</string>
     <string name="appbar_title_capture">Foto aufnehmen</string>
+
     <string name="general_component_drag_sort">Drag Sortierung</string>
+
     <string name="overview_btn_add">Behälter hinzufügen</string>
     <string name="details_btn_add">Gegenstand hinzufügen</string>
     <string name="details_btn_edit">Behälter bearbeiten</string>
+
+    <string name="metadata_tv_name">Name:</string>
+    <string name="metadata_tv_photo">Foto:</string>
+    <string name="metadata_tv_description">Beschreibung:</string>
+    <string name="metadata_tv_color">Farbe:</string>
+    <string name="metadata_btn_apply">Speichern</string>
+    <string name="metadata_btn_delete">Löschen</string>
+    <string name="metadata_popup_photo_title">Wähle Methode, um ein Foto hinzuzufügen</string>
+    <string name="metadata_popup_photo_btn_capture">Kamera</string>
+    <string name="metadata_popup_photo_btn_gallery">Galerie</string>
+
 </resources>
