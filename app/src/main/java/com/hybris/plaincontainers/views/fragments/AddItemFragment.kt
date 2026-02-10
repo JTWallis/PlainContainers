@@ -20,9 +20,13 @@ class AddItemFragment: MetadataBaseFragment() {
             return
         }
 
+        val date = System.currentTimeMillis().toInt()
+
         val entryItem = EntryItem(
             getName(),
             getPhotoUri(),
+            date,
+            date,
             1
         )
 
