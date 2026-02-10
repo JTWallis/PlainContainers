@@ -7,6 +7,8 @@ import kotlinx.serialization.Serializable
 data class EntryContainer(
     override val name: String,
     override val thumbnailSrc: String,
+    override val dateAdded: Int,
+    override val dateModified: Int,
     val color: Int,
     val sortParams: SortSelection = SortSelection(SortOption.CUSTOM, true),
     val items: List<EntryItem> = emptyList()
