@@ -19,5 +19,6 @@
     <dimen name="fontSizePopupChoiceSubtitle">20sp</dimen>
     <dimen name="fontSizePopupChoiceButton">20sp</dimen>
     <dimen name="fontSizeItemCount">24sp</dimen>
+    <dimen name="fontSizeBtnLabeled">18sp</dimen>
 
 </resources>

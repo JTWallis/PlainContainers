@@ -15,6 +15,22 @@
         app:layout_constraintGuide_percent="0.9"
     />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineOuterVert1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35"
+    />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineOuterVert2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65"
+        />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -204,16 +220,18 @@
 
     <include layout="@layout/component_button_icon_labeled"
         android:id="@+id/btnEditDelete"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineOuterVert1"
         app:layout_constraintTop_toBottomOf="@id/spacerRow4"
         />
 
     <include layout="@layout/component_button_icon_labeled"
         android:id="@+id/btnEditConfirm"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guidelineOuterVert2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spacerRow4"
     />

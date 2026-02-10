@@ -16,6 +16,7 @@
         android:background="@color/backgroundDefault"
         android:drawablePadding="@dimen/paddingDrawable"
         android:text="Labeled Button"
+        android:textSize="@dimen/fontSizeBtnLabeled"
         android:textAlignment="textStart"
         android:textAllCaps="false"
     />

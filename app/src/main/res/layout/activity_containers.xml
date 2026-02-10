@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,71 +9,118 @@
     android:showDividers="middle"
     android:divider="@drawable/empty_divider">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include layout="@layout/component_button_icon_labeled"
-            android:id="@+id/layoutSort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-        />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/general_component_drag_sort"
-            android:textSize="@dimen/fontSizeDefault"
-            android:layout_toStartOf="@id/switchDrag"
-            android:layout_centerVertical="true"
-        />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchDrag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:gravity="center_vertical"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-        />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/horizontalBarHeight"
-        android:background="@color/lightgray"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVert1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4"
     />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVert2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"
+    />
 
-        <include layout="@layout/component_button_icon_labeled"
-            android:id="@+id/layoutEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorz1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07"
+    />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorz2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19"
+    />
+
+    <include layout="@layout/component_button_icon_labeled"
+        android:id="@+id/layoutSort"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorz1"
+    />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/general_component_drag_sort"
+        android:textSize="@dimen/fontSizeDefault"
+        android:layout_toStartOf="@id/switchDrag"
+        android:layout_centerVertical="true"
+        app:layout_constraintEnd_toStartOf="@id/switchDrag"
+        app:layout_constraintTop_toTopOf="@id/layoutSort"
+        app:layout_constraintBottom_toBottomOf="@id/layoutSort"
         />
 
-        <include layout="@layout/component_button_icon_labeled"
-            android:id="@+id/layoutAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchDrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutSort"
+        app:layout_constraintBottom_toBottomOf="@id/layoutSort"
         />
-    </RelativeLayout>
+
+    <View
+        android:id="@+id/gap1"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/horizontalBarHeight"
+        android:layout_marginTop="@dimen/emptyDividerHeight"
+        android:background="@color/lightgray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutSort"
+    />
+
+    <include layout="@layout/component_button_icon_labeled"
+        android:id="@+id/layoutEdit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/emptyDividerHeight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorz2"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+        app:layout_constraintTop_toBottomOf="@id/gap1"
+        />
+
+    <include layout="@layout/component_button_icon_labeled"
+        android:id="@+id/layoutAdd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintStart_toStartOf="@id/guidelineVert2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutEdit"
+        app:layout_constraintBottom_toBottomOf="@id/layoutEdit"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvContainers"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/emptyDividerHeight"
         android:padding="8dp"
         android:clipToPadding="false"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_outline_rounded"
         android:nestedScrollingEnabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutEdit"
+        app:layout_constraintBottom_toBottomOf="parent"
     />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
