@@ -16,12 +16,9 @@ class SortPopup(
     private val txtTitle = contentView.findViewById<TextView>(R.id.txtPopupListTitle)
     private val list = contentView.findViewById<ListView>(R.id.lvPopupList)
 
-    private val sortOptions: Array<String> = arrayOf(
-        invokerView.context.getString(R.string.popup_sort_entry_name),
-        invokerView.context.getString(R.string.popup_sort_entry_date_added),
-        invokerView.context.getString(R.string.popup_sort_entry_date_modified),
-        invokerView.context.getString(R.string.popup_sort_entry_custom)
-    )
+    private val sortOptions: Array<String> =
+        SortOption.entries.map { e -> invokerView.context.getString(e.sortLabelId) }
+            .toTypedArray()
 
     private val adapter = SortPopupAdapter(
         invokerView.context,
