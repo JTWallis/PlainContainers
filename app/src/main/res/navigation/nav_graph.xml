@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/containerOverviewFragment"
         android:name="com.hybris.plaincontainers.views.fragments.ContainerOverviewFragment"
-        android:label="ContainerOverviewFragment" >
+        android:label="@string/appbar_title_overview" >
         <argument
             android:name="root_frag_arg"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/containerDetailsFragment"
         android:name="com.hybris.plaincontainers.views.fragments.ContainerDetailsFragment"
-        android:label="ContainerDetailsFragment">
+        android:label="@string/appbar_title_details">
         <argument
             android:name="container_frag_arg"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg"
@@ -51,7 +51,7 @@
     <fragment
         android:id="@+id/editContainerFragment"
         android:name="com.hybris.plaincontainers.views.fragments.EditContainerFragment"
-        android:label="EditContainerFragment" >
+        android:label="@string/appbar_title_edit_container" >
         <argument
             android:name="edit_container_frag_args"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg"
@@ -67,7 +67,7 @@
     <fragment
         android:id="@+id/addContainerFragment"
         android:name="com.hybris.plaincontainers.views.fragments.AddContainerFragment"
-        android:label="AddContainerFragment" >
+        android:label="@string/appbar_title_add_container" >
 
         <action
             android:id="@+id/action_add_container_to_capture"
@@ -78,7 +78,7 @@
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.hybris.plaincontainers.views.fragments.AddItemFragment"
-        android:label="AddItemFragment" >
+        android:label="@string/appbar_title_add_item" >
 
         <argument
             android:name="add_item_frag_arg"
@@ -94,7 +94,7 @@
     <fragment
         android:id="@+id/editItemFragment"
         android:name="com.hybris.plaincontainers.views.fragments.EditItemFragment"
-        android:label="EditItemFragment" >
+        android:label="@string/appbar_title_edit_item" >
 
         <argument
             android:name="edit_item_frag_arg"
@@ -111,7 +111,7 @@
     <fragment
         android:id="@+id/captureFragment"
         android:name="com.hybris.plaincontainers.views.fragments.CaptureFragment"
-        android:label="CaptureFragment" >
+        android:label="@string/appbar_title_capture" >
 
 
     </fragment>
