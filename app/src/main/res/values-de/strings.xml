@@ -12,6 +12,7 @@
     <string name="appbar_item_about">Über die App</string>
 
     <string name="general_component_drag_sort">Drag Sortierung</string>
+    <string name="general_btn_ok">Ok</string>
 
     <string name="overview_btn_add">Behälter hinzufügen</string>
     <string name="details_btn_add">Gegenstand hinzufügen</string>
