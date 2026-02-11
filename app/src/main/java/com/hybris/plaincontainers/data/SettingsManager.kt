@@ -8,14 +8,23 @@ object SettingsManager {
 
     fun init(settings: Settings?) {
         if(settings == null) {
-            this.settings = Settings(
-                SupportedLocale.EN
-            )
+            this.settings = createSettings()
         } else {
             this.settings = settings
         }
 
         isInit = true
+    }
+
+    private fun createSettings(
+        locale: SupportedLocale = SupportedLocale.EN,
+        dragEnabled: Boolean = true
+    ): Settings {
+        return Settings(locale, dragEnabled)
+    }
+
+    private fun writeSettings() {
+        JsonManager.writeSettings(settings)
     }
 
     fun getSettings(): Settings {
@@ -24,15 +33,29 @@ object SettingsManager {
     }
 
     fun setLocale(locale: SupportedLocale) {
-        settings = Settings(
-            locale
-        )
+        verifyInit()
+        if(locale == settings.locale) return
 
-        JsonManager.writeSettings(settings)
+        settings = createSettings(locale = locale)
+        writeSettings()
     }
 
     fun getLocale(): SupportedLocale {
+        verifyInit()
         return settings.locale
+    }
+
+    fun setDragEnabled(isEnabled: Boolean) {
+        verifyInit()
+        if(isEnabled == settings.dragEnabled) return
+
+        settings = createSettings(dragEnabled = isEnabled)
+        writeSettings()
+    }
+
+    fun isDragEnabled(): Boolean {
+        verifyInit()
+        return settings.dragEnabled
     }
 
     private fun verifyInit() {

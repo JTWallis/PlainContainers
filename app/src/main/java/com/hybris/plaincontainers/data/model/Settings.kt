@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Settings(
-    val locale: SupportedLocale
+    val locale: SupportedLocale,
+    val dragEnabled: Boolean
 ) {}
