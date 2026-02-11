@@ -5,6 +5,12 @@
     app:startDestination="@id/containerOverviewFragment">
 
     <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.SettingsFragment"
+        android:label="@string/appbar_title_settings"
+    />
+
+    <fragment
         android:id="@+id/containerOverviewFragment"
         android:name="com.hybris.plaincontainers.views.fragments.ContainerOverviewFragment"
         android:label="@string/appbar_title_overview" >
