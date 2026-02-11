@@ -14,6 +14,7 @@ import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
 import com.hybris.plaincontainers.data.ListUtils
+import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.model.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
@@ -56,6 +57,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         initRecycleView(view)
 
         switchDrag.setOnCheckedChangeListener { _, isChecked ->
+            SettingsManager.setDragEnabled(isChecked)
             rcvAdapter.setDragVisibility(isChecked)
         }
 
