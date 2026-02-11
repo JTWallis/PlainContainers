@@ -27,7 +27,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
     fun hasIdenticalValues(): Boolean {
         return containerMetadata.name == getName() &&
                 containerMetadata.thumbnailSrc == getPhotoUri() &&
-                //containerMetadata.description == getDescription() &&
+                containerMetadata.description == getDescription() &&
                 containerMetadata.color == getColor()
     }
 
@@ -47,6 +47,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
             val container = EntryContainer(
                 getName(),
                 getPhotoUri(),
+                getDescription(),
                 containerMetadata.dateAdded,
                 dateModified,
                 getColor(),
@@ -89,8 +90,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun getInitDescription(): String {
-        //return containerMetadata.description
-        return ""
+        return containerMetadata.description
     }
 
     override fun getInitColor(): Int {

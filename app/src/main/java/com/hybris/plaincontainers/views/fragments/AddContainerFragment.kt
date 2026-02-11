@@ -25,6 +25,7 @@ class AddContainerFragment: MetadataContainerFragment() {
         val entryContainer = EntryContainer(
             getName(),
             getPhotoUri(),
+            getDescription(),
             date,
             date,
             getColor()

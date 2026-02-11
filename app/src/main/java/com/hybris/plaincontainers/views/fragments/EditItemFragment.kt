@@ -28,8 +28,8 @@ class EditItemFragment: MetadataBaseFragment() {
 
     private fun hasIdenticalValues(): Boolean {
         return itemMetadata.name == getName() &&
-                itemMetadata.thumbnailSrc == getPhotoUri()
-                //containerMetadata.description == getDescription() &&
+                itemMetadata.thumbnailSrc == getPhotoUri() &&
+                itemMetadata.description == getDescription()
     }
 
     override fun onBtnConfirmClick() {
@@ -43,6 +43,7 @@ class EditItemFragment: MetadataBaseFragment() {
             val item = EntryItem(
                 getName(),
                 getPhotoUri(),
+                getDescription(),
                 itemMetadata.dateAdded,
                 dateModified,
                 itemMetadata.amount
@@ -83,7 +84,7 @@ class EditItemFragment: MetadataBaseFragment() {
     }
 
     override fun getInitDescription(): String {
-        return ""
+        return itemMetadata.description
     }
 
     override fun getContainerPackage(): Serializable {

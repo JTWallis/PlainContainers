@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 data class EntryContainer(
     override val name: String,
     override val thumbnailSrc: String,
+    override val description: String,
     override val dateAdded: Int,
     override val dateModified: Int,
     val color: Int,

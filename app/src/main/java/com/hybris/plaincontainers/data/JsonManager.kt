@@ -118,6 +118,7 @@ object JsonManager {
         val newContainer = EntryContainer(
             container.name,
             container.thumbnailSrc,
+            container.description,
             container.dateAdded,
             container.dateModified,
             container.color,

@@ -25,6 +25,7 @@ class AddItemFragment: MetadataBaseFragment() {
         val entryItem = EntryItem(
             getName(),
             getPhotoUri(),
+            getDescription(),
             date,
             date,
             1
