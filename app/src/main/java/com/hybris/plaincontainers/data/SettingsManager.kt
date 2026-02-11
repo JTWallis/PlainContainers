@@ -35,6 +35,19 @@ object SettingsManager {
         return settings.locale
     }
 
+    fun setDragEnabled(isEnabled: Boolean) {
+        verifyInit()
+        if(isEnabled == settings.dragEnabled) return
+
+        settings = createSettings(dragEnabled = isEnabled)
+        writeSettings()
+    }
+
+    fun isDragEnabled(): Boolean {
+        verifyInit()
+        return settings.dragEnabled
+    }
+
     private fun verifyInit() {
         if(!isInit || !::settings.isInitialized) {
             throw NullPointerException("SettingsManager not initialized!")
