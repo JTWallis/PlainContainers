@@ -59,6 +59,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
             rcvAdapter.setDragVisibility(isChecked)
         }
 
+        rcvAdapter.setDragVisibility(switchDrag.isChecked)
     }
 
     override fun onDestroy() {
