@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cornerRadiusDefault"
+    app:cardBackgroundColor="@color/border"
+    app:cardElevation="0dp"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/backgroundDefault"
+        android:layout_margin="4dp"
+        android:padding="@dimen/viewPadding"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rlTitleRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btnSelectionBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="32dp"
+                android:minHeight="32dp"
+                android:src="@drawable/arrow_small_left_24"
+                android:scaleType="centerCrop"
+                android:background="@color/backgroundDefault"
+                android:layout_centerVertical="true"
+            />
+
+            <TextView
+                android:id="@+id/tvPopupSelectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selection:"
+                android:textSize="@dimen/fontSizeDefault"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/btnSelectionBack"
+                android:layout_marginLeft="16dp"
+            />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/lvPopupSelectionList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:divider="@color/backgroundDefault"
+                android:dividerHeight="16dp"
+            />
+
+            <Button
+                android:id="@+id/btnSelectionOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lvPopupSelectionList"
+                android:layout_alignParentRight="true"
+                android:textAllCaps="false"
+                android:text="@string/general_btn_ok"
+            />
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

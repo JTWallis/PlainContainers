@@ -1,0 +1,56 @@
+package com.hybris.plaincontainers.views.fragments
+
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import com.hybris.plaincontainers.R
+import com.hybris.plaincontainers.data.LocaleUtils
+import com.hybris.plaincontainers.data.SettingsManager
+import com.hybris.plaincontainers.data.SupportedLocale
+import com.hybris.plaincontainers.views.selectionpopup.SelectionPopup
+
+class SettingsFragment: Fragment(R.layout.fragment_settings) {
+    private lateinit var btnChangeLanguage: Button
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+        initListeners()
+    }
+
+    private fun initViews(view: View) {
+        btnChangeLanguage = view.findViewById(R.id.btnSettingsLanguage)
+    }
+
+    private fun initListeners() {
+        btnChangeLanguage.setOnClickListener { onBtnChangeLanguageClick() }
+    }
+
+    private fun onBtnChangeLanguageClick() {
+        val data: Array<String> = SupportedLocale.entries.map { e ->
+            requireContext().getString(e.toLocalizationId())
+        }.toTypedArray()
+        val currentLocale = SettingsManager.getLocale()
+        val initSelection = SupportedLocale.entries.indexOf(currentLocale)
+
+        val popup = SelectionPopup(
+            btnChangeLanguage,
+            requireContext().getString(R.string.settings_general_language),
+            data,
+            initSelection,
+            onSortSelectionConfirm = { pos -> onChangeLanguage(pos)}
+        )
+
+        popup.show(btnChangeLanguage)
+    }
+
+    private fun onChangeLanguage(localePos: Int) {
+        val locale = SupportedLocale.entries[localePos]
+
+        SettingsManager.setLocale(locale)
+        LocaleUtils.setLocale(requireContext(), locale)
+        requireActivity().recreate()
+    }
+
+}

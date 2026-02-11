@@ -5,6 +5,7 @@ import android.util.Log
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
+import com.hybris.plaincontainers.data.model.Settings
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 import kotlinx.serialization.json.Json
@@ -14,12 +15,17 @@ object JsonManager {
 
     private var isInit = false
     private val FILENAME = "containers.json"
+    private const val FILENAME_SETTINGS = "settings.json"
     private var PATH = ""
+    private var PATH_SETTINGS = ""
     private val json = Json{prettyPrint = true}
+    private val jsonSettings = Json{ prettyPrint = true }
     private lateinit var root: RootContainer
 
     fun init(context: Context) {
+        val rootPath = FileUtils.getRootPath(context)
         PATH = FileUtils.getRootPath(context) + "/$FILENAME"
+        PATH_SETTINGS = "${rootPath}/${FILENAME_SETTINGS}"
 
         val rootNullable = readRoot()
         if(rootNullable == null) {
@@ -31,7 +37,35 @@ object JsonManager {
         } else {
             root = rootNullable
         }
+
+        val settingsNullable = readSettings()
+        SettingsManager.init(settingsNullable)
+        if(settingsNullable == null) {
+            writeSettings(SettingsManager.getSettings())
+        }
+
         isInit = true
+    }
+
+
+    fun readSettings(): Settings? {
+        try {
+            val file = File(PATH_SETTINGS)
+            return Json.decodeFromString(file.readText())
+        } catch(e: Exception) {
+            Log.d("ERROR", "Exception when reading from file $FILENAME: $e")
+        }
+
+        return null
+    }
+
+    fun writeSettings(settings: Settings) {
+        try {
+            val f = File(PATH_SETTINGS)
+            f.writeText(jsonSettings.encodeToString(settings))
+        } catch(e: Exception) {
+            Log.d("ERROR", "Exception when writing to file $FILENAME: $e")
+        }
     }
 
     fun readRoot(): RootContainer? {

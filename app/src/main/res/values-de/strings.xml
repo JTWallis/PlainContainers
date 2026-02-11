@@ -7,10 +7,12 @@
     <string name="appbar_title_edit_container">Behälter-Info</string>
     <string name="appbar_title_edit_item">Gegenstand-Info</string>
     <string name="appbar_title_capture">Foto aufnehmen</string>
+    <string name="appbar_title_settings">Einstellungen</string>
     <string name="appbar_item_settings">Einstellungen</string>
     <string name="appbar_item_about">Über die App</string>
 
     <string name="general_component_drag_sort">Drag Sortierung</string>
+    <string name="general_btn_ok">Ok</string>
 
     <string name="overview_btn_add">Behälter hinzufügen</string>
     <string name="details_btn_add">Gegenstand hinzufügen</string>
@@ -35,4 +37,8 @@
     <string name="popup_sort_entry_date_modified">Datum (bearbeitet)</string>
     <string name="popup_sort_entry_custom">Individuell</string>
 
+    <string name="settings_general_title">Allgemein</string>
+    <string name="settings_general_language">Sprache ändern</string>
+    <string name="settings_general_language_en">Englisch</string>
+    <string name="settings_general_language_de">Deutsch</string>
 </resources>
