@@ -3,7 +3,6 @@ package com.hybris.plaincontainers
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -13,7 +12,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
-import com.hybris.plaincontainers.data.SupportedLocale
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
@@ -67,8 +65,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        layoutToolbar.setOnMenuItemClickListener { menuItem -> onOptionsItemSelected(menuItem) }
-
         layoutToolbar.setNavigationOnClickListener {
             navController.navigateUp()
         }
@@ -87,30 +83,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            R.id.actionSettings -> {
-                //findNavController().navigate(R.id.)
-                // DEBUG Change to German
-                LocaleUtils.setLocale(this, SupportedLocale.DE)
-                recreate()
-                true
-            }
-            R.id.actionAbout -> {
-                // DEBUG Change to English
-                LocaleUtils.setLocale(this, SupportedLocale.EN)
-                recreate()
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
 
     override fun attachBaseContext(base: Context) {
         val langTag = LocaleUtils.getLocale(base).toLanguageTag()
