@@ -8,14 +8,19 @@ object SettingsManager {
 
     fun init(settings: Settings?) {
         if(settings == null) {
-            this.settings = Settings(
-                SupportedLocale.EN
-            )
+            this.settings = createSettings()
         } else {
             this.settings = settings
         }
 
         isInit = true
+    }
+
+    private fun createSettings(
+        locale: SupportedLocale = SupportedLocale.EN,
+        dragEnabled: Boolean = true
+    ): Settings {
+        return Settings(locale, dragEnabled)
     }
 
     fun getSettings(): Settings {
