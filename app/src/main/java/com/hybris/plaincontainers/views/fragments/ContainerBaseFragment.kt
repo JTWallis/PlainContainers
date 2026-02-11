@@ -90,6 +90,8 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         if(!hasEditButton()) {
             handleEdit.setVisibility(false)
         }
+
+        switchDrag.isChecked = SettingsManager.isDragEnabled()
     }
 
     private fun initRecycleView(view: View) {
