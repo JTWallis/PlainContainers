@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
+import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.model.EntryContainer
 import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.data.model.RootContainer
@@ -80,6 +81,21 @@ class MainActivity : AppCompatActivity() {
             layoutToolbar.apply {
                 subtitle = model.subtitle
             }
+        }
+
+        initSettings()
+    }
+
+    private fun initSettings() {
+        val settings = SettingsManager.getSettings()
+
+        val currentLang = LocaleUtils.getLocale(this).toLanguageTag()
+        val storedLang = settings.locale.toLanguageTag()
+
+        if(currentLang != storedLang) {
+            val locale = LocaleUtils.getLocaleFromLanguageTag(storedLang)
+            LocaleUtils.setLocale(this, locale)
+            recreate()
         }
     }
 
