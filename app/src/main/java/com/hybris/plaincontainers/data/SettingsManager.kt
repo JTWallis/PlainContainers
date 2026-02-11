@@ -23,17 +23,18 @@ object SettingsManager {
         return Settings(locale, dragEnabled)
     }
 
+    private fun writeSettings() {
+        JsonManager.writeSettings(settings)
+    }
+
     fun getSettings(): Settings {
         verifyInit()
         return settings
     }
 
     fun setLocale(locale: SupportedLocale) {
-        settings = Settings(
-            locale
-        )
-
-        JsonManager.writeSettings(settings)
+        settings = createSettings(locale = locale)
+        writeSettings()
     }
 
     fun getLocale(): SupportedLocale {
