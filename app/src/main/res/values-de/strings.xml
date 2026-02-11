@@ -7,6 +7,7 @@
     <string name="appbar_title_edit_container">Behälter-Info</string>
     <string name="appbar_title_edit_item">Gegenstand-Info</string>
     <string name="appbar_title_capture">Foto aufnehmen</string>
+    <string name="appbar_title_settings">Einstellungen</string>
     <string name="appbar_item_settings">Einstellungen</string>
     <string name="appbar_item_about">Über die App</string>
 
