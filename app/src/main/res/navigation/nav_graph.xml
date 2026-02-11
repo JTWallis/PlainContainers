@@ -10,6 +10,11 @@
         android:label="@string/appbar_title_settings"
     />
 
+    <action
+        android:id="@+id/action_any_to_settings"
+        app:destination="@id/settingsFragment"
+    />
+
     <fragment
         android:id="@+id/containerOverviewFragment"
         android:name="com.hybris.plaincontainers.views.fragments.ContainerOverviewFragment"
