@@ -33,11 +33,15 @@ object SettingsManager {
     }
 
     fun setLocale(locale: SupportedLocale) {
+        verifyInit()
+        if(locale == settings.locale) return
+
         settings = createSettings(locale = locale)
         writeSettings()
     }
 
     fun getLocale(): SupportedLocale {
+        verifyInit()
         return settings.locale
     }
 
