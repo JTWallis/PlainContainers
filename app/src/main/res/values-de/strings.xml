@@ -39,4 +39,6 @@
 
     <string name="settings_general_title">Allgemein</string>
     <string name="settings_general_language">Sprache ändern</string>
+    <string name="settings_general_language_en">Englisch</string>
+    <string name="settings_general_language_de">Deutsch</string>
 </resources>
