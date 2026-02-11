@@ -35,4 +35,7 @@
     <string name="popup_sort_entry_date_added">Date (added)</string>
     <string name="popup_sort_entry_date_modified">Date (modified)</string>
     <string name="popup_sort_entry_custom">Custom</string>
+
+    <string name="settings_general_title">General</string>
+    <string name="settings_general_language">Change Language</string>
 </resources>

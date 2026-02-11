@@ -35,4 +35,6 @@
     <string name="popup_sort_entry_date_modified">Datum (bearbeitet)</string>
     <string name="popup_sort_entry_custom">Individuell</string>
 
+    <string name="settings_general_title">Allgemein</string>
+    <string name="settings_general_language">Sprache ändern</string>
 </resources>
