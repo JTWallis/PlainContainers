@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         layoutToolbar = findViewById(R.id.layoutToolbar)
         layoutToolbar.title = "Container Overview"
         layoutToolbar.subtitle = ""
-        setSupportActionBar(layoutToolbar.findViewById(R.id.toolbar))
+        setSupportActionBar(layoutToolbar)
 
         JsonManager.init(this)
         val rootContainer: RootContainer
