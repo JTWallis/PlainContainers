@@ -47,6 +47,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
             val container = EntryContainer(
                 getName(),
                 getPhotoUri(),
+                getDescription(),
                 containerMetadata.dateAdded,
                 dateModified,
                 getColor(),

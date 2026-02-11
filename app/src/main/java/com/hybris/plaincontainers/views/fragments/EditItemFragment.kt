@@ -43,6 +43,7 @@ class EditItemFragment: MetadataBaseFragment() {
             val item = EntryItem(
                 getName(),
                 getPhotoUri(),
+                getDescription(),
                 itemMetadata.dateAdded,
                 dateModified,
                 itemMetadata.amount
