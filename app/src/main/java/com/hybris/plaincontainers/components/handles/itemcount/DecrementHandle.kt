@@ -10,5 +10,6 @@ class DecrementHandle(
     view,
     onClick,
     R.drawable.minus_24,
-    R.color.button_red
+    R.color.button_red,
+    R.string.accessibility_btn_decrement
 ) {}

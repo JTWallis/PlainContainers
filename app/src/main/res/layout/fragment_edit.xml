@@ -117,6 +117,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/beans"
+                android:contentDescription="@string/accessibility_iv_change_photo"
             />
         </FrameLayout>
 
@@ -181,6 +182,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/fill_24"
+            android:contentDescription="@string/accessibility_iv_change_color"
             app:layout_constraintStart_toEndOf="@id/spacerCol"
             app:layout_constraintTop_toBottomOf="@id/spacerRow3"
             app:layout_constraintBottom_toBottomOf="parent"

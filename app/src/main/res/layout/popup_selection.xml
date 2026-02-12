@@ -30,6 +30,7 @@
                 android:minWidth="32dp"
                 android:minHeight="32dp"
                 android:src="@drawable/arrow_small_left_24"
+                android:contentDescription="@string/accessibility_btn_dismiss_popup"
                 android:scaleType="centerCrop"
                 android:background="@color/backgroundDefault"
                 android:layout_centerVertical="true"

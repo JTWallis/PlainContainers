@@ -8,6 +8,8 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.hybris.plaincontainers.R
 
 class SortPopupAdapter(
@@ -51,12 +53,19 @@ class SortPopupAdapter(
         if(position in invisibleIconPositions) {
             iv.visibility = View.INVISIBLE
         } else {
-            iv.setImageResource(
-                if(position == sortSelection.option.ordinal && !sortSelection.isAscending)
-                    R.drawable.angle_small_up_24
-                else
-                    R.drawable.angle_small_down_24
-            )
+            @DrawableRes var imageResource: Int
+            @StringRes var contentDescriptionId: Int
+
+            if(position == sortSelection.option.ordinal && !sortSelection.isAscending) {
+                imageResource = R.drawable.angle_small_up_24
+                contentDescriptionId = R.string.accessibility_icon_descending
+            } else {
+                imageResource = R.drawable.angle_small_down_24
+                contentDescriptionId = R.string.accessibility_icon_ascending
+            }
+
+            iv.setImageResource(imageResource)
+            iv.contentDescription = view.context.getString(contentDescriptionId)
         }
 
         val layout = view.findViewById<LinearLayout>(R.id.layoutSort)

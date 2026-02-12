@@ -19,6 +19,12 @@ class ExpandHandle(private val layoutExpand: View, onClick: () -> Unit) {
             else R.drawable.angle_small_down_24
         )
 
+        val contentDescriptionId =
+            if(isExpanded) R.string.accessibility_btn_contract
+            else R.string.accessibility_btn_expand
+
+        ivExpand.contentDescription = layoutExpand.context.getString(contentDescriptionId)
+
         layoutExpand.setBackgroundResource(
             if(isExpanded) R.color.purple_200
             else R.color.teal_200
