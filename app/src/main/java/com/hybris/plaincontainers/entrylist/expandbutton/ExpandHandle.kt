@@ -26,8 +26,8 @@ class ExpandHandle(private val layoutExpand: View, onClick: () -> Unit) {
         ivExpand.contentDescription = layoutExpand.context.getString(contentDescriptionId)
 
         layoutExpand.setBackgroundResource(
-            if(isExpanded) R.color.purple_200
-            else R.color.teal_200
+            if(isExpanded) R.color.backgroundHighlightSelectColored
+            else R.color.backgroundHighlight
         )
     }
 }
