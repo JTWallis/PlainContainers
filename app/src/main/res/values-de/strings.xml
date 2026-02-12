@@ -41,4 +41,15 @@
     <string name="settings_general_language">Sprache ändern</string>
     <string name="settings_general_language_en">Englisch</string>
     <string name="settings_general_language_de">Deutsch</string>
+
+    <string name="accessibility_btn_drag">Drag &amp; Drop zum Umordnen</string>
+    <string name="accessibility_btn_expand">Behälter aufklappen</string>
+    <string name="accessibility_btn_contract">Behälter zuklappen</string>
+    <string name="accessibility_btn_increment">Erhöhe Anzahl</string>
+    <string name="accessibility_btn_decrement">Verringer Anzahl</string>
+    <string name="accessibility_btn_dismiss_popup">Abbrechen</string>
+    <string name="accessibility_iv_change_photo">Foto ändern</string>
+    <string name="accessibility_iv_change_color">Farbe ändern</string>
+    <string name="accessibility_icon_ascending">Aufsteigende Sortierung</string>
+    <string name="accessibility_icon_descending">Absteigende Sortierung</string>
 </resources>

@@ -46,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/arrow_small_left_24"
+            android:contentDescription="@string/accessibility_btn_dismiss_popup"
             android:scaleType="centerCrop"
             android:background="@color/backgroundDefault"
             app:layout_constraintTop_toTopOf="parent"

@@ -61,6 +61,7 @@
 
         <TextView
             android:id="@+id/tvEditName"
+            android:labelFor="@id/etEditName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/metadata_tv_name"
@@ -76,6 +77,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_outline_rounded_filled"
+            android:inputType="text"
+            android:autofillHints="text"
             app:layout_constraintStart_toEndOf="@id/spacerCol"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -92,6 +95,7 @@
 
         <TextView
             android:id="@+id/tvEditPhoto"
+            android:labelFor="@id/ivEditPhoto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/metadata_tv_photo"
@@ -117,6 +121,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/beans"
+                android:contentDescription="@string/accessibility_iv_change_photo"
             />
         </FrameLayout>
 
@@ -131,6 +136,7 @@
 
         <TextView
             android:id="@+id/tvEditDescription"
+            android:labelFor="@id/etEditDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/metadata_tv_description"
@@ -146,6 +152,8 @@
             android:layout_height="0dp"
             android:background="@drawable/bg_outline_rounded_filled"
             android:gravity="start"
+            android:inputType="textMultiLine"
+            android:autofillHints="text"
             app:layout_constraintStart_toEndOf="@id/spacerCol"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spacerRow2"
@@ -163,6 +171,7 @@
 
         <TextView
             android:id="@+id/tvEditColor"
+            android:labelFor="@id/ivEditColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/metadata_tv_color"
@@ -181,6 +190,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/fill_24"
+            android:contentDescription="@string/accessibility_iv_change_color"
             app:layout_constraintStart_toEndOf="@id/spacerCol"
             app:layout_constraintTop_toBottomOf="@id/spacerRow3"
             app:layout_constraintBottom_toBottomOf="parent"

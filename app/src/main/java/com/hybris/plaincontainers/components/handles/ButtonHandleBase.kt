@@ -4,15 +4,22 @@ import android.view.View
 import android.widget.Button
 import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 
 open class ButtonHandleBase(
     private val view: View,
     onClick: () -> Unit,
-    @IdRes buttonId: Int) {
+    @IdRes buttonId: Int,
+    @StringRes contentDescriptionId: Int? = null
+    ) {
 
     protected val btnHandle = view.findViewById<Button>(buttonId)!!
 
     init {
+        if(contentDescriptionId != null) {
+            btnHandle.contentDescription = view.context.getString(contentDescriptionId)
+        }
+
         btnHandle.setOnClickListener { onClick() }
     }
 
