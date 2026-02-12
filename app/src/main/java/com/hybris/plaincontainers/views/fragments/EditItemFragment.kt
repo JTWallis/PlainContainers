@@ -62,10 +62,10 @@ class EditItemFragment: MetadataBaseFragment() {
             onClickRight = { onBtnDeleteConfirmClick() },
             true
         )
-        popup.setTextTitle("Do you really want to delete this item from its container?")
-        popup.setTextSubtitle("This action is irreversible!")
-        popup.setTextButtonLeft("Cancel")
-        popup.setTextButtonRight("Delete!")
+        popup.setTextTitle(requireContext().getString(R.string.metadata_popup_delete_title_item))
+        popup.setTextSubtitle(requireContext().getString(R.string.metadata_popup_delete_subtitle))
+        popup.setTextButtonLeft(requireContext().getString(R.string.metadata_popup_delete_cancel))
+        popup.setTextButtonRight(requireContext().getString(R.string.metadata_popup_delete_confirm))
 
         popup.show(view)
     }

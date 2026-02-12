@@ -14,7 +14,7 @@ import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, dragListener: DragListener, onCountChange: (position: Int, addValue: Int) -> Unit)
     : EntryDragViewHolder<EntryItem>(view, onEntryClick, dragListener) {
 
-    private val countHandle = CountHandle(view, 0, onZeroCount = {})
+    private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, onZeroCount = {}, R.color.backgroundFill)
     private val decrementHandle = DecrementHandle(
         view.findViewById<ConstraintLayout>(R.id.containerBtnDecrement),
         onClick = { onCountChange(absoluteAdapterPosition, -1) })

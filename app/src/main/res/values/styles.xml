@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.PlainContainers.Text.Default" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeDefault</item>
+        <item name="android:textColor">@color/textColorDefault</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.Title" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeTitle</item>
+        <item name="android:textColor">@color/textColorTitle</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.Title.Bold" parent="Widget.PlainContainers.Text.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.Subtitle" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeSubtitle</item>
+        <item name="android:textColor">@color/textColorDefault</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.ItemEntry" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeListItem</item>
+        <item name="android:textColor">@color/textColorDefault</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.ItemCount" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeItemCount</item>
+        <item name="android:textColor">@color/textColorDefault</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.Button" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeBtnLarge</item>
+        <item name="android:textColor">@color/textColorButton</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.PlainContainers.Text.Button.Labeled" parent="Theme.PlainContainers">
+        <item name="android:textSize">@dimen/fontSizeBtnDefault</item>
+        <item name="android:textColor">@color/textColorButton</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+</resources>

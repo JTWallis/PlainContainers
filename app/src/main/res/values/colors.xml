@@ -7,10 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_gray_darker">#444</color>
     <color name="darkgray">#888</color>
     <color name="lightgray">#AAA</color>
     <color name="light_gray_transparent">#AAAAAA44</color>
-    <color name="light_gray_brighter">#DDD</color>
+    <color name="light_gray_brighter">#CCC</color>
     <color name="red">#B85D5D</color>
     <color name="dark_red">#854343</color>
     <color name="green">#5DB85D</color>
@@ -20,6 +21,10 @@
     <color name="backgroundFill">@color/light_gray_brighter</color>
     <color name="backgroundHighlight">@color/lightgray</color>
     <color name="backgroundHighlightSelect">@color/darkgray</color>
+    <color name="backgroundHighlightSelectColored">@color/teal_700</color>
+    <color name="textColorDefault">@color/dark_gray_darker</color>
+    <color name="textColorTitle">@color/black</color>
+    <color name="textColorButton">@color/black</color>
     <color name="border">@color/darkgray</color>
-    <color name="importantText">@color/red</color>
+    <color name="textColorImportant">@color/red</color>
 </resources>

@@ -30,6 +30,11 @@
     <string name="metadata_popup_photo_title">Wähle Methode, um ein Foto hinzuzufügen</string>
     <string name="metadata_popup_photo_btn_capture">Kamera</string>
     <string name="metadata_popup_photo_btn_gallery">Galerie</string>
+    <string name="metadata_popup_delete_title_container">Wirklich diesen Behälter, inklusive seiner Gegenstände löschen?</string>
+    <string name="metadata_popup_delete_title_item">Wirklich diesen Gegenstand vom Behälter löschen?</string>
+    <string name="metadata_popup_delete_subtitle">Diese Aktion ist unwiderruflich!</string>
+    <string name="metadata_popup_delete_cancel">Abbrechen</string>
+    <string name="metadata_popup_delete_confirm">Löschen!</string>
 
     <string name="popup_sort_title">Sortierung nach:</string>
     <string name="popup_sort_entry_name">Name</string>
