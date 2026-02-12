@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/backgroundDefault"
         android:layout_margin="4dp"
+        android:padding="@dimen/viewPadding"
         android:minWidth="300dp"
         android:minHeight="400dp"
         >
