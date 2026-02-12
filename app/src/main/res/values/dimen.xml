@@ -15,10 +15,11 @@
     <dimen name="lvSortRowFontSize">24sp</dimen>
     <dimen name="btnPopupChoiceMargin">24dp</dimen>
     <dimen name="fontSizeDefault">16sp</dimen>
-    <dimen name="fontSizePopupChoiceTitle">24sp</dimen>
-    <dimen name="fontSizePopupChoiceSubtitle">20sp</dimen>
-    <dimen name="fontSizePopupChoiceButton">20sp</dimen>
+    <dimen name="fontSizeTitle">24sp</dimen>
+    <dimen name="fontSizeSubtitle">20sp</dimen>
+    <dimen name="fontSizeBtnDefault">18sp</dimen>
+    <dimen name="fontSizeBtnLarge">24sp</dimen>
     <dimen name="fontSizeItemCount">24sp</dimen>
-    <dimen name="fontSizeBtnLabeled">18sp</dimen>
+    <dimen name="fontSizeListItem">30sp</dimen>
 
 </resources>
