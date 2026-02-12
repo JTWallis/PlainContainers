@@ -19,14 +19,14 @@
         android:layout_gravity="center_vertical"
     />
 
-    <TextView
-        android:id="@+id/txtRowSortText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/popup_sort_entry_name"
-        android:textSize="@dimen/lvSortRowFontSize"
-        android:layout_gravity="center_vertical"
-    />
+        <TextView
+            android:id="@+id/txtRowSortText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/popup_sort_entry_name"
+            android:textAppearance="@style/Widget.PlainContainers.Text.ItemEntry"
+            android:layout_gravity="center_vertical"
+            />
 
 </LinearLayout>

@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Sample Text"
-        android:textSize="30sp"
+        android:textAppearance="@style/Widget.PlainContainers.Text.ItemEntry"
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
