@@ -31,6 +31,11 @@ class EntryDragExpandViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, pr
         rcvItems.apply {
             layoutManager = LinearLayoutManager(view.context)
             adapter = expandItemsAdapter
+            addItemDecoration(
+            GapVerticalDecoration(
+                resources.getDimensionPixelSize(R.dimen.rcvExpandedGap)
+                )
+            )
             setRecycledViewPool(RecyclerView.RecycledViewPool())
         }
     }
