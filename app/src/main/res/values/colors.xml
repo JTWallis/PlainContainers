@@ -21,6 +21,10 @@
     <color name="backgroundFill">@color/light_gray_brighter</color>
     <color name="backgroundHighlight">@color/lightgray</color>
     <color name="backgroundHighlightSelect">@color/darkgray</color>
+    <color name="backgroundHighlightSelectColored">@color/teal_700</color>
+    <color name="textColorDefault">@color/dark_gray_darker</color>
+    <color name="textColorTitle">@color/black</color>
+    <color name="textColorButton">@color/black</color>
     <color name="border">@color/darkgray</color>
     <color name="textColorImportant">@color/red</color>
 </resources>
