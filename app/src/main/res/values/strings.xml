@@ -31,6 +31,11 @@
     <string name="metadata_popup_photo_title">Select method to add photo</string>
     <string name="metadata_popup_photo_btn_capture">Camera</string>
     <string name="metadata_popup_photo_btn_gallery">Gallery</string>
+    <string name="metadata_popup_delete_title_container">Really delete this container, including its items?</string>
+    <string name="metadata_popup_delete_title_item">Really delete this item from its container?</string>
+    <string name="metadata_popup_delete_subtitle">This action is irreversible!</string>
+    <string name="metadata_popup_delete_cancel">Cancel</string>
+    <string name="metadata_popup_delete_confirm">Delete!</string>
 
     <string name="popup_sort_title">Sort by:</string>
     <string name="popup_sort_entry_name">Name</string>
