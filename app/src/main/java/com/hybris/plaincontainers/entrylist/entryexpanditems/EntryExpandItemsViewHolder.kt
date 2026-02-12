@@ -8,7 +8,7 @@ import com.hybris.plaincontainers.data.model.EntryItem
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 
 class EntryExpandItemsViewHolder(view: View)
-    : EntryBaseViewHolder<EntryItem>(view, onEntryClick = {}) {
+    : EntryBaseViewHolder<EntryItem>(view, onEntryClick = {}, R.color.backgroundHighlight) {
 
     //private val amount
     private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, onZeroCount = {})
