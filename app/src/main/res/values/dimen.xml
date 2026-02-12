@@ -8,6 +8,7 @@
     <dimen name="cornerRadiusSmall">2dp</dimen>
     <dimen name="borderThicknessSmall">2dp</dimen>
     <dimen name="rcvEntryGap">12dp</dimen>
+    <dimen name="rcvExpandedGap">6dp</dimen>
     <dimen name="paddingButton">4dp</dimen>
     <dimen name="paddingDrawable">8dp</dimen>
     <dimen name="lvSortRowMinHeight">54dp</dimen>
