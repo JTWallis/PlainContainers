@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layoutSort"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/lvSortRowMinHeight"
-    android:background="@color/backgroundHighlight">
+    android:background="@drawable/bg_outline_rounded_dark"
+    android:padding="@dimen/bgBorderThickness">
 
-    <ImageView
-        android:id="@+id/ivRowSortIcon"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layoutSort"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:src="@drawable/angle_small_down_24"
-        android:contentDescription="@string/accessibility_icon_ascending"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center_vertical"
-    />
+        android:minHeight="@dimen/lvSortRowMinHeight"
+        android:background="@color/backgroundFill">
+
+        <ImageView
+            android:id="@+id/ivRowSortIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:src="@drawable/angle_small_down_24"
+            android:contentDescription="@string/accessibility_icon_ascending"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_vertical"
+            />
 
         <TextView
             android:id="@+id/txtRowSortText"
@@ -29,4 +35,5 @@
             android:layout_gravity="center_vertical"
             />
 
+    </LinearLayout>
 </LinearLayout>

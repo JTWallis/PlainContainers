@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/borderThicknessSmall"
         android:padding="@dimen/paddingButton"
-        android:background="@color/backgroundDefault"
+        android:background="@color/button_background_default"
         android:drawablePadding="@dimen/paddingDrawable"
         android:text="Labeled Button"
         android:textAppearance="@style/Widget.PlainContainers.Text.Button.Labeled"
