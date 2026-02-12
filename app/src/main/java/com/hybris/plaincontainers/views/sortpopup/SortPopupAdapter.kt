@@ -73,9 +73,9 @@ class SortPopupAdapter(
 
         layout.setBackgroundColor(
             if(position == sortSelection.option.ordinal)
-                context.resources.getColor(R.color.backgroundHighlightSelect, null)
-            else
                 context.resources.getColor(R.color.backgroundHighlight, null)
+            else
+                context.resources.getColor(R.color.backgroundFill, null)
         )
 
         return view
