@@ -42,4 +42,15 @@
     <string name="settings_general_language">Change Language</string>
     <string name="settings_general_language_en">English</string>
     <string name="settings_general_language_de">German</string>
+
+    <string name="accessibility_btn_drag">Drag to reorder</string>
+    <string name="accessibility_btn_expand">Unfold container</string>
+    <string name="accessibility_btn_contract">Fold container</string>
+    <string name="accessibility_btn_increment">Increase quantity</string>
+    <string name="accessibility_btn_decrement">Decrease quantity</string>
+    <string name="accessibility_btn_dismiss_popup">Cancel</string>
+    <string name="accessibility_iv_change_photo">Change photo</string>
+    <string name="accessibility_iv_change_color">Change color</string>
+    <string name="accessibility_icon_ascending">Ascending order</string>
+    <string name="accessibility_icon_descending">Descending order</string>
 </resources>
