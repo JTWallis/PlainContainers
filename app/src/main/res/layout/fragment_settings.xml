@@ -22,6 +22,7 @@
             android:id="@+id/btnSettingsLanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/button_background_default"
             android:text="@string/settings_general_language"
             android:textAppearance="@style/Widget.PlainContainers.Text.Button"
             android:gravity="start|center"
