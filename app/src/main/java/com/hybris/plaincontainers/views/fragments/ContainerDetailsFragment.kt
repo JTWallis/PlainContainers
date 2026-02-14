@@ -45,7 +45,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         rcvAdapter = EntryDragIncrementAdapter(
             onEntryClick = {pos -> onItemEntryClicked(pos) },
             dragListener,
-            onItemCountChange = {_,_ -> }
+            onItemCountChange = { pos, addVal -> onItemCountChanged(pos, addVal) }
         )
         rcvAdapter.setItems(listItems)
     }
@@ -83,6 +83,33 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
         val fragArg = EditItemFragmentArg(containerPos, listPosition)
         val bundle = bundleOf("edit_item_frag_arg" to fragArg)
         findNavController().navigate(R.id.action_detail_to_edit_item, args = bundle)
+    }
+
+    private fun onItemCountChanged(itemPos: Int, addValue: Int) {
+        val item = listItems[itemPos]
+        if(item.amount <= 0 && addValue < 0) {
+            return
+        }
+
+        val newAmount = (item.amount + addValue).coerceAtLeast(0)
+        if(newAmount == 0) {
+            // TODO: Give user prompt about item deletion
+            //  (Or delete immediately on default behavior setting)
+        }
+
+        // TODO: Create helper class ItemBuilder or similar
+        val newItem = EntryItem(
+            item.name,
+            item.thumbnailSrc,
+            item.description,
+            item.dateAdded,
+            item.dateModified,
+            newAmount
+        )
+
+        listItems[itemPos] = newItem
+        JsonManager.writeItem(containerPos, itemPos, newItem)
+        rcvAdapter.notifyItemChanged(itemPos)
     }
 
     private fun onBtnAddManualClicked() {
