@@ -150,7 +150,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         val popup = SortPopup(
             view,
             sortParams,
-            onSortChanged = { e -> onSortOptionChanged(e) })
+            onSortChanged = { e -> onPopupSortOptionChanged(e) })
         popup.setTitle(requireContext().getString(R.string.popup_sort_title))
         popup.show(view)
     }
@@ -159,30 +159,9 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
 
     }
 
-    override fun onSortOptionChanged(sortSelection: SortSelection) {
-        sortList(sortSelection.option, sortSelection.isAscending)
-        writeJsonChanges()
+    override fun onPopupSortOptionChanged(sortSelection: SortSelection) {
+        setSetSortParams(sortSelection.option, sortSelection.isAscending)
+        persistSortParams(sortParams.option.ordinal, sortParams.isAscending)
     }
-
-    /*
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            R.id.actionSettings -> {
-                //findNavController().navigate(R.id.)
-                true
-            }
-            R.id.actionAbout -> {
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
-    */
 
 }
