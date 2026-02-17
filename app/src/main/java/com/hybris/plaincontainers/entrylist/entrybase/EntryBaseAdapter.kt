@@ -4,12 +4,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hybris.plaincontainers.data.model.EntryBase
+import com.hybris.plaincontainers.data.entities.EntryBase
 
 abstract class EntryBaseAdapter<T: EntryBase>(
-    protected var entryList: List<T> = emptyList()
-) : RecyclerView.Adapter<EntryBaseViewHolder<T>>() {
+    var entryList: List<T> = emptyList(),
+    diffCallback: DiffUtil.ItemCallback<T> = EntryBaseDiffCallback<T>()
+) : ListAdapter<T, EntryBaseViewHolder<T>>(diffCallback) {
 
     abstract fun getResource(): Int
     abstract fun createViewHolder(view: View): EntryBaseViewHolder<T>
