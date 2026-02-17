@@ -101,9 +101,14 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         )
 
         lateinit var itemTouchHelper : ItemTouchHelper
-        val dragListener = object : DragListener {
+        val dragListener = object : DragListener<T> {
             override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
                 itemTouchHelper.startDrag(viewHolder)
+            }
+
+            override fun onEndDrag(resultList: List<T>) {
+                persistSortParams(SortOption.CUSTOM.ordinal, true)
+                persistDraggedOrder(resultList)
             }
         }
 
