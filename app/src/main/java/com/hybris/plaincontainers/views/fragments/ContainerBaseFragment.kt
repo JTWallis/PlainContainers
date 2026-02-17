@@ -116,18 +116,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         handleSort.setText(requireContext().getString(sortOption.sortLabelId))
     }
 
-    private fun sortList(sortOption: SortOption, isAscending: Boolean) {
-        val hashBefore = listItems.hashCode()
-        ListUtils.sortEntryList(listItems, SortSelection(sortOption, isAscending))
-        val hashAfter = listItems.hashCode()
-
-        if(hashBefore != hashAfter) {
-            rcvAdapter.notifyItemRangeChanged(0, listItems.count())
-        }
-
-        setSetSortOption(sortOption, isAscending)
-    }
-
     private fun onBtnSortClicked(view: View) {
         Log.d("INFO", "BtnSort Clicked!")
 
