@@ -3,14 +3,14 @@ package com.hybris.plaincontainers.entrylist.entrydrag
 import android.util.Log
 import android.view.View
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.model.EntryBase
+import com.hybris.plaincontainers.data.entities.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.dragbutton.ItemMoveListener
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseAdapter
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import java.util.Collections
 
-open class EntryDragAdapter<T: EntryBase>(private val onEntryClick: (pos: Int) -> Unit, private val dragListener : DragListener)
+open class EntryDragAdapter<T: EntryBase>(private val onEntryClick: (pos: Int) -> Unit, private val dragListener : DragListener<T>)
     : EntryBaseAdapter<T>(), ItemMoveListener {
 
     private var isDragVisible = true
@@ -33,6 +33,10 @@ open class EntryDragAdapter<T: EntryBase>(private val onEntryClick: (pos: Int) -
     override fun onItemMove(from: Int, to: Int) {
         Collections.swap(entryList, from, to)
         notifyItemMoved(from, to)
+    }
+
+    override fun onClearView() {
+        dragListener.onEndDrag(entryList)
     }
 
     fun setDragVisibility(show: Boolean) {
