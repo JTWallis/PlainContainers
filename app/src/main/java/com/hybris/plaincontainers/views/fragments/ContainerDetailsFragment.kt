@@ -64,7 +64,9 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
     }
 
     override fun initAppbarSubtitle() {
-        labelAppbarSubtitle = containerMetadata.name
+        appbarVm.model.value = AppBarModel(
+            subtitle = containerMetadata.name
+        )
     }
 
     override fun createAdapter(dragListener: DragListener<EntryItemInContainer>) {

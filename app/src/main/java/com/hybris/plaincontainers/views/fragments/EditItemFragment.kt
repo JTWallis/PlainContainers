@@ -38,7 +38,9 @@ class EditItemFragment() : MetadataBaseFragment() {
     }
 
     override fun initAppbarSubtitle() {
-        labelAppbarSubtitle = itemMetadata.name
+        appbarVm.model.value = AppBarModel(
+            subtitle = itemMetadata.name
+        )
     }
 
     private fun hasIdenticalValues(): Boolean {
