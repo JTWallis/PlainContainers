@@ -35,6 +35,8 @@ open class EntryBaseViewHolder<T: EntryBase>(
         val uri = item.thumbnailSrc?.toUri()
         if(FileUtils.isValidUri(uri)) {
             ivThumbnail.setImageURI(uri)
+        } else {
+            ivThumbnail.setImageResource(R.drawable.beans)
         }
     }
 }
