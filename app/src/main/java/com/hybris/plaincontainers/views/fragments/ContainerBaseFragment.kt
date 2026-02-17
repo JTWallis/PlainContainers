@@ -26,8 +26,7 @@ import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
 abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.activity_containers), SortChangeListener {
 
-    protected abstract var listItems: MutableList<T>
-    protected abstract var sortParams: SortSelection
+    private var sortParams: SortSelection = SortSelection(SortOption.DATE_ADDED, true)
     private lateinit var layoutBtnSort: CardView
     private lateinit var handleSort: SortHandle
     private lateinit var switchDrag: SwitchCompat
