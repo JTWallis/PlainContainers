@@ -35,7 +35,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     private lateinit var layoutBtnAdd: CardView
     private lateinit var handleAdd: AddHandle
     private lateinit var rcvList: RecyclerView
-    private lateinit var itemMovedObserver: RecyclerView.AdapterDataObserver
     protected lateinit var rcvAdapter: EntryDragAdapter<T>
 
     @get:StringRes protected abstract val labelBtnAdd: Int
@@ -61,15 +60,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
 
         rcvAdapter.setDragVisibility(switchDrag.isChecked)
     }
-
-    override fun onDestroy() {
-        if(::rcvAdapter.isInitialized) {
-            rcvAdapter.unregisterAdapterDataObserver(itemMovedObserver)
-        }
-
-        super.onDestroy()
-    }
-
 
     override fun initViews(view: View) {
         layoutBtnSort = view.findViewById(R.id.layoutSort)
@@ -118,16 +108,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcvList)
         rcvList.adapter = rcvAdapter
-
-        itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                super.onItemRangeMoved(fromPosition, toPosition, itemCount)
-                setSetSortOption(SortOption.CUSTOM, true)
-                writeJsonChanges()
-            }
-        }
-
-        rcvAdapter.registerAdapterDataObserver(itemMovedObserver)
     }
 
     protected fun setSetSortParams(sortOption: SortOption, isAscending: Boolean) {
