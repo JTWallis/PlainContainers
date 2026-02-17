@@ -56,19 +56,26 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         )
     }
 
-    override fun createAdapter(dragListener: DragListener) {
-        rcvAdapter = EntryDragExpandAdapter(onEntryClick = {pos -> onItemEntryClicked(pos)}, dragListener)
-        rcvAdapter.setItems(listItems)
+    override fun persistSortParams(sortOptionOrdinal: Int, sortAscending: Boolean) {
+        viewModel.updateSortParams(sortOptionOrdinal, sortAscending)
     }
 
-    override fun writeJsonChanges() {
-        JsonManager.writeContainers(listItems)
+    override fun persistDraggedOrder(list: List<EntryContainer>) {
+        // Bulk update with changed OrderPositions.
+        val containers = list.mapIndexed{index, e ->
+            EntryContainerBuilder.from(
+                e,
+                sortPosition = index + 1
+            )
+        }.toTypedArray()
+
+        viewModel.updateContainers(*containers)
     }
 
     override fun onItemEntryClicked(listPosition: Int) {
-        val item = listItems[listPosition]
+        val item = viewModel.containers.value[listPosition]
         val pack = ContainerFragmentArg(
-            listPosition
+            item.containerId
         )
 
         val bundle = bundleOf("container_frag_arg" to pack)

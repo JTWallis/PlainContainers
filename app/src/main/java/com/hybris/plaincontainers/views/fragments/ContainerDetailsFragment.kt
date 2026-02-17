@@ -1,6 +1,6 @@
 package com.hybris.plaincontainers.views.fragments
 
-import android.util.Log
+import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Lifecycle
@@ -73,11 +73,23 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
             dragListener,
             onItemCountChange = { pos, addVal -> onItemCountChanged(pos, addVal) }
         )
-        rcvAdapter.setItems(listItems)
     }
 
-    override fun writeJsonChanges() {
-        JsonManager.writeItems(containerPos, listItems)
+    override fun persistSortParams(sortOptionOrdinal: Int, sortAscending: Boolean) {
+        viewModel.updateContainerSortParams(sortOptionOrdinal, sortAscending)
+    }
+
+    override fun persistDraggedOrder(list: List<EntryItemInContainer>) {
+        // Bulk update with changed OrderPositions.
+        val items = list.mapIndexed{index, e ->
+            EntryItemInContainer(
+                e.item,
+                e.amount,
+                index
+            )
+        }.toTypedArray()
+
+        viewModel.updateItemsInContainer(*items)
     }
 
     override fun onBtnEditClicked() {

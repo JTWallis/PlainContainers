@@ -43,8 +43,9 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     @get:StringRes protected val labelBtnEdit: Int = R.string.details_btn_edit
 
 
-    protected abstract fun createAdapter(dragListener: DragListener)
-    protected abstract fun writeJsonChanges()
+    protected abstract fun createAdapter(dragListener: DragListener<T>)
+    protected abstract fun persistSortParams(sortOptionOrdinal: Int, sortAscending: Boolean)
+    protected abstract fun persistDraggedOrder(list: List<T>)
     protected abstract fun onItemEntryClicked(listPosition: Int)
     protected abstract fun onBtnAddClicked(view: View)
     protected abstract fun hasEditButton(): Boolean
