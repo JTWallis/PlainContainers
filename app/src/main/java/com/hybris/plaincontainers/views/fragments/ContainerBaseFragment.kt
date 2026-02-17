@@ -126,7 +126,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         rcvAdapter.registerAdapterDataObserver(itemMovedObserver)
     }
 
-    private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
+    protected fun setSetSortParams(sortOption: SortOption, isAscending: Boolean) {
         sortParams.option = sortOption
         sortParams.isAscending = isAscending
         handleSort.setText(requireContext().getString(sortOption.sortLabelId))
