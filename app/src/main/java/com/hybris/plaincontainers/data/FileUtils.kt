@@ -64,8 +64,8 @@ object FileUtils {
     }
 
 
-    fun isValidUri(uri: Uri): Boolean {
-        if(uri == Uri.EMPTY) return false
+    fun isValidUri(uri: Uri?): Boolean {
+        if(uri == null || uri == Uri.EMPTY) return false
 
         try {
             val file = uri.toFile()
