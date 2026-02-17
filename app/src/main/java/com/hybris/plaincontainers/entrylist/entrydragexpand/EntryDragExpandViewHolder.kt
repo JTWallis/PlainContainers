@@ -4,6 +4,10 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
@@ -21,6 +25,7 @@ class EntryDragExpandViewHolder(
     onEntryClick: (pos: Int) -> Unit,
     dragListener: DragListener<EntryContainer>,
     expandClick: (Int) -> Unit,
+    private val lifecycleOwner: LifecycleOwner
 ) : EntryDragViewHolder<EntryContainer>(view, onEntryClick, dragListener) {
 
     private val expandHandle = ExpandHandle(
