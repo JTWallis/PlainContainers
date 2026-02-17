@@ -1,6 +1,6 @@
 package com.hybris.plaincontainers.data
 
-import com.hybris.plaincontainers.data.model.EntryBase
+import com.hybris.plaincontainers.data.entities.EntryBase
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 

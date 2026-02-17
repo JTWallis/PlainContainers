@@ -7,10 +7,11 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
+import com.hybris.plaincontainers.data.entities.EntryBase
 
-class DragHandle(viewHolder: RecyclerView.ViewHolder, dragListener: DragListener) {
+class DragHandle<T: EntryBase>(viewHolder: RecyclerView.ViewHolder, dragListener: DragListener<T>) {
 
-    private val layoutDrag = viewHolder.itemView.findViewById<ConstraintLayout>(R.id.layoutDrag)
+    private val layoutDrag = viewHolder.itemView.findViewById<ConstraintLayout>(R.id.containerDrag)
 
     init {
         // Suppress warning for visually impaired for now.

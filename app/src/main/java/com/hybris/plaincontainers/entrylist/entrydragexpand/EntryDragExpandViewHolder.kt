@@ -7,7 +7,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.data.entities.EntryContainer
+import com.hybris.plaincontainers.data.viewmodels.DragExpandViewModel
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 import com.hybris.plaincontainers.entrylist.entryexpanditems.EntryExpandItemsAdapter
@@ -15,8 +16,12 @@ import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
 import kotlin.math.ceil
 
-class EntryDragExpandViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, private val dragListener: DragListener, expandClick: (Int) -> Unit)
-    : EntryDragViewHolder<EntryContainer>(view, onEntryClick, dragListener) {
+class EntryDragExpandViewHolder(
+    view: View,
+    onEntryClick: (pos: Int) -> Unit,
+    dragListener: DragListener<EntryContainer>,
+    expandClick: (Int) -> Unit,
+) : EntryDragViewHolder<EntryContainer>(view, onEntryClick, dragListener) {
 
     private val expandHandle = ExpandHandle(
         view.findViewById<ConstraintLayout>(R.id.containerExpand),
