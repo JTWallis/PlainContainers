@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         )
         NavigationUI.setupWithNavController(layoutToolbar, navController, appbarConfiguration)
 
-        navController.setGraph(R.navigation.nav_graph, bundle)
+        navController.setGraph(R.navigation.nav_graph)
 
         appbarVm.model.observe(this) { model ->
             layoutToolbar.apply {
