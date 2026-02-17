@@ -13,14 +13,12 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
-import com.hybris.plaincontainers.data.ListUtils
 import com.hybris.plaincontainers.data.SettingsManager
-import com.hybris.plaincontainers.data.model.EntryBase
+import com.hybris.plaincontainers.data.entities.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
-import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup

@@ -1,13 +1,14 @@
 package com.hybris.plaincontainers.views.fragments
 
-import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.JsonManager
-import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.data.entities.EntryContainer
+import com.hybris.plaincontainers.data.viewmodels.AddContainerViewModel
+import com.hybris.plaincontainers.views.sortpopup.SortOption
 import java.io.Serializable
 
 class AddContainerFragment: MetadataContainerFragment() {
+
+    override val viewModel = AddContainerViewModel()
 
     override fun initPackageData() {}
 
@@ -22,16 +23,21 @@ class AddContainerFragment: MetadataContainerFragment() {
 
         val date = System.currentTimeMillis().toInt()
 
-        val entryContainer = EntryContainer(
+        val containerEntity = EntryContainer(
+            0,
             getName(),
             getPhotoUri(),
             getDescription(),
             date,
             date,
-            getColor()
+            getColor(),
+            SortOption.NAME.ordinal,
+            true,
+            0
         )
 
-        JsonManager.addContainer(entryContainer)
+        viewModel.insertContainer(containerEntity)
+
         findNavController().navigateUp()
     }
 

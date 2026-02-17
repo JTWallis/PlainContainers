@@ -2,46 +2,72 @@ package com.hybris.plaincontainers.views.fragments
 
 import android.util.Log
 import android.view.View
-import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
-import com.hybris.plaincontainers.data.JsonManager
+import com.hybris.plaincontainers.data.appbar.AppBarModel
+import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
 import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg
-import com.hybris.plaincontainers.data.model.EntryContainer
-import com.hybris.plaincontainers.data.model.EntryItem
+import com.hybris.plaincontainers.data.entities.EntryItemInContainer
+import com.hybris.plaincontainers.data.viewmodels.DetailsViewModel
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragincrement.EntryDragIncrementAdapter
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
-import com.hybris.plaincontainers.views.sortpopup.SortSelection
+import com.hybris.plaincontainers.views.sortpopup.SortOption
+import kotlinx.coroutines.launch
 import java.io.Serializable
 
-class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
-    override lateinit var listItems: MutableList<EntryItem>
-    override lateinit var sortParams: SortSelection
-    private var containerPos: Int = -1
-    private lateinit var containerMetadata: EntryContainer
+class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() {
+    private lateinit var viewModel: DetailsViewModel
+    private var containerId: Long = -1
+    private var containerMetadata = EntryContainerBuilder.empty()
     override val labelBtnAdd = R.string.details_btn_add
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.items.collect { list ->
+                    rcvAdapter.setItems(list)
+                }
+            }
+        }
+    }
 
     override fun initPackageData() {
         val containerPackage = getContainerPackage() as ContainerFragmentArg
-        containerPos = containerPackage.listPosition
+        containerId = containerPackage.containerId
 
-        containerMetadata = JsonManager.getContainer(containerPos)
-        listItems = containerMetadata.items.toMutableList()
-        sortParams = containerMetadata.sortParams
+        viewModel = DetailsViewModel(containerId)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.container.collect { container ->
+                if(container != null) {
+                    containerMetadata = container
+
+                    setSetSortParams(
+                        SortOption.entries[containerMetadata.sortOption],
+                        containerMetadata.sortAscending
+                    )
+
+                    initAppbarSubtitle()
+                }
+            }
+        }
     }
 
     override fun initAppbarSubtitle() {
         labelAppbarSubtitle = containerMetadata.name
     }
 
-    override fun createAdapter(dragListener: DragListener) {
+    override fun createAdapter(dragListener: DragListener<EntryItemInContainer>) {
         rcvAdapter = EntryDragIncrementAdapter(
             onEntryClick = {pos -> onItemEntryClicked(pos) },
             dragListener,
@@ -56,7 +82,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
 
     override fun onBtnEditClicked() {
         val fragArg = EditContainerFragmentArg(
-            containerPos
+            containerId
         )
 
         val bundle = bundleOf("edit_container_frag_arg" to fragArg)
@@ -79,14 +105,15 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
     }
 
     override fun onItemEntryClicked(listPosition: Int) {
-
-        val fragArg = EditItemFragmentArg(containerPos, listPosition)
+        val itemId = viewModel.items.value[listPosition].item.itemId
+        val fragArg = EditItemFragmentArg(containerId, itemId)
         val bundle = bundleOf("edit_item_frag_arg" to fragArg)
         findNavController().navigate(R.id.action_detail_to_edit_item, args = bundle)
     }
 
     private fun onItemCountChanged(itemPos: Int, addValue: Int) {
-        val item = listItems[itemPos]
+        val item = viewModel.items.value[itemPos]
+
         if(item.amount <= 0 && addValue < 0) {
             return
         }
@@ -97,23 +124,11 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItem>() {
             //  (Or delete immediately on default behavior setting)
         }
 
-        // TODO: Create helper class ItemBuilder or similar
-        val newItem = EntryItem(
-            item.name,
-            item.thumbnailSrc,
-            item.description,
-            item.dateAdded,
-            item.dateModified,
-            newAmount
-        )
-
-        listItems[itemPos] = newItem
-        JsonManager.writeItem(containerPos, itemPos, newItem)
-        rcvAdapter.notifyItemChanged(itemPos)
+        viewModel.updateAmountInContainer(item.item.itemId, newAmount)
     }
 
     private fun onBtnAddManualClicked() {
-        val fragArg = AddItemFragmentArg(containerPos)
+        val fragArg = AddItemFragmentArg(containerId)
         val bundle = bundleOf("add_item_frag_arg" to fragArg)
         findNavController().navigate(R.id.action_detail_to_add_item, args = bundle)
     }
