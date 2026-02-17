@@ -3,5 +3,5 @@ package com.hybris.plaincontainers.data.fragmentargs
 import java.io.Serializable
 
 class ContainerFragmentArg(
-    val listPosition: Int
+    val containerId: Long
 ): Serializable {}
