@@ -6,20 +6,14 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.hybris.plaincontainers.data.AppDatabaseManager
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
-import com.hybris.plaincontainers.data.model.EntryContainer
-import com.hybris.plaincontainers.data.model.EntryItem
-import com.hybris.plaincontainers.data.model.RootContainer
 import com.hybris.plaincontainers.data.appbar.AppBarViewModel
-import com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg
-import com.hybris.plaincontainers.views.sortpopup.SortOption
-import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
 class MainActivity : AppCompatActivity() {
     private val appbarVm: AppBarViewModel by viewModels()
@@ -37,31 +31,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(layoutToolbar)
 
         JsonManager.init(this)
-        val rootContainer: RootContainer
-        val rootNullable = JsonManager.readRoot()
-
-        if(rootNullable == null) {
-            val itemList = ArrayList<EntryItem>()
-            itemList.add(EntryItem("Beans", "Beanz.png", "", 0, 0, 2) )
-            itemList.add(EntryItem("Beans2", "Beanz.png", "", 0, 0, 2) )
-            itemList.add(EntryItem("Beans3", "Beanz.png", "", 0, 0, 2) )
-            itemList.add(EntryItem("Beans4", "Beanz.png", "", 0, 0, 2) )
-            val dummyList = ArrayList<EntryContainer>()
-            dummyList.add(EntryContainer("Heinz Bakeddd Beans", "123.png", "", 0, 0, 0,SortSelection(SortOption.CUSTOM, true), itemList))
-            dummyList.add(EntryContainer("Heinz SOY Beans", "123.png", "", 0, 0, 0,SortSelection(SortOption.CUSTOM, true), ArrayList()))
-            dummyList.add(EntryContainer("Heinz Ketchup", "123.png", "", 0, 0, 0,SortSelection(SortOption.CUSTOM, true), ArrayList()))
-            rootContainer = RootContainer(SortSelection(SortOption.CUSTOM, true), dummyList)
-            JsonManager.writeRoot(rootContainer)
-        } else {
-            rootContainer = rootNullable
-        }
-
-        val pack = RootFragmentArg(
-            rootContainer.containers.toMutableList(),
-            rootContainer.sortParams
-        )
-
-        val bundle = bundleOf("root_frag_arg" to pack)
+        AppDatabaseManager.init(this)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
