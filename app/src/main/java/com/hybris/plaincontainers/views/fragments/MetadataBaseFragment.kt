@@ -99,10 +99,21 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     protected open fun initViewFillData() {
-        etName.setText(getInitName())
-        etDescription.setText(getInitDescription())
-        uriPhoto = getInitImageUri().toUri()
-        updatePhotoFromUri()
+        // When temporarily leaving the fragment, e.g. for the camera capture, this function gets
+        //  called again, with no guarantee that it will be called before the camera callback.
+        //  Thus, check for empty values to not accidentally override the fields.
+        if(etName.text.isEmpty()) {
+            etName.setText(getInitName())
+        }
+
+        if(etDescription.text.isEmpty()) {
+            etDescription.setText(getInitDescription())
+        }
+
+        if(uriPhoto == Uri.EMPTY) {
+            uriPhoto = getInitImageUri().toUri()
+            updatePhotoFromUri()
+        }
     }
 
     protected open fun initListeners() {
