@@ -1,27 +1,50 @@
 package com.hybris.plaincontainers.views.fragments
 
 import android.view.View
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.JsonManager
+import com.hybris.plaincontainers.data.appbar.AppBarModel
+import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
+import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
-import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.data.viewmodels.EditContainerViewModel
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
+import kotlinx.coroutines.launch
 import java.io.Serializable
 
 class EditContainerFragment(): MetadataContainerFragment() {
 
-    private var containerPos: Int = -1
+    private var containerId: Long = -1
     private lateinit var containerMetadata: EntryContainer
+    override lateinit var viewModel: EditContainerViewModel
 
     override fun initPackageData() {
         val fragArgs = getContainerPackage() as EditContainerFragmentArg
-        containerPos = fragArgs.containerPos
-        containerMetadata = JsonManager.getContainer(containerPos)
+        containerId = fragArgs.containerId
+
+        viewModel = EditContainerViewModel(containerId)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.container.collect { container ->
+                    if(container != null) {
+                        containerMetadata = container
+                        initAppbarSubtitle()
+                    } else {
+                        throw NullPointerException("Container is null!! containerId: $containerId")
+                    }
+                }
+            }
+        }
     }
 
     override fun initAppbarSubtitle() {
-        labelAppbarSubtitle = containerMetadata.name
+        appbarVm.model.value = AppBarModel(
+            subtitle = containerMetadata.name
+        )
     }
 
     fun hasIdenticalValues(): Boolean {
@@ -44,18 +67,16 @@ class EditContainerFragment(): MetadataContainerFragment() {
         val dateModified = System.currentTimeMillis().toInt()
 
         if(!hasIdenticalValues()) {
-            val container = EntryContainer(
-                getName(),
-                getPhotoUri(),
-                getDescription(),
-                containerMetadata.dateAdded,
-                dateModified,
-                getColor(),
-                containerMetadata.sortParams,
-                containerMetadata.items
+            val container = EntryContainerBuilder.from(
+                containerMetadata,
+                name = getName(),
+                thumbnailSrc = getPhotoUri(),
+                description = getDescription(),
+                dateModified = dateModified,
+                color = getColor()
             )
 
-            JsonManager.writeContainer(containerPos, container)
+            viewModel.updateContainer(container)
         }
 
         findNavController().navigateUp()
@@ -77,7 +98,8 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     private fun onBtnDeleteConfirmClick() {
-        JsonManager.removeContainer(containerPos)
+        viewModel.deleteContainer(containerMetadata)
+
         findNavController().popBackStack(R.id.containerOverviewFragment, false)
     }
 
@@ -86,15 +108,15 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun getInitImageUri(): String {
-        return containerMetadata.thumbnailSrc
+        return containerMetadata.thumbnailSrc ?: ""
     }
 
     override fun getInitDescription(): String {
-        return containerMetadata.description
+        return containerMetadata.description ?: ""
     }
 
     override fun getInitColor(): Int {
-        return containerMetadata.color
+        return containerMetadata.color ?: 100
     }
 
     override fun getContainerPackage(): Serializable {

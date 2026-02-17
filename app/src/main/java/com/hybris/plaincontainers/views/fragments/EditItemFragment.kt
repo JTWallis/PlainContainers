@@ -1,29 +1,46 @@
 package com.hybris.plaincontainers.views.fragments
 
 import android.view.View
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.JsonManager
+import com.hybris.plaincontainers.data.appbar.AppBarModel
 import com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg
-import com.hybris.plaincontainers.data.model.EntryItem
+import com.hybris.plaincontainers.data.entities.EntryItem
+import com.hybris.plaincontainers.data.viewmodels.EditItemViewModel
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
+import kotlinx.coroutines.launch
 import java.io.Serializable
 
-class EditItemFragment: MetadataBaseFragment() {
-    private var containerPos = -1
-    private var itemPos = -1
+class EditItemFragment() : MetadataBaseFragment() {
+    private var containerId: Long = -1
+    private var itemId: Long = -1
     private lateinit var itemMetadata: EntryItem
+    override lateinit var viewModel: EditItemViewModel
 
     override fun initPackageData() {
         val fragArg = getContainerPackage() as EditItemFragmentArg
-        containerPos = fragArg.containerPos
-        itemPos = fragArg.itemPos
+        containerId = fragArg.containerId
+        itemId = fragArg.itemId
 
-        itemMetadata = JsonManager.getItem(containerPos, itemPos)
+        viewModel = EditItemViewModel(containerId, itemId)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.item.collect { item ->
+                    itemMetadata = item
+                    initAppbarSubtitle()
+                }
+            }
+        }
     }
 
     override fun initAppbarSubtitle() {
-        labelAppbarSubtitle = itemMetadata.name
+        appbarVm.model.value = AppBarModel(
+            subtitle = itemMetadata.name
+        )
     }
 
     private fun hasIdenticalValues(): Boolean {
@@ -41,15 +58,15 @@ class EditItemFragment: MetadataBaseFragment() {
 
         if(!hasIdenticalValues()) {
             val item = EntryItem(
+                itemMetadata.itemId,
                 getName(),
                 getPhotoUri(),
                 getDescription(),
                 itemMetadata.dateAdded,
                 dateModified,
-                itemMetadata.amount
             )
 
-            JsonManager.writeItem(containerPos, itemPos, item)
+            viewModel.update(item)
         }
 
         findNavController().navigateUp()
@@ -71,7 +88,7 @@ class EditItemFragment: MetadataBaseFragment() {
     }
 
     private fun onBtnDeleteConfirmClick() {
-        JsonManager.removeItem(containerPos, itemPos)
+        viewModel.delete(itemMetadata)
         findNavController().navigateUp()
     }
 
@@ -80,11 +97,11 @@ class EditItemFragment: MetadataBaseFragment() {
     }
 
     override fun getInitImageUri(): String {
-        return itemMetadata.thumbnailSrc
+        return itemMetadata.thumbnailSrc ?: ""
     }
 
     override fun getInitDescription(): String {
-        return itemMetadata.description
+        return itemMetadata.description ?: ""
     }
 
     override fun getContainerPackage(): Serializable {

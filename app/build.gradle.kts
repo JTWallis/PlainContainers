@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.kotlin.serialization)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -71,6 +72,12 @@ dependencies {
     val navVersion = "2.9.6"
     implementation("androidx.navigation:navigation-fragment:${navVersion}")
     implementation("androidx.navigation:navigation-ui:${navVersion}")
+
+    // Room Database
+    val roomVersion = "2.8.4"
+    implementation("androidx.room:room-runtime:${roomVersion}")
+    ksp("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:${roomVersion}")
 
     // Color Picker
     implementation("com.github.skydoves:colorpickerview:2.4.0")

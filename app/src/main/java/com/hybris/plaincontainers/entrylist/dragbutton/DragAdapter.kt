@@ -24,6 +24,11 @@ class DragAdapter(private val adapter: ItemMoveListener) : ItemTouchHelper.Callb
         return true
     }
 
+    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+        super.clearView(recyclerView, viewHolder)
+        adapter.onClearView()
+    }
+
     override fun onSwiped(
         viewHolder: RecyclerView.ViewHolder,
         direction: Int

@@ -13,14 +13,12 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.AddHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandle
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
-import com.hybris.plaincontainers.data.ListUtils
 import com.hybris.plaincontainers.data.SettingsManager
-import com.hybris.plaincontainers.data.model.EntryBase
+import com.hybris.plaincontainers.data.entities.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
-import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
@@ -28,8 +26,7 @@ import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
 abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.activity_containers), SortChangeListener {
 
-    protected abstract var listItems: MutableList<T>
-    protected abstract var sortParams: SortSelection
+    private var sortParams: SortSelection = SortSelection(SortOption.DATE_ADDED, true)
     private lateinit var layoutBtnSort: CardView
     private lateinit var handleSort: SortHandle
     private lateinit var switchDrag: SwitchCompat
@@ -38,15 +35,15 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     private lateinit var layoutBtnAdd: CardView
     private lateinit var handleAdd: AddHandle
     private lateinit var rcvList: RecyclerView
-    private lateinit var itemMovedObserver: RecyclerView.AdapterDataObserver
     protected lateinit var rcvAdapter: EntryDragAdapter<T>
 
     @get:StringRes protected abstract val labelBtnAdd: Int
     @get:StringRes protected val labelBtnEdit: Int = R.string.details_btn_edit
 
 
-    protected abstract fun createAdapter(dragListener: DragListener)
-    protected abstract fun writeJsonChanges()
+    protected abstract fun createAdapter(dragListener: DragListener<T>)
+    protected abstract fun persistSortParams(sortOptionOrdinal: Int, sortAscending: Boolean)
+    protected abstract fun persistDraggedOrder(list: List<T>)
     protected abstract fun onItemEntryClicked(listPosition: Int)
     protected abstract fun onBtnAddClicked(view: View)
     protected abstract fun hasEditButton(): Boolean
@@ -63,15 +60,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
 
         rcvAdapter.setDragVisibility(switchDrag.isChecked)
     }
-
-    override fun onDestroy() {
-        if(::rcvAdapter.isInitialized) {
-            rcvAdapter.unregisterAdapterDataObserver(itemMovedObserver)
-        }
-
-        super.onDestroy()
-    }
-
 
     override fun initViews(view: View) {
         layoutBtnSort = view.findViewById(R.id.layoutSort)
@@ -103,9 +91,14 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         )
 
         lateinit var itemTouchHelper : ItemTouchHelper
-        val dragListener = object : DragListener {
+        val dragListener = object : DragListener<T> {
             override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
                 itemTouchHelper.startDrag(viewHolder)
+            }
+
+            override fun onEndDrag(resultList: List<T>) {
+                persistSortParams(SortOption.CUSTOM.ordinal, true)
+                persistDraggedOrder(resultList)
             }
         }
 
@@ -115,34 +108,12 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcvList)
         rcvList.adapter = rcvAdapter
-
-        itemMovedObserver = object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                super.onItemRangeMoved(fromPosition, toPosition, itemCount)
-                setSetSortOption(SortOption.CUSTOM, true)
-                writeJsonChanges()
-            }
-        }
-
-        rcvAdapter.registerAdapterDataObserver(itemMovedObserver)
     }
 
-    private fun setSetSortOption(sortOption: SortOption, isAscending: Boolean) {
+    protected fun setSetSortParams(sortOption: SortOption, isAscending: Boolean) {
         sortParams.option = sortOption
         sortParams.isAscending = isAscending
         handleSort.setText(requireContext().getString(sortOption.sortLabelId))
-    }
-
-    private fun sortList(sortOption: SortOption, isAscending: Boolean) {
-        val hashBefore = listItems.hashCode()
-        ListUtils.sortEntryList(listItems, SortSelection(sortOption, isAscending))
-        val hashAfter = listItems.hashCode()
-
-        if(hashBefore != hashAfter) {
-            rcvAdapter.notifyItemRangeChanged(0, listItems.count())
-        }
-
-        setSetSortOption(sortOption, isAscending)
     }
 
     private fun onBtnSortClicked(view: View) {
@@ -151,7 +122,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
         val popup = SortPopup(
             view,
             sortParams,
-            onSortChanged = { e -> onSortOptionChanged(e) })
+            onSortChanged = { e -> onPopupSortOptionChanged(e) })
         popup.setTitle(requireContext().getString(R.string.popup_sort_title))
         popup.show(view)
     }
@@ -160,30 +131,9 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
 
     }
 
-    override fun onSortOptionChanged(sortSelection: SortSelection) {
-        sortList(sortSelection.option, sortSelection.isAscending)
-        writeJsonChanges()
+    override fun onPopupSortOptionChanged(sortSelection: SortSelection) {
+        setSetSortParams(sortSelection.option, sortSelection.isAscending)
+        persistSortParams(sortParams.option.ordinal, sortParams.isAscending)
     }
-
-    /*
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            R.id.actionSettings -> {
-                //findNavController().navigate(R.id.)
-                true
-            }
-            R.id.actionAbout -> {
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
-    */
 
 }

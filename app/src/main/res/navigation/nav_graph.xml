@@ -19,11 +19,6 @@
         android:id="@+id/containerOverviewFragment"
         android:name="com.hybris.plaincontainers.views.fragments.ContainerOverviewFragment"
         android:label="@string/appbar_title_overview" >
-        <argument
-            android:name="root_frag_arg"
-            app:argType="com.hybris.plaincontainers.data.fragmentargs.RootFragmentArg"
-            app:nullable="false"
-        />
 
         <action
             android:id="@+id/action_overview_to_details"

@@ -25,17 +25,15 @@ import kotlin.getValue
 abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     protected val appbarVm: AppBarViewModel by activityViewModels()
-    protected var labelAppbarSubtitle: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initMenuProvider()
         initPackageData()
         initViews(view)
-        initAppbarSubtitle()
 
         appbarVm.model.value = AppBarModel(
-            subtitle = labelAppbarSubtitle
+            subtitle = ""
         )
     }
 

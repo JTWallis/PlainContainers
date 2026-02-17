@@ -4,19 +4,30 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.model.EntryContainer
+import com.hybris.plaincontainers.data.entities.EntryContainer
+import com.hybris.plaincontainers.data.viewmodels.DragExpandViewModel
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 import com.hybris.plaincontainers.entrylist.entryexpanditems.EntryExpandItemsAdapter
 import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
 import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
+import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
-class EntryDragExpandViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, private val dragListener: DragListener, expandClick: (Int) -> Unit)
-    : EntryDragViewHolder<EntryContainer>(view, onEntryClick, dragListener) {
+class EntryDragExpandViewHolder(
+    view: View,
+    onEntryClick: (pos: Int) -> Unit,
+    dragListener: DragListener<EntryContainer>,
+    expandClick: (Int) -> Unit,
+    private val lifecycleOwner: LifecycleOwner
+) : EntryDragViewHolder<EntryContainer>(view, onEntryClick, dragListener) {
 
     private val expandHandle = ExpandHandle(
         view.findViewById<ConstraintLayout>(R.id.containerExpand),
@@ -46,24 +57,30 @@ class EntryDragExpandViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, pr
     override fun bind(item: EntryContainer) {
         super.bind(item)
 
-        // Add margins for a gap between expanded area edges and items, only if items exist.
-        // Otherwise, have no margin and thus no expandable area.
-        val itemCountChanged = item.items.size != expandItemsAdapter.itemCount
-        if(itemCountChanged) {
-            val margin =
-                if(item.items.isNotEmpty()) ceil(rcvItems.resources.getDimension(R.dimen.rcvExpandedGap)).toInt()
-                else 0
-
-            val params = rcvItems.layoutParams as ViewGroup.MarginLayoutParams
-            params.topMargin = margin
-            params.bottomMargin = margin
-        }
-
-        expandItemsAdapter.setItems(item.items)
         expandHandle.bind(item.isExpanded)
         setExpandedVisibility(item.isExpanded)
 
-        //(item as EntryExpand).listItems =
+        val viewModel = DragExpandViewModel(item.containerId)
+        lifecycleOwner.lifecycleScope.launch {
+            lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.items.collect { items ->
+                    // Add margins for a gap between expanded area edges and items, only if items exist.
+                    // Otherwise, have no margin and thus no expandable area.
+                    val itemCountChanged = items.size != expandItemsAdapter.itemCount
+                    if(itemCountChanged) {
+                        val margin =
+                            if(items.isNotEmpty()) ceil(rcvItems.resources.getDimension(R.dimen.rcvExpandedGap)).toInt()
+                            else 0
+
+                        val params = rcvItems.layoutParams as ViewGroup.MarginLayoutParams
+                        params.topMargin = margin
+                        params.bottomMargin = margin
+                    }
+
+                    expandItemsAdapter.setItems(items)
+                }
+            }
+        }
     }
 
     fun setExpandedVisibility(expanded: Boolean) {

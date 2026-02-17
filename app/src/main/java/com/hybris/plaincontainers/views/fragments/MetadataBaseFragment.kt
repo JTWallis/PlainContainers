@@ -15,8 +15,13 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import androidx.core.net.toUri
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.FileUtils
+import com.hybris.plaincontainers.data.viewmodels.MetadataBaseViewModel
+import kotlinx.coroutines.launch
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
@@ -32,6 +37,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private lateinit var layoutBtnConfirm: CardView
     private lateinit var btnConfirmHandle: ButtonIconLabeledHandle
     private lateinit var pickMedia: ActivityResultLauncher<PickVisualMediaRequest>
+    protected abstract val viewModel: MetadataBaseViewModel
 
 
     protected abstract fun hasBtnDelete(): Boolean
@@ -83,14 +89,31 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         )
         btnConfirmHandle.setBackgroundColor(R.color.button_green)
 
-        initViewFillData()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.entry.collect { _ ->
+                    initViewFillData()
+                }
+            }
+        }
     }
 
     protected open fun initViewFillData() {
-        etName.setText(getInitName())
-        etDescription.setText(getInitDescription())
-        uriPhoto = getInitImageUri().toUri()
-        updatePhotoFromUri()
+        // When temporarily leaving the fragment, e.g. for the camera capture, this function gets
+        //  called again, with no guarantee that it will be called before the camera callback.
+        //  Thus, check for empty values to not accidentally override the fields.
+        if(etName.text.isEmpty()) {
+            etName.setText(getInitName())
+        }
+
+        if(etDescription.text.isEmpty()) {
+            etDescription.setText(getInitDescription())
+        }
+
+        if(uriPhoto == Uri.EMPTY) {
+            uriPhoto = getInitImageUri().toUri()
+            updatePhotoFromUri()
+        }
     }
 
     protected open fun initListeners() {
