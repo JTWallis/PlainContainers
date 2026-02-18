@@ -35,6 +35,30 @@
             android:background="@color/lightgray"
         />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_operations_title"
+            android:textAppearance="@style/Widget.PlainContainers.Text.Title.Bold"
+        />
+
+        <Button
+            android:id="@+id/btnChangeZeroItemCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_background_default"
+            android:text="@string/settings_operations_item_count_zero"
+            android:textAppearance="@style/Widget.PlainContainers.Text.Button"
+            android:gravity="start|center"
+            android:padding="0dp"
+        />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/horizontalBarHeight"
+            android:background="@color/lightgray"
+        />
+
     </LinearLayout>
 
 </ScrollView>
