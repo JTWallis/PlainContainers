@@ -8,11 +8,11 @@ object EntryContainerBuilder {
     fun from(
         other: EntryContainer,
         name: String = other.name,
-        thumbnailSrc: String? = other.thumbnailSrc,
-        description: String? = other.description,
+        thumbnailSrc: String = other.thumbnailSrc,
+        description: String = other.description,
         dateAdded: Int = other.dateAdded,
         dateModified: Int = other.dateModified,
-        color: Int? = other.color,
+        color: Int = other.color,
         sortOption: Int = other.sortOption,
         sortAscending: Boolean = other.sortAscending,
         sortPosition: Int = other.sortPosition

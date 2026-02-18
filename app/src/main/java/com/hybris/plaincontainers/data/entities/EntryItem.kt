@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class EntryItem(
     @PrimaryKey(autoGenerate = true) val itemId: Long = 0L,
     override val name: String,
-    override val thumbnailSrc: String?,
-    override val description: String?,
+    override val thumbnailSrc: String,
+    override val description: String,
     override val dateAdded: Int,
     override val dateModified: Int
 ): EntryBase() {

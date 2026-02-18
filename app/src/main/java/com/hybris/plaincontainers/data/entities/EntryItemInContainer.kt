@@ -10,8 +10,8 @@ data class EntryItemInContainer(
 ): EntryBase() {
     @Ignore override val internalId: Long = item.internalId
     @Ignore override val name: String = item.name
-    @Ignore override val thumbnailSrc: String? = item.thumbnailSrc
-    @Ignore override val description: String? = item.description
+    @Ignore override val thumbnailSrc: String = item.thumbnailSrc
+    @Ignore override val description: String = item.description
     @Ignore override val dateAdded: Int = item.dateAdded
     @Ignore override val dateModified: Int = item.dateModified
 }
