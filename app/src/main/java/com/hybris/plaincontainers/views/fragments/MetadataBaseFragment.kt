@@ -113,8 +113,9 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
         if(uriPhoto == Uri.EMPTY) {
             uriPhoto = getInitImageUri().toUri()
-            updatePhotoFromUri()
         }
+
+        updatePhotoFromUri()
     }
 
     protected open fun initListeners() {
