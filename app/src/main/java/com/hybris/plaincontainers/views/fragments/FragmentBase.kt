@@ -69,9 +69,7 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
                 true
             }
             R.id.actionAbout -> {
-                // DEBUG Change to English
-                LocaleUtils.setLocale(requireContext(), SupportedLocale.DE)
-                requireActivity().recreate()
+                findNavController().navigate(R.id.action_any_to_about)
                 true
             }
             else -> {

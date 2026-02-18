@@ -10,9 +10,31 @@
         android:label="@string/appbar_title_settings"
     />
 
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.AboutFragment"
+        android:label="@string/appbar_item_about" >
+
+        <action
+            android:id="@+id/action_about_to_licenses"
+            app:destination="@id/licensesFragment"
+        />
+    </fragment>
+
     <action
         android:id="@+id/action_any_to_settings"
         app:destination="@id/settingsFragment"
+    />
+
+    <action
+        android:id="@+id/action_any_to_about"
+        app:destination="@id/aboutFragment"
+    />
+
+    <fragment
+        android:id="@+id/licensesFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.LicensesFragment"
+        android:label="@string/about_licenses"
     />
 
     <fragment
