@@ -33,6 +33,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
                     if(container != null) {
                         containerMetadata = container
                         initAppbarSubtitle()
+                        initViewFillData()
                     } else {
                         throw NullPointerException("Container is null!! containerId: $containerId")
                     }

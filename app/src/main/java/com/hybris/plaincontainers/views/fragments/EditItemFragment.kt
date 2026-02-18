@@ -32,6 +32,7 @@ class EditItemFragment() : MetadataBaseFragment() {
                 viewModel.item.collect { item ->
                     itemMetadata = item
                     initAppbarSubtitle()
+                    initViewFillData()
                 }
             }
         }

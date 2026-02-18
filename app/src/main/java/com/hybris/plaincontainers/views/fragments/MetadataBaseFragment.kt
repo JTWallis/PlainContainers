@@ -15,14 +15,9 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.ButtonIconLabeledHandle
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import androidx.core.net.toUri
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.FileUtils
-import com.hybris.plaincontainers.data.viewmodels.MetadataBaseViewModel
 import com.hybris.plaincontainers.views.warningpopup.WarningPopup
-import kotlinx.coroutines.launch
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
@@ -88,14 +83,6 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
             true
         )
         btnConfirmHandle.setBackgroundColor(R.color.button_green)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.entry.collect { _ ->
-                    initViewFillData()
-                }
-            }
-        }
     }
 
     protected open fun initViewFillData() {
