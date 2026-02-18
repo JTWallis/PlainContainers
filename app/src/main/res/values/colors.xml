@@ -27,4 +27,6 @@
     <color name="textColorButton">@color/black</color>
     <color name="border">@color/darkgray</color>
     <color name="textColorImportant">@color/red</color>
+    <color name="defaultBorderEntry">@color/backgroundHighlight</color>
+    <color name="defaultBorderThumbnail">@color/black</color>
 </resources>
