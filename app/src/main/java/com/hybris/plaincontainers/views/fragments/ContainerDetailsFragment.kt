@@ -8,6 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
+import com.hybris.plaincontainers.data.ItemCountZeroBehavior
+import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.appbar.AppBarModel
 import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
 import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
@@ -19,6 +21,7 @@ import com.hybris.plaincontainers.data.viewmodels.DetailsViewModel
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydragincrement.EntryDragIncrementAdapter
 import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
+import com.hybris.plaincontainers.views.choicepopup.ChoiceRememberPopup
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import kotlinx.coroutines.launch
 import java.io.Serializable
@@ -134,11 +137,39 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
 
         val newAmount = (item.amount + addValue).coerceAtLeast(0)
         if(newAmount == 0) {
-            // TODO: Give user prompt about item deletion
-            //  (Or delete immediately on default behavior setting)
+            val onZeroBehavior = SettingsManager.getItemCountZeroBehavior()
+            if(onZeroBehavior == ItemCountZeroBehavior.DELETE) {
+                onItemCountZeroDelete(item)
+                return
+            } else if(onZeroBehavior == ItemCountZeroBehavior.ASK) {
+                val popup = ChoiceRememberPopup(
+                    requireView(),
+                    onClickLeft = { remember ->
+                        if(remember) onItemCountZeroRemember(ItemCountZeroBehavior.IGNORE)
+                    },
+                    onClickRight = { remember ->
+                        if(remember) onItemCountZeroRemember(ItemCountZeroBehavior.DELETE)
+                        onItemCountZeroDelete(item)
+                    }
+                )
+                popup.setTextTitle(requireContext().getString(R.string.popup_choice_remember_item_zero))
+                popup.setTextSubtitle(requireContext().getString(R.string.popup_choice_remember_subtitle))
+                popup.setTextButtonLeft(requireContext().getString(R.string.popup_choice_remember_item_zero_ignore))
+                popup.setTextButtonRight(requireContext().getString(R.string.metadata_btn_delete))
+
+                popup.show(requireView())
+            }
         }
 
         viewModel.updateAmountInContainer(item.item.itemId, newAmount)
+    }
+
+    private fun onItemCountZeroRemember(behavior: ItemCountZeroBehavior) {
+        SettingsManager.setItemCountZeroBehavior(behavior)
+    }
+
+    private fun onItemCountZeroDelete(item: EntryItemInContainer) {
+        viewModel.deleteInContainer(item)
     }
 
     private fun onBtnAddManualClicked() {
