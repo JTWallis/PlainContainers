@@ -1,8 +1,11 @@
 package com.hybris.plaincontainers.entrylist.entrydragexpand
 
+import android.content.res.ColorStateList
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -36,6 +39,8 @@ class EntryDragExpandViewHolder(
         }
     )
     private val rcvItems = view.findViewById<RecyclerView>(R.id.rcvItems)
+    private val layoutEntry = view.findViewById<ConstraintLayout>(R.id.clInner)
+    private val layoutThumbnail = view.findViewById<CardView>(R.id.cvEntryThumbnailBorder)
 
     private val expandItemsAdapter = EntryExpandItemsAdapter()
 
@@ -87,5 +92,13 @@ class EntryDragExpandViewHolder(
         rcvItems.visibility =
             if(expanded) View.VISIBLE
             else View.GONE
+    }
+
+    private fun setEntryBorderColor(@ColorInt color: Int) {
+        layoutEntry.setBackgroundTintList(ColorStateList.valueOf(color))
+    }
+
+    private fun setThumbnailBorderColor(@ColorInt color: Int) {
+        layoutThumbnail.setBackgroundColor(color)
     }
 }
