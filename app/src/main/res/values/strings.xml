@@ -37,6 +37,8 @@
     <string name="metadata_popup_delete_cancel">Cancel</string>
     <string name="metadata_popup_delete_confirm">Delete!</string>
 
+    <string name="popup_warning_camera_permission_denied">Need camera permission in order to capture photos.</string>
+
     <string name="popup_sort_title">Sort by:</string>
     <string name="popup_sort_entry_name">Name</string>
     <string name="popup_sort_entry_date_added">Date (added)</string>

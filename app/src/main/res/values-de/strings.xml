@@ -36,6 +36,8 @@
     <string name="metadata_popup_delete_cancel">Abbrechen</string>
     <string name="metadata_popup_delete_confirm">Löschen!</string>
 
+    <string name="popup_warning_camera_permission_denied">Kamera Berechtigungen benötigt, um Fotos aufzunehmen.</string>
+
     <string name="popup_sort_title">Sortierung nach:</string>
     <string name="popup_sort_entry_name">Name</string>
     <string name="popup_sort_entry_date_added">Datum (erstellt)</string>
