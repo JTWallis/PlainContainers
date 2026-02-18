@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class EntryContainer(
     @PrimaryKey(autoGenerate = true) val containerId: Long = 0L,
     override val name: String,
-    override val thumbnailSrc: String?,
-    override val description: String?,
+    override val thumbnailSrc: String,
+    override val description: String,
     override val dateAdded: Int,
     override val dateModified: Int,
     val color: Int?,
