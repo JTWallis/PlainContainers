@@ -1,5 +1,7 @@
 package com.hybris.plaincontainers.views.fragments
 
+import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.viewmodels.AddContainerViewModel
@@ -8,7 +10,12 @@ import java.io.Serializable
 
 class AddContainerFragment: MetadataContainerFragment() {
 
-    override val viewModel = AddContainerViewModel()
+    private val viewModel = AddContainerViewModel()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViewFillData()
+    }
 
     override fun initPackageData() {}
 

@@ -19,7 +19,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
 
     private var containerId: Long = -1
     private lateinit var containerMetadata: EntryContainer
-    override lateinit var viewModel: EditContainerViewModel
+    private lateinit var viewModel: EditContainerViewModel
 
     override fun initPackageData() {
         val fragArgs = getContainerPackage() as EditContainerFragmentArg
@@ -33,6 +33,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
                     if(container != null) {
                         containerMetadata = container
                         initAppbarSubtitle()
+                        initViewFillData()
                     } else {
                         throw NullPointerException("Container is null!! containerId: $containerId")
                     }
