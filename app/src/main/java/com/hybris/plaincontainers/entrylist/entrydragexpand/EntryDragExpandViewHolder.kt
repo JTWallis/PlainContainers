@@ -65,6 +65,14 @@ class EntryDragExpandViewHolder(
         expandHandle.bind(item.isExpanded)
         setExpandedVisibility(item.isExpanded)
 
+        if(item.color != 0) {
+            setEntryBorderColor(item.color)
+            setThumbnailBorderColor(item.color)
+        } else {
+            setEntryBorderColor(itemView.context.getColor(R.color.defaultBorderEntry))
+            setThumbnailBorderColor(itemView.context.getColor(R.color.defaultBorderThumbnail))
+        }
+
         val viewModel = DragExpandViewModel(item.containerId)
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
