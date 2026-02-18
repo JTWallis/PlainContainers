@@ -3,30 +3,37 @@ package com.hybris.plaincontainers.views.choicepopup
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.views.Popup
 
-class ChoicePopup(
+open class ChoicePopup(
     invokerView: View,
-    onClickLeft: () -> Unit,
-    onClickRight: () -> Unit,
-    isChoiceImportant: Boolean = false
-) : Popup(invokerView, R.layout.popup_choice) {
+    private val onClickLeft: () -> Unit,
+    private val onClickRight: () -> Unit,
+    isChoiceImportant: Boolean = false,
+    @LayoutRes layoutRes: Int = R.layout.popup_choice,
+    @IdRes titleRes: Int = R.id.tvPopupChoiceTitle,
+    @IdRes subtitleRes: Int = R.id.tvPopupChoiceSubtitle,
+    @IdRes btnLeftRes: Int = R.id.btnPopupChoiceLeft,
+    @IdRes btnRightRes: Int = R.id.btnPopupChoiceRight
+) : Popup(invokerView, layoutRes) {
 
-    private val tvTitle = contentView.findViewById<TextView>(R.id.tvPopupChoiceTitle)
-    private val tvSubtitle = contentView.findViewById<TextView>(R.id.tvPopupChoiceSubtitle)
-    private val btnChoiceLeft = contentView.findViewById<Button>(R.id.btnPopupChoiceLeft)
-    private val btnChoiceRight = contentView.findViewById<Button>(R.id.btnPopupChoiceRight)
+    private val tvTitle = contentView.findViewById<TextView>(titleRes)
+    protected val tvSubtitle = contentView.findViewById<TextView>(subtitleRes)!!
+    private val btnChoiceLeft = contentView.findViewById<Button>(btnLeftRes)
+    private val btnChoiceRight = contentView.findViewById<Button>(btnRightRes)
 
     init {
         tvSubtitle.text = ""
 
         btnChoiceLeft.setOnClickListener {
-            onClickLeft()
+            onClickLeftDelegate()
             dismiss()
         }
         btnChoiceRight.setOnClickListener {
-            onClickRight()
+            onClickRightDelegate()
             dismiss()
         }
 
@@ -35,6 +42,14 @@ class ChoicePopup(
             tvSubtitle.setTextColor(color)
             btnChoiceRight.setBackgroundTintList(color)
         }
+    }
+
+    protected open fun onClickLeftDelegate() {
+        onClickLeft()
+    }
+
+    protected open fun onClickRightDelegate() {
+        onClickRight()
     }
 
     private fun setText(text: String, tv: TextView) {

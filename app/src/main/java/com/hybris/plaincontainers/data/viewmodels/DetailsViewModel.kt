@@ -48,4 +48,11 @@ class DetailsViewModel(private val containerId: Long): ViewModel() {
             itemRepository.updateAmountInContainer(itemId, amount)
         }
     }
+
+    fun deleteInContainer(item: EntryItemInContainer) {
+        // For now, just delete the item itself instead of CrossRef.
+        viewModelScope.launch {
+            itemRepository.delete(item.item)
+        }
+    }
 }

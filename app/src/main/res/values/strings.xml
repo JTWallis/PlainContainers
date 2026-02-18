@@ -45,10 +45,17 @@
     <string name="popup_sort_entry_date_modified">Date (modified)</string>
     <string name="popup_sort_entry_custom">Custom</string>
 
+    <string name="popup_choice_remember_item_zero">How to handle 0 amount for this item?</string>
+    <string name="popup_choice_remember_item_zero_ignore">Ignore</string>
+    <string name="popup_choice_remember_subtitle">Remember this choice</string>
+
     <string name="settings_general_title">General</string>
     <string name="settings_general_language">Change Language</string>
     <string name="settings_general_language_en">English</string>
     <string name="settings_general_language_de">German</string>
+    <string name="settings_operations_title">Operations</string>
+    <string name="settings_operations_item_count_zero">Behavior on zero item count</string>
+    <string name="settings_operations_item_count_zero_ask">Ask every time</string>
 
     <string name="accessibility_btn_drag">Drag to reorder</string>
     <string name="accessibility_btn_expand">Unfold container</string>

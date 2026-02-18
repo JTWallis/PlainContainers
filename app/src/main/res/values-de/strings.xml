@@ -44,10 +44,17 @@
     <string name="popup_sort_entry_date_modified">Datum (bearbeitet)</string>
     <string name="popup_sort_entry_custom">Individuell</string>
 
+    <string name="popup_choice_remember_item_zero">Wie soll 0 Anzahl für diesen Gegenstand behandelt werden?</string>
+    <string name="popup_choice_remember_item_zero_ignore">Ignorieren</string>
+    <string name="popup_choice_remember_subtitle">Diese Entscheidung merken</string>
+
     <string name="settings_general_title">Allgemein</string>
     <string name="settings_general_language">Sprache ändern</string>
     <string name="settings_general_language_en">Englisch</string>
     <string name="settings_general_language_de">Deutsch</string>
+    <string name="settings_operations_title">Funktionsweise</string>
+    <string name="settings_operations_item_count_zero">Verhalten bei 0 Gegenstandanzahl</string>
+    <string name="settings_operations_item_count_zero_ask">Jedes mal fragen</string>
 
     <string name="accessibility_btn_drag">Drag &amp; Drop zum Umordnen</string>
     <string name="accessibility_btn_expand">Behälter aufklappen</string>
