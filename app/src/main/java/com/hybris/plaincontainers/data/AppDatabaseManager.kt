@@ -14,6 +14,7 @@ object AppDatabaseManager {
                 context,
                 AppDatabase::class.java, "plaincontainers-database"
             )
+            .addCallback(AppDatabaseRootInitCallback())
             .build()
         } catch(e: Exception) {
             Log.e("ERROR", "Exception when building AppDatabase: $e")
