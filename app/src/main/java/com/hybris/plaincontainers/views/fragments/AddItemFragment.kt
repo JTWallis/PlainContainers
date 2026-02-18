@@ -9,6 +9,7 @@ import java.io.Serializable
 class AddItemFragment() : MetadataBaseFragment() {
     private var containerId: Long = -1
     override lateinit var viewModel: AddItemViewModel
+    private lateinit var viewModel: AddItemViewModel
 
     override fun initPackageData() {
         val fragArgs = getContainerPackage() as AddItemFragmentArg

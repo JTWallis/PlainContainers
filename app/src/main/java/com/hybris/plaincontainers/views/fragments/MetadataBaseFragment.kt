@@ -38,7 +38,6 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     private lateinit var layoutBtnConfirm: CardView
     private lateinit var btnConfirmHandle: ButtonIconLabeledHandle
     private lateinit var pickMedia: ActivityResultLauncher<PickVisualMediaRequest>
-    protected abstract val viewModel: MetadataBaseViewModel
 
 
     protected abstract fun hasBtnDelete(): Boolean

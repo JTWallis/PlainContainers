@@ -9,6 +9,7 @@ import java.io.Serializable
 class AddContainerFragment: MetadataContainerFragment() {
 
     override val viewModel = AddContainerViewModel()
+    private val viewModel = AddContainerViewModel()
 
     override fun initPackageData() {}
 

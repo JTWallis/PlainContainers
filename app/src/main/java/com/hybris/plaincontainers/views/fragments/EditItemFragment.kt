@@ -18,7 +18,7 @@ class EditItemFragment() : MetadataBaseFragment() {
     private var containerId: Long = -1
     private var itemId: Long = -1
     private lateinit var itemMetadata: EntryItem
-    override lateinit var viewModel: EditItemViewModel
+    private lateinit var viewModel: EditItemViewModel
 
     override fun initPackageData() {
         val fragArg = getContainerPackage() as EditItemFragmentArg
