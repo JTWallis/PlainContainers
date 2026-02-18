@@ -15,6 +15,7 @@
     <dimen name="lvSortTitleFontSize">32sp</dimen>
     <dimen name="lvSortRowFontSize">24sp</dimen>
     <dimen name="btnPopupChoiceMargin">24dp</dimen>
+    <dimen name="btnPopupWarningMargin">64dp</dimen>
     <dimen name="fontSizeDefault">16sp</dimen>
     <dimen name="fontSizeTitle">24sp</dimen>
     <dimen name="fontSizeSubtitle">20sp</dimen>

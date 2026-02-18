@@ -21,6 +21,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.FileUtils
 import com.hybris.plaincontainers.data.viewmodels.MetadataBaseViewModel
+import com.hybris.plaincontainers.views.warningpopup.WarningPopup
 import kotlinx.coroutines.launch
 
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
@@ -112,8 +113,9 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
         if(uriPhoto == Uri.EMPTY) {
             uriPhoto = getInitImageUri().toUri()
-            updatePhotoFromUri()
         }
+
+        updatePhotoFromUri()
     }
 
     protected open fun initListeners() {
@@ -185,7 +187,11 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     }
 
     private fun onPhotoCapturePermissionDenied() {
-        Log.d("INFO", "Insert info to user that Camera permission is needed")
+        val popup = WarningPopup(
+            requireView(),
+            requireContext().getString(R.string.popup_warning_camera_permission_denied)
+        )
+        popup.show(requireView())
     }
 
     private fun onPhotoGalleryClick() {
