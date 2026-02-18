@@ -12,7 +12,7 @@ data class EntryContainer(
     override val description: String,
     override val dateAdded: Int,
     override val dateModified: Int,
-    val color: Int?,
+    val color: Int,
     val sortOption: Int,
     val sortAscending: Boolean,
     val sortPosition: Int
