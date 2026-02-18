@@ -8,7 +8,7 @@ object SettingsManager {
 
     fun init(settings: Settings?) {
         if(settings == null) {
-            this.settings = createSettings()
+            this.settings = createSettingsDefault()
         } else {
             this.settings = settings
         }
@@ -16,11 +16,21 @@ object SettingsManager {
         isInit = true
     }
 
-    private fun createSettings(
+    private fun createSettingsDefault(
         locale: SupportedLocale = SupportedLocale.EN,
-        dragEnabled: Boolean = true
+        dragEnabled: Boolean = true,
+        itemCountZeroBehavior: ItemCountZeroBehavior = ItemCountZeroBehavior.ASK
     ): Settings {
-        return Settings(locale, dragEnabled)
+        return Settings(locale, dragEnabled, itemCountZeroBehavior)
+    }
+
+    private fun createSettingsCopy(
+        other: Settings,
+        locale: SupportedLocale = other.locale,
+        dragEnabled: Boolean = other.dragEnabled,
+        itemCountZeroBehavior: ItemCountZeroBehavior = other.itemCountZeroBehavior
+    ): Settings {
+        return Settings(locale, dragEnabled, itemCountZeroBehavior)
     }
 
     private fun writeSettings() {
@@ -36,7 +46,7 @@ object SettingsManager {
         verifyInit()
         if(locale == settings.locale) return
 
-        settings = createSettings(locale = locale)
+        settings = createSettingsCopy(settings, locale = locale)
         writeSettings()
     }
 
@@ -49,13 +59,26 @@ object SettingsManager {
         verifyInit()
         if(isEnabled == settings.dragEnabled) return
 
-        settings = createSettings(dragEnabled = isEnabled)
+        settings = createSettingsCopy(settings, dragEnabled = isEnabled)
         writeSettings()
     }
 
     fun isDragEnabled(): Boolean {
         verifyInit()
         return settings.dragEnabled
+    }
+
+    fun setItemCountZeroBehavior(behavior: ItemCountZeroBehavior) {
+        verifyInit()
+        if(settings.itemCountZeroBehavior == behavior) return
+
+        settings = createSettingsCopy(settings, itemCountZeroBehavior = behavior)
+        writeSettings()
+    }
+
+    fun getItemCountZeroBehavior(): ItemCountZeroBehavior {
+        verifyInit()
+        return settings.itemCountZeroBehavior
     }
 
     private fun verifyInit() {
