@@ -27,6 +27,7 @@
     <style name="Widget.PlainContainers.Text.ItemCount" parent="Theme.PlainContainers">
         <item name="android:textSize">@dimen/fontSizeItemCount</item>
         <item name="android:textColor">@color/textColorDefault</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Widget.PlainContainers.Text.Button" parent="Theme.PlainContainers">
