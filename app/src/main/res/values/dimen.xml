@@ -39,6 +39,7 @@
     <dimen name="popupListMinHeight">400dp</dimen>
     <dimen name="popupListTitleMargin">16dp</dimen>
     <dimen name="popupListItemListMargin">24dp</dimen>
+    <dimen name="popupSelectionBackIconMinSize">32dp</dimen>
     <dimen name="captureCropSquareSize">256dp</dimen>
     <dimen name="captureButtonSize">96dp</dimen>
     <dimen name="captureMarginBottom">64dp</dimen>
