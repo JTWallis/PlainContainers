@@ -26,5 +26,6 @@
     <dimen name="fontSizeListItem">24sp</dimen>
     <dimen name="entryTextLineSpacingMultiplier">0.8</dimen>
     <dimen name="entryItemCountTextMargin">8dp</dimen>
+    <dimen name="entryThumbnailMargin">4dp</dimen>
 
 </resources>
