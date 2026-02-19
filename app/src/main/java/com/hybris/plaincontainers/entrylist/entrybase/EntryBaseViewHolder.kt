@@ -36,7 +36,7 @@ open class EntryBaseViewHolder<T: EntryBase>(
         if(FileUtils.isValidUri(uri)) {
             ivThumbnail.setImageURI(uri)
         } else {
-            ivThumbnail.setImageResource(R.drawable.beans)
+            ivThumbnail.setImageResource(R.drawable.missing_image_24)
         }
     }
 }

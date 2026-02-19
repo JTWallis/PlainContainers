@@ -122,7 +122,7 @@
                 android:layout_height="@dimen/fragEditThumbnailSize"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/beans"
+                android:src="@drawable/missing_image_24"
                 android:contentDescription="@string/accessibility_iv_change_photo"
             />
         </FrameLayout>
