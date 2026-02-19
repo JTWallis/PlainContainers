@@ -21,9 +21,8 @@
     <dimen name="fontSizeSubtitle">20sp</dimen>
     <dimen name="fontSizeBtnDefault">18sp</dimen>
     <dimen name="fontSizeBtnLarge">24sp</dimen>
-    <dimen name="fontSizeItemCount">24sp</dimen>
-    <dimen name="fontSizeListItem">30sp</dimen>
     <dimen name="fontSizeItemCount">20sp</dimen>
     <dimen name="fontSizeListItem">24sp</dimen>
+    <dimen name="entryTextLineSpacingMultiplier">0.8</dimen>
 
 </resources>
