@@ -27,5 +27,6 @@
     <dimen name="entryTextLineSpacingMultiplier">0.8</dimen>
     <dimen name="entryItemCountTextMargin">8dp</dimen>
     <dimen name="entryThumbnailMargin">4dp</dimen>
+    <dimen name="sortRowIconMinDimen">48dp</dimen>
 
 </resources>
