@@ -33,6 +33,8 @@
     <dimen name="fragEditThumbnailSize">128dp</dimen>
     <dimen name="fragEditColorIconSize">48dp</dimen>
     <dimen name="fragEditColorPickMargin">16dp</dimen>
+    <dimen name="popupChoiceMinWidth">400dp</dimen>
+    <dimen name="popupChoiceMinHeight">200dp</dimen>
     <dimen name="captureCropSquareSize">256dp</dimen>
     <dimen name="captureButtonSize">96dp</dimen>
     <dimen name="captureMarginBottom">64dp</dimen>
