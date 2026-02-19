@@ -35,6 +35,10 @@
     <dimen name="fragEditColorPickMargin">16dp</dimen>
     <dimen name="popupChoiceMinWidth">400dp</dimen>
     <dimen name="popupChoiceMinHeight">200dp</dimen>
+    <dimen name="popupListMinWidth">300dp</dimen>
+    <dimen name="popupListMinHeight">400dp</dimen>
+    <dimen name="popupListTitleMargin">16dp</dimen>
+    <dimen name="popupListItemListMargin">24dp</dimen>
     <dimen name="captureCropSquareSize">256dp</dimen>
     <dimen name="captureButtonSize">96dp</dimen>
     <dimen name="captureMarginBottom">64dp</dimen>
