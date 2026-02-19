@@ -45,7 +45,7 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
     }
 
     private fun onColorClicked() {
-        ColorPickerDialog.Builder(context)
+        val builder = ColorPickerDialog.Builder(context)
             .setTitle("Container Color")
             .setPositiveButton("Apply", object: ColorEnvelopeListener {
                 override fun onColorSelected(envelope: ColorEnvelope, fromUser: Boolean) {
@@ -58,7 +58,13 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
                 }
             })
             .attachAlphaSlideBar(false)
-            .show()
+
+        val color =
+            if(getInitColor() != 0) getInitColor()
+            else requireContext().getColor(R.color.defaultContainer)
+        builder.colorPickerView.setInitialColor(color)
+
+        builder.show()
     }
 
     private fun setColor(@ColorInt color: Int) {

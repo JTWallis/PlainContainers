@@ -61,7 +61,6 @@ class AddContainerFragment: MetadataContainerFragment() {
     }
 
     override fun getInitColor(): Int {
-        // TODO: Add default color instead of 0
         return 0
     }
 
