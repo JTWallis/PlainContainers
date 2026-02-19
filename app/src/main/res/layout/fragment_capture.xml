@@ -6,20 +6,20 @@
 
     <View
         android:id="@+id/viewCaptureCrop"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
+        android:layout_width="@dimen/captureCropSquareSize"
+        android:layout_height="@dimen/captureCropSquareSize"
         android:background="@drawable/bg_outline_semitransparent"
         android:layout_gravity="center"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="@dimen/captureMarginBottom"
     />
 
     <Button
         android:id="@+id/btnCapture"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="@dimen/captureButtonSize"
+        android:layout_height="@dimen/captureButtonSize"
         android:background="@drawable/button_round"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="@dimen/captureMarginBottom"
     />
 
 </androidx.camera.view.PreviewView>
