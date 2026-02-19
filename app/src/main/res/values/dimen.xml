@@ -28,6 +28,10 @@
     <dimen name="entryItemCountTextMargin">8dp</dimen>
     <dimen name="entryThumbnailMargin">4dp</dimen>
     <dimen name="sortRowIconMinDimen">48dp</dimen>
+    <dimen name="fragEditThumbnailPadding">2dp</dimen>
+    <dimen name="fragEditThumbnailSize">128dp</dimen>
+    <dimen name="fragEditColorIconSize">48dp</dimen>
+    <dimen name="fragEditColorPickMargin">16dp</dimen>
     <dimen name="captureCropSquareSize">256dp</dimen>
     <dimen name="captureButtonSize">96dp</dimen>
     <dimen name="captureMarginBottom">64dp</dimen>
