@@ -2,11 +2,13 @@
 <resources>
     <dimen name="emptyDividerHeight">16dp</dimen>
     <dimen name="viewPadding">16dp</dimen>
+    <dimen name="viewPaddingSmall">8dp</dimen>
     <dimen name="horizontalBarHeight">4px</dimen>
     <dimen name="bgBorderThickness">2dp</dimen>
     <dimen name="cornerRadiusDefault">4dp</dimen>
     <dimen name="cornerRadiusSmall">2dp</dimen>
     <dimen name="borderThicknessSmall">2dp</dimen>
+    <dimen name="borderThicknessMedium">4dp</dimen>
     <dimen name="rcvEntryGap">12dp</dimen>
     <dimen name="rcvExpandedGap">6dp</dimen>
     <dimen name="paddingButton">4dp</dimen>
@@ -25,5 +27,21 @@
     <dimen name="fontSizeListItem">24sp</dimen>
     <dimen name="entryTextLineSpacingMultiplier">0.8</dimen>
     <dimen name="entryItemCountTextMargin">8dp</dimen>
+    <dimen name="entryThumbnailMargin">4dp</dimen>
+    <dimen name="sortRowIconMinDimen">48dp</dimen>
+    <dimen name="fragEditThumbnailPadding">2dp</dimen>
+    <dimen name="fragEditThumbnailSize">128dp</dimen>
+    <dimen name="fragEditColorIconSize">48dp</dimen>
+    <dimen name="fragEditColorPickMargin">16dp</dimen>
+    <dimen name="popupChoiceMinWidth">400dp</dimen>
+    <dimen name="popupChoiceMinHeight">200dp</dimen>
+    <dimen name="popupListMinWidth">300dp</dimen>
+    <dimen name="popupListMinHeight">400dp</dimen>
+    <dimen name="popupListTitleMargin">16dp</dimen>
+    <dimen name="popupListItemListMargin">24dp</dimen>
+    <dimen name="popupSelectionBackIconMinSize">32dp</dimen>
+    <dimen name="captureCropSquareSize">256dp</dimen>
+    <dimen name="captureButtonSize">96dp</dimen>
+    <dimen name="captureMarginBottom">64dp</dimen>
 
 </resources>

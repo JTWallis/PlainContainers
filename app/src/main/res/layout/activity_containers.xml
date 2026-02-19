@@ -113,7 +113,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/emptyDividerHeight"
-        android:padding="8dp"
+        android:padding="@dimen/viewPaddingSmall"
         android:clipToPadding="false"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_outline_rounded"

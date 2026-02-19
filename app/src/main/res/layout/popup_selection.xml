@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/backgroundDefault"
-        android:layout_margin="4dp"
+        android:layout_margin="@dimen/borderThicknessMedium"
         android:padding="@dimen/viewPadding"
         >
 
@@ -27,8 +27,8 @@
                 android:id="@+id/btnSelectionBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="32dp"
-                android:minHeight="32dp"
+                android:minWidth="@dimen/popupSelectionBackIconMinSize"
+                android:minHeight="@dimen/popupSelectionBackIconMinSize"
                 android:src="@drawable/arrow_small_left_24"
                 android:contentDescription="@string/accessibility_btn_dismiss_popup"
                 android:scaleType="centerCrop"
@@ -44,7 +44,7 @@
                 android:textAppearance="@style/Widget.PlainContainers.Text.Title"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/btnSelectionBack"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="@dimen/popupListTitleMargin"
             />
         </RelativeLayout>
 
@@ -56,9 +56,9 @@
                 android:id="@+id/lvPopupSelectionList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/popupListItemListMargin"
                 android:divider="@color/backgroundDefault"
-                android:dividerHeight="16dp"
+                android:dividerHeight="@dimen/emptyDividerHeight"
             />
 
             <Button
