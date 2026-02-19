@@ -33,7 +33,7 @@
             android:id="@+id/ivEntryThumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/beans"
+            android:src="@drawable/missing_image_24"
             android:contentDescription="@null"
             android:scaleType="fitCenter"
             android:padding="@dimen/borderThicknessSmall"
