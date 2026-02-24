@@ -16,6 +16,7 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -27,6 +28,7 @@ import java.io.Serializable
 
 class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
 
+    private lateinit var previewView: PreviewView
     private lateinit var viewCrop: View
     private lateinit var btnCapture: Button
     private lateinit var imageCapture: ImageCapture
@@ -37,6 +39,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
     }
 
     override fun initViews(view: View) {
+        previewView = view.findViewById(R.id.previewCapture)
         viewCrop = view.findViewById(R.id.viewCaptureCrop)
         btnCapture = view.findViewById(R.id.btnCapture)
         btnCapture.setOnClickListener { takePhoto() }
@@ -47,6 +50,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
         camProviderFuture.addListener({
             val camProvider = camProviderFuture.get()
             val preview = Preview.Builder().build()
+            preview.surfaceProvider = previewView.surfaceProvider
             val camSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             camProvider.unbindAll()
