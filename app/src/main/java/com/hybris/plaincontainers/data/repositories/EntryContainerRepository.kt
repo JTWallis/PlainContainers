@@ -45,7 +45,14 @@ class EntryContainerRepository: EntryBaseRepository<EntryContainer, EntryContain
     }
 
     suspend fun insertSorted(container: EntryContainer) {
+        val sortPos = count() + 1
 
+        val containerInsert = EntryContainerBuilder.from(
+            container,
+            sortPosition = sortPos
+        )
+
+        insert(containerInsert)
     }
 
     suspend fun updateSortParams(containerId: Long, sortOptionOrdinal: Int, isAscending: Boolean) {
