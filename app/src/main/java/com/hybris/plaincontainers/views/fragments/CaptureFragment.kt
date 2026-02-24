@@ -122,11 +122,14 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
     }
 
     private fun cropBitmap(bitmap: Bitmap): Bitmap {
+        val widthRatio = bitmap.width.toFloat() / requireView().width.toFloat()
+        val heightRatio =  bitmap.height.toFloat() / requireView().height.toFloat()
+
         val rect = Rect(
-            viewCrop.left.coerceAtLeast(0),
-            viewCrop.top.coerceAtLeast(0),
-            viewCrop.right.coerceAtMost(bitmap.width),
-            viewCrop.bottom.coerceAtMost(bitmap.height)
+            (viewCrop.left.coerceAtLeast(0) * widthRatio).toInt(),
+            (viewCrop.top.coerceAtLeast(0) * heightRatio).toInt(),
+            (viewCrop.right.coerceAtMost(bitmap.width) * widthRatio).toInt(),
+            (viewCrop.bottom.coerceAtMost(bitmap.height) * heightRatio).toInt()
         )
 
         return Bitmap.createBitmap(
