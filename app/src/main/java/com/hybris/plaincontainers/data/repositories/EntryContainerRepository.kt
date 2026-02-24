@@ -1,6 +1,7 @@
 package com.hybris.plaincontainers.data.repositories
 
 import com.hybris.plaincontainers.data.AppDatabaseManager
+import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
 import com.hybris.plaincontainers.data.daos.EntryContainerDao
 import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.views.sortpopup.SortOption
@@ -41,6 +42,17 @@ class EntryContainerRepository: EntryBaseRepository<EntryContainer, EntryContain
                 }
             }
         }
+    }
+
+    suspend fun insertSorted(container: EntryContainer) {
+        val sortPos = count() + 1
+
+        val containerInsert = EntryContainerBuilder.from(
+            container,
+            sortPosition = sortPos
+        )
+
+        insert(containerInsert)
     }
 
     suspend fun updateSortParams(containerId: Long, sortOptionOrdinal: Int, isAscending: Boolean) {
