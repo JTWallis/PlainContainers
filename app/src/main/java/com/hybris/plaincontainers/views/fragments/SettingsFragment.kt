@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.ItemCountZeroBehavior
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.SupportedLocale
+import com.hybris.plaincontainers.data.appbar.AppBarViewModel
 import com.hybris.plaincontainers.views.selectionpopup.SelectionPopup
+import kotlin.getValue
 
 class SettingsFragment: Fragment(R.layout.fragment_settings) {
+    private val appbarVm: AppBarViewModel by activityViewModels()
     private lateinit var btnChangeLanguage: Button
     private lateinit var btnChangeZeroItemCount: Button
 
@@ -19,6 +23,8 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         initListeners()
+
+        appbarVm.setModelEmpty()
     }
 
     private fun initViews(view: View) {

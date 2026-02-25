@@ -5,4 +5,10 @@ import androidx.lifecycle.ViewModel
 
 class AppBarViewModel: ViewModel() {
     val model = MutableLiveData<AppBarModel>()
+
+    fun setModelEmpty() {
+        model.value = AppBarModel(
+            subtitle = ""
+        )
+    }
 }
