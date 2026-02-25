@@ -29,5 +29,6 @@
     <color name="textColorImportant">@color/red</color>
     <color name="defaultBorderEntry">@color/backgroundHighlight</color>
     <color name="defaultBorderThumbnail">@color/black</color>
+    <color name="defaultBgDrag">@color/backgroundFill</color>
     <color name="defaultContainer">@color/defaultBorderEntry</color>
 </resources>
