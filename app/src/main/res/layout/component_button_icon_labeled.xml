@@ -18,5 +18,8 @@
         android:text="Labeled Button"
         android:textAppearance="@style/Widget.PlainContainers.Text.Button.Labeled"
         android:textAlignment="textStart"
+        android:lineSpacingMultiplier="@dimen/fontLineSpacingMultiplier"
+        android:maxLines="2"
+        android:ellipsize="end"
     />
 </androidx.cardview.widget.CardView>
