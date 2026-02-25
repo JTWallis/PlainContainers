@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -41,6 +42,7 @@ class EntryDragExpandViewHolder(
     private val rcvItems = view.findViewById<RecyclerView>(R.id.rcvItems)
     private val layoutEntry = view.findViewById<ConstraintLayout>(R.id.clInner)
     private val layoutThumbnail = view.findViewById<CardView>(R.id.cvEntryThumbnailBorder)
+    private val wrapperDrag = view.findViewById<FrameLayout>(R.id.wrapperDrag)
 
     private val expandItemsAdapter = EntryExpandItemsAdapter()
 
