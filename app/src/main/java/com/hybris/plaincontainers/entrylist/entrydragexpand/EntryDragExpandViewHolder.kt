@@ -70,9 +70,11 @@ class EntryDragExpandViewHolder(
         if(item.color != 0) {
             setEntryBorderColor(item.color)
             setThumbnailBorderColor(item.color)
+            setDragBackgroundColor(item.color)
         } else {
             setEntryBorderColor(itemView.context.getColor(R.color.defaultBorderEntry))
             setThumbnailBorderColor(itemView.context.getColor(R.color.defaultBorderThumbnail))
+            setDragBackgroundColor(itemView.context.getColor(R.color.defaultBgDrag))
         }
 
         val viewModel = DragExpandViewModel(item.containerId)
@@ -110,5 +112,9 @@ class EntryDragExpandViewHolder(
 
     private fun setThumbnailBorderColor(@ColorInt color: Int) {
         layoutThumbnail.setBackgroundColor(color)
+    }
+
+    private fun setDragBackgroundColor(@ColorInt color: Int) {
+        wrapperDrag.setBackgroundColor(color)
     }
 }
