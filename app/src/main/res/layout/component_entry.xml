@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:text="Sample Text"
         android:textAppearance="@style/Widget.PlainContainers.Text.ItemEntry"
-        android:lineSpacingMultiplier="@dimen/entryTextLineSpacingMultiplier"
+        android:lineSpacingMultiplier="@dimen/fontLineSpacingMultiplier"
         android:maxLines="@integer/entryTextMaxLines"
         android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/guideline1"
