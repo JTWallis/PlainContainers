@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
+import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import kotlin.getValue
 
 class AboutFragment: Fragment(R.layout.fragment_about) {
+    private val appbarVm: AppBarViewModel by activityViewModels()
     private lateinit var btnLicenses: Button
     private lateinit var btnVersion: Button
 
@@ -15,6 +19,8 @@ class AboutFragment: Fragment(R.layout.fragment_about) {
         super.onViewCreated(view, savedInstanceState)
         initViews(view)
         initListeners()
+
+        appbarVm.setModelEmpty()
     }
 
     private fun initViews(view: View) {
