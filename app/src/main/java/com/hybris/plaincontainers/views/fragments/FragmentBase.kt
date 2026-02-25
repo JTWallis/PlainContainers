@@ -32,9 +32,7 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         initPackageData()
         initViews(view)
 
-        appbarVm.model.value = AppBarModel(
-            subtitle = ""
-        )
+        appbarVm.setModelEmpty()
     }
 
     protected abstract fun initViews(view: View)
