@@ -63,6 +63,14 @@ object FileUtils {
         return Bitmap.createScaledBitmap(bitmap, width, height, true)
     }
 
+    fun storeBarcodeThumbnail(barcode: String, bytes: ByteArray): Uri {
+        val file = File(getPhotosPath(context_), "barcode_${barcode}.jpg")
+        if(!file.exists()) {
+            file.writeBytes(bytes)
+        }
+
+        return file.toUri()
+    }
 
     fun isValidUri(uri: Uri?): Boolean {
         if(uri == null || uri == Uri.EMPTY) return false
