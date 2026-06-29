@@ -69,6 +69,7 @@
     <string name="accessibility_btn_increment">Increase quantity</string>
     <string name="accessibility_btn_decrement">Decrease quantity</string>
     <string name="accessibility_btn_dismiss_popup">Cancel</string>
+    <string name="accessibility_btn_camera_switch">Switch camera view</string>
     <string name="accessibility_iv_change_photo">Change photo</string>
     <string name="accessibility_iv_change_color">Change color</string>
     <string name="accessibility_icon_ascending">Ascending order</string>
