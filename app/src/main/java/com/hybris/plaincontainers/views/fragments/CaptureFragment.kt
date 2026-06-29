@@ -1,108 +1,32 @@
 package com.hybris.plaincontainers.views.fragments
 
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.graphics.Rect
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.view.PreviewView
+import androidx.camera.core.UseCase
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.FileUtils
-import java.io.File
-import java.io.Serializable
 
 
-class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
-
-    private lateinit var previewView: PreviewView
-    private lateinit var viewCrop: View
-    private lateinit var btnCapture: Button
-    private lateinit var imageCapture: ImageCapture
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        checkRequestPermission()
-    }
+class CaptureFragment : CameraFragmentBase() {
 
     override fun initViews(view: View) {
-        previewView = view.findViewById(R.id.previewCapture)
-        viewCrop = view.findViewById(R.id.viewCaptureCrop)
-        btnCapture = view.findViewById(R.id.btnCapture)
+        super.initViews(view)
         btnCapture.setOnClickListener { takePhoto() }
     }
 
-    private fun initCameraProvider() {
-        val camProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-        camProviderFuture.addListener({
-            val camProvider = camProviderFuture.get()
-            val preview = Preview.Builder().build()
-            preview.surfaceProvider = previewView.surfaceProvider
-            val camSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-            camProvider.unbindAll()
-            camProvider.bindToLifecycle(
-                viewLifecycleOwner,
-                camSelector,
-                preview,
-                imageCapture
-            )
-        }, ContextCompat.getMainExecutor(requireContext()))
-    }
-
-    private fun startCamera() {
-        imageCapture = ImageCapture.Builder()
+    override fun buildUseCase(): UseCase {
+        return ImageCapture.Builder()
             .setTargetRotation(view!!.display.rotation)
             .build()
-
-        initCameraProvider()
-    }
-
-    private fun checkRequestPermission() {
-        val cameraPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()) { granted ->
-            if(granted) startCamera()
-            else onPermissionDenied()
-        }
-
-        val permission = android.Manifest.permission.CAMERA
-
-        when {
-            ContextCompat.checkSelfPermission(
-                requireContext(), permission
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                startCamera()
-            }
-            shouldShowRequestPermissionRationale(permission) -> {
-                onPermissionDenied()
-            }
-            else -> {
-                cameraPermissionLauncher.launch(permission)
-            }
-        }
-    }
-
-    private fun onPermissionDenied() {
-        val deniedPermission = true
-        parentFragmentManager.setFragmentResult(
-            "capture_permission",
-            bundleOf("capture_permission_denied" to deniedPermission)
-        )
-
-        findNavController().navigateUp()
     }
 
     private fun createBitmapFromImageProxy(image: ImageProxy): Bitmap {
@@ -142,7 +66,7 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
     }
 
     fun takePhoto() {
-        imageCapture.takePicture(
+        (useCase as ImageCapture).takePicture(
             ContextCompat.getMainExecutor(requireContext()),
             object: ImageCapture.OnImageCapturedCallback() {
                 override fun onCaptureSuccess(image: ImageProxy) {
@@ -167,12 +91,5 @@ class CaptureFragment : FragmentBase(R.layout.fragment_capture) {
                 }
             }
         )
-    }
-
-
-    override fun initPackageData() {}
-
-    override fun getContainerPackage(): Serializable {
-        return object: Serializable {}
     }
 }
