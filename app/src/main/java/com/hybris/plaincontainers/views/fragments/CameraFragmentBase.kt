@@ -31,6 +31,13 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
         super.onViewCreated(view, savedInstanceState)
         useCase = buildUseCase()
         checkRequestPermission()
+
+        // Disable switch for devices without front cameras
+        // Perform check last, as calling ProcessCameraProvider.getInstance.get blocks thread
+        if(!hasFrontCamera()) {
+            btnSwitchView.isEnabled = false
+            btnSwitchView.visibility = View.GONE
+        }
     }
 
     override fun initViews(view: View) {
@@ -99,6 +106,13 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
         )
 
         findNavController().navigateUp()
+    }
+
+    private fun hasFrontCamera(): Boolean {
+        return ProcessCameraProvider
+            .getInstance(requireContext())
+            .get()
+            .hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA)
     }
 
     override fun initPackageData() {}
