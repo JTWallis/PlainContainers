@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
@@ -35,7 +36,7 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
     override fun initViews(view: View) {
         previewView = view.findViewById(R.id.previewCapture)
         viewCrop = view.findViewById(R.id.viewCaptureCrop)
-        btnCapture = view.findViewById(R.id.btnCapture)
+        btnCapture = view.findViewById(R.id.btnCaptureSnap)
         btnSwitchView = view.findViewById(R.id.btnCaptureSwitch)
 
         btnSwitchView.setOnClickListener {

@@ -29,9 +29,9 @@
     />
 
     <Button
-        android:id="@+id/btnCapture"
-        android:layout_width="@dimen/captureButtonSize"
-        android:layout_height="@dimen/captureButtonSize"
+        android:id="@+id/btnCaptureSnap"
+        android:layout_width="@dimen/captureButtonSnapSize"
+        android:layout_height="@dimen/captureButtonSnapSize"
         android:background="@drawable/button_round"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="@dimen/captureMarginBottom"
@@ -50,9 +50,9 @@
         android:padding="@dimen/captureButtonSwitchPadding"
         android:background="@drawable/button_round"
         android:contentDescription="@string/accessibility_btn_camera_switch"
-        app:layout_constraintTop_toTopOf="@id/btnCapture"
-        app:layout_constraintBottom_toBottomOf="@id/btnCapture"
-        app:layout_constraintStart_toEndOf="@id/btnCapture"
+        app:layout_constraintTop_toTopOf="@id/btnCaptureSnap"
+        app:layout_constraintBottom_toBottomOf="@id/btnCaptureSnap"
+        app:layout_constraintStart_toEndOf="@id/btnCaptureSnap"
         app:layout_constraintEnd_toEndOf="parent"
     />
 </androidx.constraintlayout.widget.ConstraintLayout>
