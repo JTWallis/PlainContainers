@@ -2,6 +2,7 @@ package com.hybris.plaincontainers.views.sortpopup
 
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.TextView
 import com.hybris.plaincontainers.R
@@ -15,6 +16,7 @@ class SortPopup(
 
     private val txtTitle = contentView.findViewById<TextView>(R.id.txtPopupListTitle)
     private val list = contentView.findViewById<ListView>(R.id.lvPopupList)
+    private val btnBack = contentView.findViewById<ImageButton>(R.id.btnPopupListBack)
 
     private val sortOptions: Array<String> =
         SortOption.entries.map { e -> invokerView.context.getString(e.sortLabelId) }
@@ -29,6 +31,7 @@ class SortPopup(
 
     init {
         list.adapter = adapter
+        btnBack.setOnClickListener { dismiss() }
     }
 
     fun setTitle(text: String) {

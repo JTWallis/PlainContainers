@@ -2,6 +2,7 @@ package com.hybris.plaincontainers.views.choicepopup
 
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
@@ -22,11 +23,16 @@ open class ChoicePopup(
 
     private val tvTitle = contentView.findViewById<TextView>(titleRes)
     protected val tvSubtitle = contentView.findViewById<TextView>(subtitleRes)!!
+    private val btnBack = contentView.findViewById<ImageButton>(R.id.btnPopupChoiceBack)
     private val btnChoiceLeft = contentView.findViewById<Button>(btnLeftRes)
     private val btnChoiceRight = contentView.findViewById<Button>(btnRightRes)
 
     init {
         tvSubtitle.text = ""
+
+        btnBack.setOnClickListener {
+            dismiss()
+        }
 
         btnChoiceLeft.setOnClickListener {
             onClickLeftDelegate()
