@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
@@ -20,7 +21,9 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
     protected lateinit var previewView: PreviewView
     protected lateinit var viewCrop: View
     protected lateinit var btnCapture: Button
+    private lateinit var btnSwitchView: ImageButton
     protected lateinit var useCase: UseCase
+    private var isBackCamera: Boolean = true
 
     protected abstract fun buildUseCase(): UseCase
 
@@ -28,12 +31,27 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
         super.onViewCreated(view, savedInstanceState)
         useCase = buildUseCase()
         checkRequestPermission()
+
+        // Disable switch for devices without front cameras
+        // Perform check last, as calling ProcessCameraProvider.getInstance.get blocks thread
+        if(!hasFrontCamera()) {
+            btnSwitchView.isEnabled = false
+            btnSwitchView.visibility = View.GONE
+        }
     }
 
     override fun initViews(view: View) {
         previewView = view.findViewById(R.id.previewCapture)
         viewCrop = view.findViewById(R.id.viewCaptureCrop)
-        btnCapture = view.findViewById(R.id.btnCapture)
+        btnCapture = view.findViewById(R.id.btnCaptureSnap)
+        btnSwitchView = view.findViewById(R.id.btnCaptureSwitch)
+
+        btnSwitchView.setOnClickListener {
+            isBackCamera = !isBackCamera
+
+            // Safe to call again, as CamProvider cleanup already done in startCamera
+            startCamera()
+        }
     }
 
     protected fun startCamera() {
@@ -42,7 +60,9 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
             val camProvider = camProviderFuture.get()
             val preview = Preview.Builder().build()
             preview.surfaceProvider = previewView.surfaceProvider
-            val camSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val camSelector =
+                if(isBackCamera) CameraSelector.DEFAULT_BACK_CAMERA
+                else CameraSelector.DEFAULT_FRONT_CAMERA
 
             camProvider.unbindAll()
             camProvider.bindToLifecycle(
@@ -86,6 +106,13 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
         )
 
         findNavController().navigateUp()
+    }
+
+    private fun hasFrontCamera(): Boolean {
+        return ProcessCameraProvider
+            .getInstance(requireContext())
+            .get()
+            .hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA)
     }
 
     override fun initPackageData() {}
