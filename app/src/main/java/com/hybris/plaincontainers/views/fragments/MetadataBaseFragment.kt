@@ -188,6 +188,19 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
     }
 
+    protected fun setName(text: String) {
+        etName.setText(text)
+    }
+
+    protected fun setDescription(text: String) {
+        etDescription.setText(text)
+    }
+
+    protected fun setPhotoUri(text: Uri) {
+        uriPhoto = text
+        updatePhotoFromUri()
+    }
+
     protected fun getName(): String {
         return etName.text.toString()
     }
