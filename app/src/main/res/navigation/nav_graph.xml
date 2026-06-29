@@ -118,6 +118,11 @@
             android:id="@+id/action_add_item_to_capture"
             app:destination="@id/captureFragment"
         />
+
+        <action
+            android:id="@+id/action_add_item_to_barcode"
+            app:destination="@id/barcodeFragment"
+        />
     </fragment>
     <fragment
         android:id="@+id/editItemFragment"
@@ -142,6 +147,12 @@
         android:label="@string/appbar_title_capture" >
 
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/barcodeFragment"
+        android:name="com.hybris.plaincontainers.views.fragments.BarcodeFragment"
+        android:label="BarcodeFragment">
     </fragment>
 
 
