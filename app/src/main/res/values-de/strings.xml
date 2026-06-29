@@ -59,6 +59,7 @@
 
     <string name="about_licenses">Lizensen</string>
     <string name="about_version">Version</string>
+    <string name="license_flaticons">Diese App verwendet Symbole von der UIcons Bibliothek.\nDiese sind verfügbar auf Flaticon von Magnific:</string>
     <string name="license_apache">Diese App verwendet Open-Source-Bibliotheken, die unter der Apache-Lizenz 2.0 lizensiert sind:</string>
 
     <string name="accessibility_btn_drag">Drag &amp; Drop zum Umordnen</string>
