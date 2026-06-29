@@ -1,5 +1,6 @@
 package com.hybris.plaincontainers.data.viewmodels
 
+import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -43,12 +44,13 @@ class AddItemViewModel(containerId: Long) : ViewModel() {
     }
 
     fun fetchBarcodeThumbnail(
+        context: Context,
         barcode: String,
         successCallback: (uri: Uri) -> Unit,
         failCallback: (error: String) -> Unit
     ) {
         viewModelScope.launch {
-            HttpManager.fetchBarcodeThumbnail(barcode)
+            HttpManager.fetchBarcodeThumbnail(context, barcode)
                 .onSuccess { uri -> successCallback(uri) }
                 .onFailure { e ->
                     Log.e("PLAIN", "Fetch thumbnail error ${e.message}")

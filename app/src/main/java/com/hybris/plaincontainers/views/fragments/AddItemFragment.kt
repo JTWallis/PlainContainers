@@ -56,6 +56,7 @@ class AddItemFragment() : MetadataBaseFragment() {
         )
 
         viewModel.fetchBarcodeThumbnail(
+            requireContext(),
             barcode,
             { uri -> onBarcodeThumbnailSuccess(uri) },
             { error -> onBarcodeThumbnailFail(error) }

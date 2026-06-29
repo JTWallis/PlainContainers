@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         JsonManager.init(this)
         AppDatabaseManager.init(this)
-        FileUtils.init(this)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController

@@ -1,5 +1,6 @@
 package com.hybris.plaincontainers.data
 
+import android.content.Context
 import android.net.Uri
 import android.net.http.HttpException
 import com.hybris.plaincontainers.data.model.BarcodeMetadata
@@ -39,13 +40,13 @@ object HttpManager {
         }
     }
 
-    suspend fun fetchBarcodeThumbnail(barcode: String): Result<Uri> {
+    suspend fun fetchBarcodeThumbnail(context: Context, barcode: String): Result<Uri> {
         return withContext(Dispatchers.IO) {
             runCatching {
                 val url = URL("${URL_BASE}barcode/thumbnail/${barcode}")
                 val connection = fetch(url)
                 val body = connection.getInputStream().readBytes()
-                FileUtils.storeBarcodeThumbnail(barcode, body)
+                FileUtils.storeBarcodeThumbnail(context, barcode, body)
             }
         }
     }

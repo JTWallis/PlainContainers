@@ -10,12 +10,6 @@ import java.io.File
 
 object FileUtils {
 
-    private lateinit var context_: Context
-
-    fun init(context: Context) {
-        context_ = context
-    }
-
     fun getRootPath(context: Context): String {
         return context.filesDir.path
     }
@@ -69,8 +63,8 @@ object FileUtils {
         return Bitmap.createScaledBitmap(bitmap, width, height, true)
     }
 
-    fun storeBarcodeThumbnail(barcode: String, bytes: ByteArray): Uri {
-        val file = File(getPhotosPath(context_), "barcode_${barcode}.jpg")
+    fun storeBarcodeThumbnail(context: Context, barcode: String, bytes: ByteArray): Uri {
+        val file = File(getPhotosPath(context), "barcode_${barcode}.jpg")
         if(!file.exists()) {
             file.writeBytes(bytes)
         }
