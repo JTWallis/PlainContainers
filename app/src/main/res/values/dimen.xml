@@ -42,6 +42,8 @@
     <dimen name="popupSelectionBackIconMinSize">32dp</dimen>
     <dimen name="captureCropSquareSize">256dp</dimen>
     <dimen name="captureButtonSize">96dp</dimen>
+    <dimen name="captureButtonSwitchSize">64dp</dimen>
+    <dimen name="captureButtonSwitchPadding">8dp</dimen>
     <dimen name="captureMarginBottom">64dp</dimen>
 
 </resources>
