@@ -20,7 +20,9 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
     protected lateinit var previewView: PreviewView
     protected lateinit var viewCrop: View
     protected lateinit var btnCapture: Button
+    private lateinit var btnSwitchView: ImageButton
     protected lateinit var useCase: UseCase
+    private var isBackCamera: Boolean = true
 
     protected abstract fun buildUseCase(): UseCase
 
@@ -34,6 +36,14 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
         previewView = view.findViewById(R.id.previewCapture)
         viewCrop = view.findViewById(R.id.viewCaptureCrop)
         btnCapture = view.findViewById(R.id.btnCapture)
+        btnSwitchView = view.findViewById(R.id.btnCaptureSwitch)
+
+        btnSwitchView.setOnClickListener {
+            isBackCamera = !isBackCamera
+
+            // Safe to call again, as CamProvider cleanup already done in startCamera
+            startCamera()
+        }
     }
 
     protected fun startCamera() {
@@ -42,7 +52,9 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
             val camProvider = camProviderFuture.get()
             val preview = Preview.Builder().build()
             preview.surfaceProvider = previewView.surfaceProvider
-            val camSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val camSelector =
+                if(isBackCamera) CameraSelector.DEFAULT_BACK_CAMERA
+                else CameraSelector.DEFAULT_FRONT_CAMERA
 
             camProvider.unbindAll()
             camProvider.bindToLifecycle(
