@@ -11,15 +11,23 @@ import java.io.Serializable
 class AddItemFragment() : MetadataBaseFragment() {
     private var containerId: Long = -1
     private lateinit var viewModel: AddItemViewModel
+    private var navigateBarcodeFrag: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewFillData()
+
+        if(navigateBarcodeFrag) {
+            findNavController().navigate(R.id.action_add_item_to_barcode)
+        }
     }
 
     override fun initPackageData() {
         val fragArgs = getContainerPackage() as AddItemFragmentArg
         containerId = fragArgs.containerId
+        navigateBarcodeFrag = fragArgs.navigateBarcodeFrag
+        fragArgs.navigateBarcodeFrag = false
+
         viewModel = AddItemViewModel(containerId)
     }
 
