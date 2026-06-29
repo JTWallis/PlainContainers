@@ -1,8 +1,12 @@
 package com.hybris.plaincontainers.data.viewmodels
 
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hybris.plaincontainers.data.HttpManager
 import com.hybris.plaincontainers.data.entities.EntryItem
+import com.hybris.plaincontainers.data.model.BarcodeMetadata
 import com.hybris.plaincontainers.data.repositories.EntryItemRepository
 import kotlinx.coroutines.launch
 
@@ -15,4 +19,41 @@ class AddItemViewModel(containerId: Long) : ViewModel() {
         }
     }
 
+    fun fetchBarcodeMetadata(
+        barcode: String,
+        successCallback: (metadata: BarcodeMetadata) -> Unit,
+        failCallback: (error: String) -> Unit
+    ) {
+        viewModelScope.launch {
+            HttpManager.fetchBarcodeMetadata(barcode)
+                .onSuccess { metadata ->
+                    if(metadata.productName.isEmpty()) {
+                        failCallback("Unknown error")
+                    } else if(metadata.productName == "error") {
+                        failCallback(metadata.productDescription)
+                    } else {
+                        successCallback(metadata)
+                    }
+                }
+                .onFailure { e ->
+                    Log.e("PLAIN", "Fetch error ${e.message}")
+                    failCallback("Could not fetch")
+                }
+        }
+    }
+
+    fun fetchBarcodeThumbnail(
+        barcode: String,
+        successCallback: (uri: Uri) -> Unit,
+        failCallback: (error: String) -> Unit
+    ) {
+        viewModelScope.launch {
+            HttpManager.fetchBarcodeThumbnail(barcode)
+                .onSuccess { uri -> successCallback(uri) }
+                .onFailure { e ->
+                    Log.e("PLAIN", "Fetch thumbnail error ${e.message}")
+                    failCallback("Could not fetch thumbnail")
+                }
+        }
+    }
 }
