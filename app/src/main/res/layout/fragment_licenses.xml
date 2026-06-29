@@ -35,6 +35,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAppearance="@style/Widget.PlainContainers.Text.Title.Bold"
+            android:text="@string/license_flaticons"
+        />
+
+        <TextView
+            android:id="@+id/tvLicensesFlatIcons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/Widget.PlainContainers.Text.Default"
+            android:autoLink="web"
+        />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/horizontalBarHeight"
+            android:background="@color/lightgray"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/Widget.PlainContainers.Text.Title.Bold"
             android:text="@string/license_apache"
         />
 
