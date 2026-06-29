@@ -3,6 +3,7 @@ package com.hybris.plaincontainers.views.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
 import com.hybris.plaincontainers.data.entities.EntryItem
 import com.hybris.plaincontainers.data.viewmodels.AddItemViewModel
@@ -29,6 +30,22 @@ class AddItemFragment() : MetadataBaseFragment() {
         fragArgs.navigateBarcodeFrag = false
 
         viewModel = AddItemViewModel(containerId)
+    }
+
+    override fun initListeners() {
+        super.initListeners()
+
+        parentFragmentManager.setFragmentResultListener(
+            "barcode_result",
+            this
+        ) {_, bundle ->
+            val text = bundle.getString("barcode_text")
+            if(text != null) onBarcodeReceived(text)
+        }
+    }
+
+    private fun onBarcodeReceived(barcode: String) {
+
     }
 
     override fun onBtnConfirmClick() {
