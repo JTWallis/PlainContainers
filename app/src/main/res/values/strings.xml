@@ -38,6 +38,7 @@
     <string name="metadata_popup_delete_confirm">Delete!</string>
 
     <string name="popup_warning_camera_permission_denied">Need camera permission in order to capture photos.</string>
+    <string name="popup_warning_barcode_metadata_fail">Could not get data for this barcode.</string>
 
     <string name="popup_sort_title">Sort by:</string>
     <string name="popup_sort_entry_name">Name</string>

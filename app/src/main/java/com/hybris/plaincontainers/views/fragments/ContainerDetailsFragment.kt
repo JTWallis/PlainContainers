@@ -179,7 +179,9 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
     }
 
     private fun onBtnAddBarcodeClicked() {
-
+        val fragArg = AddItemFragmentArg(containerId, true)
+        val bundle = bundleOf("add_item_frag_arg" to fragArg)
+        findNavController().navigate(R.id.action_detail_to_add_item, args = bundle)
     }
 
     override fun getContainerPackage(): Serializable {
