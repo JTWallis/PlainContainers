@@ -40,4 +40,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
     />
+    
+    <ImageButton
+        android:id="@+id/btnCaptureSwitch"
+        android:layout_width="@dimen/captureButtonSwitchSize"
+        android:layout_height="@dimen/captureButtonSwitchSize"
+        android:src="@drawable/refresh_24"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/captureButtonSwitchPadding"
+        android:background="@drawable/button_round"
+        android:contentDescription="@string/accessibility_btn_camera_switch"
+        app:layout_constraintTop_toTopOf="@id/btnCapture"
+        app:layout_constraintBottom_toBottomOf="@id/btnCapture"
+        app:layout_constraintStart_toEndOf="@id/btnCapture"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
