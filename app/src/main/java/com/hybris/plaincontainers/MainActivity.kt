@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.hybris.plaincontainers.data.AppDatabaseManager
+import com.hybris.plaincontainers.data.FileUtils
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         JsonManager.init(this)
         AppDatabaseManager.init(this)
+        FileUtils.init(this)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController

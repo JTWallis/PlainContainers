@@ -10,6 +10,12 @@ import java.io.File
 
 object FileUtils {
 
+    private lateinit var context_: Context
+
+    fun init(context: Context) {
+        context_ = context
+    }
+
     fun getRootPath(context: Context): String {
         return context.filesDir.path
     }
