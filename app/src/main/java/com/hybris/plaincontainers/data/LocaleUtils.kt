@@ -6,7 +6,7 @@ import java.util.Locale
 
 object LocaleUtils {
 
-    private val SELECTED_LANG = "Locale.Helper.Selected.Language"
+    private const val SELECTED_LANG = "Locale.Helper.Selected.Language"
 
     fun setLocale(context: Context, supportedLocale: SupportedLocale): Context {
         val language = supportedLocale.toLanguageTag()
