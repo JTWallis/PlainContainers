@@ -2,7 +2,7 @@
 An Android app, used to keep track of item organization within a home container (e.g. cupboards, drawers, etc.).
 
 # License
-```xml
+```
 Copyright 2026 Justin Wallis
 
 Licensed under the Apache License, Version 2.0 (the "License");
