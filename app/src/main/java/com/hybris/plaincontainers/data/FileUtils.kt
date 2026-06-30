@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.core.net.toFile
 import androidx.core.net.toUri
 import java.io.File
+import androidx.core.graphics.scale
 
 object FileUtils {
 
@@ -60,7 +61,7 @@ object FileUtils {
             height = (height / scaleFactor).toInt()
         }
 
-        return Bitmap.createScaledBitmap(bitmap, width, height, true)
+        return bitmap.scale(width, height)
     }
 
     fun storeBarcodeThumbnail(context: Context, barcode: String, bytes: ByteArray): Uri {
