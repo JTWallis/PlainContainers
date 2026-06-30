@@ -53,6 +53,7 @@ class SortPopupAdapter(
         if(position in invisibleIconPositions) {
             iv.visibility = View.INVISIBLE
         } else {
+            // Set "arrow"-icon and accessibility text
             @DrawableRes var imageResource: Int
             @StringRes var contentDescriptionId: Int
 
