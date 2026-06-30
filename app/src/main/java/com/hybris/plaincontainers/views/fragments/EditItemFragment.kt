@@ -105,7 +105,10 @@ class EditItemFragment() : MetadataBaseFragment() {
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("edit_item_frag_arg", EditItemFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_edit_item),
+            EditItemFragmentArg::class.java
+        )
     }
 
     override fun hasBtnDelete(): Boolean {

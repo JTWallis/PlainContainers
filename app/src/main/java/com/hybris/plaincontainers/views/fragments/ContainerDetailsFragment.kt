@@ -102,7 +102,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
             containerId
         )
 
-        val bundle = bundleOf("edit_container_frag_arg" to fragArg)
+        val bundle = bundleOf(getString(R.string.frag_arg_edit_container) to fragArg)
 
         findNavController().navigate(R.id.action_detail_to_edit_container, args = bundle)
     }
@@ -124,7 +124,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
     override fun onItemEntryClicked(listPosition: Int) {
         val itemId = viewModel.items.value[listPosition].item.itemId
         val fragArg = EditItemFragmentArg(containerId, itemId)
-        val bundle = bundleOf("edit_item_frag_arg" to fragArg)
+        val bundle = bundleOf(getString(R.string.frag_arg_edit_item) to fragArg)
         findNavController().navigate(R.id.action_detail_to_edit_item, args = bundle)
     }
 
@@ -174,18 +174,21 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
 
     private fun onBtnAddManualClicked() {
         val fragArg = AddItemFragmentArg(containerId)
-        val bundle = bundleOf("add_item_frag_arg" to fragArg)
+        val bundle = bundleOf(getString(R.string.frag_arg_add_item) to fragArg)
         findNavController().navigate(R.id.action_detail_to_add_item, args = bundle)
     }
 
     private fun onBtnAddBarcodeClicked() {
         val fragArg = AddItemFragmentArg(containerId, true)
-        val bundle = bundleOf("add_item_frag_arg" to fragArg)
+        val bundle = bundleOf(getString(R.string.frag_arg_add_item) to fragArg)
         findNavController().navigate(R.id.action_detail_to_add_item, args = bundle)
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("container_frag_arg", ContainerFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_container),
+            ContainerFragmentArg::class.java
+        )
     }
 
     override fun hasEditButton(): Boolean {

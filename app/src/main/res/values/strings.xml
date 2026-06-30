@@ -77,4 +77,9 @@
     <string name="accessibility_iv_change_color">Change color</string>
     <string name="accessibility_icon_ascending">Ascending order</string>
     <string name="accessibility_icon_descending">Descending order</string>
+
+    <string name="frag_arg_add_item" translatable="false">frag_arg_add_item</string>
+    <string name="frag_arg_container" translatable="false">frag_arg_container</string>
+    <string name="frag_arg_edit_container" translatable="false">frag_arg_edit_container</string>
+    <string name="frag_arg_edit_item" translatable="false">frag_arg_edit_item</string>
 </resources>

@@ -119,6 +119,9 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("edit_container_frag_arg", EditContainerFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_edit_container),
+            EditContainerFragmentArg::class.java
+        )
     }
 }

@@ -115,7 +115,10 @@ class AddItemFragment() : MetadataBaseFragment() {
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("add_item_frag_arg", AddItemFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_add_item),
+            AddItemFragmentArg::class.java
+        )
     }
 
     override fun hasBtnDelete(): Boolean {
