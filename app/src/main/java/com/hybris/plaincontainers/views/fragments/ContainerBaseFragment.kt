@@ -23,7 +23,7 @@ import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.activity_containers), SortChangeListener {
+abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.fragment_overview), SortChangeListener {
 
     private var sortParams: SortSelection = SortSelection(SortOption.DATE_ADDED, true)
     private lateinit var layoutBtnSort: CardView
