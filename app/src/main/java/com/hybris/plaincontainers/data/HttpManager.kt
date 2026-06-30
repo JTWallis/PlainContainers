@@ -2,11 +2,11 @@ package com.hybris.plaincontainers.data
 
 import android.content.Context
 import android.net.Uri
-import android.net.http.HttpException
 import com.hybris.plaincontainers.data.model.BarcodeMetadata
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -23,7 +23,7 @@ object HttpManager {
 
         val code = connection.responseCode
         if(code !in 200..299) {
-            throw HttpException(connection.responseMessage, null)
+            throw IOException(connection.responseMessage)
         }
 
         return connection
