@@ -77,7 +77,6 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
             return background.color
         }
 
-        // TODO: Add default color instead of 0
         return 0
     }
 }
