@@ -68,6 +68,7 @@
         />
 
         <ImageButton
+            android:id="@+id/btnPopupChoiceBack"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/arrow_small_left_24"
