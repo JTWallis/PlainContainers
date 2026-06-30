@@ -1,5 +1,6 @@
 package com.hybris.plaincontainers
 
+import android.util.Log
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -39,7 +40,7 @@ class BarcodeAnalyzer(
                 }
             }
             .addOnFailureListener {
-                println("Failure on processing Barcode image!");
+                Log.e("BarcodeAnalyzer", "analyze: Failure on processing Barcode image")
             }
             .addOnCompleteListener {
                 isProcessing = false;
