@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_gray_darker">#444</color>
-    <color name="darkgray">#888</color>
-    <color name="lightgray">#AAA</color>
+    <color name="dark_gray">#888</color>
+    <color name="light_gray">#AAA</color>
     <color name="light_gray_transparent">#44AAAAAA</color>
     <color name="light_gray_brighter">#CCC</color>
     <color name="red">#B85D5D</color>
@@ -19,13 +19,13 @@
 
     <color name="backgroundDefault">@color/white</color>
     <color name="backgroundFill">@color/light_gray_brighter</color>
-    <color name="backgroundHighlight">@color/lightgray</color>
-    <color name="backgroundHighlightSelect">@color/darkgray</color>
+    <color name="backgroundHighlight">@color/light_gray</color>
+    <color name="backgroundHighlightSelect">@color/dark_gray</color>
     <color name="backgroundHighlightSelectColored">@color/teal_700</color>
     <color name="textColorDefault">@color/dark_gray_darker</color>
     <color name="textColorTitle">@color/black</color>
     <color name="textColorButton">@color/black</color>
-    <color name="border">@color/darkgray</color>
+    <color name="border">@color/dark_gray</color>
     <color name="textColorImportant">@color/red</color>
     <color name="defaultBorderEntry">@color/backgroundHighlight</color>
     <color name="defaultBorderThumbnail">@color/black</color>

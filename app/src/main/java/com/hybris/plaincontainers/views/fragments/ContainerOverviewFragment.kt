@@ -78,7 +78,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
             item.containerId
         )
 
-        val bundle = bundleOf("container_frag_arg" to pack)
+        val bundle = bundleOf(getString(R.string.frag_arg_container) to pack)
 
         findNavController().navigate(R.id.action_overview_to_details, args = bundle)
     }

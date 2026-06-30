@@ -58,7 +58,7 @@
         android:name="com.hybris.plaincontainers.views.fragments.ContainerDetailsFragment"
         android:label="@string/appbar_title_details">
         <argument
-            android:name="container_frag_arg"
+            android:name="@string/frag_arg_container"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg"
             app:nullable="false"
         />
@@ -81,7 +81,7 @@
         android:name="com.hybris.plaincontainers.views.fragments.EditContainerFragment"
         android:label="@string/appbar_title_edit_container" >
         <argument
-            android:name="edit_container_frag_args"
+            android:name="@string/frag_arg_edit_container"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg"
             app:nullable="false"
         />
@@ -109,7 +109,7 @@
         android:label="@string/appbar_title_add_item" >
 
         <argument
-            android:name="add_item_frag_arg"
+            android:name="@string/frag_arg_add_item"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg"
             app:nullable="false"
         />
@@ -130,7 +130,7 @@
         android:label="@string/appbar_title_edit_item" >
 
         <argument
-            android:name="edit_item_frag_arg"
+            android:name="@string/frag_arg_edit_item"
             app:argType="com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg"
             app:nullable="false"
         />

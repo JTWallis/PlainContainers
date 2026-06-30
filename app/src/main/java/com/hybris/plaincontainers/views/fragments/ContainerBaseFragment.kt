@@ -1,7 +1,6 @@
 package com.hybris.plaincontainers.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SwitchCompat
@@ -24,7 +23,7 @@ import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.activity_containers), SortChangeListener {
+abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.fragment_overview), SortChangeListener {
 
     private var sortParams: SortSelection = SortSelection(SortOption.DATE_ADDED, true)
     private lateinit var layoutBtnSort: CardView
@@ -117,8 +116,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     }
 
     private fun onBtnSortClicked(view: View) {
-        Log.d("INFO", "BtnSort Clicked!")
-
         val popup = SortPopup(
             view,
             sortParams,

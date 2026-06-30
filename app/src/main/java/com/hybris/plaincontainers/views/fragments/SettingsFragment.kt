@@ -10,7 +10,7 @@ import com.hybris.plaincontainers.data.ItemCountZeroBehavior
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.SupportedLocale
-import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import com.hybris.plaincontainers.views.selectionpopup.SelectionPopup
 import kotlin.getValue
 

@@ -30,9 +30,8 @@ open class EntryBaseViewHolder<T: EntryBase>(
 
     open fun bind(item: T) {
         tvName.text = item.name
-        //ivThumbnail.setImageURI(Uri.parse(item.thumbnailSrc))
 
-        val uri = item.thumbnailSrc?.toUri()
+        val uri = item.thumbnailSrc.toUri()
         if(FileUtils.isValidUri(uri)) {
             ivThumbnail.setImageURI(uri)
         } else {

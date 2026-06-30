@@ -1,7 +1,6 @@
 package com.hybris.plaincontainers.entrylist.dragbutton
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +18,6 @@ class DragHandle<T: EntryBase>(viewHolder: RecyclerView.ViewHolder, dragListener
 
         layoutDrag.setOnTouchListener { _, e ->
             if (e.action == MotionEvent.ACTION_UP || e.action == MotionEvent.ACTION_DOWN) {
-                Log.d("INFO", "OnTouch Dragged " + e.action)
                 dragListener.onStartDrag(viewHolder)
             }
             false

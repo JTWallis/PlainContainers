@@ -1,13 +1,14 @@
-package com.hybris.plaincontainers.data.appbar
+package com.hybris.plaincontainers.data.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hybris.plaincontainers.data.model.AppBar
 
 class AppBarViewModel: ViewModel() {
-    val model = MutableLiveData<AppBarModel>()
+    val model = MutableLiveData<AppBar>()
 
     fun setModelEmpty() {
-        model.value = AppBarModel(
+        model.value = AppBar(
             subtitle = ""
         )
     }

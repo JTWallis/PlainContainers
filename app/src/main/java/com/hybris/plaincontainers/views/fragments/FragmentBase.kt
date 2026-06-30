@@ -2,7 +2,6 @@ package com.hybris.plaincontainers.views.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,10 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.LocaleUtils
-import com.hybris.plaincontainers.data.SupportedLocale
-import com.hybris.plaincontainers.data.appbar.AppBarModel
-import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import java.io.Serializable
 import kotlin.getValue
 
@@ -61,9 +57,6 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         return when(item.itemId) {
             R.id.actionSettings -> {
                 findNavController().navigate(R.id.action_any_to_settings)
-                // DEBUG Change to German
-                //LocaleUtils.setLocale(this, SupportedLocale.DE)
-                //recreate()
                 true
             }
             R.id.actionAbout -> {
@@ -77,8 +70,6 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
     }
 
     protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
-        Log.d("INFO", "Getting $name with class $clazz")
-        Log.d("INFO", "Arguments: $arguments")
         return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
             arguments?.getSerializable(name, clazz)!!
         else

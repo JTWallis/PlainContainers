@@ -39,7 +39,6 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected abstract fun getInitName(): String
     protected abstract fun getInitImageUri(): String
     protected abstract fun getInitDescription(): String
-    protected abstract fun onBtnConfirmClick()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,12 +108,12 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
         // Listener for returned Photo Capture
         parentFragmentManager.setFragmentResultListener(
-            "capture_result",
+            getString(R.string.frag_result_capture_result_request),
             this
         ) {_, bundle ->
-            val uri = bundle.getString("capture_uri")
+            val uri = bundle.getString(getString(R.string.frag_result_capture_result_uri))
             if(uri == null) {
-                Log.e("ERROR", "Received null as uri!")
+                Log.w("MetadataBaseFragment", "initListeners: Received null as uri!")
             } else {
                 onPhotoCaptureReceived(uri.toUri())
             }
@@ -122,10 +121,10 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
         // Listener for when the user does not grant Camera permission
         parentFragmentManager.setFragmentResultListener(
-            "capture_permission",
+            getString(R.string.frag_result_capture_permission_request),
             this
         ) {_, bundle ->
-            val permissionDenied = bundle.getBoolean("capture_permission_denied")
+            val permissionDenied = bundle.getBoolean(getString(R.string.frag_result_capture_permission_denied))
             if(permissionDenied) {
                 onPhotoCapturePermissionDenied()
             }
@@ -147,6 +146,16 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         }
 
         ivPhoto.setImageURI(uriPhoto)
+    }
+
+    protected open fun onBtnConfirmClick() {
+        if(getName().isEmpty()) {
+            val popup = WarningPopup(
+                requireView(),
+                requireContext().getString(R.string.popup_warning_metadata_name_empty)
+            )
+            popup.show(requireView())
+        }
     }
 
     private fun onPhotoClick(view: View) {

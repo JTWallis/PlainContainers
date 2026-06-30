@@ -1,6 +1,5 @@
 package com.hybris.plaincontainers.views.sortpopup
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ListView
@@ -39,8 +38,6 @@ class SortPopup(
     }
 
     private fun onSortOptionClicked(position: Int) {
-        Log.d("INFO", "Clicked position $position")
-
         val selectedPos = sortSelection.option.ordinal
 
         if(selectedPos == position) {

@@ -101,8 +101,8 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
     protected fun onPermissionDenied() {
         val deniedPermission = true
         parentFragmentManager.setFragmentResult(
-            "capture_permission",
-            bundleOf("capture_permission_denied" to deniedPermission)
+            getString(R.string.frag_result_capture_permission_request),
+            bundleOf(getString(R.string.frag_result_capture_permission_denied) to deniedPermission)
         )
 
         findNavController().navigateUp()

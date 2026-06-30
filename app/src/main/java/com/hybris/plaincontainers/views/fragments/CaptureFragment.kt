@@ -13,6 +13,7 @@ import androidx.camera.core.UseCase
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.FileUtils
 
 
@@ -25,7 +26,7 @@ class CaptureFragment : CameraFragmentBase() {
 
     override fun buildUseCase(): UseCase {
         return ImageCapture.Builder()
-            .setTargetRotation(view!!.display.rotation)
+            .setTargetRotation(requireView().display.rotation)
             .build()
     }
 
@@ -79,14 +80,14 @@ class CaptureFragment : CameraFragmentBase() {
                         cropped
                     ).toString()
                     parentFragmentManager.setFragmentResult(
-                        "capture_result",
-                        bundleOf("capture_uri" to uri)
+                        getString(R.string.frag_result_capture_result_request),
+                        bundleOf(getString(R.string.frag_result_capture_result_uri) to uri)
                     )
                     findNavController().navigateUp()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    Log.e("ERROR", "Capture failed: $exception")
+                    Log.e("CaptureFragment", "takePhoto: Capture failed: $exception")
                     super.onError(exception)
                 }
             }

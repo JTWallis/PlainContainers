@@ -36,9 +36,11 @@
     <string name="metadata_popup_delete_subtitle">This action is irreversible!</string>
     <string name="metadata_popup_delete_cancel">Cancel</string>
     <string name="metadata_popup_delete_confirm">Delete!</string>
+    <string name="metadata_colorpicker_title">Container Color</string>
 
     <string name="popup_warning_camera_permission_denied">Need camera permission in order to capture photos.</string>
     <string name="popup_warning_barcode_metadata_fail">Could not get data for this barcode.</string>
+    <string name="popup_warning_metadata_name_empty">Name cannot be empty.</string>
 
     <string name="popup_sort_title">Sort by:</string>
     <string name="popup_sort_entry_name">Name</string>
@@ -59,7 +61,7 @@
     <string name="settings_operations_item_count_zero_ask">Ask every time</string>
 
     <string name="about_licenses">Licenses</string>
-    <string name="about_version">Version</string>
+    <string name="about_version">Version %1$s</string>
     <string name="license_color_picker" translatable="false">ColorPickerView (skydoves)</string>
     <string name="license_flaticons">This app uses icons from the UIcons library.\nThey\'re available on Flaticon by Magnific:</string>
     <string name="license_apache">This app uses open source libraries licensed under the Apache License 2.0:</string>
@@ -75,4 +77,16 @@
     <string name="accessibility_iv_change_color">Change color</string>
     <string name="accessibility_icon_ascending">Ascending order</string>
     <string name="accessibility_icon_descending">Descending order</string>
+
+    <string name="frag_arg_add_item" translatable="false">frag_arg_add_item</string>
+    <string name="frag_arg_container" translatable="false">frag_arg_container</string>
+    <string name="frag_arg_edit_container" translatable="false">frag_arg_edit_container</string>
+    <string name="frag_arg_edit_item" translatable="false">frag_arg_edit_item</string>
+
+    <string name="frag_result_capture_permission_request" translatable="false">frag_result_capture_permission</string>
+    <string name="frag_result_capture_permission_denied" translatable="false">frag_result_capture_permission_denied</string>
+    <string name="frag_result_capture_result_request" translatable="false">frag_result_capture_result</string>
+    <string name="frag_result_capture_result_uri" translatable="false">frag_result_capture_result_uri</string>
+    <string name="frag_result_barcode_result_request" translatable="false">frag_result_barcode_result</string>
+    <string name="frag_result_barcode_result_text" translatable="false">frag_result_barcode_result_text</string>
 </resources>

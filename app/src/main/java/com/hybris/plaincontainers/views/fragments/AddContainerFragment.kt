@@ -24,9 +24,8 @@ class AddContainerFragment: MetadataContainerFragment() {
     }
 
     override fun onBtnConfirmClick() {
-        if(getName().isEmpty()) {
-            return
-        }
+        super.onBtnConfirmClick()
+        if(getName().isEmpty()) return
 
         val date = System.currentTimeMillis().toInt()
 

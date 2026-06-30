@@ -46,16 +46,20 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
 
     private fun onColorClicked() {
         val builder = ColorPickerDialog.Builder(context)
-            .setTitle("Container Color")
-            .setPositiveButton("Apply", object: ColorEnvelopeListener {
-                override fun onColorSelected(envelope: ColorEnvelope, fromUser: Boolean) {
-                    setColor(envelope.color)
-                }
+            .setTitle(requireContext().getString(R.string.metadata_colorpicker_title))
+            .setPositiveButton(
+                requireContext().getString(R.string.metadata_btn_apply),
+                object: ColorEnvelopeListener {
+                    override fun onColorSelected(envelope: ColorEnvelope, fromUser: Boolean) {
+                        setColor(envelope.color)
+                    }
             })
-            .setNegativeButton("Cancel", object: DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface, i: Int) {
-                    dialog.dismiss()
-                }
+            .setNegativeButton(
+                requireContext().getString(R.string.metadata_popup_delete_cancel),
+                object: DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface, i: Int) {
+                        dialog.dismiss()
+                    }
             })
             .attachAlphaSlideBar(false)
 
@@ -77,7 +81,6 @@ abstract class MetadataContainerFragment: MetadataBaseFragment() {
             return background.color
         }
 
-        // TODO: Add default color instead of 0
         return 0
     }
 }

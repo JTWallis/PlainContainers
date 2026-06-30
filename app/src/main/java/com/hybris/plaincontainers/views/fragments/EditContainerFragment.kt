@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.appbar.AppBarModel
+import com.hybris.plaincontainers.data.model.AppBar
 import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
 import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
@@ -43,7 +43,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun initAppbarSubtitle() {
-        appbarVm.model.value = AppBarModel(
+        appbarVm.model.value = AppBar(
             subtitle = containerMetadata.name
         )
     }
@@ -60,10 +60,8 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun onBtnConfirmClick() {
-        if(getName().isEmpty()) {
-            // TODO: Throw Warning popup
-            return
-        }
+        super.onBtnConfirmClick()
+        if(getName().isEmpty()) return
 
         val dateModified = System.currentTimeMillis().toInt()
 
@@ -121,6 +119,9 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("edit_container_frag_arg", EditContainerFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_edit_container),
+            EditContainerFragmentArg::class.java
+        )
     }
 }

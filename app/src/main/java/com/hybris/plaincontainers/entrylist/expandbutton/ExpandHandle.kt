@@ -1,6 +1,5 @@
 package com.hybris.plaincontainers.entrylist.expandbutton
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.hybris.plaincontainers.R

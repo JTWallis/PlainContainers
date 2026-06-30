@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.appbar.AppBarModel
+import com.hybris.plaincontainers.data.model.AppBar
 import com.hybris.plaincontainers.data.fragmentargs.EditItemFragmentArg
 import com.hybris.plaincontainers.data.entities.EntryItem
 import com.hybris.plaincontainers.data.viewmodels.EditItemViewModel
@@ -39,7 +39,7 @@ class EditItemFragment() : MetadataBaseFragment() {
     }
 
     override fun initAppbarSubtitle() {
-        appbarVm.model.value = AppBarModel(
+        appbarVm.model.value = AppBar(
             subtitle = itemMetadata.name
         )
     }
@@ -51,9 +51,8 @@ class EditItemFragment() : MetadataBaseFragment() {
     }
 
     override fun onBtnConfirmClick() {
-        if(getName().isEmpty()) {
-            return
-        }
+        super.onBtnConfirmClick()
+        if(getName().isEmpty()) return
 
         val dateModified = System.currentTimeMillis().toInt()
 
@@ -106,7 +105,10 @@ class EditItemFragment() : MetadataBaseFragment() {
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("edit_item_frag_arg", EditItemFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_edit_item),
+            EditItemFragmentArg::class.java
+        )
     }
 
     override fun hasBtnDelete(): Boolean {

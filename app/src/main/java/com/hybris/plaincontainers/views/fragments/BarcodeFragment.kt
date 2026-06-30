@@ -11,6 +11,7 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.hybris.plaincontainers.BarcodeAnalyzer
+import com.hybris.plaincontainers.R
 
 class BarcodeFragment : CameraFragmentBase() {
 
@@ -49,8 +50,8 @@ class BarcodeFragment : CameraFragmentBase() {
 
     private fun returnScanResult(text: String) {
         parentFragmentManager.setFragmentResult(
-            "barcode_result",
-            bundleOf("barcode_text" to text)
+            getString(R.string.frag_result_barcode_result_request),
+            bundleOf(getString(R.string.frag_result_barcode_result_text) to text)
         )
 
         findNavController().navigateUp()

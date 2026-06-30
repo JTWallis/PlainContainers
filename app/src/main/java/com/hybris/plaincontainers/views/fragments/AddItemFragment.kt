@@ -40,10 +40,10 @@ class AddItemFragment() : MetadataBaseFragment() {
         super.initListeners()
 
         parentFragmentManager.setFragmentResultListener(
-            "barcode_result",
+            getString(R.string.frag_result_barcode_result_request),
             this
         ) {_, bundle ->
-            val text = bundle.getString("barcode_text")
+            val text = bundle.getString(getString(R.string.frag_result_barcode_result_text))
             if(text != null) onBarcodeReceived(text)
         }
     }
@@ -73,20 +73,19 @@ class AddItemFragment() : MetadataBaseFragment() {
     }
 
     private fun onBarcodeMetadataFail(error: String) {
-        Log.w("PLAIN", "Fetch barcode metadata fail $error")
+        Log.w("AddItemFragment", "onBarcodeMetadataFail: Fetch barcode metadata fail $error")
 
         val popup = WarningPopup(requireView(), requireContext().getString(R.string.popup_warning_barcode_metadata_fail))
         popup.show(requireView())
     }
 
     private fun onBarcodeThumbnailFail(error: String) {
-        Log.w("PLAIN", "Fetch barcode thumbnail fail $error")
+        Log.w("AddItemFragment", "onBarcodeThumbnailFail: Fetch barcode thumbnail fail $error")
     }
 
     override fun onBtnConfirmClick() {
-        if(getName().isEmpty()) {
-            return
-        }
+        super.onBtnConfirmClick()
+        if(getName().isEmpty()) return
 
         val date = System.currentTimeMillis().toInt()
 
@@ -116,7 +115,10 @@ class AddItemFragment() : MetadataBaseFragment() {
     }
 
     override fun getContainerPackage(): Serializable {
-        return getSerializable("add_item_frag_arg", AddItemFragmentArg::class.java)
+        return getSerializable(
+            getString(R.string.frag_arg_add_item),
+            AddItemFragmentArg::class.java
+        )
     }
 
     override fun hasBtnDelete(): Boolean {

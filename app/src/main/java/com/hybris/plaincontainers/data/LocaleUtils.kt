@@ -1,12 +1,14 @@
 package com.hybris.plaincontainers.data
 
 import android.content.Context
-import android.preference.PreferenceManager
+import android.os.Build
+import androidx.preference.PreferenceManager
 import java.util.Locale
+import androidx.core.content.edit
 
 object LocaleUtils {
 
-    private val SELECTED_LANG = "Locale.Helper.Selected.Language"
+    private const val SELECTED_LANG = "Locale.Helper.Selected.Language"
 
     fun setLocale(context: Context, supportedLocale: SupportedLocale): Context {
         val language = supportedLocale.toLanguageTag()
@@ -31,13 +33,16 @@ object LocaleUtils {
 
     private fun persist(context: Context, lang: String) {
         PreferenceManager.getDefaultSharedPreferences(context)
-            .edit()
-            .putString(SELECTED_LANG, lang)
-            .apply()
+            .edit {
+                putString(SELECTED_LANG, lang)
+            }
     }
 
     private fun updateResources(context: Context, lang: String): Context {
-        val locale = Locale(lang)
+        val locale =
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) Locale.of(lang)
+            else Locale(lang)
+
         Locale.setDefault(locale)
 
         val config = context.resources.configuration
