@@ -25,7 +25,7 @@ class CaptureFragment : CameraFragmentBase() {
 
     override fun buildUseCase(): UseCase {
         return ImageCapture.Builder()
-            .setTargetRotation(view!!.display.rotation)
+            .setTargetRotation(requireView().display.rotation)
             .build()
     }
 
