@@ -1,6 +1,5 @@
 package com.hybris.plaincontainers.components.handles.itemcount
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorRes

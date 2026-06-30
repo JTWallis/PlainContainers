@@ -1,6 +1,5 @@
 package com.hybris.plaincontainers.entrylist.entrydrag
 
-import android.util.Log
 import android.view.View
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.entities.EntryBase
