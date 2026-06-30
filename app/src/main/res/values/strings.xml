@@ -36,6 +36,7 @@
     <string name="metadata_popup_delete_subtitle">This action is irreversible!</string>
     <string name="metadata_popup_delete_cancel">Cancel</string>
     <string name="metadata_popup_delete_confirm">Delete!</string>
+    <string name="metadata_colorpicker_title">Container Color</string>
 
     <string name="popup_warning_camera_permission_denied">Need camera permission in order to capture photos.</string>
     <string name="popup_warning_barcode_metadata_fail">Could not get data for this barcode.</string>

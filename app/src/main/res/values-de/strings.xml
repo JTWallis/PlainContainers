@@ -35,6 +35,7 @@
     <string name="metadata_popup_delete_subtitle">Diese Aktion ist unwiderruflich!</string>
     <string name="metadata_popup_delete_cancel">Abbrechen</string>
     <string name="metadata_popup_delete_confirm">Löschen!</string>
+    <string name="metadata_colorpicker_title">Behälter-Farbe</string>
 
     <string name="popup_warning_camera_permission_denied">Kamera Berechtigungen benötigt, um Fotos aufzunehmen.</string>
     <string name="popup_warning_barcode_metadata_fail">Konnte keine Daten für den Barcode finden.</string>
