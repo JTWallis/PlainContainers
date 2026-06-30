@@ -60,10 +60,8 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun onBtnConfirmClick() {
-        if(getName().isEmpty()) {
-            // TODO: Throw Warning popup
-            return
-        }
+        super.onBtnConfirmClick()
+        if(getName().isEmpty()) return
 
         val dateModified = System.currentTimeMillis().toInt()
 

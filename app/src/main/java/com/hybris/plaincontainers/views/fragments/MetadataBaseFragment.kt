@@ -39,7 +39,6 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
     protected abstract fun getInitName(): String
     protected abstract fun getInitImageUri(): String
     protected abstract fun getInitDescription(): String
-    protected abstract fun onBtnConfirmClick()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -147,6 +146,16 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         }
 
         ivPhoto.setImageURI(uriPhoto)
+    }
+
+    protected open fun onBtnConfirmClick() {
+        if(getName().isEmpty()) {
+            val popup = WarningPopup(
+                requireView(),
+                requireContext().getString(R.string.popup_warning_metadata_name_empty)
+            )
+            popup.show(requireView())
+        }
     }
 
     private fun onPhotoClick(view: View) {

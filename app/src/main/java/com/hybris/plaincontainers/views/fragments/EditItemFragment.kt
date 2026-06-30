@@ -51,9 +51,8 @@ class EditItemFragment() : MetadataBaseFragment() {
     }
 
     override fun onBtnConfirmClick() {
-        if(getName().isEmpty()) {
-            return
-        }
+        super.onBtnConfirmClick()
+        if(getName().isEmpty()) return
 
         val dateModified = System.currentTimeMillis().toInt()
 
