@@ -39,7 +39,10 @@ object LocaleUtils {
     }
 
     private fun updateResources(context: Context, lang: String): Context {
-        val locale = Locale(lang)
+        val locale =
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) Locale.of(lang)
+            else Locale(lang)
+
         Locale.setDefault(locale)
 
         val config = context.resources.configuration
