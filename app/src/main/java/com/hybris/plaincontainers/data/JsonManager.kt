@@ -34,7 +34,7 @@ object JsonManager {
             val file = File(PATH_SETTINGS)
             return Json.decodeFromString(file.readText())
         } catch(e: Exception) {
-            Log.d("ERROR", "Exception when reading from file $FILENAME_SETTINGS: $e")
+            Log.e("JsonManager", "readSettings: Exception when reading from file $FILENAME_SETTINGS: $e")
         }
 
         return null
@@ -45,7 +45,7 @@ object JsonManager {
             val f = File(PATH_SETTINGS)
             f.writeText(jsonSettings.encodeToString(settings))
         } catch(e: Exception) {
-            Log.d("ERROR", "Exception when writing to file $FILENAME_SETTINGS: $e")
+            Log.e("JsonManager", "writeSettings: Exception when writing to file $FILENAME_SETTINGS: $e")
         }
     }
 

@@ -37,7 +37,7 @@ class AddItemViewModel(containerId: Long) : ViewModel() {
                     }
                 }
                 .onFailure { e ->
-                    Log.e("PLAIN", "Fetch error ${e.message}")
+                    Log.w("AddItemViewModel", "fetchBarcodeMetadata: Fetch metadata failure ${e.message}")
                     failCallback("Could not fetch")
                 }
         }
@@ -53,7 +53,7 @@ class AddItemViewModel(containerId: Long) : ViewModel() {
             HttpManager.fetchBarcodeThumbnail(context, barcode)
                 .onSuccess { uri -> successCallback(uri) }
                 .onFailure { e ->
-                    Log.e("PLAIN", "Fetch thumbnail error ${e.message}")
+                    Log.w("AddItemViewModel", "fetchBarcodeThumbnail: Fetch thumbnail failure ${e.message}")
                     failCallback("Could not fetch thumbnail")
                 }
         }

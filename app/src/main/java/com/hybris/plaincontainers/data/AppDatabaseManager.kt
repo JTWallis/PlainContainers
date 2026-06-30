@@ -17,7 +17,7 @@ object AppDatabaseManager {
             .addCallback(AppDatabaseRootInitCallback())
             .build()
         } catch(e: Exception) {
-            Log.e("ERROR", "Exception when building AppDatabase: $e")
+            Log.e("AppDatabaseManager", "init: Exception when building AppDatabase: $e")
         }
 
 

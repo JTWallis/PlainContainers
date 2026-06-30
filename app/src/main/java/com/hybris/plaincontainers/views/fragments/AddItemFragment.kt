@@ -73,14 +73,14 @@ class AddItemFragment() : MetadataBaseFragment() {
     }
 
     private fun onBarcodeMetadataFail(error: String) {
-        Log.w("PLAIN", "Fetch barcode metadata fail $error")
+        Log.w("AddItemFragment", "onBarcodeMetadataFail: Fetch barcode metadata fail $error")
 
         val popup = WarningPopup(requireView(), requireContext().getString(R.string.popup_warning_barcode_metadata_fail))
         popup.show(requireView())
     }
 
     private fun onBarcodeThumbnailFail(error: String) {
-        Log.w("PLAIN", "Fetch barcode thumbnail fail $error")
+        Log.w("AddItemFragment", "onBarcodeThumbnailFail: Fetch barcode thumbnail fail $error")
     }
 
     override fun onBtnConfirmClick() {

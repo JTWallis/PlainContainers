@@ -114,7 +114,7 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
         ) {_, bundle ->
             val uri = bundle.getString("capture_uri")
             if(uri == null) {
-                Log.e("ERROR", "Received null as uri!")
+                Log.w("MetadataBaseFragment", "initListeners: Received null as uri!")
             } else {
                 onPhotoCaptureReceived(uri.toUri())
             }

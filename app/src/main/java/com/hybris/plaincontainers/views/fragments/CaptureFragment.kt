@@ -86,7 +86,7 @@ class CaptureFragment : CameraFragmentBase() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    Log.e("ERROR", "Capture failed: $exception")
+                    Log.e("CaptureFragment", "takePhoto: Capture failed: $exception")
                     super.onError(exception)
                 }
             }
