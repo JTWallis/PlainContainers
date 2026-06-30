@@ -30,14 +30,6 @@ class CountHandle(
         updateCountText()
     }
 
-    fun incrementCount() {
-        setCount(count + 1)
-    }
-
-    fun decrementCount() {
-        setCount(count - 1)
-    }
-
     private fun updateCountText() {
         tvHandle.text = view.context.getString(R.string.count_component_amount, count)
     }

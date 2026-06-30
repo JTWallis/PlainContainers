@@ -57,9 +57,6 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         return when(item.itemId) {
             R.id.actionSettings -> {
                 findNavController().navigate(R.id.action_any_to_settings)
-                // DEBUG Change to German
-                //LocaleUtils.setLocale(this, SupportedLocale.DE)
-                //recreate()
                 true
             }
             R.id.actionAbout -> {
