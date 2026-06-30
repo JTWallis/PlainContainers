@@ -34,9 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".views.fragments.ContainerDetailsFragment"
-            android:theme="@style/Theme.PlainContainers" />
     </application>
 
 </manifest>
