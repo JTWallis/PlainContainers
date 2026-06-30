@@ -37,12 +37,6 @@
         <activity
             android:name=".views.fragments.ContainerDetailsFragment"
             android:theme="@style/Theme.PlainContainers" />
-        <activity
-            android:name=".ScannerActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat"
-        />
     </application>
 
 </manifest>
