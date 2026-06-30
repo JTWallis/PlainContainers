@@ -31,9 +31,9 @@ object LocaleUtils {
 
     private fun persist(context: Context, lang: String) {
         PreferenceManager.getDefaultSharedPreferences(context)
-            .edit()
-            .putString(SELECTED_LANG, lang)
-            .apply()
+            .edit {
+                putString(SELECTED_LANG, lang)
+            }
     }
 
     private fun updateResources(context: Context, lang: String): Context {
