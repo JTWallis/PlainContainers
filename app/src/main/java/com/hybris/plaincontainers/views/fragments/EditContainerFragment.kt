@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.appbar.AppBarModel
+import com.hybris.plaincontainers.data.model.AppBar
 import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
 import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.fragmentargs.EditContainerFragmentArg
@@ -43,7 +43,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
     }
 
     override fun initAppbarSubtitle() {
-        appbarVm.model.value = AppBarModel(
+        appbarVm.model.value = AppBar(
             subtitle = containerMetadata.name
         )
     }

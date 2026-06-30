@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.ItemCountZeroBehavior
 import com.hybris.plaincontainers.data.SettingsManager
-import com.hybris.plaincontainers.data.appbar.AppBarModel
+import com.hybris.plaincontainers.data.model.AppBar
 import com.hybris.plaincontainers.data.builders.EntryContainerBuilder
 import com.hybris.plaincontainers.data.fragmentargs.AddItemFragmentArg
 import com.hybris.plaincontainers.data.fragmentargs.ContainerFragmentArg
@@ -67,7 +67,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
     }
 
     override fun initAppbarSubtitle() {
-        appbarVm.model.value = AppBarModel(
+        appbarVm.model.value = AppBar(
             subtitle = containerMetadata.name
         )
     }
