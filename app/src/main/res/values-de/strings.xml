@@ -60,7 +60,7 @@
     <string name="settings_operations_item_count_zero_ask">Jedes mal fragen</string>
 
     <string name="about_licenses">Lizensen</string>
-    <string name="about_version">Version</string>
+    <string name="about_version">Version %1$s</string>
     <string name="license_flaticons">Diese App verwendet Symbole von der UIcons Bibliothek.\nDiese sind verfügbar auf Flaticon von Magnific:</string>
     <string name="license_apache">Diese App verwendet Open-Source-Bibliotheken, die unter der Apache-Lizenz 2.0 lizensiert sind:</string>
 

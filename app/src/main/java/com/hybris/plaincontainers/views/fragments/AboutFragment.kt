@@ -28,7 +28,7 @@ class AboutFragment: Fragment(R.layout.fragment_about) {
         btnVersion = view.findViewById(R.id.btnAboutVersion)
 
         val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
-        btnVersion.text = "${btnVersion.text} $version"
+        btnVersion.text = getString(R.string.about_version, version)
     }
 
     private fun initListeners() {

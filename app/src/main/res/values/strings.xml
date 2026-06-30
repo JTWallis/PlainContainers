@@ -61,7 +61,7 @@
     <string name="settings_operations_item_count_zero_ask">Ask every time</string>
 
     <string name="about_licenses">Licenses</string>
-    <string name="about_version">Version</string>
+    <string name="about_version">Version %1$s</string>
     <string name="license_color_picker" translatable="false">ColorPickerView (skydoves)</string>
     <string name="license_flaticons">This app uses icons from the UIcons library.\nThey\'re available on Flaticon by Magnific:</string>
     <string name="license_apache">This app uses open source libraries licensed under the Apache License 2.0:</string>
