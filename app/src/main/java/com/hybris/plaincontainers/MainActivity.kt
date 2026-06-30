@@ -2,7 +2,6 @@ package com.hybris.plaincontainers
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,7 +9,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.hybris.plaincontainers.data.AppDatabaseManager
-import com.hybris.plaincontainers.data.FileUtils
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
@@ -23,8 +21,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main);
-
-        Log.d("INFO", "MainActivity Create")
 
         layoutToolbar = findViewById(R.id.layoutToolbar)
         layoutToolbar.title = "Container Overview"

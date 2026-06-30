@@ -1,12 +1,10 @@
 package com.hybris.plaincontainers.entrylist.entrybase
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.hybris.plaincontainers.data.entities.EntryBase
 
 abstract class EntryBaseAdapter<T: EntryBase>(
@@ -30,7 +28,6 @@ abstract class EntryBaseAdapter<T: EntryBase>(
     }
 
     override fun onBindViewHolder(holder: EntryBaseViewHolder<T>, position: Int) {
-        Log.d("INFO", "OnBindViewHolder")
         val item = entryList[position]
 
         holder.bind(item)

@@ -1,6 +1,5 @@
 package com.hybris.plaincontainers.entrylist.entrydragincrement
 
-import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.hybris.plaincontainers.R
@@ -22,10 +21,6 @@ class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit,
     private val incrementHandle = IncrementHandle(
         view.findViewById<ConstraintLayout>(R.id.containerBtnIncrement),
         onClick = { onCountChange(absoluteAdapterPosition, 1) })
-
-    init {
-        Log.d("INFO", "Init EntryIncrementVH")
-    }
 
     override fun bind(item: EntryItemInContainer) {
         super.bind(item)

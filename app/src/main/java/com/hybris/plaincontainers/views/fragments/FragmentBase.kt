@@ -2,7 +2,6 @@ package com.hybris.plaincontainers.views.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,9 +14,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.LocaleUtils
-import com.hybris.plaincontainers.data.SupportedLocale
-import com.hybris.plaincontainers.data.appbar.AppBarModel
 import com.hybris.plaincontainers.data.appbar.AppBarViewModel
 import java.io.Serializable
 import kotlin.getValue
@@ -77,8 +73,6 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
     }
 
     protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
-        Log.d("INFO", "Getting $name with class $clazz")
-        Log.d("INFO", "Arguments: $arguments")
         return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
             arguments?.getSerializable(name, clazz)!!
         else

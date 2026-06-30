@@ -1,7 +1,6 @@
 package com.hybris.plaincontainers.entrylist.entrydragexpand
 
 import android.content.res.ColorStateList
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -47,8 +46,6 @@ class EntryDragExpandViewHolder(
     private val expandItemsAdapter = EntryExpandItemsAdapter()
 
     init {
-        Log.d("INFO", "Init EntryDragExpandVH")
-
         rcvItems.apply {
             layoutManager = LinearLayoutManager(view.context)
             adapter = expandItemsAdapter

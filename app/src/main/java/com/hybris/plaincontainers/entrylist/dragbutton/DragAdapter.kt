@@ -1,6 +1,5 @@
 package com.hybris.plaincontainers.entrylist.dragbutton
 
-import android.util.Log
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,7 +18,6 @@ class DragAdapter(private val adapter: ItemMoveListener) : ItemTouchHelper.Callb
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        Log.d("INFO", "DragAdapter OnMove")
         adapter.onItemMove(viewHolder.absoluteAdapterPosition, target.absoluteAdapterPosition)
         return true
     }

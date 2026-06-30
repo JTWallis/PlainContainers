@@ -1,7 +1,6 @@
 package com.hybris.plaincontainers.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SwitchCompat
@@ -117,8 +116,6 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.acti
     }
 
     private fun onBtnSortClicked(view: View) {
-        Log.d("INFO", "BtnSort Clicked!")
-
         val popup = SortPopup(
             view,
             sortParams,
