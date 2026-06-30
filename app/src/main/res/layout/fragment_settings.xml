@@ -32,7 +32,7 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="@dimen/horizontalBarHeight"
-            android:background="@color/lightgray"
+            android:background="@color/light_gray"
         />
 
         <TextView
@@ -56,7 +56,7 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="@dimen/horizontalBarHeight"
-            android:background="@color/lightgray"
+            android:background="@color/light_gray"
         />
 
     </LinearLayout>
