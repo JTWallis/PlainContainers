@@ -14,7 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import java.io.Serializable
 import kotlin.getValue
 

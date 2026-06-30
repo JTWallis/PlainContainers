@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
-import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import kotlin.getValue
 
 class AboutFragment: Fragment(R.layout.fragment_about) {

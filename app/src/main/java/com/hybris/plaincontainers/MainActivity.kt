@@ -12,7 +12,7 @@ import com.hybris.plaincontainers.data.AppDatabaseManager
 import com.hybris.plaincontainers.data.JsonManager
 import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
-import com.hybris.plaincontainers.data.appbar.AppBarViewModel
+import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 
 class MainActivity : AppCompatActivity() {
     private val appbarVm: AppBarViewModel by viewModels()
