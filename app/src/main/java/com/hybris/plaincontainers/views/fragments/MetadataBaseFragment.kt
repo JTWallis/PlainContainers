@@ -108,10 +108,10 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
         // Listener for returned Photo Capture
         parentFragmentManager.setFragmentResultListener(
-            "capture_result",
+            getString(R.string.frag_result_capture_result_request),
             this
         ) {_, bundle ->
-            val uri = bundle.getString("capture_uri")
+            val uri = bundle.getString(getString(R.string.frag_result_capture_result_uri))
             if(uri == null) {
                 Log.w("MetadataBaseFragment", "initListeners: Received null as uri!")
             } else {
@@ -121,10 +121,10 @@ abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
         // Listener for when the user does not grant Camera permission
         parentFragmentManager.setFragmentResultListener(
-            "capture_permission",
+            getString(R.string.frag_result_capture_permission_request),
             this
         ) {_, bundle ->
-            val permissionDenied = bundle.getBoolean("capture_permission_denied")
+            val permissionDenied = bundle.getBoolean(getString(R.string.frag_result_capture_permission_denied))
             if(permissionDenied) {
                 onPhotoCapturePermissionDenied()
             }

@@ -13,6 +13,7 @@ import androidx.camera.core.UseCase
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.FileUtils
 
 
@@ -79,8 +80,8 @@ class CaptureFragment : CameraFragmentBase() {
                         cropped
                     ).toString()
                     parentFragmentManager.setFragmentResult(
-                        "capture_result",
-                        bundleOf("capture_uri" to uri)
+                        getString(R.string.frag_result_capture_result_request),
+                        bundleOf(getString(R.string.frag_result_capture_result_uri) to uri)
                     )
                     findNavController().navigateUp()
                 }

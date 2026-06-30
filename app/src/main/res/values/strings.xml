@@ -82,4 +82,11 @@
     <string name="frag_arg_container" translatable="false">frag_arg_container</string>
     <string name="frag_arg_edit_container" translatable="false">frag_arg_edit_container</string>
     <string name="frag_arg_edit_item" translatable="false">frag_arg_edit_item</string>
+
+    <string name="frag_result_capture_permission_request" translatable="false">frag_result_capture_permission</string>
+    <string name="frag_result_capture_permission_denied" translatable="false">frag_result_capture_permission_denied</string>
+    <string name="frag_result_capture_result_request" translatable="false">frag_result_capture_result</string>
+    <string name="frag_result_capture_result_uri" translatable="false">frag_result_capture_result_uri</string>
+    <string name="frag_result_barcode_result_request" translatable="false">frag_result_barcode_result</string>
+    <string name="frag_result_barcode_result_text" translatable="false">frag_result_barcode_result_text</string>
 </resources>

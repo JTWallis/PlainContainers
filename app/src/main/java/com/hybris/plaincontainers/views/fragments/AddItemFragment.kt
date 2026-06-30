@@ -40,10 +40,10 @@ class AddItemFragment() : MetadataBaseFragment() {
         super.initListeners()
 
         parentFragmentManager.setFragmentResultListener(
-            "barcode_result",
+            getString(R.string.frag_result_barcode_result_request),
             this
         ) {_, bundle ->
-            val text = bundle.getString("barcode_text")
+            val text = bundle.getString(getString(R.string.frag_result_barcode_result_text))
             if(text != null) onBarcodeReceived(text)
         }
     }
