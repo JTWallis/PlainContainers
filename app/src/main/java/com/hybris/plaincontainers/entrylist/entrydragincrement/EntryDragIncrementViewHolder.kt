@@ -10,6 +10,12 @@ import com.hybris.plaincontainers.data.entities.EntryItemInContainer
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 
+/**
+ * ViewHolder intended for RecyclerViews using "component_entry_drag_count_incrementable" layouts
+ * as their items that correspond to EntryItemInContainer entities.
+ * Designed for RecyclerView used in ContainerDetailsFragment.
+ * Binds the EntryItemInContainer count to a CountHandle, DecrementHandle and IncrementHandle.
+ */
 class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, dragListener: DragListener<EntryItemInContainer>, onCountChange: (position: Int, addValue: Int) -> Unit)
     : EntryDragViewHolder<EntryItemInContainer>(view, onEntryClick, dragListener) {
 

@@ -4,6 +4,10 @@ import android.content.Context
 import android.util.Log
 import androidx.room.Room
 
+/**
+ * Manager to get the AppDatabase instance, for interacting with DAOs.
+ * Must call init before use!
+ */
 object AppDatabaseManager {
     private lateinit var appDatabase: AppDatabase
     private var isInit = false
@@ -24,6 +28,11 @@ object AppDatabaseManager {
         isInit = true
     }
 
+    /**
+     * Returns the AppDatabase instance.
+     * Should only be used by DAOs and repositories.
+     * Must call AppDatabaseManager.init before using!
+     */
     fun get(): AppDatabase {
         verifyInit()
         return appDatabase

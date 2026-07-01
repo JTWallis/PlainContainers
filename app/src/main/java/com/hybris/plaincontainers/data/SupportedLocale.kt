@@ -3,6 +3,9 @@ package com.hybris.plaincontainers.data
 import androidx.annotation.StringRes
 import com.hybris.plaincontainers.R
 
+/**
+ * Supported languages, that are tied to a bcp47 locale tag and a localized string resource.
+ */
 enum class SupportedLocale(
     private val bcp47LangTag: String,
     @get:StringRes private val localizationId: Int) {

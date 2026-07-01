@@ -3,6 +3,9 @@ package com.hybris.plaincontainers.data.builders
 import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 
+/**
+ * Helper class that provides an empty- and copy-constructor with modifiable params.
+ */
 object EntryContainerBuilder {
 
     fun from(

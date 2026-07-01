@@ -6,6 +6,11 @@ import com.hybris.plaincontainers.data.model.Settings
 import kotlinx.serialization.json.Json
 import java.io.File
 
+/**
+ * Manager for reading and writing certain models as JSON files.
+ * Should only be used by certain other managers (currently only SettingsManager).
+ * Must call init before use!
+ */
 object JsonManager {
 
     private var isInit = false

@@ -24,6 +24,14 @@ import com.hybris.plaincontainers.entrylist.itemdecoration.TopGapDecoration
 import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
+/**
+ * ViewHolder intended for RecyclerViews using "component_entry_drag" layouts as their items
+ * that correspond to EntryContainer entities.
+ * Specifically, this ViewHolder is designed for the outer RecyclerView,
+ * used in ContainerOverviewFragment.
+ * Defines an ExpandHandle, that expands/collapses a nested RecyclerView,
+ * making use of EntryExpandItemsViewHolder/-Adapter.
+ */
 class EntryDragExpandViewHolder(
     view: View,
     onEntryClick: (pos: Int) -> Unit,
@@ -75,6 +83,8 @@ class EntryDragExpandViewHolder(
         }
 
         val viewModel = DragExpandViewModel(item.containerId)
+
+        // Fetch all EntryItems within this EntryContainer, to populate the nested RecyclerView.
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.items.collect { items ->

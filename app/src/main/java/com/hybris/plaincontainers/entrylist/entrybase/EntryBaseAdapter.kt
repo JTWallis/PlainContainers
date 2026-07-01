@@ -7,6 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.hybris.plaincontainers.data.entities.EntryBase
 
+/**
+ * ListAdapter base class for RecyclerViews intended for EntryBaseItems,
+ * specifically EntryContainer and EntryItem.
+ * Binds the entryList data to the RecyclerView items.
+ * Subclasses override getLayoutResource to specify the component layouts
+ * that the RecyclerView will be populated with.
+ */
 abstract class EntryBaseAdapter<T: EntryBase>(
     var entryList: List<T> = emptyList(),
     diffCallback: DiffUtil.ItemCallback<T> = EntryBaseDiffCallback<T>()
@@ -15,6 +22,10 @@ abstract class EntryBaseAdapter<T: EntryBase>(
     abstract fun getLayoutResource(): Int
     abstract fun createViewHolder(view: View): EntryBaseViewHolder<T>
 
+    /**
+     * Sets the entryList to the passed items and notifies the RecyclerView about the change.
+     * @param items List of EntryBase instances
+     */
     fun setItems(items: List<T>) {
         entryList = items
         notifyDataSetChanged()

@@ -6,6 +6,10 @@ import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.repositories.EntryContainerRepository
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for AddContainerFragment.
+ * Provides a db-operation to insert a new EntryContainer.
+ */
 class AddContainerViewModel(): ViewModel() {
     private val containerRepository = EntryContainerRepository()
 

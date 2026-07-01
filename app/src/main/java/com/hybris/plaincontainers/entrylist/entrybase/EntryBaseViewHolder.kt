@@ -11,6 +11,12 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.FileUtils
 import com.hybris.plaincontainers.data.entities.EntryBase
 
+/**
+ * ViewHolder base class for RecyclerViews intended for EntryBase items,
+ * specifically EntryContainer and EntryItem.
+ * Sets the onEntryClick callback, background-color and repopulates the Views,
+ * after a call to onBindViewHolder in the RecyclerView Adapter.
+ */
 open class EntryBaseViewHolder<T: EntryBase>(
     itemView: View,
     onEntryClick: (pos: Int) -> Unit,
@@ -28,6 +34,11 @@ open class EntryBaseViewHolder<T: EntryBase>(
         ivThumbnail.setOnClickListener { onEntryClick(absoluteAdapterPosition) }
     }
 
+    /**
+     * Called on the Adapter's onBindViewHolder function.
+     * Populates the RecyclerView entry's Views with the up-to-date data from the item instance.
+     * @param item EntryBase instance, tied to the RecyclerView item position.
+     */
     open fun bind(item: T) {
         tvName.text = item.name
 

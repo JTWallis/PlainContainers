@@ -23,7 +23,14 @@ import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.fragment_overview), SortChangeListener {
+/**
+ * Base class logic side of the "fragment_overview" layout.
+ * Sets up a sortable RecyclerView with draggable items for a manual sort.
+ * The class is intended for items inheriting from EntryBase,
+ * specifically EntryContainer and EntryItem.
+ */
+abstract class ContainerBaseFragment<T: EntryBase>()
+    : FragmentBase(R.layout.fragment_overview), SortChangeListener {
 
     private var sortParams: SortSelection = SortSelection(SortOption.DATE_ADDED, true)
     private lateinit var layoutBtnSort: CardView

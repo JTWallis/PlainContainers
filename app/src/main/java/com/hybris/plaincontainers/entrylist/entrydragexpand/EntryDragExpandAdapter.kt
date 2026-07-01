@@ -9,6 +9,15 @@ import com.hybris.plaincontainers.entrylist.expandbutton.ExpandListener
 import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
 
+/**
+ * ListAdapter for the "component_entry_drag" layout and EntryContainer items.
+ * Designed for for the outer RecyclerView, used in ContainerOverviewFragment.
+ * Defines behaviour for:
+ * - Expanding/collapsing a nested RecyclerView, that makes use of
+ *   EntryExpandItemsViewHolder-Adapter
+ * - Dragging the outer RecyclerView items
+ * - Displaying the nested RecyclerView's EntryItemInContainer count
+ */
 class EntryDragExpandAdapter(
     private val onEntryClick: (pos: Int) -> Unit,
     private val dragListener : DragListener<EntryContainer>,

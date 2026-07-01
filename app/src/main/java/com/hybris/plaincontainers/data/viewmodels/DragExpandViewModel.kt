@@ -8,6 +8,11 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
+/**
+ * ViewModel for EntryDragExpandViewHolder,
+ * specifically for the nested RecyclerView of ContainerOverviewFragment.
+ * Exposes all EntryItemInContainer within an EntryContainer.
+ */
 class DragExpandViewModel(val containerId: Long): ViewModel() {
 
     private val itemRepository = EntryItemRepository(containerId)

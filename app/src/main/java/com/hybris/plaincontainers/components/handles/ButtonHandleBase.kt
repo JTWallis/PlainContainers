@@ -6,6 +6,11 @@ import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 
+/**
+ * Base helper class for buttons that sets the onClick callback
+ * and an optional, localized contentDescription.
+ * Also provides functions to set the text, visibility and background-color.
+ */
 open class ButtonHandleBase(
     private val view: View,
     onClick: () -> Unit,

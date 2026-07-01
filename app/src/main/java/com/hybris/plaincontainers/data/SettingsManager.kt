@@ -2,6 +2,10 @@ package com.hybris.plaincontainers.data
 
 import com.hybris.plaincontainers.data.model.Settings
 
+/**
+ * Manager to read and edit Settings data, that are automatically persisted after change.
+ * Must call init before use!
+ */
 object SettingsManager {
     private lateinit var settings: Settings
     private var isInit = false

@@ -8,6 +8,11 @@ import android.widget.TextView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.views.Popup
 
+/**
+ * Popup variant for the "popup_selection" layout.
+ * Populates its ListView with the passed localized strings of selections.
+ * A call to the onSortSelectionConfirm callback dismisses this popup.
+ */
 class SelectionPopup(
     invokerView: View,
     title: String,

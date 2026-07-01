@@ -9,6 +9,11 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.ButtonHandleBase
 
+/**
+ * Base helper class for buttons with the "component_button_increment" layout,
+ * inheriting ButtonHandleBase that automatically sets the button-id + contentDescription
+ * and extends the functionality with an icon and background-tint.
+ */
 open class ButtonCountHandleBase(
     view: View,
     onClick: () -> Unit,

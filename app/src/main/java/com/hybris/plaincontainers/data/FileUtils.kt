@@ -9,6 +9,9 @@ import androidx.core.net.toUri
 import java.io.File
 import androidx.core.graphics.scale
 
+/**
+ * Utils class for interacting with bitmap files, URIs and getting the root file- or photos directory.
+ */
 object FileUtils {
 
     fun getRootPath(context: Context): String {

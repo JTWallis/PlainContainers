@@ -9,6 +9,11 @@ import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseAdapter
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 import java.util.Collections
 
+/**
+ * ListAdapter for "component_entry_drag*" layout and either EntryContainer or EntryItemInContainer items.
+ * Used in ContainerBaseFragment to generically define an adapter base type.
+ * Defines behaviour for dragging the outer RecyclerView items.
+ */
 open class EntryDragAdapter<T: EntryBase>(private val onEntryClick: (pos: Int) -> Unit, private val dragListener : DragListener<T>)
     : EntryBaseAdapter<T>(), ItemMoveListener {
 

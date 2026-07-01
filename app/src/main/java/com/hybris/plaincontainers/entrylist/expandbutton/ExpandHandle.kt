@@ -4,6 +4,11 @@ import android.view.View
 import android.widget.ImageView
 import com.hybris.plaincontainers.R
 
+/**
+ * Logic side of the "component_expand" layout, which is used through an "include layout" directive.
+ * Sets the onClick callback, as well as the icon and background-color,
+ * based on if the RecyclerView entry is expanded/clicked or not.
+ */
 class ExpandHandle(private val layoutExpand: View, onClick: () -> Unit) {
 
     private val ivExpand = layoutExpand.findViewById<ImageView>(R.id.ivExpand)

@@ -8,6 +8,12 @@ import com.hybris.plaincontainers.data.viewmodels.AddContainerViewModel
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import java.io.Serializable
 
+/**
+ * Logic side of the "fragment_edit" layout, specifically for adding a container.
+ * Extends the MetadataContainerFragment base class,
+ * by coupling the populated metadata with a database operation,
+ * to insert a new EntryContainer on successful confirm button click.
+ */
 class AddContainerFragment: MetadataContainerFragment() {
 
     private val viewModel = AddContainerViewModel()

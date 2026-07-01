@@ -8,6 +8,13 @@ import android.widget.BaseAdapter
 import android.widget.RadioButton
 import com.hybris.plaincontainers.R
 
+/**
+ * Adapter for a selectable ListView, specifically for a SelectionPopup.
+ * Takes an array of localized strings for the possible selection values.
+ * Populates the ListView with inflated "component_selection" layouts.
+ * Sets the RadioButton checks, based on the passed selection index.
+ * The onClick callback triggers on each new selection click, ignoring clicks on the same selection.
+ */
 class SelectionPopupAdapter(
     context: Context,
     private val data: Array<String>,

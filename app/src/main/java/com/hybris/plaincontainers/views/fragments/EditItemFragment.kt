@@ -14,6 +14,13 @@ import com.hybris.plaincontainers.views.choicepopup.ChoicePopup
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
+/**
+ * Logic side of the "fragment_edit" layout, specifically for editing an item in a container.
+ * Extends the MetadataContainerFragment base class,
+ * by coupling the populated metadata with two database operation:
+ * - Updating an EntryItem on successful confirm button click
+ * - Deleting the EntryItem, including EntryItemCrossRef
+ */
 class EditItemFragment() : MetadataBaseFragment() {
     private var containerId: Long = -1
     private var itemId: Long = -1
@@ -27,6 +34,7 @@ class EditItemFragment() : MetadataBaseFragment() {
 
         viewModel = EditItemViewModel(containerId, itemId)
 
+        // Fetch the EntryItem within the container from the database and populate relevant Views.
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.item.collect { item ->

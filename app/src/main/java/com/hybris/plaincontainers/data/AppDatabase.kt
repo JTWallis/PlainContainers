@@ -11,6 +11,10 @@ import com.hybris.plaincontainers.data.entities.EntryContainerItemCrossRef
 import com.hybris.plaincontainers.data.entities.EntryItem
 import com.hybris.plaincontainers.data.entities.Root
 
+/**
+ * Room database instance that exposes all DAOs.
+ * Should only be used by repositories or other DAOs.
+ */
 @Database(
     entities = [
         Root::class,

@@ -4,6 +4,9 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * RecyclerView ItemDecoration, that adds a top-margin to every item, excluding the first one.
+ */
 class TopGapDecoration(private val gap: Int)
     : RecyclerView.ItemDecoration() {
 

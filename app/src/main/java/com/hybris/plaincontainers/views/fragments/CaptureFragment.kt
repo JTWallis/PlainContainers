@@ -16,7 +16,12 @@ import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.FileUtils
 
-
+/**
+ * Logic side of the "fragment_capture" layout.
+ * Extends the CameraFragmentBase base class,
+ * by specifying the camera UseCase to capture photos,
+ * as well as downscaling and cropping the result for a thumbnail with small file size.
+ */
 class CaptureFragment : CameraFragmentBase() {
 
     override fun initViews(view: View) {
@@ -43,7 +48,15 @@ class CaptureFragment : CameraFragmentBase() {
             postRotate(rotation.toFloat())
         }
 
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        return Bitmap.createBitmap(
+            bitmap,
+            0,
+            0,
+            bitmap.width,
+            bitmap.height,
+            matrix,
+            true
+        )
     }
 
     private fun cropBitmap(bitmap: Bitmap): Bitmap {

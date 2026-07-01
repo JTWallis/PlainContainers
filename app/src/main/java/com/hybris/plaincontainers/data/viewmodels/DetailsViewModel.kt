@@ -11,6 +11,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for ContainerDetailFragment.
+ * Exposes the EntryContainer and all EntryItemInContainer within that EntryContainer.
+ * Additionally provides db-operations to:
+ * - Update the EntryContainer SortSelection
+ * - Update any EntryItemInContainer
+ * - Update only the count of any EntryItemInContainer
+ * - Delete any EntryItemInContainer
+ */
 class DetailsViewModel(private val containerId: Long): ViewModel() {
     private val containerRepository = EntryContainerRepository()
     private val itemRepository = EntryItemRepository(containerId)

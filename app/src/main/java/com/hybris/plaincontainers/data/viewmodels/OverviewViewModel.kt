@@ -12,6 +12,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for ContainerOverviewFragment.
+ * Exposes the Root model and all EntryContainers.
+ * Additionally provides db-operations to update any EntryContainers and the Root SortSelection.
+ */
 class OverviewViewModel(): ViewModel() {
 
     private val rootRepository = RootRepository()

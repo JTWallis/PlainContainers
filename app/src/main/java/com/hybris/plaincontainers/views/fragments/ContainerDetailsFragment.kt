@@ -26,6 +26,13 @@ import com.hybris.plaincontainers.views.sortpopup.SortOption
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
+/**
+ * Logic side of the "fragment_overview" layout, specifically for editing a container.
+ * Extends the ContainerBaseFragment base class,
+ * by tying the RecyclerView to the selected EntryContainer, including all existing EntryItems within.
+ * Additionally, enables an Edit button for the selected EntryContainer,
+ * and handles the behaviour, when an EntryItem count reaches 0.
+ */
 class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() {
     private lateinit var viewModel: DetailsViewModel
     private var containerId: Long = -1
@@ -35,6 +42,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Fetch all EntryItems in a container from the database, to populate the RcView.
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.items.collect { list ->
@@ -50,6 +58,8 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
 
         viewModel = DetailsViewModel(containerId)
 
+        // Fetch the selected EntryContainer from the database, to set the initial
+        // RcView SortSelection, as well as the subtitle to the EntryContainer name.
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.container.collect { container ->
                 if(container != null) {

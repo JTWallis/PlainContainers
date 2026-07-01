@@ -14,6 +14,11 @@ import com.hybris.plaincontainers.data.LocaleUtils
 import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 
+/**
+ * App entry point.
+ * Sets up any managers, the AppBar + its ViewModel, NavGraph and Locale.
+ * Also sets a new context when the locale changes.
+ */
 class MainActivity : AppCompatActivity() {
     private val appbarVm: AppBarViewModel by viewModels()
     private lateinit var layoutToolbar: Toolbar
@@ -59,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         val currentLang = LocaleUtils.getLocale(this).toLanguageTag()
         val storedLang = settings.locale.toLanguageTag()
 
+        // Indirectly call this.attachBaseContext with correct locale.
         if(currentLang != storedLang) {
             val locale = LocaleUtils.getLocaleFromLanguageTag(storedLang)
             LocaleUtils.setLocale(this, locale)
@@ -67,6 +73,18 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Gets the currently set locale from LocaleUtils and attaches a new context with that locale.
+     * This function is normally called on Activity recreation,
+     * specifically when SettingsFragment calls recreate() on language change confirm.
+     * ```
+     * From class Android.Content.ContextWrapper:
+     * Set the base context for this ContextWrapper.
+     * All calls will then be delegated to the base context.
+     * ```
+     * @throws IllegalStateException if a base context has already been set.
+     * @param base The new base context for this wrapper.
+     */
     override fun attachBaseContext(base: Context) {
         val langTag = LocaleUtils.getLocale(base).toLanguageTag()
         val locale = LocaleUtils.getLocaleFromLanguageTag(langTag)

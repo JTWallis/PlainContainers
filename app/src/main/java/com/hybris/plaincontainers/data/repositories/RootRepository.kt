@@ -4,6 +4,9 @@ import com.hybris.plaincontainers.data.AppDatabaseManager
 import com.hybris.plaincontainers.data.entities.Root
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Repository to read and update the SortSelection of Root.
+ */
 class RootRepository {
     private val dao = AppDatabaseManager.get().rootDao()
     val root: Flow<Root> = dao.get()
