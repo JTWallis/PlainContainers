@@ -9,7 +9,7 @@ import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 class EntryExpandItemsViewHolder(view: View)
     : EntryBaseViewHolder<EntryItemInContainer>(view, onEntryClick = {}, R.color.backgroundHighlight) {
 
-    private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, onZeroCount = {})
+    private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0)
 
     override fun bind(item: EntryItemInContainer) {
         super.bind(item)

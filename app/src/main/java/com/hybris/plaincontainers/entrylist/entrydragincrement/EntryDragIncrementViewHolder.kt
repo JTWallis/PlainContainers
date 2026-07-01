@@ -13,7 +13,7 @@ import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit, dragListener: DragListener<EntryItemInContainer>, onCountChange: (position: Int, addValue: Int) -> Unit)
     : EntryDragViewHolder<EntryItemInContainer>(view, onEntryClick, dragListener) {
 
-    private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, onZeroCount = {}, R.color.backgroundFill)
+    private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, R.color.backgroundFill)
 
     // Though compiler marks as unused, the handles need to persist for correct behavior.
     private val decrementHandle = DecrementHandle(

@@ -8,7 +8,6 @@ import com.hybris.plaincontainers.R
 class CountHandle(
     private val view: View,
     private var count: Int,
-    private val onZeroCount: () -> Unit,
     @ColorRes backgroundColorId: Int = R.color.backgroundHighlight
 ) {
 
@@ -20,12 +19,9 @@ class CountHandle(
     }
 
     fun setCount(newCount: Int) {
-        if(newCount <= 0) {
-            count = 0
-            onZeroCount()
-        } else {
-            count = newCount
-        }
+        count =
+            if(newCount <= 0) 0
+            else newCount
 
         updateCountText()
     }
