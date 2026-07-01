@@ -14,6 +14,13 @@ import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import com.hybris.plaincontainers.views.selectionpopup.SelectionPopup
 import kotlin.getValue
 
+/**
+ * Logic side of the "fragment_settings" layout.
+ * Persists any configuration changes, using the SettingsManager.
+ * Currently implemented configs are:
+ * - Locale change, including an Activity recreate to change localization during runtime
+ * - Behaviour on how to react, when an item count within a container is set to 0
+ */
 class SettingsFragment: Fragment(R.layout.fragment_settings) {
     private val appbarVm: AppBarViewModel by activityViewModels()
     private lateinit var btnChangeLanguage: Button

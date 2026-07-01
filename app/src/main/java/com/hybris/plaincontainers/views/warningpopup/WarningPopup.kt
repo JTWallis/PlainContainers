@@ -6,6 +6,12 @@ import android.widget.TextView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.views.Popup
 
+/**
+ * Popup variant for the "popup_warning" layout.
+ * Defines a title and a single button, labeled with "OK", that simply dismissed the popup.
+ * The button explicitly does not have any callbacks and thus,
+ * this popup is intended to "forcefully" notify the user about something.
+ */
 class WarningPopup(invokerView: View, title: String): Popup(invokerView, R.layout.popup_warning) {
 
     private val tvTitle = contentView.findViewById<TextView>(R.id.tvPopupWarningTitle)

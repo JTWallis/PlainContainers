@@ -17,6 +17,11 @@ import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.R
 import java.io.Serializable
 
+/**
+ * Base class logic side of the "fragment_capture" layout.
+ * Sets up the CameraProvider, and checks the permission to use the phone's camera,
+ * including behaviour on denied permission.
+ */
 abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
     protected lateinit var previewView: PreviewView
     protected lateinit var viewCrop: View
@@ -98,6 +103,10 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
         }
     }
 
+    /**
+     * Sets a flag for the ParentFragmentManager FragmentResult,
+     * to consume for custom behaviour, and navigates the navGraph up.
+     */
     protected fun onPermissionDenied() {
         val deniedPermission = true
         parentFragmentManager.setFragmentResult(
@@ -117,7 +126,7 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
 
     override fun initPackageData() {}
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return object : Serializable {}
     }
 }

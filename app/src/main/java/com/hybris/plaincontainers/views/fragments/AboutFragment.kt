@@ -10,6 +10,10 @@ import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import kotlin.getValue
 
+/**
+ * Logic side of the "fragment_about" layout.
+ * Sets the version text and an onClickListener to navigate to LicensesFragment.
+ */
 class AboutFragment: Fragment(R.layout.fragment_about) {
     private val appbarVm: AppBarViewModel by activityViewModels()
     private lateinit var btnLicenses: Button

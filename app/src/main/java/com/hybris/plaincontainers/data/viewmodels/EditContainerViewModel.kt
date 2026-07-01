@@ -6,6 +6,11 @@ import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.repositories.EntryContainerRepository
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for EditContainerFragment.
+ * Exposes a single EntryContainer.
+ * Additionally provides db-operations to update and delete that EntryContainer.
+ */
 class EditContainerViewModel(val containerId: Long) : ViewModel() {
     private val containerRepository = EntryContainerRepository()
 

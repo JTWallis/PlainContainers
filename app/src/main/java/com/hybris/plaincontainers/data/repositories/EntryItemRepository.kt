@@ -9,6 +9,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 
+/**
+ * Repository to perform CRUD operations on any EntryItemInContainer.
+ * Additionally provides read-access to the ordered EntryItemInContainer,
+ * based on EntryContainer SortSelection.
+ */
 class EntryItemRepository(private val containerId: Long) : EntryBaseRepository<EntryItem, EntryItemDao>() {
     override val dao: EntryItemDao = AppDatabaseManager.get().itemDao()
     private val containerDao = AppDatabaseManager.get().containerDao()

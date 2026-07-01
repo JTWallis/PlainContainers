@@ -11,6 +11,12 @@ import com.hybris.plaincontainers.data.model.BarcodeMetadata
 import com.hybris.plaincontainers.data.repositories.EntryItemRepository
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for AddItemFragment.
+ * Provides a db-operation to insert a new EntryItem into an EntryContainer.
+ * Additionally, provides HTTP-calls to asynchronously fetch barcode-metadata and -thumbnails,
+ * along callbacks for success or fail on the fetch.
+ */
 class AddItemViewModel(containerId: Long) : ViewModel() {
     private val itemRepository = EntryItemRepository(containerId)
 

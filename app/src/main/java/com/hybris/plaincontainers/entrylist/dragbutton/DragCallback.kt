@@ -3,7 +3,11 @@ package com.hybris.plaincontainers.entrylist.dragbutton
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class DragAdapter(private val adapter: ItemMoveListener) : ItemTouchHelper.Callback() {
+/**
+ * Custom ItemTouchHelper.Callback that triggers the ItemMoveListener events on
+ * moving a (vertical) item position or releasing a RecyclerView item.
+ */
+class DragCallback(private val adapter: ItemMoveListener) : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,

@@ -13,6 +13,23 @@ import com.hybris.plaincontainers.data.viewmodels.AddItemViewModel
 import com.hybris.plaincontainers.views.warningpopup.WarningPopup
 import java.io.Serializable
 
+/**
+ * Logic side of the "fragment_edit" layout, specifically for adding an item for a container.
+ * Extends the MetadataContainerFragment base class,
+ * by coupling the populated metadata with a database operation,
+ * to insert a new EntryItem via CrossRef into an EntryContainer on successful confirm button click.
+ *
+ * Additionally, this class handles the quick-add by Barcode functionality.
+ * If this fragment was navigated to, via setting a flag in ContainerDetailsFragment,
+ * the navigation continues to BarcodeFragment and ultimately back to this fragment,
+ * along a possible barcode-text result.
+ * On no barcode-text result, there is no further behaviour.
+ * On barcode-text result though, two HTTP calls are made to the API,
+ * to fetch the possible barcode-metadata and -thumbnail.
+ * On successful fetches, the Name, Description and Photo Views are populated accordingly.
+ * On failed barcode-metadata fetch, a Warning Popup is shown,
+ * notifying the user that data exists for this barcode-text.
+ */
 class AddItemFragment() : MetadataBaseFragment() {
     private var containerId: Long = -1
     private lateinit var viewModel: AddItemViewModel
@@ -28,7 +45,7 @@ class AddItemFragment() : MetadataBaseFragment() {
     }
 
     override fun initPackageData() {
-        val fragArgs = getContainerPackage() as AddItemFragmentArg
+        val fragArgs = getFragmentArg() as AddItemFragmentArg
         containerId = fragArgs.containerId
         navigateBarcodeFrag = fragArgs.navigateBarcodeFrag
         fragArgs.navigateBarcodeFrag = false
@@ -114,7 +131,7 @@ class AddItemFragment() : MetadataBaseFragment() {
         return ""
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return getSerializable(
             getString(R.string.frag_arg_add_item),
             AddItemFragmentArg::class.java

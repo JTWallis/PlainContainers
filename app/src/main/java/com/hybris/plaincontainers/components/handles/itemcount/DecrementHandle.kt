@@ -3,6 +3,9 @@ package com.hybris.plaincontainers.components.handles.itemcount
 import android.view.View
 import com.hybris.plaincontainers.R
 
+/**
+ * Subclass of ButtonCountHandleBase, that automatically sets an icon, color and contentDescription.
+ */
 class DecrementHandle(
     view: View,
     onClick: () -> Unit)

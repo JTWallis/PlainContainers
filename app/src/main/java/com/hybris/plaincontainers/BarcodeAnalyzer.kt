@@ -7,6 +7,10 @@ import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.common.InputImage
 
+/**
+ * Image analyzer that makes use of the Google-ML-Kit BarcodeScanner.
+ * Scans an existing barcode in the image and if succeeded, returns the result through the callback.
+ */
 class BarcodeAnalyzer(
     private val scanner: BarcodeScanner,
     private val onBarcodeDetected: (String) -> Unit

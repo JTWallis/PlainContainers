@@ -7,6 +7,10 @@ import androidx.annotation.RawRes
 import androidx.fragment.app.Fragment
 import com.hybris.plaincontainers.R
 
+/**
+ * Logic side of the "fragment_licenses" layout.
+ * Populates certain TextViews with corresponding licensing texts from a raw-resource.
+ */
 class LicensesFragment: Fragment(R.layout.fragment_licenses) {
     private lateinit var tvColorPicker: TextView
     private lateinit var tvFlaticons: TextView

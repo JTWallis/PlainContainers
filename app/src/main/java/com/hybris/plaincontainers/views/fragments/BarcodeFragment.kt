@@ -13,6 +13,14 @@ import com.google.mlkit.vision.barcode.common.Barcode
 import com.hybris.plaincontainers.BarcodeAnalyzer
 import com.hybris.plaincontainers.R
 
+/**
+ * Logic side of the "fragment_capture" layout.
+ * Extends the CameraFragmentBase base class,
+ * by specifying the camera UseCase to analyze the image, utilizing the BarcodeAnalyzer.
+ *
+ * On successful analysis, sets the barcode-text in the ParentFragmentManager FragmentResult
+ * and navigates up in the navGraph.
+ */
 class BarcodeFragment : CameraFragmentBase() {
 
     private val barcodeScanner by lazy { initBarcodeScanner() }

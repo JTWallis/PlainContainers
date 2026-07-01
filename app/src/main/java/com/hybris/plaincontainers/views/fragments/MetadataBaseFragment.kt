@@ -19,6 +19,12 @@ import androidx.navigation.fragment.findNavController
 import com.hybris.plaincontainers.data.FileUtils
 import com.hybris.plaincontainers.views.warningpopup.WarningPopup
 
+/**
+ * Base class logic side of the "fragment_edit" layout.
+ * Exposes the user-editable View values to subclasses,
+ * shows a Warning popup on confirming with an empty name,
+ * and handles the behaviour to set a photo from the gallery or via the camera.
+ */
 abstract class MetadataBaseFragment: FragmentBase(R.layout.fragment_edit) {
 
     private lateinit var tvName: TextView

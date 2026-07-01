@@ -18,6 +18,11 @@ import com.hybris.plaincontainers.data.viewmodels.AppBarViewModel
 import java.io.Serializable
 import kotlin.getValue
 
+/**
+ * Base class for every Fragment, that intends to use a Menu in the AppBar
+ * and optionally FragmentArguments, passed on a navigation.
+ * Can be inherited from the same way as a regular androidx.fragment.app.Fragment class.
+ */
 abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     protected val appbarVm: AppBarViewModel by activityViewModels()
@@ -33,8 +38,21 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     protected abstract fun initViews(view: View)
     protected abstract fun initPackageData()
-    protected abstract fun getContainerPackage(): Serializable
 
+    /**
+     * Helper function wrapper for getSerializable.
+     * The returned Serializable can be cast to the according *FragmentArg type,
+     * to parse the fragment argument data during compile time.
+     * @return FragmentArg instance matching a type in the data.fragmentargs package.
+     * Can possibly instead return an empty Serializable object,
+     * if a Fragment does not intend to receive fragment args.
+     */
+    protected abstract fun getFragmentArg(): Serializable
+
+    /**
+     * Displays an optional subtitle in the AppBar,
+     * by setting a new Model value for appbarVm.
+     */
     protected open fun initAppbarSubtitle() {}
 
     private fun initMenuProvider() {
@@ -69,6 +87,13 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         }
     }
 
+    /**
+     * Used in an override of GetFragmentArg to handle the passed
+     * fragment argument data during compile time.
+     * @param name FragmentArgument key
+     * @param clazz Class instance for a FragmentArgument, tied to the key
+     * @return Serializable class instance, intended for FragmentArguments.
+     */
     protected fun <T: Serializable?> getSerializable(name: String, clazz: Class<T>): T {
         return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
             arguments?.getSerializable(name, clazz)!!

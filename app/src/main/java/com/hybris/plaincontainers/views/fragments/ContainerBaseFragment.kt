@@ -14,16 +14,23 @@ import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandl
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
 import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.entities.EntryBase
-import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
+import com.hybris.plaincontainers.entrylist.dragbutton.DragCallback
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
-import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
+import com.hybris.plaincontainers.entrylist.itemdecoration.TopGapDecoration
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
 import com.hybris.plaincontainers.views.sortpopup.SortSelection
 
-abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.fragment_overview), SortChangeListener {
+/**
+ * Base class logic side of the "fragment_overview" layout.
+ * Sets up a sortable RecyclerView with draggable items for a manual sort.
+ * The class is intended for items inheriting from EntryBase,
+ * specifically EntryContainer and EntryItem.
+ */
+abstract class ContainerBaseFragment<T: EntryBase>()
+    : FragmentBase(R.layout.fragment_overview), SortChangeListener {
 
     private var sortParams: SortSelection = SortSelection(SortOption.DATE_ADDED, true)
     private lateinit var layoutBtnSort: CardView
@@ -84,7 +91,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.frag
     private fun initRecycleView(view: View) {
         rcvList.layoutManager = LinearLayoutManager(view.context)
         rcvList.addItemDecoration(
-            GapVerticalDecoration(
+            TopGapDecoration(
                 resources.getDimensionPixelSize(R.dimen.rcvEntryGap)
             )
         )
@@ -102,7 +109,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.frag
         }
 
         createAdapter(dragListener)
-        val callback = DragAdapter(rcvAdapter)
+        val callback = DragCallback(rcvAdapter)
 
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcvList)

@@ -10,6 +10,10 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
+/**
+ * Manager to issue certain HTTP calls.
+ * Ideally the functions should be wrapped in relevant ViewModels + viewModelScope for a clean structure.
+ */
 object HttpManager {
 
     private const val URL_BASE = "http://192.168.0.2:8100/api/"

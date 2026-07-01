@@ -7,6 +7,13 @@ import android.widget.TextView
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.views.Popup
 
+/**
+ * Popup variant for the "popup_list" layout.
+ * Populates its ListView with all SortOption entries,
+ * including localization, style change on selection,
+ * and a call to the onSortChanged callback, when a new SortOption is selected
+ * (this includes a changing sort-order for the same SortOption).
+ */
 class SortPopup(
     invokerView: View,
     private var sortSelection: SortSelection,

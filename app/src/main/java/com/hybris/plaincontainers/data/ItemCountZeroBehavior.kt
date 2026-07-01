@@ -3,6 +3,10 @@ package com.hybris.plaincontainers.data
 import androidx.annotation.StringRes
 import com.hybris.plaincontainers.R
 
+/**
+ * Behaviour for an EntryItem within an EntryContainer reaching a 0 count.
+ * The values are also tied to localized string resources, for easy list population.
+ */
 enum class ItemCountZeroBehavior(
     @get:StringRes private val localizationId: Int
 ) {

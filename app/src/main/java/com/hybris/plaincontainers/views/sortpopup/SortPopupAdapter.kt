@@ -12,6 +12,15 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.hybris.plaincontainers.R
 
+/**
+ * Adapter for a sortable ListView, specifically for a Sort Popup.
+ * Takes an array of localized strings for the possible sorting options.
+ * Populates the ListView with inflated "component_row_sort" layouts.
+ * The layouts have their background-color and icon set,
+ * that is based on whether the item is selected (determined with the sortSelection param).
+ * The invisibleIconPositions param hides the sort-order-icon for items with matching indices.
+ * The onClick callback takes the item index and is added for every layout.
+ */
 class SortPopupAdapter(
     private val context: Context,
     private val data: Array<String>,

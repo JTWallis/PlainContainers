@@ -3,6 +3,9 @@ package com.hybris.plaincontainers.entrylist.entrybase
 import androidx.recyclerview.widget.DiffUtil
 import com.hybris.plaincontainers.data.entities.EntryBase
 
+/**
+ * Custom DiffUtil.ItemCallback, that tells the RecyclerView if items of type EntryBase match.
+ */
 class EntryBaseDiffCallback<T: EntryBase>: DiffUtil.ItemCallback<T>() {
     override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
         return oldItem.internalId == newItem.internalId

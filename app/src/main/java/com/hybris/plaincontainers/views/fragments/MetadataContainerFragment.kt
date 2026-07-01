@@ -11,6 +11,11 @@ import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
+/**
+ * Baseclass logic side of the "fragment_edit" layout, specifically for the pages
+ * of adding and editing a container (further defined in AddContainerFragment and EditContainerFragment).
+ * Extends the MetadataBaseFragment class, by adding behaviour for a pickable color.
+ */
 abstract class MetadataContainerFragment: MetadataBaseFragment() {
 
     private lateinit var tvColor: TextView

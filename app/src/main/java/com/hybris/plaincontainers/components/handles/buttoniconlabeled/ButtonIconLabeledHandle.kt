@@ -7,6 +7,10 @@ import androidx.core.content.ContextCompat
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.ButtonHandleBase
 
+/**
+ * Base helper class for buttons with the "component_button_increment" layout,
+ * providing a label and icon that can be placed at the start or end.
+ */
 open class ButtonIconLabeledHandle(
     view: View,
     onClick: () -> Unit,

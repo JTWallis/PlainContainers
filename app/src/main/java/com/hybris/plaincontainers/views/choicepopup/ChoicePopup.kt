@@ -9,6 +9,11 @@ import androidx.annotation.LayoutRes
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.views.Popup
 
+/**
+ * Popup variant for the "popup_choice" layout.
+ * Defines two buttons with a callback for each, a title and a subtitle.
+ * Setting isChoiceImportant to true paints the subtitle and right button in a red color.
+ */
 open class ChoicePopup(
     invokerView: View,
     private val onClickLeft: () -> Unit,

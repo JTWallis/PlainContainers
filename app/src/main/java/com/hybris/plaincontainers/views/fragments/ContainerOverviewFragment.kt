@@ -19,6 +19,11 @@ import com.hybris.plaincontainers.views.sortpopup.SortOption
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
+/**
+ * Logic side of the "fragment_overview" layout, specifically for editing a container.
+ * Extends the ContainerBaseFragment base class,
+ * by tying the RecyclerView to all existing EntryContainers.
+ */
 class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
     private val viewModel = OverviewViewModel()
     override val labelBtnAdd: Int = R.string.overview_btn_add
@@ -26,6 +31,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Fetch Root from the database, to set the initial RcView SortSelection.
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.root.collect { root ->
@@ -37,6 +43,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
             }
         }
 
+        // Fetch all EntryContainers from the database, to populate the RcView.
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.containers.collect { list ->
@@ -87,7 +94,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         findNavController().navigate(R.id.action_overview_to_add_container)
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return object: Serializable {}
     }
 

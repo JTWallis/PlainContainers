@@ -5,10 +5,13 @@ import android.widget.TextView
 import androidx.annotation.ColorRes
 import com.hybris.plaincontainers.R
 
+/**
+ * Handle for the "component_count" layout, that provides a function to set and automatically
+ * update the count text, with a minimum value of 0.
+ */
 class CountHandle(
     private val view: View,
     private var count: Int,
-    private val onZeroCount: () -> Unit,
     @ColorRes backgroundColorId: Int = R.color.backgroundHighlight
 ) {
 
@@ -20,12 +23,9 @@ class CountHandle(
     }
 
     fun setCount(newCount: Int) {
-        if(newCount <= 0) {
-            count = 0
-            onZeroCount()
-        } else {
-            count = newCount
-        }
+        count =
+            if(newCount <= 0) 0
+            else newCount
 
         updateCountText()
     }

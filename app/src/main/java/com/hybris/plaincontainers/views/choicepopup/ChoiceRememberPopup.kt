@@ -4,6 +4,14 @@ import android.view.View
 import android.widget.CheckBox
 import com.hybris.plaincontainers.R
 
+/**
+ * Popup variant for the "popup_choice_remember" layout.
+ * Defines two buttons with a callback for each, a title and a subtitle.
+ * Setting isChoiceImportant to true paints the subtitle and right button in a red color.
+ *
+ * This popup extends the ChoicePopup base class, by passing a rememberChoice flag
+ * in the button callbacks, which is set through a user-clickable checkbox.
+ */
 class ChoiceRememberPopup(
     invokerView: View,
     private val onClickLeft: (rememberChoice: Boolean) -> Unit,
