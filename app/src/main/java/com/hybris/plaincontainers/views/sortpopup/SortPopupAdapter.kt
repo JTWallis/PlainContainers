@@ -26,7 +26,7 @@ class SortPopupAdapter(
         return data.count()
     }
 
-    override fun getItem(position: Int): Any? {
+    override fun getItem(position: Int): Any {
         return data[position]
     }
 
