@@ -9,4 +9,4 @@ data class Settings(
     val locale: SupportedLocale,
     val dragEnabled: Boolean,
     val itemCountZeroBehavior: ItemCountZeroBehavior
-) {}
+)

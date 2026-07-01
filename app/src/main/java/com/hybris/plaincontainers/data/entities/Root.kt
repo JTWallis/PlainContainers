@@ -8,4 +8,4 @@ data class Root(
     @PrimaryKey(autoGenerate = true) val rootId: Long = 0L,
     val sortOption: Int,
     val sortAscending: Boolean
-) {}
+)

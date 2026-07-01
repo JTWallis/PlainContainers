@@ -6,7 +6,7 @@ import com.hybris.plaincontainers.data.entities.EntryContainer
 import com.hybris.plaincontainers.data.repositories.EntryContainerRepository
 import kotlinx.coroutines.launch
 
-class EditContainerViewModel(private val containerId: Long) : ViewModel() {
+class EditContainerViewModel(val containerId: Long) : ViewModel() {
     private val containerRepository = EntryContainerRepository()
 
     val container = containerRepository.get(containerId)

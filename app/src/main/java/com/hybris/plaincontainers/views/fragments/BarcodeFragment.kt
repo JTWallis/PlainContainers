@@ -36,7 +36,7 @@ class BarcodeFragment : CameraFragmentBase() {
     override fun buildUseCase(): UseCase {
         val analysis = ImageAnalysis.Builder()
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-            .build();
+            .build()
 
         analysis.setAnalyzer(
             ContextCompat.getMainExecutor(requireContext()),

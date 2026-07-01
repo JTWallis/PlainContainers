@@ -14,6 +14,8 @@ class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit,
     : EntryDragViewHolder<EntryItemInContainer>(view, onEntryClick, dragListener) {
 
     private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, onZeroCount = {}, R.color.backgroundFill)
+
+    // Though compiler marks as unused, the handles need to persist for correct behavior.
     private val decrementHandle = DecrementHandle(
         view.findViewById<ConstraintLayout>(R.id.containerBtnDecrement),
         onClick = { onCountChange(absoluteAdapterPosition, -1) })

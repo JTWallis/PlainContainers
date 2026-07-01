@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cvBtnIncrement"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/backgroundFill">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVert1"
+        android:id="@+id/guidelineBtnIncrVert1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -16,7 +15,7 @@
     />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVert2"
+        android:id="@+id/guidelineBtnIncrVert2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -24,7 +23,7 @@
     />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorz1"
+        android:id="@+id/guidelineBtnIncrHorz1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -32,7 +31,7 @@
     />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorz2"
+        android:id="@+id/guidelineBtnIncrHorz2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -61,10 +60,10 @@
         android:contentDescription="@string/accessibility_btn_increment"
         android:elevation="8dp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorz1"
-        app:layout_constraintBottom_toBottomOf="@id/guidelineHorz2"
-        app:layout_constraintStart_toStartOf="@id/guidelineVert1"
-        app:layout_constraintEnd_toEndOf="@id/guidelineVert2"
+        app:layout_constraintTop_toTopOf="@id/guidelineBtnIncrHorz1"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBtnIncrHorz2"
+        app:layout_constraintStart_toStartOf="@id/guidelineBtnIncrVert1"
+        app:layout_constraintEnd_toEndOf="@id/guidelineBtnIncrVert2"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

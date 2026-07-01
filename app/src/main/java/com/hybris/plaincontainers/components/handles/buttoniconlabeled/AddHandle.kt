@@ -13,4 +13,4 @@ class AddHandle(
     buttonText,
     R.drawable.add_24,
     true
-) {}
+)

@@ -28,4 +28,4 @@ data class EntryContainerItemCrossRef(
     val itemId: Long,
     val amount: Int,
     val sortPosition: Int
-) {}
+)

@@ -6,7 +6,7 @@
     android:background="@color/backgroundFill">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineOuterVert1"
+        android:id="@+id/guidelineDragOuterVert1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert1"
+            android:id="@+id/guidelineDragVert1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -32,7 +32,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert2"
+            android:id="@+id/guidelineDragVert2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -45,7 +45,7 @@
             android:layout_height="0dp"
             android:background="@color/backgroundFill"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineDragVert1"
             app:layout_constraintTop_toTopOf="@id/containerEntryBase"
             app:layout_constraintBottom_toBottomOf="@id/containerEntryBase"
         >
@@ -62,15 +62,15 @@
             android:id="@+id/containerEntryBase"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert2"
+            app:layout_constraintStart_toStartOf="@id/guidelineDragVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineDragVert2"
             />
 
         <include layout="@layout/component_expand"
             android:id="@+id/containerExpand"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/guidelineVert2"
+            app:layout_constraintStart_toStartOf="@id/guidelineDragVert2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/containerEntryBase"
             app:layout_constraintBottom_toBottomOf="@id/containerEntryBase"
@@ -85,7 +85,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/backgroundFill"
-        app:layout_constraintStart_toStartOf="@id/guidelineOuterVert1"
+        app:layout_constraintStart_toStartOf="@id/guidelineDragOuterVert1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/clInner"
         app:layout_constraintBottom_toBottomOf="parent"

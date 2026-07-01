@@ -13,4 +13,4 @@ class EditHandle(
     buttonText,
     R.drawable.pencil_24,
     true
-) {}
+)

@@ -8,7 +8,7 @@
     android:padding="@dimen/viewPadding">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorz1"
+        android:id="@+id/guidelineEditHorz1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -16,7 +16,7 @@
     />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineOuterVert1"
+        android:id="@+id/guidelineEditOuterVert1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -24,7 +24,7 @@
     />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineOuterVert2"
+        android:id="@+id/guidelineEditOuterVert2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -40,10 +40,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guidelineHorz1" >
+        app:layout_constraintBottom_toTopOf="@id/guidelineEditHorz1" >
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert1"
+            android:id="@+id/guidelineEditVert1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -54,7 +54,7 @@
             android:id="@+id/spacerCol"
             android:layout_width="@dimen/viewPadding"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
+            app:layout_constraintStart_toStartOf="@id/guidelineEditVert1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
         />
@@ -68,7 +68,7 @@
             android:textAlignment="textEnd"
             android:textAppearance="@style/Widget.PlainContainers.Text.Default"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineEditVert1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/etEditName"
         />
@@ -103,7 +103,7 @@
             android:textAlignment="textEnd"
             android:textAppearance="@style/Widget.PlainContainers.Text.Default"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineEditVert1"
             app:layout_constraintTop_toBottomOf="@id/spacerRow1"
         />
 
@@ -145,7 +145,7 @@
             android:textAlignment="textEnd"
             android:textAppearance="@style/Widget.PlainContainers.Text.Default"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineEditVert1"
             app:layout_constraintTop_toBottomOf="@id/spacerRow2"
         />
 
@@ -181,7 +181,7 @@
             android:textAlignment="textEnd"
             android:textAppearance="@style/Widget.PlainContainers.Text.Default"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelineEditVert1"
             app:layout_constraintTop_toBottomOf="@id/spacerRow3"
             android:visibility="gone"
         />
@@ -230,7 +230,7 @@
         android:layout_height="@dimen/emptyDividerHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorz1"
+        app:layout_constraintTop_toTopOf="@id/guidelineEditHorz1"
     />
 
     <include layout="@layout/component_button_icon_labeled"
@@ -238,7 +238,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guidelineOuterVert1"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEditOuterVert1"
         app:layout_constraintTop_toBottomOf="@id/spacerRow4"
         />
 
@@ -246,7 +246,7 @@
         android:id="@+id/btnEditConfirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/guidelineOuterVert2"
+        app:layout_constraintStart_toStartOf="@id/guidelineEditOuterVert2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spacerRow4"
     />

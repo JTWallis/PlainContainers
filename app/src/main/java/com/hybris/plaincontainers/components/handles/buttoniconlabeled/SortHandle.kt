@@ -12,4 +12,4 @@ class SortHandle(
     onClick,
     buttonText,
     R.drawable.list_24
-) {}
+)

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
-class DragExpandViewModel(private val containerId: Long): ViewModel() {
+class DragExpandViewModel(val containerId: Long): ViewModel() {
 
     private val itemRepository = EntryItemRepository(containerId)
 

@@ -12,7 +12,7 @@
     <string name="appbar_item_about">Über die App</string>
 
     <string name="general_component_drag_sort">Drag Sortierung</string>
-    <string name="general_btn_ok">Ok</string>
+    <string name="general_btn_ok">OK</string>
 
     <string name="overview_btn_add">Behälter hinzufügen</string>
     <string name="details_btn_add">Gegenstand hinzufügen</string>
@@ -62,7 +62,7 @@
     <string name="about_licenses">Lizensen</string>
     <string name="about_version">Version %1$s</string>
     <string name="license_flaticons">Diese App verwendet Symbole von der UIcons Bibliothek.\nDiese sind verfügbar auf Flaticon von Magnific:</string>
-    <string name="license_apache">Diese App verwendet Open-Source-Bibliotheken, die unter der Apache-Lizenz 2.0 lizensiert sind:</string>
+    <string name="license_apache">Diese App verwendet Open-Source-Bibliotheken, die unter der Apache-Lizenz 2.0 lizenziert sind:</string>
 
     <string name="accessibility_btn_drag">Drag &amp; Drop zum Umordnen</string>
     <string name="accessibility_btn_expand">Behälter aufklappen</string>

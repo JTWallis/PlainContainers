@@ -36,7 +36,7 @@ class SelectionPopupAdapter(
 
         var view: RadioButton? = convertView as RadioButton?
         if(view == null) {
-            view = inflater.inflate(R.layout.component_selection, null) as RadioButton
+            view = inflater.inflate(R.layout.component_selection, parent, false) as RadioButton
         }
 
         view.text = data[position]

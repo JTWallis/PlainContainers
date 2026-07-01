@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 data class BarcodeMetadata(
     val productName: String,
     val productDescription: String
-) {}
+)
