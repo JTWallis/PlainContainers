@@ -89,4 +89,6 @@
     <string name="frag_result_capture_result_uri" translatable="false">frag_result_capture_result_uri</string>
     <string name="frag_result_barcode_result_request" translatable="false">frag_result_barcode_result</string>
     <string name="frag_result_barcode_result_text" translatable="false">frag_result_barcode_result_text</string>
+
+    <string name="debug_sample_text" translatable="false">Sample Text</string>
 </resources>
