@@ -20,31 +20,7 @@
         >
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1"
-        />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5"
-        />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.9"
-        />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorz1"
+            android:id="@+id/guidelinePopupWarningHorz1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -52,7 +28,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorz2"
+            android:id="@+id/guidelinePopupWarningHorz2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -66,8 +42,8 @@
             android:text="@string/details_popup_add_title"
             android:textAppearance="@style/Widget.PlainContainers.Text.Title"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz1"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorz2"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupWarningHorz1"
+            app:layout_constraintBottom_toTopOf="@id/guidelinePopupWarningHorz2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
         />
@@ -82,7 +58,7 @@
             android:textAppearance="@style/Widget.PlainContainers.Text.Button"
             android:layout_marginLeft="@dimen/btnPopupWarningMargin"
             android:layout_marginRight="@dimen/btnPopupWarningMargin"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz2"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupWarningHorz2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

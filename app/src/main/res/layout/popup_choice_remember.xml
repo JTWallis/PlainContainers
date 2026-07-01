@@ -20,7 +20,7 @@
         >
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert1"
+            android:id="@+id/guidelinePopupChoiceRememberVert1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -28,7 +28,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert2"
+            android:id="@+id/guidelinePopupChoiceRememberVert2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -36,7 +36,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert3"
+            android:id="@+id/guidelinePopupChoiceRememberVert3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -44,7 +44,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorz1"
+            android:id="@+id/guidelinePopupChoiceRememberHorz1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -52,7 +52,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorz2"
+            android:id="@+id/guidelinePopupChoiceRememberHorz2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -60,7 +60,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorz3"
+            android:id="@+id/guidelinePopupChoiceRememberHorz3"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -76,9 +76,9 @@
             android:scaleType="centerCrop"
             android:background="@color/backgroundDefault"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorz1"
+            app:layout_constraintBottom_toTopOf="@id/guidelinePopupChoiceRememberHorz1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelinePopupChoiceRememberVert1"
         />
 
         <TextView
@@ -88,8 +88,8 @@
             android:text="@string/details_popup_add_title"
             android:textAppearance="@style/Widget.PlainContainers.Text.Title"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz1"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorz2"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupChoiceRememberHorz1"
+            app:layout_constraintBottom_toTopOf="@id/guidelinePopupChoiceRememberHorz2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
         />
@@ -101,10 +101,10 @@
             android:text="@string/details_popup_add_title"
             android:textAppearance="@style/Widget.PlainContainers.Text.Subtitle"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz2"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorz3"
-            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
-            app:layout_constraintEnd_toEndOf="@id/guidelineVert3"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupChoiceRememberHorz2"
+            app:layout_constraintBottom_toTopOf="@id/guidelinePopupChoiceRememberHorz3"
+            app:layout_constraintStart_toStartOf="@id/guidelinePopupChoiceRememberVert1"
+            app:layout_constraintEnd_toEndOf="@id/guidelinePopupChoiceRememberVert3"
         />
 
         <Button
@@ -116,10 +116,10 @@
             android:textAppearance="@style/Widget.PlainContainers.Text.Button"
             android:layout_marginLeft="@dimen/btnPopupChoiceMargin"
             android:layout_marginRight="@dimen/btnPopupChoiceMargin"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz3"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupChoiceRememberHorz3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert2"
+            app:layout_constraintEnd_toStartOf="@id/guidelinePopupChoiceRememberVert2"
         />
 
         <Button
@@ -131,9 +131,9 @@
             android:textAppearance="@style/Widget.PlainContainers.Text.Button"
             android:layout_marginLeft="@dimen/btnPopupChoiceMargin"
             android:layout_marginRight="@dimen/btnPopupChoiceMargin"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz3"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupChoiceRememberHorz3"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelineVert2"
+            app:layout_constraintStart_toEndOf="@id/guidelinePopupChoiceRememberVert2"
             app:layout_constraintEnd_toEndOf="parent"
         />
 

@@ -20,7 +20,7 @@
         >
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert1"
+            android:id="@+id/guidelinePopupListVert1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -28,7 +28,7 @@
         />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVert2"
+            android:id="@+id/guidelinePopupListVert2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -36,7 +36,7 @@
             />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorz1"
+            android:id="@+id/guidelinePopupListHorz1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -52,9 +52,9 @@
             android:scaleType="centerCrop"
             android:background="@color/backgroundDefault"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorz1"
+            app:layout_constraintBottom_toTopOf="@id/guidelinePopupListHorz1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVert1"
+            app:layout_constraintEnd_toStartOf="@id/guidelinePopupListVert1"
         />
 
         <TextView
@@ -66,9 +66,9 @@
             android:text="@string/popup_sort_title"
             android:textAppearance="@style/Widget.PlainContainers.Text.Title"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorz1"
-            app:layout_constraintStart_toStartOf="@id/guidelineVert1"
-            app:layout_constraintEnd_toEndOf="@id/guidelineVert2"
+            app:layout_constraintBottom_toTopOf="@id/guidelinePopupListHorz1"
+            app:layout_constraintStart_toStartOf="@id/guidelinePopupListVert1"
+            app:layout_constraintEnd_toEndOf="@id/guidelinePopupListVert2"
             />
 
         <ListView
@@ -78,7 +78,7 @@
             android:layout_marginTop="@dimen/popupListItemListMargin"
             android:divider="@color/backgroundDefault"
             android:dividerHeight="@dimen/emptyDividerHeight"
-            app:layout_constraintTop_toBottomOf="@id/guidelineHorz1"
+            app:layout_constraintTop_toBottomOf="@id/guidelinePopupListHorz1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

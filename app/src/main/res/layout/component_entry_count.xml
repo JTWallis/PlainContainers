@@ -7,7 +7,7 @@
     android:padding="@dimen/bgBorderThickness">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineVert1"
+        android:id="@+id/guidelineCountVert1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -19,14 +19,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/guidelineVert1"
+        app:layout_constraintEnd_toEndOf="@id/guidelineCountVert1"
     />
 
     <include layout="@layout/component_count"
         android:id="@+id/containerCount"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="@id/guidelineVert1"
+        app:layout_constraintStart_toEndOf="@id/guidelineCountVert1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/containerEntryBase"
         app:layout_constraintBottom_toBottomOf="@id/containerEntryBase"
