@@ -57,7 +57,7 @@ object JsonManager {
         throw NullPointerException("Attempting to interact with JsonManager but root is null!")
     }
 
-    private fun verifyRoot() {
+    private fun verifyInit() {
         if(!isInit) throwExceptionInit()
     }
 
