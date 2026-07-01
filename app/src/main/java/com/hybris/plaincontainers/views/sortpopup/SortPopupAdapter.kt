@@ -43,7 +43,7 @@ class SortPopupAdapter(
 
         var view = convertView
         if(view == null) {
-            view = inflater.inflate(R.layout.component_row_sort, null)
+            view = inflater.inflate(R.layout.component_row_sort, parent, false)
         }
 
         val tv = view.findViewById<TextView>(R.id.txtRowSortText)
