@@ -17,7 +17,7 @@ import com.hybris.plaincontainers.data.entities.EntryBase
 import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
-import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
+import com.hybris.plaincontainers.entrylist.itemdecoration.TopGapDecoration
 import com.hybris.plaincontainers.views.sortpopup.SortChangeListener
 import com.hybris.plaincontainers.views.sortpopup.SortOption
 import com.hybris.plaincontainers.views.sortpopup.SortPopup
@@ -84,7 +84,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.frag
     private fun initRecycleView(view: View) {
         rcvList.layoutManager = LinearLayoutManager(view.context)
         rcvList.addItemDecoration(
-            GapVerticalDecoration(
+            TopGapDecoration(
                 resources.getDimensionPixelSize(R.dimen.rcvEntryGap)
             )
         )
