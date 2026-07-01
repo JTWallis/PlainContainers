@@ -6,8 +6,11 @@ import com.hybris.plaincontainers.entrylist.dragbutton.DragHandle
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrybase.EntryBaseViewHolder
 
-open class EntryDragViewHolder<T: EntryBase>(view: View, onEntryClick: (pos: Int) -> Unit, private val dragListener: DragListener<T>)
-    : EntryBaseViewHolder<T>(view, onEntryClick) {
+open class EntryDragViewHolder<T : EntryBase>(
+    view: View,
+    onEntryClick: (pos: Int) -> Unit,
+    val dragListener: DragListener<T>
+) : EntryBaseViewHolder<T>(view, onEntryClick) {
 
     private val dragHandle = DragHandle(this, dragListener)
 
