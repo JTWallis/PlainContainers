@@ -14,7 +14,7 @@ open class EntryDragAdapter<T: EntryBase>(private val onEntryClick: (pos: Int) -
 
     private var isDragVisible = true
 
-    override fun getResource(): Int {
+    override fun getLayoutResource(): Int {
         return R.layout.component_entry_drag
     }
 

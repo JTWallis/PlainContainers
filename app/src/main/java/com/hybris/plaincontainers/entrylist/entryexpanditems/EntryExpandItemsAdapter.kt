@@ -9,7 +9,7 @@ import com.hybris.plaincontainers.data.entities.EntryItemInContainer
 class EntryExpandItemsAdapter()
     : EntryBaseAdapter<EntryItemInContainer>() {
 
-    override fun getResource(): Int {
+    override fun getLayoutResource(): Int {
         return R.layout.component_entry_count
     }
 

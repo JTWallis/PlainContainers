@@ -13,7 +13,7 @@ class EntryDragIncrementAdapter(
     private val onItemCountChange: (itemPos: Int, addValue: Int) -> Unit
 ) : EntryDragAdapter<EntryItemInContainer>(onEntryClick, dragListener) {
 
-    override fun getResource(): Int {
+    override fun getLayoutResource(): Int {
         return R.layout.component_entry_drag_count_incrementable
     }
 

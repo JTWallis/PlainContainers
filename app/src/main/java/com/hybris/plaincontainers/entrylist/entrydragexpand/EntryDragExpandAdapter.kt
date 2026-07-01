@@ -15,7 +15,7 @@ class EntryDragExpandAdapter(
     private val lifecycleOwner: LifecycleOwner
 ) : EntryDragAdapter<EntryContainer>(onEntryClick, dragListener), ExpandListener {
 
-    override fun getResource(): Int {
+    override fun getLayoutResource(): Int {
         return R.layout.component_entry_drag
     }
 

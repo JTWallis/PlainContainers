@@ -12,7 +12,7 @@ abstract class EntryBaseAdapter<T: EntryBase>(
     diffCallback: DiffUtil.ItemCallback<T> = EntryBaseDiffCallback<T>()
 ) : ListAdapter<T, EntryBaseViewHolder<T>>(diffCallback) {
 
-    abstract fun getResource(): Int
+    abstract fun getLayoutResource(): Int
     abstract fun createViewHolder(view: View): EntryBaseViewHolder<T>
 
     fun setItems(items: List<T>) {
@@ -22,7 +22,7 @@ abstract class EntryBaseAdapter<T: EntryBase>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryBaseViewHolder<T> {
         val view = LayoutInflater.from(parent.context)
-            .inflate(getResource(), parent, false) //EntryBaseComponent(parent.context)
+            .inflate(getLayoutResource(), parent, false) //EntryBaseComponent(parent.context)
 
         return createViewHolder(view)
     }
