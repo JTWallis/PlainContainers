@@ -20,7 +20,7 @@ import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragViewHolder
 import com.hybris.plaincontainers.entrylist.entryexpanditems.EntryExpandItemsAdapter
 import com.hybris.plaincontainers.entrylist.expandbutton.ExpandHandle
-import com.hybris.plaincontainers.entrylist.itemdecoration.GapVerticalDecoration
+import com.hybris.plaincontainers.entrylist.itemdecoration.TopGapDecoration
 import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
@@ -50,7 +50,7 @@ class EntryDragExpandViewHolder(
             layoutManager = LinearLayoutManager(view.context)
             adapter = expandItemsAdapter
             addItemDecoration(
-            GapVerticalDecoration(
+            TopGapDecoration(
                 resources.getDimensionPixelSize(R.dimen.rcvExpandedGap)
                 )
             )

@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class GapVerticalDecoration(private val gap: Int)
+class TopGapDecoration(private val gap: Int)
     : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
