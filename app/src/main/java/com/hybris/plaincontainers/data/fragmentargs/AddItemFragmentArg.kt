@@ -8,4 +8,4 @@ class AddItemFragmentArg(
     // One-time-consume flag: Read for quick-add navigation and immediately set to false,
     //  to prevent retrigger on navigateUp().
     var navigateBarcodeFrag: Boolean = false
-): Serializable {}
+): Serializable

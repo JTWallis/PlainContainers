@@ -11,4 +11,4 @@ class IncrementHandle(
     onClick,
     R.drawable.plus_24,
     R.color.button_green
-) {}
+)

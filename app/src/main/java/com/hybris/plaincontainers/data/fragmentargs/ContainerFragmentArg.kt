@@ -4,4 +4,4 @@ import java.io.Serializable
 
 class ContainerFragmentArg(
     val containerId: Long
-): Serializable {}
+): Serializable
