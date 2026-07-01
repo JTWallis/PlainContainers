@@ -63,7 +63,7 @@ class AddContainerFragment: MetadataContainerFragment() {
         return 0
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return object: Serializable {}
     }
 }

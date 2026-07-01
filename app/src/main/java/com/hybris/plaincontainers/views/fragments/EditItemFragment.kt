@@ -21,7 +21,7 @@ class EditItemFragment() : MetadataBaseFragment() {
     private lateinit var viewModel: EditItemViewModel
 
     override fun initPackageData() {
-        val fragArg = getContainerPackage() as EditItemFragmentArg
+        val fragArg = getFragmentArg() as EditItemFragmentArg
         containerId = fragArg.containerId
         itemId = fragArg.itemId
 
@@ -104,7 +104,7 @@ class EditItemFragment() : MetadataBaseFragment() {
         return itemMetadata.description ?: ""
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return getSerializable(
             getString(R.string.frag_arg_edit_item),
             EditItemFragmentArg::class.java

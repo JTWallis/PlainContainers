@@ -33,7 +33,7 @@ abstract class FragmentBase(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     protected abstract fun initViews(view: View)
     protected abstract fun initPackageData()
-    protected abstract fun getContainerPackage(): Serializable
+    protected abstract fun getFragmentArg(): Serializable
 
     protected open fun initAppbarSubtitle() {}
 

@@ -22,7 +22,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
     private lateinit var viewModel: EditContainerViewModel
 
     override fun initPackageData() {
-        val fragArgs = getContainerPackage() as EditContainerFragmentArg
+        val fragArgs = getFragmentArg() as EditContainerFragmentArg
         containerId = fragArgs.containerId
 
         viewModel = EditContainerViewModel(containerId)
@@ -118,7 +118,7 @@ class EditContainerFragment(): MetadataContainerFragment() {
         return containerMetadata.color ?: 100
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return getSerializable(
             getString(R.string.frag_arg_edit_container),
             EditContainerFragmentArg::class.java

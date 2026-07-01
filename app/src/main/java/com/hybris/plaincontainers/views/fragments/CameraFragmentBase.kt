@@ -117,7 +117,7 @@ abstract class CameraFragmentBase : FragmentBase(R.layout.fragment_capture) {
 
     override fun initPackageData() {}
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return object : Serializable {}
     }
 }

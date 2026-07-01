@@ -28,7 +28,7 @@ class AddItemFragment() : MetadataBaseFragment() {
     }
 
     override fun initPackageData() {
-        val fragArgs = getContainerPackage() as AddItemFragmentArg
+        val fragArgs = getFragmentArg() as AddItemFragmentArg
         containerId = fragArgs.containerId
         navigateBarcodeFrag = fragArgs.navigateBarcodeFrag
         fragArgs.navigateBarcodeFrag = false
@@ -114,7 +114,7 @@ class AddItemFragment() : MetadataBaseFragment() {
         return ""
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return getSerializable(
             getString(R.string.frag_arg_add_item),
             AddItemFragmentArg::class.java

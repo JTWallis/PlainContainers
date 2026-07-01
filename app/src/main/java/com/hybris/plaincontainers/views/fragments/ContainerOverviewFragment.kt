@@ -87,7 +87,7 @@ class ContainerOverviewFragment(): ContainerBaseFragment<EntryContainer>() {
         findNavController().navigate(R.id.action_overview_to_add_container)
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return object: Serializable {}
     }
 

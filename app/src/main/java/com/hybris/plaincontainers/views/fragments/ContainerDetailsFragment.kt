@@ -45,7 +45,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
     }
 
     override fun initPackageData() {
-        val containerPackage = getContainerPackage() as ContainerFragmentArg
+        val containerPackage = getFragmentArg() as ContainerFragmentArg
         containerId = containerPackage.containerId
 
         viewModel = DetailsViewModel(containerId)
@@ -184,7 +184,7 @@ class ContainerDetailsFragment(): ContainerBaseFragment<EntryItemInContainer>() 
         findNavController().navigate(R.id.action_detail_to_add_item, args = bundle)
     }
 
-    override fun getContainerPackage(): Serializable {
+    override fun getFragmentArg(): Serializable {
         return getSerializable(
             getString(R.string.frag_arg_container),
             ContainerFragmentArg::class.java
