@@ -85,7 +85,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.frag
         rcvList.layoutManager = LinearLayoutManager(view.context)
         rcvList.addItemDecoration(
             GapVerticalDecoration(
-                getResources().getDimensionPixelSize(R.dimen.rcvEntryGap)
+                resources.getDimensionPixelSize(R.dimen.rcvEntryGap)
             )
         )
 
