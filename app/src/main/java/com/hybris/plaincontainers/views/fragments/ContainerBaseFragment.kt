@@ -14,7 +14,7 @@ import com.hybris.plaincontainers.components.handles.buttoniconlabeled.EditHandl
 import com.hybris.plaincontainers.components.handles.buttoniconlabeled.SortHandle
 import com.hybris.plaincontainers.data.SettingsManager
 import com.hybris.plaincontainers.data.entities.EntryBase
-import com.hybris.plaincontainers.entrylist.dragbutton.DragAdapter
+import com.hybris.plaincontainers.entrylist.dragbutton.DragCallback
 import com.hybris.plaincontainers.entrylist.dragbutton.DragListener
 import com.hybris.plaincontainers.entrylist.entrydrag.EntryDragAdapter
 import com.hybris.plaincontainers.entrylist.itemdecoration.TopGapDecoration
@@ -102,7 +102,7 @@ abstract class ContainerBaseFragment<T: EntryBase>(): FragmentBase(R.layout.frag
         }
 
         createAdapter(dragListener)
-        val callback = DragAdapter(rcvAdapter)
+        val callback = DragCallback(rcvAdapter)
 
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(rcvList)
