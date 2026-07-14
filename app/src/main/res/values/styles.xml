@@ -24,6 +24,10 @@
         <item name="android:textColor">@color/textColorDefault</item>
     </style>
 
+    <style name="Widget.PlainContainers.Text.ItemEntry.SmallFont" parent="Widget.PlainContainers.Text.ItemEntry">
+        <item name="android:textSize">@dimen/fontSizeListItemSmall</item>
+    </style>
+
     <style name="Widget.PlainContainers.Text.ItemCount" parent="Theme.PlainContainers">
         <item name="android:textSize">@dimen/fontSizeItemCount</item>
         <item name="android:textColor">@color/textColorDefault</item>
