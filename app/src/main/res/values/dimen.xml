@@ -23,6 +23,7 @@
     <dimen name="fontSizeBtnLarge">24sp</dimen>
     <dimen name="fontSizeItemCount">20sp</dimen>
     <dimen name="fontSizeListItem">24sp</dimen>
+    <dimen name="fontSizeListItemSmall">20sp</dimen>
     <dimen name="fontLineSpacingMultiplier">0.8</dimen>
     <dimen name="entryItemCountTextMargin">8dp</dimen>
     <dimen name="entryThumbnailMargin">4dp</dimen>

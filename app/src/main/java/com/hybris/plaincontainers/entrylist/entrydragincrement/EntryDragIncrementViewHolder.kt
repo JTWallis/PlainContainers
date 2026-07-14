@@ -1,6 +1,7 @@
 package com.hybris.plaincontainers.entrylist.entrydragincrement
 
 import android.view.View
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.hybris.plaincontainers.R
 import com.hybris.plaincontainers.components.handles.itemcount.CountHandle
@@ -20,6 +21,11 @@ class EntryDragIncrementViewHolder(view: View, onEntryClick: (pos: Int) -> Unit,
     : EntryDragViewHolder<EntryItemInContainer>(view, onEntryClick, dragListener) {
 
     private val countHandle = CountHandle(view.findViewById(R.id.containerCount), 0, R.color.backgroundFill)
+
+    init {
+        val tvName = view.findViewById<TextView>(R.id.tvEntryName)
+        tvName.setTextAppearance(R.style.Widget_PlainContainers_Text_ItemEntry_SmallFont)
+    }
 
     // Though compiler marks as unused, the handles need to persist for correct behavior.
     private val decrementHandle = DecrementHandle(
